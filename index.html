@@ -20,20 +20,29 @@
 
 body{
   font-family:Poppins, sans-serif;
-  background:var(--bg);
+  background:
+    radial-gradient(circle at top left, rgba(201,162,77,0.08), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(201,162,77,0.06), transparent 40%),
+    var(--bg);
   color:var(--text);
 }
 
 /* HEADER */
 header{
-  padding:25px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  padding:30px 20px;
+  text-align:center;
   border-bottom:1px solid #222;
+  position:relative;
+  overflow:hidden;
+}
+
+header::before{
+  content:"";
+  position:absolute;
+  inset:0;
   background:
-    radial-gradient(circle at 20% 50%, rgba(201,162,77,0.15), transparent 40%),
-    radial-gradient(circle at 80% 50%, rgba(201,162,77,0.12), transparent 40%);
+    linear-gradient(120deg, transparent 30%, rgba(201,162,77,0.12), transparent 70%);
+  pointer-events:none;
 }
 
 .logo{
@@ -42,9 +51,13 @@ header{
   letter-spacing:2px;
 }
 
+nav{
+  margin-top:10px;
+}
+
 nav a{
   color:var(--muted);
-  margin-left:20px;
+  margin:0 12px;
   text-decoration:none;
   font-size:14px;
 }
@@ -53,37 +66,37 @@ nav a:hover{color:var(--accent)}
 
 /* HERO */
 .hero{
-  padding:80px 20px;
+  padding:90px 20px;
   text-align:center;
 }
 
 .hero h1{
   font-family:Playfair Display, serif;
   font-size:42px;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 .hero p{
   color:var(--muted);
-  max-width:500px;
+  max-width:520px;
   margin:0 auto;
 }
 
 /* SECTIONS */
 .section{
-  padding:50px 20px;
+  padding:60px 20px;
   max-width:1200px;
   margin:auto;
 }
 
 .section h2{
   font-family:Playfair Display, serif;
-  font-size:30px;
+  font-size:28px;
   margin-bottom:30px;
-  text-align:center;
+  border-left:4px solid var(--accent);
+  padding-left:12px;
 }
 
-/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -93,11 +106,14 @@ nav a:hover{color:var(--accent)}
 .card{
   background:var(--card);
   padding:15px;
-  border-radius:12px;
+  border-radius:14px;
   transition:0.3s;
+  position:relative;
 }
 
-.card:hover{transform:translateY(-5px)}
+.card:hover{
+  transform:translateY(-6px);
+}
 
 .card img{
   width:100%;
@@ -148,31 +164,71 @@ button:hover{
 }
 
 /* FLOATING CART */
-.cart-btn{
+#cart-btn{
   position:fixed;
-  bottom:20px;
-  right:20px;
+  bottom:25px;
+  right:25px;
   background:var(--accent);
   color:#000;
-  padding:14px 18px;
+  padding:14px 16px;
   border-radius:50%;
+  font-size:20px;
   cursor:pointer;
-  font-weight:bold;
+  z-index:999;
 }
 
-.cart{
+#cart-panel{
   position:fixed;
-  bottom:80px;
-  right:20px;
+  right:-320px;
+  top:0;
   width:300px;
+  height:100%;
   background:#111;
-  padding:15px;
-  border-radius:12px;
-  display:none;
+  padding:20px;
+  transition:0.3s;
+  z-index:998;
+  border-left:1px solid #222;
 }
 
-.cart h3{margin-bottom:10px}
-.cart-item{font-size:13px;margin-bottom:10px}
+#cart-panel.active{
+  right:0;
+}
+
+#cart-panel h3{
+  margin-bottom:15px;
+  font-family:Playfair Display, serif;
+}
+
+#cart-items{
+  font-size:14px;
+  margin-bottom:15px;
+}
+
+#cart-panel select,
+#cart-panel button{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:20px;
+  border:none;
+}
+
+#cart-panel select{
+  background:#1a1a1a;
+  color:#fff;
+}
+
+#cart-panel button{
+  background:var(--accent);
+  color:#000;
+  font-weight:500;
+}
+
+.total{
+  margin-top:10px;
+  font-weight:500;
+  color:var(--accent);
+}
 
 /* FOOTER */
 footer{
@@ -186,7 +242,6 @@ footer{
 
 @media(max-width:600px){
   .hero h1{font-size:32px}
-  .logo{font-size:26px}
 }
 </style>
 </head>
@@ -197,14 +252,15 @@ footer{
   <div class="logo">HAYAT & CO WATCHES</div>
   <nav>
     <a href="#">Home</a>
-    <a href="#">Watches</a>
+    <a href="#">In Stock</a>
+    <a href="#">Pre-Order</a>
     <a href="#">Contact</a>
   </nav>
 </header>
 
 <section class="hero">
   <h1>Timeless Luxury Watches</h1>
-  <p>Premium watches crafted for elegance. Secure pre-orders and trusted advance payments.</p>
+  <p>Premium watches crafted for elegance. Secure advance payments & trusted pre-orders.</p>
 </section>
 
 <!-- IN STOCK -->
@@ -217,8 +273,8 @@ footer{
       <span class="tag stock">In Stock</span>
       <h3>Classic Steel Watch</h3>
       <div class="price">Rs. 18,000</div>
-      <div class="info">Pay Rs.1000 advance or full price & get 10% OFF</div>
-      <button onclick="addToCart('Classic Steel Watch',18000,'stock')">Add to Cart</button>
+      <div class="info">Rs.1000 advance OR full payment (10% OFF)</div>
+      <button>Add to Cart</button>
     </div>
 
     <div class="card">
@@ -226,8 +282,8 @@ footer{
       <span class="tag stock">In Stock</span>
       <h3>Leather Heritage</h3>
       <div class="price">Rs. 15,500</div>
-      <div class="info">Pay Rs.1000 advance or full price</div>
-      <button onclick="addToCart('Leather Heritage',15500,'stock')">Add to Cart</button>
+      <div class="info">Rs.1000 advance OR full payment</div>
+      <button>Add to Cart</button>
     </div>
 
   </div>
@@ -243,62 +299,74 @@ footer{
       <span class="tag preorder">Pre-Order</span>
       <h3>Midnight Chronograph</h3>
       <div class="price">Rs. 25,000</div>
-      <div class="info">50% advance required | 10% OFF on full payment</div>
-      <button onclick="addToCart('Midnight Chronograph',25000,'preorder')">Add to Cart</button>
+      <div class="info">50% advance OR full payment (10% OFF)</div>
+      <button>Add to Cart</button>
     </div>
 
   </div>
 </section>
 
-<div class="cart-btn" onclick="toggleCart()">🛒</div>
+<!-- CART -->
+<div id="cart-btn">🛒</div>
 
-<div class="cart" id="cart">
+<div id="cart-panel">
   <h3>Your Cart</h3>
-  <div id="cartItems"></div>
+  <div id="cart-items">No items</div>
+
+  <select id="paymentOption">
+    <option value="advance">Pay Advance</option>
+    <option value="full">Pay Full Amount (10% OFF)</option>
+  </select>
+
+  <div class="total" id="totalAmount">Total: Rs 0</div>
   <button onclick="checkout()">Confirm Order</button>
 </div>
 
 <footer>
-© 2025 Hayat & Co Watches • Crafted with Precision
+© 2025 Hayat & Co Watches • Premium Timepieces
 </footer>
 
 <script>
 let cart=[];
 
-function addToCart(name,price,type){
-  let amount;
-  if(type==='stock'){
-    amount = confirm("Pay full price for 10% OFF?") ? price*0.9 : 1000;
-  }else{
-    amount = confirm("Pay full price for 10% OFF?") ? price*0.9 : price*0.5;
+document.querySelectorAll("button").forEach(btn=>{
+  if(btn.innerText==="Add to Cart"){
+    btn.onclick=()=>{
+      const card=btn.parentElement;
+      const name=card.querySelector("h3").innerText;
+      const price=parseInt(card.querySelector(".price").innerText.replace(/\D/g,''));
+      const type=card.querySelector(".tag").classList.contains("preorder")?"preorder":"stock";
+      cart.push({name,price,type});
+      updateCart();
+      document.getElementById("cart-panel").classList.add("active");
+    }
   }
-  cart.push({name,type,amount});
-  renderCart();
-  alert("Added to cart");
+});
+
+document.getElementById("cart-btn").onclick=()=>{
+  document.getElementById("cart-panel").classList.toggle("active");
 }
 
-function renderCart(){
-  let html="";
-  cart.forEach(i=>{
-    html+=`<div class="cart-item">
-      <strong>${i.name}</strong><br>
-      ${i.type.toUpperCase()}<br>
-      Rs ${Math.round(i.amount)}
-    </div>`;
+document.getElementById("paymentOption").onchange=updateCart;
+
+function updateCart(){
+  let html="", total=0;
+  cart.forEach(item=>{
+    let pay=0;
+    if(item.type==="stock"){
+      pay=document.getElementById("paymentOption").value==="full"?item.price*0.9:1000;
+    }else{
+      pay=document.getElementById("paymentOption").value==="full"?item.price*0.9:item.price*0.5;
+    }
+    total+=pay;
+    html+=`<p>${item.name} – Rs ${Math.round(pay)}</p>`;
   });
-  document.getElementById("cartItems").innerHTML=html;
-}
-
-function toggleCart(){
-  const c=document.getElementById("cart");
-  c.style.display=c.style.display==="block"?"none":"block";
+  document.getElementById("cart-items").innerHTML=html||"No items";
+  document.getElementById("totalAmount").innerText="Total: Rs "+Math.round(total);
 }
 
 function checkout(){
-  alert("Order confirmed! A confirmation message or email will be sent shortly.");
-  cart=[];
-  renderCart();
-  toggleCart();
+  alert("Order confirmed! A confirmation message/email will be sent.");
 }
 </script>
 
