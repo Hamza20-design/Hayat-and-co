@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hayat & Co Watches</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -17,232 +17,147 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-
 body{
   font-family:Poppins,sans-serif;
-  background:radial-gradient(circle at top left,rgba(201,162,77,.08),transparent 40%),var(--bg);
+  background:
+    radial-gradient(circle at 50% -20%, rgba(201,162,77,0.18), transparent 45%),
+    linear-gradient(180deg,#050505,#0e0e0e 50%,#050505);
   color:var(--text);
 }
 
 /* HEADER */
 header{
-  text-align:center;
-  padding:35px 20px;
+  position:relative;
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   border-bottom:1px solid #222;
 }
-
+header::after{
+  content:"";
+  position:absolute;
+  bottom:-1px;
+  left:0;
+  width:100%;
+  height:60px;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(201,162,77,.15), transparent 60%),
+    radial-gradient(circle at 80% 50%, rgba(201,162,77,.12), transparent 60%);
+}
 .logo{
   font-family:Playfair Display,serif;
-  font-size:34px;
-  letter-spacing:2px;
+  font-size:28px;
+  letter-spacing:1px;
 }
+nav a{
+  color:var(--muted);
+  margin-left:20px;
+  text-decoration:none;
+}
+nav a:hover{color:var(--accent)}
 
 /* HERO */
 .hero{
-  padding:90px 20px;
   text-align:center;
+  padding:80px 20px;
 }
-
 .hero h1{
   font-family:Playfair Display,serif;
   font-size:42px;
 }
 
-.hero p{
-  color:var(--muted);
-  max-width:500px;
-  margin:12px auto;
-}
-
-/* SECTION */
+/* PRODUCTS */
 .section{
-  padding:60px 20px;
   max-width:1200px;
   margin:auto;
+  padding:40px 20px;
 }
-
-.section h2{
-  font-family:Playfair Display,serif;
-  font-size:28px;
-  border-left:4px solid var(--accent);
-  padding-left:12px;
-  margin-bottom:30px;
-}
-
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:25px;
 }
-
 .card{
   background:var(--card);
   padding:15px;
-  border-radius:14px;
-  transition:.3s;
+  border-radius:12px;
 }
-
-.card:hover{transform:translateY(-6px)}
-
-.card img{
-  width:100%;
-  border-radius:10px;
-}
-
+.card img{width:100%;border-radius:10px}
 .tag{
-  display:inline-block;
-  margin-top:10px;
-  padding:4px 10px;
   font-size:12px;
+  padding:4px 10px;
   border-radius:20px;
+  display:inline-block;
+  margin-top:8px;
 }
-
 .stock{background:#1f7a3f}
 .preorder{background:#7a3f1f}
-
-.card h3{margin:10px 0 5px}
-.price{color:var(--accent)}
-
-.card button{
+.price{color:var(--accent);margin-top:6px}
+button{
   width:100%;
   margin-top:10px;
+  background:transparent;
+  border:1px solid var(--accent);
+  color:var(--accent);
   padding:10px;
   border-radius:25px;
-  border:1px solid var(--accent);
-  background:transparent;
-  color:var(--accent);
   cursor:pointer;
 }
+button:hover{background:var(--accent);color:#000}
 
-.card button:hover{
-  background:var(--accent);
-  color:#000;
-}
-
-/* CART BUTTON */
-#cart-btn{
-  position:fixed;
-  bottom:25px;
-  right:25px;
-  background:var(--accent);
-  color:#000;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  cursor:pointer;
-  z-index:1000;
-}
-
-/* CART PANEL */
-#cart{
+/* CART */
+.cart{
   position:fixed;
   top:0;
-  right:-360px;
-  width:340px;
+  right:-100%;
+  width:100%;
+  max-width:360px;
   height:100%;
   background:#111;
-  border-left:1px solid #222;
   padding:20px;
-  transition:.4s ease;
-  z-index:999;
-  overflow-y:auto;
+  transition:.4s;
+  z-index:1000;
 }
-
-#cart.open{right:0}
-
-#cart h3{
-  font-family:Playfair Display,serif;
-  margin-bottom:15px;
-}
-
-/* CART ITEMS */
+.cart.show{right:0}
+.cart h2{margin-bottom:10px}
 .cart-item{
-  background:#181818;
-  padding:10px;
-  border-radius:10px;
-  margin-bottom:12px;
-  font-size:14px;
+  border-bottom:1px solid #222;
+  padding:10px 0;
 }
-
-.cart-item small{color:var(--muted)}
-
 .qty{
   display:flex;
-  align-items:center;
-  margin-top:8px;
+  gap:10px;
+  margin-top:6px;
 }
+.qty button{width:30px}
 
-.qty button{
-  width:26px;
-  height:26px;
-  border:none;
-  background:var(--accent);
-  color:#000;
-  border-radius:50%;
-  cursor:pointer;
+/* CHECKOUT */
+.checkout{
+  display:none;
 }
-
-.qty span{
-  margin:0 10px;
-}
-
-select{
+.checkout input, .checkout select{
   width:100%;
-  padding:8px;
-  margin-top:8px;
-  border-radius:20px;
-  background:#1b1b1b;
-  color:#fff;
+  padding:10px;
+  margin:8px 0;
+  border-radius:6px;
   border:none;
-}
-
-.total{
-  margin-top:15px;
-  color:var(--accent);
-  font-weight:500;
-}
-
-button.checkout{
-  width:100%;
-  padding:12px;
-  margin-top:15px;
-  border-radius:25px;
-  border:none;
-  background:var(--accent);
-  color:#000;
-  font-weight:500;
-  cursor:pointer;
 }
 
 /* POPUP */
-#popup{
+.popup{
   position:fixed;
-  bottom:-80px;
-  left:50%;
-  transform:translateX(-50%);
-  background:var(--accent);
-  color:#000;
-  padding:14px 25px;
-  border-radius:30px;
-  font-weight:500;
-  transition:.4s ease;
+  left:0;
+  right:0;
+  bottom:-100%;
+  background:#161616;
+  text-align:center;
+  padding:25px;
+  border-radius:20px 20px 0 0;
+  transition:.4s;
   z-index:2000;
 }
-
-#popup.show{bottom:30px}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:30px;
-  color:var(--muted);
-  border-top:1px solid #222;
-  margin-top:60px;
-}
+.popup.show{bottom:0}
 </style>
 </head>
 
@@ -250,129 +165,102 @@ footer{
 
 <header>
   <div class="logo">HAYAT & CO WATCHES</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#" onclick="openCart()">Cart</a>
+  </nav>
 </header>
 
 <section class="hero">
-  <h1>Timeless Luxury Watches</h1>
-  <p>Advance-secured orders & premium craftsmanship</p>
+  <h1>Timeless Luxury</h1>
 </section>
 
 <section class="section">
-<h2>In Stock Watches</h2>
-<div class="grid">
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30">
-    <span class="tag stock">In Stock</span>
-    <h3>Classic Steel</h3>
-    <div class="price">Rs. 18,000</div>
-    <button onclick="addToCart('Classic Steel',18000,'stock')">Add to Cart</button>
+  <div class="grid">
+    <div class="card">
+      <img src="watch1.jpg">
+      <span class="tag stock">In Stock</span>
+      <h3>Classic Steel</h3>
+      <div class="price">Rs. 18,000</div>
+      <button onclick="addToCart('Classic Steel',18000)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="watch2.jpg">
+      <span class="tag preorder">Pre-Order</span>
+      <h3>Midnight Chrono</h3>
+      <div class="price">Rs. 25,000</div>
+      <button onclick="addToCart('Midnight Chrono',25000)">Add to Cart</button>
+    </div>
   </div>
-</div>
 </section>
 
-<section class="section">
-<h2>Pre Order Watches</h2>
-<div class="grid">
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
-    <span class="tag preorder">Pre Order</span>
-    <h3>Midnight Chronograph</h3>
-    <div class="price">Rs. 25,000</div>
-    <button onclick="addToCart('Midnight Chronograph',25000,'preorder')">Add to Cart</button>
+<!-- CART -->
+<div class="cart" id="cart">
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <button onclick="openCheckout()">Checkout</button>
+
+  <div class="checkout" id="checkout">
+    <h3>Checkout</h3>
+    <input placeholder="Name">
+    <input placeholder="Phone">
+    <input placeholder="Address">
+    <select>
+      <option>Cash on Delivery</option>
+      <option>Online Payment</option>
+    </select>
+    <div id="summary"></div>
+    <button onclick="confirmOrder()">Confirm Order</button>
   </div>
 </div>
-</section>
 
-<div id="cart-btn" onclick="toggleCart()">🛒</div>
-
-<div id="cart">
-<h3>Your Cart</h3>
-<div id="cartItems">No items added</div>
-<div class="total" id="total">Total: Rs 0</div>
-<button class="checkout" onclick="checkout()">Confirm Order</button>
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <h3>✅ Order Confirmed</h3>
+  <p>We’ll contact you shortly</p>
 </div>
-
-<div id="popup">✅ Order confirmed successfully!</div>
-
-<footer>© 2025 Hayat & Co Watches</footer>
 
 <script>
 let cart=[];
-
-function toggleCart(){
-  document.getElementById('cart').classList.toggle('open');
+function openCart(){document.getElementById("cart").classList.add("show")}
+function addToCart(name,price){
+  cart.push({name,price,qty:1});
+  renderCart();
+  openCart();
 }
-
-function addToCart(name,price,type){
-  cart.push({name,price,type,qty:1,pay:'advance'});
-  toggleCart();
-  updateTotal();
-}
-
-function changeQty(i,val){
-  cart[i].qty=Math.max(1,cart[i].qty+val);
-  updateTotal();
-}
-
-function changePay(i,val){
-  cart[i].pay=val;
-  updateTotal();
-}
-
-function updateTotal(){
-  let total=0;
-  let html='';
-
-  cart.forEach((item,i)=>{
-    let base=0;
-
-    if(item.type==='stock'){
-      base=item.pay==='full'?item.price*0.9:1000;
-    }else{
-      base=item.pay==='full'?item.price*0.9:item.price*0.5;
-    }
-
-    const amount=base*item.qty;
-    total+=amount;
-
+function renderCart(){
+  let html="",total=0;
+  cart.forEach((i,idx)=>{
+    total+=i.price*i.qty;
     html+=`
-      <div class="cart-item">
-        ${item.name}<br>
-        <small>Rs ${Math.round(base)} each</small>
-
-        <select onchange="changePay(${i},this.value)">
-          <option value="advance" ${item.pay==='advance'?'selected':''}>Advance</option>
-          <option value="full" ${item.pay==='full'?'selected':''}>Full (10% OFF)</option>
-        </select>
-
-        <div class="qty">
-          <button onclick="changeQty(${i},-1)">−</button>
-          <span>${item.qty}</span>
-          <button onclick="changeQty(${i},1)">+</button>
-        </div>
+    <div class="cart-item">
+      ${i.name} - Rs.${i.price}
+      <div class="qty">
+        <button onclick="changeQty(${idx},-1)">-</button>
+        ${i.qty}
+        <button onclick="changeQty(${idx},1)">+</button>
       </div>
-    `;
+    </div>`;
   });
-
-  document.getElementById('cartItems').innerHTML=html||'No items added';
-  document.getElementById('total').innerText='Total: Rs '+Math.round(total);
+  document.getElementById("cartItems").innerHTML=html;
+  document.getElementById("summary").innerHTML="<b>Total:</b> Rs."+total;
 }
-
-function checkout(){
-  if(cart.length===0) return;
-
-  const popup=document.getElementById('popup');
-  popup.classList.remove('show');
-
+function changeQty(i,d){
+  cart[i].qty+=d;
+  if(cart[i].qty<=0)cart.splice(i,1);
+  renderCart();
+}
+function openCheckout(){
+  document.getElementById("checkout").style.display="block";
+}
+function confirmOrder(){
+  document.getElementById("popup").classList.add("show");
   setTimeout(()=>{
-    popup.classList.add('show');
-  },100);
-
-  setTimeout(()=>{
-    popup.classList.remove('show');
+    document.getElementById("popup").classList.remove("show");
     cart=[];
-    updateTotal();
-    toggleCart();
+    renderCart();
+    document.getElementById("cart").classList.remove("show");
   },4000);
 }
 </script>
