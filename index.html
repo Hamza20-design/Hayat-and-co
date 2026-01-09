@@ -190,32 +190,29 @@ header{
   margin:0 10px;
 }
 
-select{
+select,button.checkout{
   width:100%;
-  padding:8px;
-  margin-top:8px;
+  padding:10px;
+  margin-top:12px;
   border-radius:20px;
+  border:none;
+}
+
+select{
   background:#1b1b1b;
   color:#fff;
-  border:none;
+}
+
+button.checkout{
+  background:var(--accent);
+  color:#000;
+  font-weight:500;
 }
 
 .total{
   margin-top:15px;
   color:var(--accent);
   font-weight:500;
-}
-
-button.checkout{
-  width:100%;
-  padding:12px;
-  margin-top:15px;
-  border-radius:25px;
-  border:none;
-  background:var(--accent);
-  color:#000;
-  font-weight:500;
-  cursor:pointer;
 }
 
 /* POPUP */
@@ -288,6 +285,12 @@ footer{
 <div id="cart">
 <h3>Your Cart</h3>
 <div id="cartItems">No items added</div>
+
+<select id="paymentType" onchange="updateTotal()">
+  <option value="advance">Pay Advance</option>
+  <option value="full">Pay Full (10% OFF)</option>
+</select>
+
 <div class="total" id="total">Total: Rs 0</div>
 <button class="checkout" onclick="checkout()">Confirm Order</button>
 </div>
@@ -304,7 +307,7 @@ function toggleCart(){
 }
 
 function addToCart(name,price,type){
-  cart.push({name,price,type,qty:1,pay:'advance'});
+  cart.push({name,price,type,qty:1});
   toggleCart();
   updateTotal();
 }
@@ -314,22 +317,17 @@ function changeQty(i,val){
   updateTotal();
 }
 
-function changePay(i,val){
-  cart[i].pay=val;
-  updateTotal();
-}
-
 function updateTotal(){
   let total=0;
   let html='';
+  const pay=document.getElementById('paymentType').value;
 
   cart.forEach((item,i)=>{
     let base=0;
-
     if(item.type==='stock'){
-      base=item.pay==='full'?item.price*0.9:1000;
+      base=pay==='full'?item.price*0.9:1000;
     }else{
-      base=item.pay==='full'?item.price*0.9:item.price*0.5;
+      base=pay==='full'?item.price*0.9:item.price*0.5;
     }
 
     const amount=base*item.qty;
@@ -339,12 +337,6 @@ function updateTotal(){
       <div class="cart-item">
         ${item.name}<br>
         <small>Rs ${Math.round(base)} each</small>
-
-        <select onchange="changePay(${i},this.value)">
-          <option value="advance" ${item.pay==='advance'?'selected':''}>Advance</option>
-          <option value="full" ${item.pay==='full'?'selected':''}>Full (10% OFF)</option>
-        </select>
-
         <div class="qty">
           <button onclick="changeQty(${i},-1)">−</button>
           <span>${item.qty}</span>
@@ -359,21 +351,9 @@ function updateTotal(){
 }
 
 function checkout(){
-  if(cart.length===0) return;
-
   const popup=document.getElementById('popup');
-  popup.classList.remove('show');
-
-  setTimeout(()=>{
-    popup.classList.add('show');
-  },100);
-
-  setTimeout(()=>{
-    popup.classList.remove('show');
-    cart=[];
-    updateTotal();
-    toggleCart();
-  },4000);
+  popup.classList.add('show');
+  setTimeout(()=>popup.classList.remove('show'),4000);
 }
 </script>
 
