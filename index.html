@@ -79,7 +79,10 @@ header{
   background:var(--card);
   padding:15px;
   border-radius:14px;
+  transition:.3s;
 }
+
+.card:hover{transform:translateY(-6px)}
 
 .card img{
   width:100%;
@@ -97,6 +100,7 @@ header{
 .stock{background:#1f7a3f}
 .preorder{background:#7a3f1f}
 
+.card h3{margin:10px 0 5px}
 .price{color:var(--accent)}
 
 .card button{
@@ -108,6 +112,11 @@ header{
   background:transparent;
   color:var(--accent);
   cursor:pointer;
+}
+
+.card button:hover{
+  background:var(--accent);
+  color:#000;
 }
 
 /* CART BUTTON */
@@ -145,6 +154,12 @@ header{
 
 #cart.open{right:0}
 
+#cart h3{
+  font-family:Playfair Display,serif;
+  margin-bottom:15px;
+}
+
+/* CART ITEMS */
 .cart-item{
   background:#181818;
   padding:10px;
@@ -154,16 +169,15 @@ header{
   position:relative;
 }
 
-/* TRASH BUTTON */
-.remove-btn{
+.cart-item small{color:var(--muted)}
+
+.remove{
   position:absolute;
-  top:10px;
-  right:10px;
-  background:none;
-  border:none;
-  color:#ff6b6b;
-  font-size:16px;
+  top:8px;
+  right:8px;
   cursor:pointer;
+  color:#ff6b6b;
+  font-size:14px;
 }
 
 .qty{
@@ -182,7 +196,9 @@ header{
   cursor:pointer;
 }
 
-.qty span{margin:0 10px}
+.qty span{
+  margin:0 10px;
+}
 
 select{
   width:100%;
@@ -208,10 +224,11 @@ button.checkout{
   border:none;
   background:var(--accent);
   color:#000;
+  font-weight:500;
   cursor:pointer;
 }
 
-/* POPUP (FIXED – hidden by default) */
+/* POPUP */
 #popup{
   position:fixed;
   bottom:-100px;
@@ -219,8 +236,9 @@ button.checkout{
   transform:translateX(-50%);
   background:var(--accent);
   color:#000;
-  padding:14px 25px;
-  border-radius:30px;
+  padding:10px 18px;
+  border-radius:22px;
+  font-size:14px;
   font-weight:500;
   transition:.4s ease;
   z-index:2000;
@@ -228,43 +246,13 @@ button.checkout{
 
 #popup.show{bottom:30px}
 
-/* CHECKOUT MODAL */
-#checkoutModal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.75);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:3000;
-}
-
-#checkoutBox{
-  background:#111;
-  width:90%;
-  max-width:400px;
-  padding:20px;
-  border-radius:16px;
-}
-
-#checkoutBox input,
-#checkoutBox select{
-  width:100%;
-  padding:10px;
-  margin-bottom:10px;
-  border-radius:10px;
-  border:none;
-  background:#1c1c1c;
-  color:#fff;
-}
-
-#checkoutBox button{
-  width:100%;
-  padding:12px;
-  border-radius:25px;
-  border:none;
-  background:var(--accent);
-  cursor:pointer;
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
+  border-top:1px solid #222;
+  margin-top:60px;
 }
 </style>
 </head>
@@ -293,30 +281,31 @@ button.checkout{
 </div>
 </section>
 
+<section class="section">
+<h2>Pre Order Watches</h2>
+<div class="grid">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+    <span class="tag preorder">Pre Order</span>
+    <h3>Midnight Chronograph</h3>
+    <div class="price">Rs. 25,000</div>
+    <button onclick="addToCart('Midnight Chronograph',25000,'preorder')">Add to Cart</button>
+  </div>
+</div>
+</section>
+
 <div id="cart-btn" onclick="toggleCart()">🛒</div>
 
 <div id="cart">
-  <h3>Your Cart</h3>
-  <div id="cartItems">No items added</div>
-  <div class="total" id="total">Total: Rs 0</div>
-  <button class="checkout" onclick="checkout()">Confirm Order</button>
-</div>
-
-<div id="checkoutModal">
-  <div id="checkoutBox">
-    <h3>Checkout</h3>
-    <input placeholder="Full Name">
-    <input placeholder="Phone Number">
-    <input placeholder="Address">
-    <select>
-      <option>Cash on Delivery</option>
-      <option>Advance Payment</option>
-    </select>
-    <button onclick="finalConfirm()">Confirm Order</button>
-  </div>
+<h3>Your Cart</h3>
+<div id="cartItems">No items added</div>
+<div class="total" id="total">Total: Rs 0</div>
+<button class="checkout" onclick="checkout()">Confirm Order</button>
 </div>
 
 <div id="popup">✅ Order confirmed successfully!</div>
+
+<footer>© 2025 Hayat & Co Watches</footer>
 
 <script>
 let cart=[];
@@ -327,7 +316,7 @@ function toggleCart(){
 
 function addToCart(name,price,type){
   cart.push({name,price,type,qty:1,pay:'advance'});
-  toggleCart();
+  document.getElementById('cart').classList.add('open');
   updateTotal();
 }
 
@@ -351,26 +340,34 @@ function updateTotal(){
   let html='';
 
   cart.forEach((item,i)=>{
-    let base=item.pay==='full'?item.price*0.9:1000;
+    let base=0;
+
+    if(item.type==='stock'){
+      base=item.pay==='full'?item.price*0.9:1000;
+    }else{
+      base=item.pay==='full'?item.price*0.9:item.price*0.5;
+    }
+
     total+=base*item.qty;
 
     html+=`
-    <div class="cart-item">
-      <button class="remove-btn" onclick="removeItem(${i})">🗑️</button>
-      ${item.name}<br>
-      <small>Rs ${Math.round(base)} each</small>
+      <div class="cart-item">
+        <span class="remove" onclick="removeItem(${i})">🗑</span>
+        ${item.name}<br>
+        <small>Rs ${Math.round(base)} each</small>
 
-      <select onchange="changePay(${i},this.value)">
-        <option value="advance" ${item.pay==='advance'?'selected':''}>Advance</option>
-        <option value="full" ${item.pay==='full'?'selected':''}>Full (10% OFF)</option>
-      </select>
+        <select onchange="changePay(${i},this.value)">
+          <option value="advance" ${item.pay==='advance'?'selected':''}>Advance</option>
+          <option value="full" ${item.pay==='full'?'selected':''}>Full (10% OFF)</option>
+        </select>
 
-      <div class="qty">
-        <button onclick="changeQty(${i},-1)">−</button>
-        <span>${item.qty}</span>
-        <button onclick="changeQty(${i},1)">+</button>
+        <div class="qty">
+          <button onclick="changeQty(${i},-1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty(${i},1)">+</button>
+        </div>
       </div>
-    </div>`;
+    `;
   });
 
   document.getElementById('cartItems').innerHTML=html||'No items added';
@@ -379,20 +376,17 @@ function updateTotal(){
 
 function checkout(){
   if(cart.length===0) return;
-  document.getElementById('checkoutModal').style.display='flex';
-}
-
-function finalConfirm(){
-  document.getElementById('checkoutModal').style.display='none';
 
   const popup=document.getElementById('popup');
-  popup.classList.add('show');
+  popup.classList.remove('show');
+
+  setTimeout(()=>popup.classList.add('show'),100);
 
   setTimeout(()=>{
     popup.classList.remove('show');
     cart=[];
     updateTotal();
-    toggleCart();
+    document.getElementById('cart').classList.remove('open');
   },4000);
 }
 </script>
