@@ -166,19 +166,9 @@ header{
   border-radius:10px;
   margin-bottom:12px;
   font-size:14px;
-  position:relative;
 }
 
 .cart-item small{color:var(--muted)}
-
-.remove{
-  position:absolute;
-  top:8px;
-  right:8px;
-  cursor:pointer;
-  color:#ff6b6b;
-  font-size:14px;
-}
 
 .qty{
   display:flex;
@@ -231,20 +221,44 @@ button.checkout{
 /* POPUP */
 #popup{
   position:fixed;
-  bottom:-100px;
+  bottom:-80px;
   left:50%;
   transform:translateX(-50%);
   background:var(--accent);
   color:#000;
-  padding:10px 18px;
-  border-radius:22px;
-  font-size:14px;
+  padding:14px 25px;
+  border-radius:30px;
   font-weight:500;
   transition:.4s ease;
   z-index:2000;
+  max-width:300px;
+  text-align:center;
 }
 
 #popup.show{bottom:30px}
+
+/* CHECKOUT FORM */
+#checkout-form{
+  display:none;
+  background:#161616;
+  padding:20px;
+  border-radius:14px;
+  margin-top:20px;
+}
+
+#checkout-form input, #checkout-form select, #checkout-form textarea{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
+  border:none;
+  background:#1b1b1b;
+  color:#fff;
+}
+
+#checkout-form h3{
+  margin-bottom:12px;
+}
 
 /* FOOTER */
 footer{
@@ -268,11 +282,9 @@ footer{
   <p>Advance-secured orders & premium craftsmanship</p>
 </section>
 
-<!-- IN STOCK -->
 <section class="section">
 <h2>In Stock Watches</h2>
 <div class="grid">
-
   <div class="card">
     <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30">
     <span class="tag stock">In Stock</span>
@@ -280,7 +292,6 @@ footer{
     <div class="price">Rs. 18,000</div>
     <button onclick="addToCart('Classic Steel',18000,'stock')">Add to Cart</button>
   </div>
-
   <div class="card">
     <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314">
     <span class="tag stock">In Stock</span>
@@ -288,23 +299,19 @@ footer{
     <div class="price">Rs. 15,500</div>
     <button onclick="addToCart('Leather Heritage',15500,'stock')">Add to Cart</button>
   </div>
-
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade">
+    <img src="https://images.unsplash.com/photo-1507120366495-1c31e6aa3d0e">
     <span class="tag stock">In Stock</span>
-    <h3>Minimal Black</h3>
+    <h3>Golden Classic</h3>
     <div class="price">Rs. 20,000</div>
-    <button onclick="addToCart('Minimal Black',20000,'stock')">Add to Cart</button>
+    <button onclick="addToCart('Golden Classic',20000,'stock')">Add to Cart</button>
   </div>
-
 </div>
 </section>
 
-<!-- PRE ORDER -->
 <section class="section">
 <h2>Pre Order Watches</h2>
 <div class="grid">
-
   <div class="card">
     <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
     <span class="tag preorder">Pre Order</span>
@@ -312,23 +319,20 @@ footer{
     <div class="price">Rs. 25,000</div>
     <button onclick="addToCart('Midnight Chronograph',25000,'preorder')">Add to Cart</button>
   </div>
-
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b">
+    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
     <span class="tag preorder">Pre Order</span>
-    <h3>Royal Gold</h3>
-    <div class="price">Rs. 32,000</div>
-    <button onclick="addToCart('Royal Gold',32000,'preorder')">Add to Cart</button>
+    <h3>Royal Edition</h3>
+    <div class="price">Rs. 30,000</div>
+    <button onclick="addToCart('Royal Edition',30000,'preorder')">Add to Cart</button>
   </div>
-
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1491336477066-31156b5e4f35">
+    <img src="https://images.unsplash.com/photo-1549924231-f129b911e442">
     <span class="tag preorder">Pre Order</span>
-    <h3>Carbon Elite</h3>
-    <div class="price">Rs. 28,500</div>
-    <button onclick="addToCart('Carbon Elite',28500,'preorder')">Add to Cart</button>
+    <h3>Diamond Chrono</h3>
+    <div class="price">Rs. 40,000</div>
+    <button onclick="addToCart('Diamond Chrono',40000,'preorder')">Add to Cart</button>
   </div>
-
 </div>
 </section>
 
@@ -338,7 +342,21 @@ footer{
 <h3>Your Cart</h3>
 <div id="cartItems">No items added</div>
 <div class="total" id="total">Total: Rs 0</div>
-<button class="checkout" onclick="checkout()">Confirm Order</button>
+<button class="checkout" onclick="showCheckout()">Checkout</button>
+
+<div id="checkout-form">
+  <h3>Checkout</h3>
+  <div id="orderSummary"></div>
+  <input type="text" id="cname" placeholder="Full Name">
+  <input type="tel" id="cphone" placeholder="Phone Number">
+  <textarea id="caddress" placeholder="Address"></textarea>
+  <select id="cpayment">
+    <option value="cod">Cash on Delivery</option>
+    <option value="online">Online Payment</option>
+  </select>
+  <button class="checkout" onclick="confirmOrder()">Confirm Order</button>
+</div>
+
 </div>
 
 <div id="popup">✅ Order confirmed successfully!</div>
@@ -354,26 +372,26 @@ function toggleCart(){
 
 function addToCart(name,price,type){
   cart.push({name,price,type,qty:1,pay:'advance'});
-  document.getElementById('cart').classList.add('open');
-  updateTotal();
-}
-
-function removeItem(i){
-  cart.splice(i,1);
-  updateTotal();
+  toggleCart();
+  updateCartUI();
 }
 
 function changeQty(i,val){
   cart[i].qty=Math.max(1,cart[i].qty+val);
-  updateTotal();
+  updateCartUI();
 }
 
 function changePay(i,val){
   cart[i].pay=val;
-  updateTotal();
+  updateCartUI();
 }
 
-function updateTotal(){
+function removeItem(i){
+  cart.splice(i,1);
+  updateCartUI();
+}
+
+function updateCartUI(){
   let total=0;
   let html='';
 
@@ -388,35 +406,51 @@ function updateTotal(){
 
     html+=`
       <div class="cart-item">
-        <span class="remove" onclick="removeItem(${i})">🗑</span>
         ${item.name}<br>
         <small>Rs ${Math.round(base)} each</small>
         <select onchange="changePay(${i},this.value)">
-          <option value="advance">Advance</option>
-          <option value="full">Full (10% OFF)</option>
+          <option value="advance" ${item.pay==='advance'?'selected':''}>Advance</option>
+          <option value="full" ${item.pay==='full'?'selected':''}>Full (10% OFF)</option>
         </select>
         <div class="qty">
           <button onclick="changeQty(${i},-1)">−</button>
           <span>${item.qty}</span>
           <button onclick="changeQty(${i},1)">+</button>
         </div>
-      </div>`;
+        <button onclick="removeItem(${i})" style="margin-top:5px;padding:5px;border-radius:8px;">🗑 Remove</button>
+      </div>
+    `;
   });
 
   document.getElementById('cartItems').innerHTML=html||'No items added';
   document.getElementById('total').innerText='Total: Rs '+Math.round(total);
 }
 
-function checkout(){
-  if(!cart.length) return;
+function showCheckout(){
+  if(cart.length===0) return;
+  document.getElementById('checkout-form').style.display='block';
+  let summary='';
+  cart.forEach(item=>{
+    let base=item.type==='stock'? (item.pay==='full'?item.price*0.9:1000) : (item.pay==='full'?item.price*0.9:item.price*0.5);
+    summary+=`${item.name} - Rs ${Math.round(base)} x ${item.qty}<br>`;
+  });
+  document.getElementById('orderSummary').innerHTML=summary;
+}
+
+function confirmOrder(){
+  if(cart.length===0) return;
   const popup=document.getElementById('popup');
   popup.classList.remove('show');
-  setTimeout(()=>popup.classList.add('show'),100);
+
+  setTimeout(()=>{
+    popup.classList.add('show');
+  },100);
+
   setTimeout(()=>{
     popup.classList.remove('show');
     cart=[];
-    updateTotal();
-    document.getElementById('cart').classList.remove('open');
+    updateCartUI();
+    document.getElementById('checkout-form').style.display='none';
   },4000);
 }
 </script>
