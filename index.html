@@ -1,383 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hayat & Co Watches</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --bg:#0e0e0e;
-  --card:#161616;
-  --accent:#c9a24d;
-  --text:#f5f5f5;
-  --muted:#9a9a9a;
-}
-
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-  font-family:Poppins,sans-serif;
-  background:radial-gradient(circle at top left,rgba(201,162,77,.08),transparent 40%),var(--bg);
-  color:var(--text);
-}
-
-/* HEADER */
-header{
-  text-align:center;
-  padding:35px 20px;
-  border-bottom:1px solid #222;
-}
-
-.logo{
-  font-family:Playfair Display,serif;
-  font-size:34px;
-  letter-spacing:2px;
-}
-
-/* HERO */
-.hero{
-  padding:90px 20px;
-  text-align:center;
-}
-
-.hero h1{
-  font-family:Playfair Display,serif;
-  font-size:42px;
-}
-
-.hero p{
-  color:var(--muted);
-  max-width:500px;
-  margin:12px auto;
-}
-
-/* SECTION */
-.section{
-  padding:60px 20px;
-  max-width:1200px;
-  margin:auto;
-}
-
-.section h2{
-  font-family:Playfair Display,serif;
-  font-size:28px;
-  border-left:4px solid var(--accent);
-  padding-left:12px;
-  margin-bottom:30px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;
-}
-
-.card{
-  background:var(--card);
-  padding:15px;
-  border-radius:14px;
-  transition:.3s;
-}
-
-.card:hover{transform:translateY(-6px)}
-
-.card img{
-  width:100%;
-  border-radius:10px;
-}
-
-.tag{
-  display:inline-block;
-  margin-top:10px;
-  padding:4px 10px;
-  font-size:12px;
-  border-radius:20px;
-}
-
-.stock{background:#1f7a3f}
-.preorder{background:#7a3f1f}
-
-.card h3{margin:10px 0 5px}
-.price{color:var(--accent)}
-
-.card button{
-  width:100%;
-  margin-top:10px;
-  padding:10px;
-  border-radius:25px;
-  border:1px solid var(--accent);
-  background:transparent;
-  color:var(--accent);
-  cursor:pointer;
-}
-
-.card button:hover{
-  background:var(--accent);
-  color:#000;
-}
-
-/* CART BUTTON */
-#cart-btn{
-  position:fixed;
-  bottom:25px;
-  right:25px;
-  background:var(--accent);
-  color:#000;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  cursor:pointer;
-  z-index:1000;
-}
-
-/* CART PANEL */
-#cart{
-  position:fixed;
-  top:0;
-  right:-360px;
-  width:340px;
-  height:100%;
-  background:#111;
-  border-left:1px solid #222;
-  padding:20px;
-  transition:.4s ease;
-  z-index:999;
-  overflow-y:auto;
-}
-
-#cart.open{right:0}
-
-#cart h3{
-  font-family:Playfair Display,serif;
-  margin-bottom:15px;
-}
-
-/* CART ITEMS */
-.cart-item{
-  background:#181818;
-  padding:10px;
-  border-radius:10px;
-  margin-bottom:12px;
-  font-size:14px;
-}
-
-.cart-item small{color:var(--muted)}
-
-.qty{
-  display:flex;
-  align-items:center;
-  margin-top:8px;
-}
-
-.qty button{
-  width:26px;
-  height:26px;
-  border:none;
-  background:var(--accent);
-  color:#000;
-  border-radius:50%;
-  cursor:pointer;
-}
-
-.qty span{
-  margin:0 10px;
-}
-
-select{
-  width:100%;
-  padding:8px;
-  margin-top:8px;
-  border-radius:20px;
-  background:#1b1b1b;
-  color:#fff;
-  border:none;
-}
-
-.total{
-  margin-top:15px;
-  color:var(--accent);
-  font-weight:500;
-}
-
-button.checkout{
-  width:100%;
-  padding:12px;
-  margin-top:15px;
-  border-radius:25px;
-  border:none;
-  background:var(--accent);
-  color:#000;
-  font-weight:500;
-  cursor:pointer;
-}
-
-/* ORDER CONFIRM POPUP */
-#popup{
-  position:fixed;
-  bottom:-80px;
-  left:50%;
-  transform:translateX(-50%);
-  background:var(--accent);
-  color:#000;
-  padding:14px 25px;
-  border-radius:30px;
-  font-weight:500;
-  transition:.4s ease;
-  z-index:3000;
-  max-width:300px;
-  text-align:center;
-}
-
-#popup.show{bottom:30px}
-
-/* CHECKOUT SLIDE UP */
-#checkout-popup{
-  position:fixed;
-  bottom:-100%;
-  left:0;
-  width:100%;
-  background:#161616;
-  border-radius:20px 20px 0 0;
-  padding:20px;
-  transition:.4s ease;
-  z-index:2000;
-}
-
-#checkout-popup.open{bottom:0}
-
-#checkout-popup input,
-#checkout-popup textarea,
-#checkout-popup select{
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-  border-radius:8px;
-  border:none;
-  background:#1b1b1b;
-  color:#fff;
-}
-
-#checkout-popup h3{
-  margin-bottom:10px;
-  font-family:Playfair Display,serif;
-}
-
-footer{
-  text-align:center;
-  padding:30px;
-  color:var(--muted);
-  border-top:1px solid #222;
-  margin-top:60px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE | Haute Horlogerie</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+    </style>
 </head>
+<body class="bg-[#fdfcfb] text-zinc-900">
 
-<body>
+    <div class="bg-zinc-900 text-white text-[10px] uppercase tracking-[0.2em] py-2 text-center">
+        Complimentary Express Shipping on All Orders
+    </div>
 
-<header>
-  <div class="logo">HAYAT & CO WATCHES</div>
-</header>
+    <nav class="border-b border-zinc-200 sticky top-0 bg-white/90 backdrop-blur-md z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex-1 hidden md:flex gap-6 text-[11px] uppercase tracking-widest font-semibold">
+                <a href="#" class="hover:text-amber-700 transition">Men</a>
+                <a href="#" class="hover:text-amber-700 transition">Women</a>
+                <a href="#" class="hover:text-amber-700 transition">Journal</a>
+            </div>
+            
+            <h1 class="text-3xl font-serif tracking-[0.3em] font-bold flex-1 text-center">LUXE</h1>
+            
+            <div class="flex-1 flex justify-end items-center gap-6">
+                <button class="hidden md:block hover:text-amber-700 transition"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <div class="relative cursor-pointer group" onclick="toggleCart()">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-amber-600 text-white text-[9px] rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-<section class="hero">
-  <h1>Timeless Luxury Watches</h1>
-  <p>Advance-secured orders & premium craftsmanship</p>
-</section>
+    <section class="relative h-[70vh] flex items-center bg-zinc-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center z-10">
+            <div class="max-w-md">
+                <span class="text-amber-700 uppercase tracking-[0.3em] text-xs font-bold mb-4 block">New Arrival</span>
+                <h2 class="text-5xl md:text-7xl font-serif mb-6 leading-tight">The Chronos Heritage</h2>
+                <p class="text-zinc-500 mb-8 leading-relaxed">Engineered for the modern explorer. Featuring a 72-hour power reserve and water resistance up to 200m.</p>
+                <a href="#shop" class="inline-block border border-zinc-900 px-10 py-4 uppercase text-xs tracking-widest hover:bg-zinc-900 hover:text-white transition-all duration-300">Explore Now</a>
+            </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=1200" class="absolute right-0 top-0 h-full w-1/2 object-cover hidden md:block" alt="Luxury Watch">
+    </section>
 
-<!-- PRODUCTS (UNCHANGED) -->
-<section class="section">
-<h2>In Stock Watches</h2>
-<div class="grid">
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30">
-    <span class="tag stock">In Stock</span>
-    <h3>Classic Steel</h3>
-    <div class="price">Rs. 18,000</div>
-    <button onclick="addToCart('Classic Steel',18000,'stock')">Add to Cart</button>
-  </div>
-</div>
-</section>
+    <main id="shop" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="flex flex-col md:flex-row gap-12">
+            
+            <aside class="w-full md:w-48 shrink-0">
+                <h3 class="uppercase text-[11px] tracking-widest font-bold mb-6 border-b pb-2">Category</h3>
+                <ul class="space-y-3 text-sm text-zinc-500">
+                    <li><button onclick="filterProducts('all')" class="hover:text-zinc-900 transition">All Pieces</button></li>
+                    <li><button onclick="filterProducts('Automatic')" class="hover:text-zinc-900 transition">Automatic</button></li>
+                    <li><button onclick="filterProducts('Chronograph')" class="hover:text-zinc-900 transition">Chronograph</button></li>
+                    <li><button onclick="filterProducts('Quartz')" class="hover:text-zinc-900 transition">Quartz</button></li>
+                </ul>
+            </aside>
 
-<section class="section">
-<h2>Pre Order Watches</h2>
-<div class="grid">
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
-    <span class="tag preorder">Pre Order</span>
-    <h3>Midnight Chronograph</h3>
-    <div class="price">Rs. 25,000</div>
-    <button onclick="addToCart('Midnight Chronograph',25000,'preorder')">Add to Cart</button>
-  </div>
-</div>
-</section>
+            <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16" id="product-grid">
+                </div>
+        </div>
+    </main>
 
-<div id="cart-btn" onclick="toggleCart()">🛒</div>
+    <div id="cart-overlay" class="fixed inset-0 bg-black/40 opacity-0 pointer-events-none transition-opacity z-[60]" onclick="toggleCart()"></div>
+    <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-full max-w-md bg-white translate-x-full transition-transform duration-500 z-[70] flex flex-col">
+        <div class="p-8 border-b flex justify-between items-center">
+            <h2 class="font-serif text-2xl">Your Selection</h2>
+            <button onclick="toggleCart()" class="text-xl hover:rotate-90 transition-transform">&times;</button>
+        </div>
+        <div id="cart-items" class="flex-1 overflow-y-auto p-8 space-y-6">
+            </div>
+        <div class="p-8 border-t bg-zinc-50">
+            <div class="flex justify-between mb-6 text-sm uppercase tracking-widest">
+                <span>Subtotal</span>
+                <span id="cart-total" class="font-bold">$0.00</span>
+            </div>
+            <button class="w-full bg-zinc-900 text-white py-5 uppercase text-[11px] tracking-[0.3em] hover:bg-amber-800 transition">Proceed to Checkout</button>
+        </div>
+    </div>
 
-<div id="cart">
-  <h3>Your Cart</h3>
-  <div id="cartItems">No items added</div>
-  <div class="total" id="total">Total: Rs 0</div>
-  <button class="checkout" onclick="openCheckout()">Checkout</button>
-</div>
-
-<!-- CHECKOUT POPUP -->
-<div id="checkout-popup">
-  <h3>Checkout</h3>
-  <div id="orderSummary"></div>
-  <input placeholder="Full Name">
-  <input placeholder="Phone Number">
-  <textarea placeholder="Address"></textarea>
-  <select>
-    <option>Cash on Delivery</option>
-    <option>Online Payment</option>
-  </select>
-  <button class="checkout" onclick="confirmOrder()">Confirm Order</button>
-</div>
-
-<div id="popup">✅ Order confirmed successfully!</div>
-
-<footer>© 2025 Hayat & Co Watches</footer>
-
-<script>
-let cart=[];
-
-function toggleCart(){
-  document.getElementById('cart').classList.toggle('open');
-}
-
-function addToCart(name,price,type){
-  cart.push({name,price,qty:1});
-  document.getElementById('cart').classList.add('open');
-  updateCart();
-}
-
-function updateCart(){
-  let html='',total=0;
-  cart.forEach(item=>{
-    html+=`<div class="cart-item">${item.name}</div>`;
-    total+=item.price;
-  });
-  document.getElementById('cartItems').innerHTML=html;
-  document.getElementById('total').innerText='Total: Rs '+total;
-}
-
-function openCheckout(){
-  document.getElementById('checkout-popup').classList.add('open');
-}
-
-function confirmOrder(){
-  document.getElementById('checkout-popup').classList.remove('open');
-  const p=document.getElementById('popup');
-  p.classList.add('show');
-  setTimeout(()=>p.classList.remove('show'),4000);
-}
-</script>
-
+    <script src="app.js"></script>
 </body>
 </html>
