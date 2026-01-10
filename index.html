@@ -16,55 +16,57 @@
   --muted:#9a9a9a;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  font-family:Poppins, sans-serif;
-  background:var(--bg);
+  font-family:Poppins,sans-serif;
+  background:radial-gradient(circle at top left,rgba(201,162,77,.08),transparent 40%),var(--bg);
   color:var(--text);
-  overflow-x:hidden;
 }
 
 /* HEADER */
 header{
-  padding:20px;
-  border-bottom:1px solid #222;
   text-align:center;
+  padding:35px 20px;
+  border-bottom:1px solid #222;
 }
 
-header h1{
-  font-family:Playfair Display, serif;
-  font-size:28px;
+.logo{
+  font-family:Playfair Display,serif;
+  font-size:34px;
   letter-spacing:2px;
 }
 
 /* HERO */
 .hero{
-  padding:70px 20px;
+  padding:90px 20px;
   text-align:center;
 }
 
-.hero h2{
-  font-family:Playfair Display, serif;
+.hero h1{
+  font-family:Playfair Display,serif;
   font-size:42px;
 }
 
 .hero p{
   color:var(--muted);
-  margin-top:10px;
+  max-width:500px;
+  margin:12px auto;
 }
 
-/* SECTIONS */
+/* SECTION */
 .section{
-  padding:50px 20px;
+  padding:60px 20px;
   max-width:1200px;
   margin:auto;
 }
 
-.section h3{
-  font-family:Playfair Display, serif;
-  font-size:26px;
-  margin-bottom:25px;
+.section h2{
+  font-family:Playfair Display,serif;
+  font-size:28px;
+  border-left:4px solid var(--accent);
+  padding-left:12px;
+  margin-bottom:30px;
 }
 
 .grid{
@@ -77,7 +79,10 @@ header h1{
   background:var(--card);
   padding:15px;
   border-radius:14px;
+  transition:.3s;
 }
+
+.card:hover{transform:translateY(-6px)}
 
 .card img{
   width:100%;
@@ -85,40 +90,40 @@ header h1{
 }
 
 .tag{
-  font-size:12px;
-  padding:5px 10px;
-  border-radius:20px;
-  margin-top:10px;
   display:inline-block;
+  margin-top:10px;
+  padding:4px 10px;
+  font-size:12px;
+  border-radius:20px;
 }
 
 .stock{background:#1f7a3f}
 .preorder{background:#7a3f1f}
 
-.card h4{
-  margin-top:10px;
-}
-
-.price{
-  color:var(--accent);
-}
+.card h3{margin:10px 0 5px}
+.price{color:var(--accent)}
 
 .card button{
-  margin-top:12px;
   width:100%;
-  background:transparent;
-  border:1px solid var(--accent);
-  color:var(--accent);
+  margin-top:10px;
   padding:10px;
   border-radius:25px;
+  border:1px solid var(--accent);
+  background:transparent;
+  color:var(--accent);
   cursor:pointer;
 }
 
+.card button:hover{
+  background:var(--accent);
+  color:#000;
+}
+
 /* CART BUTTON */
-.cart-btn{
+#cart-btn{
   position:fixed;
-  right:20px;
-  bottom:20px;
+  bottom:25px;
+  right:25px;
   background:var(--accent);
   color:#000;
   width:55px;
@@ -132,98 +137,111 @@ header h1{
   z-index:1000;
 }
 
-/* CART PANEL (ONLY THIS IS MODIFIED) */
-.cart-panel{
+/* CART PANEL */
+#cart{
   position:fixed;
   top:0;
-  right:-100%;
-  width:360px;
-  max-width:100%;
-  height:100vh;
-  background:#0e0e0e;
-  box-shadow:-10px 0 30px rgba(0,0,0,.7);
-  transition:.4s;
-  z-index:999;
-}
-
-.cart-panel.open{
-  right:0;
-}
-
-.cart-content{
-  padding:20px;
+  right:-360px;
+  width:340px;
   height:100%;
+  background:#111;
+  border-left:1px solid #222;
+  padding:20px;
+  transition:.4s ease;
+  z-index:999;
   overflow-y:auto;
 }
 
-.cart-title{
-  font-family:Playfair Display, serif;
-  font-size:26px;
-  margin-bottom:20px;
+#cart.open{right:0}
+
+#cart h3{
+  font-family:Playfair Display,serif;
+  margin-bottom:15px;
 }
 
+/* CART ITEMS */
 .cart-item{
-  background:#141414;
-  border-radius:18px;
-  padding:16px;
-}
-
-.cart-item-name{
-  font-size:18px;
-}
-
-.cart-item-price{
-  font-size:14px;
-  color:var(--muted);
-}
-
-.payment-select{
-  width:100%;
-  margin-top:14px;
-  background:#0e0e0e;
-  color:#fff;
-  border:1px solid #222;
+  background:#181818;
   padding:10px;
   border-radius:10px;
+  margin-bottom:12px;
+  font-size:14px;
 }
 
-.qty-controls{
+.cart-item small{color:var(--muted)}
+
+.qty{
   display:flex;
   align-items:center;
-  gap:14px;
-  margin-top:14px;
+  margin-top:8px;
 }
 
-.qty-controls button{
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  background:var(--accent);
+.qty button{
+  width:26px;
+  height:26px;
   border:none;
-  font-size:18px;
-  font-weight:bold;
-}
-
-.cart-total{
-  margin-top:24px;
-  font-size:18px;
-  color:var(--accent);
-}
-
-.confirm-btn{
-  margin-top:18px;
-  width:100%;
   background:var(--accent);
   color:#000;
-  padding:14px;
-  border-radius:30px;
-  border:none;
-  font-size:16px;
+  border-radius:50%;
+  cursor:pointer;
 }
 
-/* MOBILE FIX */
-@media(max-width:480px){
-  .cart-panel{width:100%;}
+.qty span{
+  margin:0 10px;
+}
+
+select{
+  width:100%;
+  padding:8px;
+  margin-top:8px;
+  border-radius:20px;
+  background:#1b1b1b;
+  color:#fff;
+  border:none;
+}
+
+.total{
+  margin-top:15px;
+  color:var(--accent);
+  font-weight:500;
+}
+
+button.checkout{
+  width:100%;
+  padding:12px;
+  margin-top:15px;
+  border-radius:25px;
+  border:none;
+  background:var(--accent);
+  color:#000;
+  font-weight:500;
+  cursor:pointer;
+}
+
+/* POPUP */
+#popup{
+  position:fixed;
+  bottom:-80px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--accent);
+  color:#000;
+  padding:14px 25px;
+  border-radius:30px;
+  font-weight:500;
+  transition:.4s ease;
+  z-index:2000;
+}
+
+#popup.show{bottom:30px}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
+  border-top:1px solid #222;
+  margin-top:60px;
 }
 </style>
 </head>
@@ -231,74 +249,131 @@ header h1{
 <body>
 
 <header>
-  <h1>HAYAT & CO WATCHES</h1>
+  <div class="logo">HAYAT & CO WATCHES</div>
 </header>
 
 <section class="hero">
-  <h2>Timeless Luxury Watches</h2>
+  <h1>Timeless Luxury Watches</h1>
   <p>Advance-secured orders & premium craftsmanship</p>
 </section>
 
 <section class="section">
-  <h3>In Stock Watches</h3>
-  <div class="grid">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30">
-      <span class="tag stock">In Stock</span>
-      <h4>Classic Steel</h4>
-      <div class="price">Rs 1000</div>
-      <button onclick="addToCart()">Add to Cart</button>
-    </div>
+<h2>In Stock Watches</h2>
+<div class="grid">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30">
+    <span class="tag stock">In Stock</span>
+    <h3>Classic Steel</h3>
+    <div class="price">Rs. 18,000</div>
+    <button onclick="addToCart('Classic Steel',18000,'stock')">Add to Cart</button>
   </div>
+</div>
 </section>
 
 <section class="section">
-  <h3>Pre Order Watches</h3>
-  <div class="grid">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314">
-      <span class="tag preorder">Pre Order</span>
-      <h4>Midnight Chrono</h4>
-      <div class="price">Rs 2500</div>
-      <button onclick="addToCart()">Add to Cart</button>
-    </div>
-  </div>
-</section>
-
-<div class="cart-btn" onclick="toggleCart()">🛒</div>
-
-<div class="cart-panel" id="cart">
-  <div class="cart-content">
-    <div class="cart-title">Your Cart</div>
-
-    <div class="cart-item">
-      <div class="cart-item-name">Classic Steel</div>
-      <div class="cart-item-price">Rs 1000 each</div>
-
-      <select class="payment-select">
-        <option>Advance</option>
-        <option>Full Payment</option>
-      </select>
-
-      <div class="qty-controls">
-        <button>-</button>
-        <span>1</span>
-        <button>+</button>
-      </div>
-    </div>
-
-    <div class="cart-total">Total: Rs 1000</div>
-    <button class="confirm-btn">Confirm Order</button>
+<h2>Pre Order Watches</h2>
+<div class="grid">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+    <span class="tag preorder">Pre Order</span>
+    <h3>Midnight Chronograph</h3>
+    <div class="price">Rs. 25,000</div>
+    <button onclick="addToCart('Midnight Chronograph',25000,'preorder')">Add to Cart</button>
   </div>
 </div>
+</section>
+
+<div id="cart-btn" onclick="toggleCart()">🛒</div>
+
+<div id="cart">
+<h3>Your Cart</h3>
+<div id="cartItems">No items added</div>
+<div class="total" id="total">Total: Rs 0</div>
+<button class="checkout" onclick="checkout()">Confirm Order</button>
+</div>
+
+<div id="popup">✅ Order confirmed successfully!</div>
+
+<footer>© 2025 Hayat & Co Watches</footer>
 
 <script>
+let cart=[];
+
 function toggleCart(){
-  document.getElementById("cart").classList.toggle("open");
+  document.getElementById('cart').classList.toggle('open');
 }
 
-function addToCart(){
-  document.getElementById("cart").classList.add("open");
+function addToCart(name,price,type){
+  cart.push({name,price,type,qty:1,pay:'advance'});
+  toggleCart();
+  updateTotal();
+}
+
+function changeQty(i,val){
+  cart[i].qty=Math.max(1,cart[i].qty+val);
+  updateTotal();
+}
+
+function changePay(i,val){
+  cart[i].pay=val;
+  updateTotal();
+}
+
+function updateTotal(){
+  let total=0;
+  let html='';
+
+  cart.forEach((item,i)=>{
+    let base=0;
+
+    if(item.type==='stock'){
+      base=item.pay==='full'?item.price*0.9:1000;
+    }else{
+      base=item.pay==='full'?item.price*0.9:item.price*0.5;
+    }
+
+    const amount=base*item.qty;
+    total+=amount;
+
+    html+=`
+      <div class="cart-item">
+        ${item.name}<br>
+        <small>Rs ${Math.round(base)} each</small>
+
+        <select onchange="changePay(${i},this.value)">
+          <option value="advance" ${item.pay==='advance'?'selected':''}>Advance</option>
+          <option value="full" ${item.pay==='full'?'selected':''}>Full (10% OFF)</option>
+        </select>
+
+        <div class="qty">
+          <button onclick="changeQty(${i},-1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty(${i},1)">+</button>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById('cartItems').innerHTML=html||'No items added';
+  document.getElementById('total').innerText='Total: Rs '+Math.round(total);
+}
+
+function checkout(){
+  if(cart.length===0) return;
+
+  const popup=document.getElementById('popup');
+  popup.classList.remove('show');
+
+  setTimeout(()=>{
+    popup.classList.add('show');
+  },100);
+
+  setTimeout(()=>{
+    popup.classList.remove('show');
+    cart=[];
+    updateTotal();
+    toggleCart();
+  },4000);
 }
 </script>
 
