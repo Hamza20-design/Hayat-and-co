@@ -221,23 +221,26 @@ button.checkout{
 /* POPUP */
 #popup{
   position:fixed;
-  bottom:-80px;
+  bottom:-120px;          /* push it fully off-screen */
   left:50%;
   transform:translateX(-50%);
   background:var(--accent);
   color:#000;
-  padding:12px 22px;
-  border-radius:30px;
+  padding:12px 20px;      /* slightly smaller */
+  border-radius:24px;
   font-weight:500;
-  transition:.4s ease;
+  transition:bottom .4s ease, opacity .3s ease;
   z-index:2000;
-  max-width:260px;
+  max-width:260px;        /* smaller width */
   text-align:center;
-  font-size:14px;
+  opacity:0;              /* hidden by default */
+  pointer-events:none;    /* cannot be interacted with */
 }
 
-#popup.show{bottom:30px}
-
+#popup.show{
+  bottom:30px;
+  opacity:1;
+}
 /* CHECKOUT FORM */
 #checkout-form{
   display:none;
