@@ -9,26 +9,28 @@
 
 <style>
 :root{
-  --bg:#0e0e0e;
-  --card:#161616;
-  --accent:#c9a24d;
-  --text:#f5f5f5;
-  --muted:#9a9a9a;
+  --bg:#191919;              /* Main background */
+  --card:#1e1e1e;            /* Cards & cart items */
+  --accent:#B88746;          /* Primary gold (buttons, borders) */
+  --accent-light:#FDF5A6;    /* Soft highlight gold */
+  --text:#f5f5f5;            /* Main text */
+  --muted:#9a9a9a;           /* Secondary text */
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
   font-family:Poppins,sans-serif;
-  background:radial-gradient(circle at top left,rgba(201,162,77,.08),transparent 40%),var(--bg);
+  background:
+    radial-gradient(circle at top left, rgba(184,135,70,.12), transparent 40%),
+    var(--bg);
   color:var(--text);
 }
-
 /* HEADER */
 header{
   text-align:center;
   padding:35px 20px;
-  border-bottom:1px solid #222;
+  border-bottom:1px solid #2a2a2a;
 }
 
 .logo{
