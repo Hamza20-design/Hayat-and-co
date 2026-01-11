@@ -19,18 +19,17 @@
 
 *{margin:0;padding:0;box-sizing:border-box}
 
-body {
-  font-family: Poppins, sans-serif;
-  /* Add the background image here */
-  background-image: url('canva-black-and-gold-elegant-background-poster-fV88kZBR9do.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* Keeps background still while scrolling */
-  background-repeat: no-repeat;
-  color: var(--text);
-  margin: 0;
+body{
+  font-family:Poppins, sans-serif;
+  background:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url("canva-black-and-gold-elegant-background-poster-fV88kZBR9do.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  color:var(--text);
 }
-
 /* Optional: Adding a slight dark overlay to ensure text remains readable */
 body::before {
   content: "";
