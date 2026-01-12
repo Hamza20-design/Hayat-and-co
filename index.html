@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hayat & Co. | Timeless Luxury</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hayat & Co. | Mobile Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,215 +11,219 @@
             --bg-dark: #0a0a0a;
             --text-light: #f8f8f8;
             --text-muted: #a0a0a0;
-            --glass: rgba(255, 255, 255, 0.03);
+            --glass: rgba(255, 255, 255, 0.05);
             --border: rgba(255, 255, 255, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: var(--bg-dark); 
+            color: var(--text-light); 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-        /* HERO SECTION */
+        /* HERO SECTION - Optimized for Mobile Viewports */
         .hero-container {
-            height: 70vh;
+            height: 60vh;
+            min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000');
+                        url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=60&w=1200');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
         }
 
-        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: 4px; }
-        .hero-content p { letter-spacing: 6px; text-transform: uppercase; color: var(--primary); font-size: 0.9rem; margin-top: 10px; }
+        .hero-content h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: clamp(2rem, 10vw, 4rem); 
+            letter-spacing: 2px; 
+            padding: 0 15px;
+        }
+
+        .hero-content p { 
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            color: var(--primary); 
+            font-size: 0.8rem; 
+            margin-top: 10px; 
+        }
 
         /* SECTIONS */
-        .section { padding: 60px 5%; max-width: 1400px; margin: auto; }
-        .section-header { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 40px; border-left: 3px solid var(--primary); padding-left: 20px; }
+        .section { padding: 40px 20px; max-width: 1400px; margin: auto; }
+        .section-header { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.75rem; 
+            margin-bottom: 30px; 
+            border-left: 3px solid var(--primary); 
+            padding-left: 15px; 
+        }
 
-        /* GRID & CARDS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        /* RESPONSIVE GRID */
+        .grid { 
+            display: grid; 
+            grid-template-columns: 1fr; /* Default 1 col for mobile */
+            gap: 25px; 
+        }
+
+        @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
         
         .card {
             background: var(--glass);
             border: 1px solid var(--border);
-            padding: 20px;
-            border-radius: 8px;
-            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            padding: 15px;
+            border-radius: 12px;
             position: relative;
+            will-change: transform; /* Performance optimization */
         }
 
-        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .watch-display { width: 100%; height: 300px; overflow: hidden; border-radius: 8px; }
+        .watch-image { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease; }
 
-        .watch-display { width: 100%; height: 320px; overflow: hidden; border-radius: 4px; position: relative; }
-        .watch-image { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        /* TOUCH-FRIENDLY SWATCHES */
+        .color-panel { display: flex; gap: 15px; margin: 15px 0; justify-content: center; }
+        .swatch { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
+        .swatch.active { border-color: var(--primary); transform: scale(1.1); }
 
-        .color-panel { display: flex; gap: 10px; margin: 15px 0; justify-content: center; }
-        .swatch { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: 0.3s; }
-        .swatch.active { border-color: var(--primary); transform: scale(1.2); }
-
-        .tag { position: absolute; top: 15px; right: 15px; padding: 4px 12px; font-size: 10px; border-radius: 20px; text-transform: uppercase; z-index: 2; }
+        .tag { position: absolute; top: 25px; right: 25px; padding: 4px 10px; font-size: 10px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
         .stock { background: #1f7a3f; }
         .preorder { background: #7a3f1f; }
 
-        .price { color: var(--primary); font-size: 1.2rem; margin: 10px 0; font-weight: 300; }
+        .price { color: var(--primary); font-size: 1.1rem; margin: 10px 0; font-weight: 400; }
 
         .btn-add {
-            width: 100%; padding: 12px; background: transparent; color: var(--text-light);
+            width: 100%; padding: 14px; background: transparent; color: var(--text-light);
             border: 1px solid var(--primary); text-transform: uppercase; letter-spacing: 1px;
-            cursor: pointer; transition: 0.3s; font-size: 12px;
+            cursor: pointer; font-size: 12px; font-weight: 600; border-radius: 6px;
         }
-        .btn-add:hover { background: var(--primary); color: #000; }
 
-        /* TEXTURED CART PANEL */
+        /* MOBILE OPTIMIZED CART */
         #cart {
-            position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%;
-            z-index: 1001; padding: 30px; transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            position: fixed; top: 0; right: -100%; width: 90%; max-width: 400px; height: 100%;
+            z-index: 2001; padding: 25px; transition: right 0.4s ease;
             background-color: #111; background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
-            box-shadow: -10px 0 30px rgba(0,0,0,0.8); overflow-y: auto;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.8); overflow-y: auto;
         }
         #cart.open { right: 0; }
 
-        /* EXIT BUTTON */
         .close-cart {
-            position: absolute; top: 20px; right: 20px; background: none; border: 1px solid var(--border);
-            color: var(--text-light); font-size: 20px; width: 35px; height: 35px; border-radius: 50%;
-            cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s;
+            position: absolute; top: 15px; right: 15px; background: #222; border: none;
+            color: var(--text-light); font-size: 24px; width: 40px; height: 40px; border-radius: 50%;
         }
-        .close-cart:hover { border-color: var(--primary); color: var(--primary); transform: rotate(90deg); }
 
-        /* CART ITEM STYLING */
         .cart-item {
-            background: rgba(0,0,0,0.4); border: 1px solid var(--border);
-            padding: 15px; border-radius: 6px; margin-bottom: 15px;
-        }
-        .cart-item select, #checkout-form input, #checkout-form select, #checkout-form textarea {
-            width: 100%; padding: 10px; margin: 10px 0; background: #1a1a1a;
-            border: 1px solid #333; color: #fff; border-radius: 4px; font-family: inherit;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+            padding: 15px; border-radius: 10px; margin-bottom: 15px;
         }
 
-        .qty-controls { display: flex; align-items: center; gap: 15px; margin-top: 10px; }
-        .qty-btn { width: 28px; height: 28px; background: var(--primary); border: none; cursor: pointer; border-radius: 4px; font-weight: bold; }
+        input, select, textarea { 
+            width: 100%; padding: 12px; margin: 8px 0; background: #1a1a1a; 
+            border: 1px solid #333; color: #fff; border-radius: 6px; font-size: 16px; /* Prevents iOS zoom on focus */
+        }
 
         /* POPUP TOAST */
         #popup {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
-            background: var(--primary); color: #000; padding: 12px 25px; border-radius: 4px;
-            font-size: 0.85rem; font-weight: 700; z-index: 2000; transition: 0.5s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-transform: uppercase;
+            position: fixed; top: 15px; left: 50%; transform: translateX(-50%) translateY(-100px);
+            background: var(--primary); color: #000; padding: 12px 20px; border-radius: 8px;
+            font-size: 0.8rem; font-weight: 700; z-index: 3000; transition: 0.4s ease;
+            width: 90%; max-width: 300px; text-align: center;
         }
         #popup.show { transform: translateX(-50%) translateY(0); }
 
         #cart-btn {
-            position: fixed; bottom: 30px; right: 30px; background: var(--primary);
-            width: 55px; height: 55px; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; cursor: pointer; z-index: 1000; font-size: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            position: fixed; bottom: 20px; right: 20px; background: var(--primary);
+            width: 60px; height: 60px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; z-index: 2000; font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        footer { text-align: center; padding: 40px; color: var(--text-muted); border-top: 1px solid var(--border); font-size: 11px; letter-spacing: 2px; }
+        footer { text-align: center; padding: 30px; color: var(--text-muted); font-size: 10px; letter-spacing: 1px; }
+
+        /* Overlay when cart is open */
+        #overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); display: none; z-index: 2000;
+        }
     </style>
 </head>
 <body>
 
-<div id="popup">ORDER CONFIRMED SUCCESSFULLY</div>
+<div id="overlay" onclick="toggleCart()"></div>
+<div id="popup">ORDER CONFIRMED</div>
 
 <section class="hero-container">
     <div class="hero-content">
         <h1>HAYAT & CO.</h1>
-        <p>Horological Excellence</p>
+        <p>Precision & Luxury</p>
     </div>
 </section>
 
 <section class="section">
-    <h2 class="section-header">Ready for Delivery</h2>
+    <h2 class="section-header">In Stock</h2>
     <div class="grid">
         <div class="card" id="w1">
             <span class="tag stock">In Stock</span>
-            <div class="watch-display">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="watch-image" id="img-w1">
-            </div>
+            <div class="watch-display"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=60&w=600" class="watch-image" id="img-w1" loading="lazy"></div>
             <div class="color-panel">
-                <div class="swatch active" style="background: #e5e5e5;" onclick="changeColor('w1', 'https://images.unsplash.com/photo-1523275335684-37898b6baf30', this)"></div>
-                <div class="swatch" style="background: #c5a059;" onclick="changeColor('w1', 'https://images.unsplash.com/photo-1542496658-e33a6d0d50f6', this)"></div>
+                <div class="swatch active" style="background: #e5e5e5;" onclick="changeColor('w1', 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=60&w=600', this)"></div>
+                <div class="swatch" style="background: #c5a059;" onclick="changeColor('w1', 'https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&q=60&w=600', this)"></div>
             </div>
             <h3>Classic Steel</h3>
             <div class="price">Rs. 18,000</div>
             <button class="btn-add" onclick="addToCart('Classic Steel', 18000, 'stock')">Add to Cart</button>
         </div>
-
+        
         <div class="card" id="w2">
             <span class="tag stock">In Stock</span>
-            <div class="watch-display">
-                <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314" class="watch-image" id="img-w2">
-            </div>
+            <div class="watch-display"><img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=60&w=600" class="watch-image" id="img-w2" loading="lazy"></div>
             <div class="color-panel">
-                <div class="swatch active" style="background: #4a3024;" onclick="changeColor('w2', 'https://images.unsplash.com/photo-1524592094714-0f0654e20314', this)"></div>
-                <div class="swatch" style="background: #1a1a1a;" onclick="changeColor('w2', 'https://images.unsplash.com/photo-1547996160-81dfa63595dd', this)"></div>
+                <div class="swatch active" style="background: #4a3024;" onclick="changeColor('w2', 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=60&w=600', this)"></div>
+                <div class="swatch" style="background: #111;" onclick="changeColor('w2', 'https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=60&w=600', this)"></div>
             </div>
             <h3>Leather Heritage</h3>
             <div class="price">Rs. 15,500</div>
             <button class="btn-add" onclick="addToCart('Leather Heritage', 15500, 'stock')">Add to Cart</button>
         </div>
 
-        <div class="card" id="w_new_s">
+        <div class="card" id="w3">
             <span class="tag stock">In Stock</span>
-            <div class="watch-display">
-                <img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade" class="watch-image" id="img-w_new_s">
-            </div>
-            <div class="color-panel">
-                <div class="swatch active" style="background: #1e3a8a;" onclick="changeColor('w_new_s', 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade', this)"></div>
-                <div class="swatch" style="background: #111;" onclick="changeColor('w_new_s', 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da', this)"></div>
-            </div>
-            <h3>Ocean Blue Dive</h3>
+            <div class="watch-display"><img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&q=60&w=600" class="watch-image" id="img-w3" loading="lazy"></div>
+            <h3>Ocean Dive</h3>
             <div class="price">Rs. 21,500</div>
-            <button class="btn-add" onclick="addToCart('Ocean Blue Dive', 21500, 'stock')">Add to Cart</button>
+            <button class="btn-add" onclick="addToCart('Ocean Dive', 21500, 'stock')">Add to Cart</button>
         </div>
     </div>
 </section>
 
 <section class="section">
-    <h2 class="section-header">Pre-Order Series</h2>
+    <h2 class="section-header">Pre-Order</h2>
     <div class="grid">
-        <div class="card" id="w3">
+        <div class="card">
             <span class="tag preorder">Pre Order</span>
-            <div class="watch-display">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552" class="watch-image" id="img-w3">
-            </div>
-            <div class="color-panel">
-                <div class="swatch active" style="background: #111;" onclick="changeColor('w3', 'https://images.unsplash.com/photo-1519741497674-611481863552', this)"></div>
-            </div>
+            <div class="watch-display"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=60&w=600" class="watch-image" loading="lazy"></div>
             <h3>Midnight Chrono</h3>
             <div class="price">Rs. 25,000</div>
-            <button class="btn-add" onclick="addToCart('Midnight Chrono', 25000, 'preorder')">Reserve Now</button>
+            <button class="btn-add" onclick="addToCart('Midnight Chrono', 25000, 'preorder')">Reserve</button>
         </div>
-
-        <div class="card" id="w_new_p1">
+        <div class="card">
             <span class="tag preorder">Pre Order</span>
-            <div class="watch-display">
-                <img src="https://images.unsplash.com/photo-1619134778706-7015533a6150" class="watch-image" id="img-w_new_p1">
-            </div>
-            <div class="color-panel">
-                <div class="swatch active" style="background: #555;" onclick="changeColor('w_new_p1', 'https://images.unsplash.com/photo-1619134778706-7015533a6150', this)"></div>
-            </div>
+            <div class="watch-display"><img src="https://images.unsplash.com/photo-1619134778706-7015533a6150?auto=format&fit=crop&q=60&w=600" class="watch-image" loading="lazy"></div>
             <h3>Stealth Carbon</h3>
             <div class="price">Rs. 32,000</div>
-            <button class="btn-add" onclick="addToCart('Stealth Carbon', 32000, 'preorder')">Reserve Now</button>
+            <button class="btn-add" onclick="addToCart('Stealth Carbon', 32000, 'preorder')">Reserve</button>
         </div>
-
-        <div class="card" id="w_new_p2">
+        <div class="card">
             <span class="tag preorder">Pre Order</span>
-            <div class="watch-display">
-                <img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a" class="watch-image" id="img-w_new_p2">
-            </div>
-            <div class="color-panel">
-                <div class="swatch active" style="background: #b8860b;" onclick="changeColor('w_new_p2', 'https://images.unsplash.com/photo-1612817159949-195b6eb9e31a', this)"></div>
-            </div>
+            <div class="watch-display"><img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?auto=format&fit=crop&q=60&w=600" class="watch-image" loading="lazy"></div>
             <h3>Imperial Gold</h3>
             <div class="price">Rs. 45,000</div>
-            <button class="btn-add" onclick="addToCart('Imperial Gold', 45000, 'preorder')">Reserve Now</button>
+            <button class="btn-add" onclick="addToCart('Imperial Gold', 45000, 'preorder')">Reserve</button>
         </div>
     </div>
 </section>
@@ -228,64 +232,46 @@
 
 <div id="cart">
     <button class="close-cart" onclick="toggleCart()">×</button>
-    <h2 style="font-family:'Playfair Display'; margin-bottom:20px;">Your Selection</h2>
-    <div id="cartItems">No items selected.</div>
-    <div style="margin-top:30px; border-top:1px solid var(--border); padding-top:20px;">
-        <div id="total" style="font-size:1.4rem; color:var(--primary); margin-bottom:20px;">Total: Rs 0</div>
-        <button class="btn-add" style="background:var(--primary); color:#000; font-weight:700" onclick="showCheckout()">PROCEED TO CHECKOUT</button>
+    <h2 style="font-family:'Playfair Display'; margin-bottom:20px;">Cart</h2>
+    <div id="cartItems">Your cart is empty.</div>
+    <div style="margin-top:20px; border-top:1px solid var(--border); padding-top:20px;">
+        <div id="total" style="font-size:1.3rem; color:var(--primary); margin-bottom:20px;">Total: Rs 0</div>
+        <button class="btn-add" style="background:var(--primary); color:#000;" onclick="showCheckout()">CHECKOUT</button>
     </div>
 
-    <div id="checkout-form" style="display:none; margin-top:30px;">
-        <h3>Shipping Details</h3>
+    <div id="checkout-form" style="display:none; margin-top:25px;">
         <input type="text" placeholder="Full Name">
         <input type="tel" placeholder="Phone Number">
-        <textarea placeholder="Address" rows="3"></textarea>
-        <select>
-            <option>Cash on Delivery</option>
-            <option>Bank Transfer</option>
-        </select>
-        <button class="btn-add" style="background:#fff; color:#000;" onclick="confirmOrder()">CONFIRM ORDER</button>
+        <textarea placeholder="Shipping Address" rows="3"></textarea>
+        <button class="btn-add" style="background:#fff; color:#000;" onclick="confirmOrder()">PLACE ORDER</button>
     </div>
 </div>
 
-<footer>© 2026 HAYAT & CO. WATCHES | ESTABLISHED IN EXCELLENCE</footer>
+<footer>© 2026 HAYAT & CO. WATCHES</footer>
 
 <script>
     let cart = [];
 
-    function changeColor(watchId, imgSrc, swatchEl) {
-        const img = document.getElementById('img-' + watchId);
-        img.style.opacity = '0';
-        setTimeout(() => {
-            img.src = imgSrc;
-            img.style.opacity = '1';
-        }, 250);
-        const swatches = swatchEl.parentElement.querySelectorAll('.swatch');
+    function changeColor(id, src, el) {
+        const img = document.getElementById('img-' + id);
+        img.style.opacity = '0.3';
+        setTimeout(() => { img.src = src; img.style.opacity = '1'; }, 200);
+        const swatches = el.parentElement.querySelectorAll('.swatch');
         swatches.forEach(s => s.classList.remove('active'));
-        swatchEl.classList.add('active');
+        el.classList.add('active');
     }
 
-    function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
+    function toggleCart() {
+        const cartEl = document.getElementById('cart');
+        const overlay = document.getElementById('overlay');
+        cartEl.classList.toggle('open');
+        overlay.style.display = cartEl.classList.contains('open') ? 'block' : 'none';
+    }
 
     function addToCart(name, price, type) {
         cart.push({name, price, type, qty: 1, pay: 'advance'});
+        updateCartUI();
         if(!document.getElementById('cart').classList.contains('open')) toggleCart();
-        updateCartUI();
-    }
-
-    function changeQty(i, val) {
-        cart[i].qty = Math.max(1, cart[i].qty + val);
-        updateCartUI();
-    }
-
-    function changePay(i, val) {
-        cart[i].pay = val;
-        updateCartUI();
-    }
-
-    function removeItem(i) {
-        cart.splice(i, 1);
-        updateCartUI();
     }
 
     function updateCartUI() {
@@ -295,40 +281,33 @@
                 ? (item.pay === 'full' ? item.price * 0.9 : 1000)
                 : (item.pay === 'full' ? item.price * 0.9 : item.price * 0.5);
             total += base * item.qty;
-
-            html += `
-            <div class="cart-item">
-                <div style="font-weight:600; margin-bottom:5px;">${item.name}</div>
-                <div style="color:var(--primary); font-size:0.9rem">Rs ${Math.round(base).toLocaleString()} each</div>
-                <select onchange="changePay(${i},this.value)">
-                    <option value="advance" ${item.pay === 'advance' ? 'selected' : ''}>Pay Advance</option>
-                    <option value="full" ${item.pay === 'full' ? 'selected' : ''}>Pay Full (10% OFF)</option>
+            html += `<div class="cart-item">
+                <div style="font-weight:600">${item.name}</div>
+                <div style="color:var(--primary); font-size:0.85rem">Rs ${Math.round(base).toLocaleString()}</div>
+                <select onchange="cart[${i}].pay=this.value; updateCartUI();">
+                    <option value="advance" ${item.pay==='advance'?'selected':''}>Advance</option>
+                    <option value="full" ${item.pay==='full'?'selected':''}>Full (10% OFF)</option>
                 </select>
-                <div class="qty-controls">
-                    <button class="qty-btn" onclick="changeQty(${i},-1)">-</button>
+                <div style="display:flex; align-items:center; gap:15px; margin-top:10px">
+                    <button class="btn-add" style="width:30px; padding:5px" onclick="cart[${i}].qty=Math.max(1, cart[${i}].qty-1); updateCartUI();">-</button>
                     <span>${item.qty}</span>
-                    <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
-                    <button onclick="removeItem(${i})" style="margin-left:auto; background:none; border:none; color:#ff4444; cursor:pointer; font-size:11px">REMOVE</button>
+                    <button class="btn-add" style="width:30px; padding:5px" onclick="cart[${i}].qty++; updateCartUI();">+</button>
+                    <button onclick="cart.splice(${i},1); updateCartUI();" style="margin-left:auto; background:none; border:none; color:red; font-size:11px">REMOVE</button>
                 </div>
             </div>`;
         });
-        document.getElementById('cartItems').innerHTML = html || 'No items selected.';
+        document.getElementById('cartItems').innerHTML = html || 'Cart is empty.';
         document.getElementById('total').innerText = 'Total: Rs ' + Math.round(total).toLocaleString();
     }
 
-    function showCheckout() {
-        if(cart.length === 0) return;
-        document.getElementById('checkout-form').style.display = 'block';
-    }
+    function showCheckout() { if(cart.length > 0) document.getElementById('checkout-form').style.display = 'block'; }
 
     function confirmOrder() {
-        const popup = document.getElementById('popup');
-        popup.classList.add('show');
+        const p = document.getElementById('popup');
+        p.classList.add('show');
         setTimeout(() => {
-            popup.classList.remove('show');
-            cart = [];
-            updateCartUI();
-            toggleCart();
+            p.classList.remove('show');
+            cart = []; updateCartUI(); toggleCart();
             document.getElementById('checkout-form').style.display = 'none';
         }, 3000);
     }
