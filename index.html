@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hayat & Co. | Precision & Prestige</title>
+    <title>Hayat & Co. | Timeless Luxury</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #c5a059;
             --bg-dark: #0a0a0a;
             --text-light: #f8f8f8;
+            --text-muted: #a0a0a0;
             --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.1);
         }
@@ -17,157 +18,105 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; }
 
-        /* HERO WITH WATCH BACKGROUND */
+        /* HERO SECTION */
         .hero-container {
-            position: relative;
-            height: 100vh;
-            width: 100%;
+            height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 5rem);
-            letter-spacing: 5px;
-            margin-bottom: 10px;
-        }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: 4px; }
+        .hero-content p { letter-spacing: 6px; text-transform: uppercase; color: var(--primary); font-size: 0.9rem; margin-top: 10px; }
 
-        .hero-content p {
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            color: var(--primary);
-            font-weight: 300;
-        }
+        /* SECTIONS */
+        .section { padding: 60px 5%; max-width: 1400px; margin: auto; }
+        .section-header { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 40px; border-left: 3px solid var(--primary); padding-left: 20px; }
 
-        /* SECTION STYLING */
-        .section { padding: 80px 5%; max-width: 1400px; margin: auto; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 50px; text-align: center; }
-
-        /* PRODUCT GRID & COLOR SYSTEM */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        /* GRID & CARDS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         
         .card {
             background: var(--glass);
             border: 1px solid var(--border);
-            padding: 25px;
+            padding: 20px;
             border-radius: 8px;
-            transition: 0.4s;
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
         }
 
-        .watch-display {
-            width: 100%;
-            height: 400px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
 
-        .watch-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity 0.5s ease, transform 0.8s ease;
-        }
+        .watch-display { width: 100%; height: 320px; overflow: hidden; border-radius: 4px; position: relative; }
+        .watch-image { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
 
-        .color-panel {
-            display: flex;
-            gap: 12px;
-            margin: 20px 0;
-            justify-content: center;
-        }
-
-        .swatch {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: 0.3s;
-        }
-
+        /* COLOR SWATCHES */
+        .color-panel { display: flex; gap: 10px; margin: 15px 0; justify-content: center; }
+        .swatch { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: 0.3s; }
         .swatch.active { border-color: var(--primary); transform: scale(1.2); }
 
-        /* TEXTURED CART */
-        #cart {
-            position: fixed;
-            top: 0;
-            right: -450px;
-            width: 100%;
-            max-width: 450px;
-            height: 100%;
-            z-index: 1001;
-            padding: 40px;
-            transition: 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-            /* Leather Texture Background */
-            background-color: #121212;
-            background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-        }
+        .tag { position: absolute; top: 15px; right: 15px; padding: 4px 12px; font-size: 10px; border-radius: 20px; text-transform: uppercase; z-index: 2; }
+        .stock { background: #1f7a3f; }
+        .preorder { background: #7a3f1f; }
 
-        #cart.open { right: 0; }
+        .price { color: var(--primary); font-size: 1.2rem; margin: 10px 0; font-weight: 300; }
 
-        /* REFINED POPUP */
-        #popup {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-100px);
-            background: var(--primary);
-            color: #000;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            z-index: 2000;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        #popup.show { transform: translateX(-50%) translateY(0); }
-
-        /* BUTTONS */
         .btn-add {
-            width: 100%;
-            padding: 15px;
-            background: transparent;
-            color: var(--text-light);
-            border: 1px solid var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: 0.3s;
+            width: 100%; padding: 12px; background: transparent; color: var(--text-light);
+            border: 1px solid var(--primary); text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; transition: 0.3s; font-size: 12px;
         }
-
         .btn-add:hover { background: var(--primary); color: #000; }
 
-        #cart-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
+        /* TEXTURED CART PANEL */
+        #cart {
+            position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%;
+            z-index: 1001; padding: 30px; transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            background-color: #111; background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
+            box-shadow: -10px 0 30px rgba(0,0,0,0.8); overflow-y: auto;
         }
+        #cart.open { right: 0; }
+
+        /* CART ITEM STYLING */
+        .cart-item {
+            background: rgba(0,0,0,0.4); border: 1px solid var(--border);
+            padding: 15px; border-radius: 6px; margin-bottom: 15px;
+        }
+        .cart-item select, #checkout-form input, #checkout-form select, #checkout-form textarea {
+            width: 100%; padding: 10px; margin: 10px 0; background: #1a1a1a;
+            border: 1px solid #333; color: #fff; border-radius: 4px;
+        }
+
+        .qty-controls { display: flex; align-items: center; gap: 15px; margin-top: 10px; }
+        .qty-btn { width: 28px; height: 28px; background: var(--primary); border: none; cursor: pointer; border-radius: 4px; font-weight: bold; }
+
+        /* POPUP TOAST */
+        #popup {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
+            background: var(--primary); color: #000; padding: 12px 25px; border-radius: 4px;
+            font-size: 0.85rem; font-weight: 700; z-index: 2000; transition: 0.5s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-transform: uppercase;
+        }
+        #popup.show { transform: translateX(-50%) translateY(0); }
+
+        #cart-btn {
+            position: fixed; bottom: 30px; right: 30px; background: var(--primary);
+            width: 55px; height: 55px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; cursor: pointer; z-index: 1000; font-size: 20px;
+        }
+
+        footer { text-align: center; padding: 40px; color: var(--text-muted); border-top: 1px solid var(--border); font-size: 12px; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
-<div id="popup">SUCCESSFULLY ADDED TO COLLECTION</div>
+<div id="popup">ORDER CONFIRMED SUCCESSFULLY</div>
 
 <section class="hero-container">
     <div class="hero-content">
@@ -177,39 +126,53 @@
 </section>
 
 <section class="section">
-    <h2 class="section-title">The Masterpiece Series</h2>
+    <h2 class="section-header">In Stock Collection</h2>
     <div class="grid">
-        <div class="card" id="watch1">
+        <div class="card" id="w1">
+            <span class="tag stock">In Stock</span>
             <div class="watch-display">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="watch-image" id="img-watch1">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="watch-image" id="img-w1">
             </div>
-            <h3>Chronos Executive</h3>
             <div class="color-panel">
-                <div class="swatch active" style="background: #e5e5e5;" onclick="changeWatch('watch1', 'https://images.unsplash.com/photo-1523275335684-37898b6baf30', this)"></div>
-                <div class="swatch" style="background: #c5a059;" onclick="changeWatch('watch1', 'https://images.unsplash.com/photo-1542496658-e33a6d0d50f6', this)"></div>
-                <div class="swatch" style="background: #222;" onclick="changeWatch('watch1', 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da', this)"></div>
+                <div class="swatch active" style="background: #e5e5e5;" onclick="changeColor('w1', 'https://images.unsplash.com/photo-1523275335684-37898b6baf30', this)"></div>
+                <div class="swatch" style="background: #c5a059;" onclick="changeColor('w1', 'https://images.unsplash.com/photo-1542496658-e33a6d0d50f6', this)"></div>
             </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                <span style="color:var(--primary)">Rs. 22,500</span>
-                <span style="font-size:12px; opacity:0.6">Limited Edition</span>
-            </div>
-            <button class="btn-add" onclick="addToCart('Chronos Executive', 22500)">Add to Collection</button>
+            <h3>Classic Steel</h3>
+            <div class="price">Rs. 18,000</div>
+            <button class="btn-add" onclick="addToCart('Classic Steel', 18000, 'stock')">Add to Cart</button>
         </div>
 
-        <div class="card" id="watch2">
+        <div class="card" id="w2">
+            <span class="tag stock">In Stock</span>
             <div class="watch-display">
-                <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314" class="watch-image" id="img-watch2">
+                <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314" class="watch-image" id="img-w2">
             </div>
-            <h3>Heritage Navigator</h3>
             <div class="color-panel">
-                <div class="swatch active" style="background: #4a3024;" onclick="changeWatch('watch2', 'https://images.unsplash.com/photo-1524592094714-0f0654e20314', this)"></div>
-                <div class="swatch" style="background: #1a1a1a;" onclick="changeWatch('watch2', 'https://images.unsplash.com/photo-1547996160-81dfa63595dd', this)"></div>
+                <div class="swatch active" style="background: #4a3024;" onclick="changeColor('w2', 'https://images.unsplash.com/photo-1524592094714-0f0654e20314', this)"></div>
+                <div class="swatch" style="background: #1a1a1a;" onclick="changeColor('w2', 'https://images.unsplash.com/photo-1547996160-81dfa63595dd', this)"></div>
             </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                <span style="color:var(--primary)">Rs. 19,000</span>
-                <span style="font-size:12px; opacity:0.6">Mechanical</span>
+            <h3>Leather Heritage</h3>
+            <div class="price">Rs. 15,500</div>
+            <button class="btn-add" onclick="addToCart('Leather Heritage', 15500, 'stock')">Add to Cart</button>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section-header">Pre-Order Exclusives</h2>
+    <div class="grid">
+        <div class="card" id="w3">
+            <span class="tag preorder">Pre Order</span>
+            <div class="watch-display">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552" class="watch-image" id="img-w3">
             </div>
-            <button class="btn-add" onclick="addToCart('Heritage Navigator', 19000)">Add to Collection</button>
+            <div class="color-panel">
+                <div class="swatch active" style="background: #111;" onclick="changeColor('w3', 'https://images.unsplash.com/photo-1519741497674-611481863552', this)"></div>
+                <div class="swatch" style="background: #003366;" onclick="changeColor('w3', 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade', this)"></div>
+            </div>
+            <h3>Midnight Chrono</h3>
+            <div class="price">Rs. 25,000</div>
+            <button class="btn-add" onclick="addToCart('Midnight Chrono', 25000, 'preorder')">Reserve Now</button>
         </div>
     </div>
 </section>
@@ -217,75 +180,112 @@
 <div id="cart-btn" onclick="toggleCart()">🛒</div>
 
 <div id="cart">
-    <h2 style="font-family:'Playfair Display'; margin-bottom:30px; border-bottom:1px solid var(--border); padding-bottom:10px;">Your Boutique</h2>
-    <div id="cartItems">Selection is empty.</div>
-    <div id="total" style="margin-top:40px; font-size:1.5rem; color:var(--primary)">Total: Rs 0</div>
-    <button class="btn-add" style="margin-top:20px; background:var(--primary); color:#000;" onclick="confirmOrder()">Confirm Order</button>
+    <h2 style="font-family:'Playfair Display'; margin-bottom:20px;">Your Selection</h2>
+    <div id="cartItems">No items selected.</div>
+    <div style="margin-top:30px; border-top:1px solid var(--border); padding-top:20px;">
+        <div id="total" style="font-size:1.4rem; color:var(--primary); margin-bottom:20px;">Total: Rs 0</div>
+        <button class="btn-add" style="background:var(--primary); color:#000; font-weight:700" onclick="showCheckout()">PROCEED TO CHECKOUT</button>
+    </div>
+
+    <div id="checkout-form" style="display:none; margin-top:30px;">
+        <h3>Shipping Details</h3>
+        <input type="text" placeholder="Full Name">
+        <input type="tel" placeholder="Phone Number">
+        <textarea placeholder="Address" rows="3"></textarea>
+        <select>
+            <option>Cash on Delivery</option>
+            <option>Bank Transfer</option>
+        </select>
+        <button class="btn-add" style="background:#fff; color:#000;" onclick="confirmOrder()">CONFIRM ORDER</button>
+    </div>
 </div>
+
+<footer>© 2026 HAYAT & CO. WATCHES | ESTABLISHED IN EXCELLENCE</footer>
 
 <script>
     let cart = [];
 
-    // SWATCH ANIMATION LOGIC
-    function changeWatch(watchId, imgSrc, element) {
+    // ANIMATED COLOR CHANGE
+    function changeColor(watchId, imgSrc, swatchEl) {
         const img = document.getElementById('img-' + watchId);
-        
-        // Animation sequence
         img.style.opacity = '0';
-        img.style.transform = 'scale(0.95)';
-        
         setTimeout(() => {
             img.src = imgSrc;
             img.style.opacity = '1';
-            img.style.transform = 'scale(1)';
-        }, 300);
+        }, 250);
 
-        // Update active swatch
-        const swatches = element.parentElement.querySelectorAll('.swatch');
+        const swatches = swatchEl.parentElement.querySelectorAll('.swatch');
         swatches.forEach(s => s.classList.remove('active'));
-        element.classList.add('active');
+        swatchEl.classList.add('active');
     }
 
     function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
 
-    function addToCart(name, price) {
-        cart.push({name, price});
+    // SYSTEM LOGIC (As per original request)
+    function addToCart(name, price, type) {
+        cart.push({name, price, type, qty: 1, pay: 'advance'});
+        if(!document.getElementById('cart').classList.contains('open')) toggleCart();
         updateCartUI();
-        showPopup("PIECE ADDED TO COLLECTION");
+    }
+
+    function changeQty(i, val) {
+        cart[i].qty = Math.max(1, cart[i].qty + val);
+        updateCartUI();
+    }
+
+    function changePay(i, val) {
+        cart[i].pay = val;
+        updateCartUI();
+    }
+
+    function removeItem(i) {
+        cart.splice(i, 1);
+        updateCartUI();
     }
 
     function updateCartUI() {
-        let total = 0;
-        let html = '';
+        let total = 0, html = '';
         cart.forEach((item, i) => {
-            total += item.price;
-            html += `<div style="padding:15px 0; border-bottom:1px solid var(--border)">
-                <div style="display:flex; justify-content:space-between">
-                    <span>${item.name}</span>
-                    <span style="color:var(--primary)">Rs ${item.price.toLocaleString()}</span>
+            let base = item.type === 'stock'
+                ? (item.pay === 'full' ? item.price * 0.9 : 1000)
+                : (item.pay === 'full' ? item.price * 0.9 : item.price * 0.5);
+            total += base * item.qty;
+
+            html += `
+            <div class="cart-item">
+                <div style="font-weight:600; margin-bottom:5px;">${item.name}</div>
+                <div style="color:var(--primary); font-size:0.9rem">Rs ${Math.round(base).toLocaleString()} each</div>
+                <select onchange="changePay(${i},this.value)">
+                    <option value="advance" ${item.pay === 'advance' ? 'selected' : ''}>Pay Advance</option>
+                    <option value="full" ${item.pay === 'full' ? 'selected' : ''}>Pay Full (10% OFF)</option>
+                </select>
+                <div class="qty-controls">
+                    <button class="qty-btn" onclick="changeQty(${i},-1)">-</button>
+                    <span>${item.qty}</span>
+                    <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
+                    <button onclick="removeItem(${i})" style="margin-left:auto; background:none; border:none; color:#ff4444; cursor:pointer; font-size:11px">REMOVE</button>
                 </div>
-                <button onclick="removeItem(${i})" style="background:none; border:none; color:red; cursor:pointer; font-size:10px; margin-top:5px">REMOVE</button>
             </div>`;
         });
-        document.getElementById('cartItems').innerHTML = html || 'Selection is empty.';
-        document.getElementById('total').innerText = 'Total: Rs ' + total.toLocaleString();
+        document.getElementById('cartItems').innerHTML = html || 'No items selected.';
+        document.getElementById('total').innerText = 'Total: Rs ' + Math.round(total).toLocaleString();
     }
 
-    function removeItem(i) { cart.splice(i, 1); updateCartUI(); }
-
-    function showPopup(msg) {
-        const p = document.getElementById('popup');
-        p.innerText = msg;
-        p.classList.add('show');
-        setTimeout(() => p.classList.remove('show'), 3000);
+    function showCheckout() {
+        if(cart.length === 0) return;
+        document.getElementById('checkout-form').style.display = 'block';
     }
 
     function confirmOrder() {
-        if(cart.length === 0) return;
-        showPopup("ORDER PLACED. WELCOME TO THE CLUB.");
-        cart = [];
-        updateCartUI();
-        setTimeout(toggleCart, 1000);
+        const popup = document.getElementById('popup');
+        popup.classList.add('show');
+        setTimeout(() => {
+            popup.classList.remove('show');
+            cart = [];
+            updateCartUI();
+            toggleCart();
+            document.getElementById('checkout-form').style.display = 'none';
+        }, 3000);
     }
 </script>
 
