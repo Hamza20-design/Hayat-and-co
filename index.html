@@ -237,10 +237,10 @@
 
     <div id="checkout-form" style="display:none; margin-top:30px;">
         <h3>Shipping Details</h3>
-        <input type="text" placeholder="Full Name">
-        <input type="tel" placeholder="Phone Number">
-        <textarea placeholder="Address" rows="3"></textarea>
-        <select>
+        <input type="text" id="cname" placeholder="Full Name">
+        <input type="tel" id="cphone" placeholder="Phone Number">
+        <textarea id="caddress" placeholder="Address" rows="3"></textarea>
+        <select id="cpayment">
             <option>Cash on Delivery</option>
             <option>Bank Transfer</option>
         </select>
@@ -322,6 +322,29 @@
     }
 
     function confirmOrder() {
+        // GOOGLE SHEETS INTEGRATION
+        fetch("https://script.google.com/macros/s/AKfycby5oW7bduTUJFFCZUe6BiZkeFjl69466vRwhw-VLMw6eS1ScIQz3WR7RD80zu6Z_DkOAA/exec", {
+            method: "POST",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify({
+                orderId: Date.now(),
+                name: document.getElementById("cname").value,
+                phone: document.getElementById("cphone").value,
+                address: document.getElementById("caddress").value,
+                payment: document.getElementById("cpayment").value,
+                items: cart,
+                total: document.getElementById("total").innerText
+            })
+        })
+        .then(res => res.text())
+        .then(data => {
+            console.log("Saved:", data);
+        })
+        .catch(err => console.error("Error saving order:", err));
+
+        // SHOW POPUP AND RESET
         const popup = document.getElementById('popup');
         popup.classList.add('show');
         setTimeout(() => {
@@ -330,6 +353,10 @@
             updateCartUI();
             toggleCart();
             document.getElementById('checkout-form').style.display = 'none';
+            // Clear inputs
+            document.getElementById("cname").value = "";
+            document.getElementById("cphone").value = "";
+            document.getElementById("caddress").value = "";
         }, 3000);
     }
 </script>
