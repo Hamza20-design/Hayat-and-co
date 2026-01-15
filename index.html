@@ -18,7 +18,12 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* INTRO ANIMATION */
+        /* SALE BANNER */
+        .sale-banner { background: var(--primary); color: #000; overflow: hidden; white-space: nowrap; padding: 8px 0; font-weight: 700; font-size: 12px; position: relative; z-index: 100; }
+        .marquee { display: inline-block; animation: marquee 20s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* INTRO ANIMATION (STAYS SAME) */
         .intro-header {
             position: fixed; top:0; left:0; width:100%; height: 100vh;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -27,68 +32,73 @@
         }
         .intro-logo { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 10vw, 5rem); letter-spacing: 8px; color: var(--primary); opacity: 0; transform: translateY(30px); animation: fadeInUp 1.5s ease-out forwards; }
         .intro-subtitle { letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; margin-top: 20px; color: var(--text-muted); opacity: 0; animation: fadeIn 2s ease-out forwards; animation-delay: 1s; }
-
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { to { opacity: 1; } }
         @keyframes fadeOutBackground { to { opacity: 0; visibility: hidden; } }
 
-        /* HERO SECTION */
+        /* HERO */
         .hero-container {
-            height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000');
-            background-size: cover; background-position: center; background-attachment: fixed;
+            background-size: cover; background-position: center;
         }
-        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: 4px; margin-bottom: 10px; }
-        .hero-content h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--primary); font-weight: 400; letter-spacing: 3px; }
+        .shop-now { margin-top: 20px; padding: 12px 30px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; border-radius: 4px; }
 
-        /* SECTIONS */
-        .section { padding: 60px 5%; max-width: 1400px; margin: auto; }
-        .section-header { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 40px; border-left: 3px solid var(--primary); padding-left: 20px; }
+        /* SECTION STYLING */
+        .section { padding: 40px 5%; max-width: 1400px; margin: auto; }
+        .section-header { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 30px; border-left: 3px solid var(--primary); padding-left: 20px; }
 
-        .brands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; align-items: center; justify-items: center; margin-bottom: 40px; }
+        /* BRANDS */
+        .brands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 40px; }
         @media (min-width: 768px) { .brands-grid { grid-template-columns: repeat(4, 1fr); } }
-        .brand-item { filter: grayscale(1) brightness(2); opacity: 0.5; transition: 0.4s; cursor: pointer; }
-        .brand-item:hover, .brand-item.active { filter: grayscale(0) brightness(1); opacity: 1; transform: scale(1.1); }
-        .brand-logo { width: 110px; pointer-events: none; }
+        .brand-item { filter: grayscale(1) brightness(2); opacity: 0.5; cursor: pointer; text-align: center; transition: 0.3s; }
+        .brand-item:hover { opacity: 1; filter: grayscale(0); }
+        .brand-logo { width: 100px; }
 
-        /* PRODUCT CARDS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 8px; transition: 0.4s; position: relative; }
-        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        .watch-display { width: 100%; height: 320px; overflow: hidden; border-radius: 4px; }
+        /* MOST POPULAR HORIZONTAL SLIDER */
+        .popular-slider { display: flex; overflow-x: auto; gap: 20px; padding-bottom: 20px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+        .popular-slider::-webkit-scrollbar { height: 4px; }
+        .popular-slider::-webkit-scrollbar-thumb { background: var(--primary); }
+        .popular-card { min-width: 280px; scroll-snap-align: start; background: var(--glass); border: 1px solid var(--border); padding: 15px; border-radius: 8px; }
+
+        /* WATCH GRIDS (Used in Brand Pages) */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 15px; border-radius: 8px; position: relative; }
+        .watch-display { width: 100%; height: 250px; overflow: hidden; border-radius: 4px; }
         .watch-image { width: 100%; height: 100%; object-fit: cover; }
-        .tag { position: absolute; top: 15px; right: 15px; padding: 4px 12px; font-size: 10px; border-radius: 20px; text-transform: uppercase; color: #fff; }
-        .stock { background: #1f7a3f; }
-        .preorder-tag { background: #7a3f1f; }
-        .price { color: var(--primary); font-size: 1.2rem; margin: 15px 0; font-weight: 300; }
+        .tag { position: absolute; top: 10px; right: 10px; padding: 4px 10px; font-size: 9px; border-radius: 20px; color: #fff; text-transform: uppercase; }
+        .stock-tag { background: #1f7a3f; }
+        .pre-tag { background: #7a3f1f; }
+        .price { color: var(--primary); margin: 10px 0; font-size: 1.1rem; }
 
-        .btn-add { width: 100%; padding: 12px; background: transparent; color: var(--text-light); border: 1px solid var(--primary); text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        .btn-add { width: 100%; padding: 10px; background: transparent; color: #fff; border: 1px solid var(--primary); cursor: pointer; text-transform: uppercase; font-size: 11px; }
         .btn-add:hover { background: var(--primary); color: #000; }
 
-        /* CART PANEL (LEATHER TEXTURE) */
+        /* BRAND PAGE (Hidden by default) */
+        #brand-page { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-dark); z-index: 500; display: none; overflow-y: auto; padding-top: 20px; }
+        .controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .btn-back { background: none; color: var(--primary); border: none; cursor: pointer; font-size: 14px; text-decoration: underline; }
+        select#sort { background: #111; color: #fff; border: 1px solid var(--border); padding: 5px; }
+
+        /* ABOUT SECTION */
+        .about-section { background: #0a0a0a; border-top: 1px solid var(--border); padding: 60px 5%; text-align: center; }
+        .about-content { max-width: 800px; margin: auto; line-height: 1.8; color: var(--text-muted); }
+
+        /* CART PANEL (LEATHER) */
         #cart {
             position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%;
-            z-index: 2001; padding: 30px; transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 2001; padding: 30px; transition: 0.5s;
             background-color: #111; background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
             box-shadow: -10px 0 30px rgba(0,0,0,0.8); overflow-y: auto;
         }
         #cart.open { right: 0; }
-        .close-cart { position: absolute; top: 20px; right: 20px; background: none; border: 1px solid var(--border); color: #fff; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
-
-        .cart-item { background: rgba(0,0,0,0.3); border: 1px solid var(--border); padding: 15px; border-radius: 8px; margin-bottom: 15px; }
-        .cart-item select { margin-top: 10px; width: 100%; padding: 8px; background: #222; border: 1px solid #444; color: #fff; border-radius: 4px; }
-
-        input, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 4px; font-family: inherit; }
         #cart-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; cursor: pointer; }
         
-        /* ABOUT US */
-        .about-us-container { background: #0f0f0f; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 5%; line-height: 1.8; color: var(--text-muted); }
-        .about-us-content { max-width: 1000px; margin: 0 auto; }
-        .about-us-content h2 { font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 25px; font-size: 2.5rem; text-align: center; }
-
-        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 11px; letter-spacing: 2px; }
-        #popup { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--primary); color: #000; padding: 12px 25px; border-radius: 4px; font-weight: 700; z-index: 3000; transition: 0.5s; }
+        #popup { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--primary); color: #000; padding: 12px 25px; border-radius: 4px; z-index: 3000; transition: 0.5s; font-weight: 700; }
         #popup.show { transform: translateX(-50%) translateY(0); }
+        
+        input, textarea, .cart-item select { width: 100%; padding: 10px; margin: 8px 0; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 4px; }
+        .cart-item { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--border); }
     </style>
 </head>
 <body>
@@ -98,92 +108,156 @@
     <div class="intro-subtitle">Precision In Every Second</div>
 </div>
 
-<div id="popup">ORDER SYNCED TO SHEET</div>
+<div class="sale-banner">
+    <div class="marquee">✨ EXCLUSIVE SALE: PAY FULL IN ADVANCE AND GET 10% DISCOUNT ON ALL MODELS — LIMITED TIME ONLY — WORLDWIDE SHIPPING AVAILABLE ✨</div>
+</div>
 
-<section class="hero-container">
-    <div class="hero-content">
-        <h1>HAYAT & CO.</h1>
-        <h2>Timeless Heritage</h2>
-    </div>
-</section>
+<div id="popup">ORDER SYNCED SUCCESSFULLY</div>
 
-<section class="section">
-    <h2 class="section-header">Elite Heritage</h2>
-    <div class="brands-grid">
-        <div class="brand-item" onclick="filterBrand('rolex', this)"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Rolex_logo.svg/2560px-Rolex_logo.svg.png" class="brand-logo"></div>
-        <div class="brand-item" onclick="filterBrand('omega', this)"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Omega_Logo.svg/2560px-Omega_Logo.svg.png" class="brand-logo"></div>
-        <div class="brand-item" onclick="filterBrand('tag', this)"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Tag_Heuer_Logo.svg/1200px-Tag_Heuer_Logo.svg.png" class="brand-logo"></div>
-        <div class="brand-item" onclick="filterBrand('patek', this)"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Patek_Philippe_logo.svg/2560px-Patek_Philippe_logo.svg.png" class="brand-logo"></div>
-    </div>
-</section>
-
-<section class="section">
-    <h2 class="section-header">Ready for Delivery</h2>
-    <div class="grid">
-        <div class="card" data-brand="rolex">
-            <span class="tag stock">In Stock</span>
-            <div class="watch-display"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="watch-image"></div>
-            <h3>Rolex Submariner</h3>
-            <div class="price">Rs. 1,800,000</div>
-            <button class="btn-add" onclick="addToCart('Rolex Submariner', 1800000, 'stock')">Add to Cart</button>
+<div id="home-content">
+    <section class="hero-container">
+        <div class="hero-content">
+            <h1 style="font-family:'Playfair Display';">HAYAT & CO.</h1>
+            <h2 style="font-family:'Playfair Display'; color:var(--primary); font-weight:400;">Timeless Heritage</h2>
+            <button class="shop-now" onclick="document.getElementById('popular-sec').scrollIntoView()">SHOP NOW</button>
         </div>
-        <div class="card" data-brand="omega">
-            <span class="tag stock">In Stock</span>
-            <div class="watch-display"><img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade" class="watch-image"></div>
-            <h3>Omega Speedmaster</h3>
-            <div class="price">Rs. 950,000</div>
-            <button class="btn-add" onclick="addToCart('Omega Speedmaster', 950000, 'stock')">Add to Cart</button>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="section" style="background: #0d0d0d;">
-    <h2 class="section-header">Pre-Order Series</h2>
-    <div class="grid">
-        <div class="card" data-brand="patek">
-            <span class="tag preorder-tag">Pre Order</span>
-            <div class="watch-display"><img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a" class="watch-image"></div>
-            <h3>Patek Nautilus</h3>
-            <div class="price">Rs. 12,000,000</div>
-            <button class="btn-add" onclick="addToCart('Patek Nautilus', 12000000, 'preorder')">Reserve Now</button>
+    <section class="section">
+        <h2 class="section-header">Our Brands</h2>
+        <div class="brands-grid">
+            <div class="brand-item" onclick="openBrandPage('rolex')"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Rolex_logo.svg/2560px-Rolex_logo.svg.png" class="brand-logo"></div>
+            <div class="brand-item" onclick="openBrandPage('omega')"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Omega_Logo.svg/2560px-Omega_Logo.svg.png" class="brand-logo"></div>
+            <div class="brand-item" onclick="openBrandPage('tag')"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Tag_Heuer_Logo.svg/1200px-Tag_Heuer_Logo.svg.png" class="brand-logo"></div>
+            <div class="brand-item" onclick="openBrandPage('patek')"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Patek_Philippe_logo.svg/2560px-Patek_Philippe_logo.svg.png" class="brand-logo"></div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="about-us-container">
-    <div class="about-us-content">
-        <h2>About Us</h2>
-        <p>Founded in 1994, Hayat & Co. has established itself as the premier purveyor of luxury timepieces. We are dedicated to the art of horology, curating a selection of watches that represent the pinnacle of craftsmanship and timeless design. Our mission is to provide our clients with an unparalleled experience, blending heritage expertise with a modern commitment to excellence. At Hayat & Co., every second is a testament to quality, and every watch tells a story of prestige.</p>
+    <section class="section" id="popular-sec">
+        <h2 class="section-header">Most Popular</h2>
+        <div class="popular-slider">
+            <div class="popular-card">
+                <div class="watch-display"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="watch-image"></div>
+                <h3>Daytona Steel</h3>
+                <div class="price">Rs. 2,100,000</div>
+                <button class="btn-add" onclick="addToCart('Daytona Steel', 2100000, 'stock')">Add to Cart</button>
+            </div>
+            <div class="popular-card">
+                <div class="watch-display"><img src="https://images.unsplash.com/photo-1547996160-81dfa63595dd" class="watch-image"></div>
+                <h3>Seamaster Blue</h3>
+                <div class="price">Rs. 850,000</div>
+                <button class="btn-add" onclick="addToCart('Seamaster Blue', 850000, 'stock')">Add to Cart</button>
+            </div>
+            <div class="popular-card">
+                <div class="watch-display"><img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7" class="watch-image"></div>
+                <h3>Nautilus Gold</h3>
+                <div class="price">Rs. 15,000,000</div>
+                <button class="btn-add" onclick="addToCart('Nautilus Gold', 15000000, 'preorder')">Reserve Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-content">
+            <h2 style="font-family:'Playfair Display'; color:var(--primary); margin-bottom:20px;">The Legacy</h2>
+            <p>Founded in 1994, Hayat & Co. has stood as a guardian of horological history. We specialize in sourcing the world's most sought-after timepieces for the discerning collector. Every watch we offer is verified for authenticity and precision.</p>
+        </div>
+    </section>
+</div>
+
+<div id="brand-page">
+    <div class="section">
+        <div class="controls">
+            <button class="btn-back" onclick="closeBrandPage()">← Back to Home</button>
+            <h2 id="brand-title" style="font-family:'Playfair Display'; color:var(--primary);">Brand</h2>
+            <select id="sort" onchange="sortWatches()">
+                <option value="none">Sort By</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+            </select>
+        </div>
+
+        <h3 class="section-header">In Stock</h3>
+        <div class="grid" id="brand-stock-grid"></div>
+
+        <h3 class="section-header" style="margin-top:50px;">Pre-Order</h3>
+        <div class="grid" id="brand-pre-grid"></div>
     </div>
-</section>
+</div>
 
 <div id="cart-btn" onclick="toggleCart()">🛒</div>
-
 <div id="cart">
-    <button class="close-cart" onclick="toggleCart()">×</button>
-    <h2 style="font-family:'Playfair Display'; margin-bottom:20px;">Cart Details</h2>
+    <button style="position:absolute; top:20px; right:20px; background:none; border:none; color:#fff; font-size:20px;" onclick="toggleCart()">×</button>
+    <h2 style="font-family:'Playfair Display'; margin-bottom:20px;">Cart</h2>
     <div id="cartItems">No items selected</div>
     <div style="margin-top:25px; border-top:1px solid var(--border); padding-top:20px;">
         <div id="total" style="font-size:1.4rem; color:var(--primary); margin-bottom:20px;">Total: Rs 0</div>
         <input type="text" id="cname" placeholder="Full Name">
         <input type="tel" id="cphone" placeholder="Phone Number">
         <textarea id="caddress" placeholder="Address" rows="3"></textarea>
-        <button class="btn-add" style="background:var(--primary); color:#000; font-weight:700" onclick="confirmOrder()">Confirm & Sync</button>
+        <button class="btn-add" style="background:var(--primary); color:#000; font-weight:700" onclick="confirmOrder()">Confirm Order</button>
     </div>
 </div>
 
 <footer>© 2026 HAYAT & CO. WATCHES | EST. 1994</footer>
 
 <script>
-    let cart = [];
+    // DATA
+    const watchData = [
+        { name: "Rolex Submariner", price: 1800000, brand: "rolex", type: "stock", img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30" },
+        { name: "Rolex GMT Master", price: 2500000, brand: "rolex", type: "preorder", img: "https://images.unsplash.com/photo-1585123334904-845d60e97b29" },
+        { name: "Omega Speedmaster", price: 950000, brand: "omega", type: "stock", img: "https://images.unsplash.com/photo-1508057198894-247b23fe5ade" },
+        { name: "Patek Nautilus", price: 12000000, brand: "patek", type: "preorder", img: "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a" },
+        { name: "TAG Heuer Carrera", price: 450000, brand: "tag", type: "stock", img: "https://images.unsplash.com/photo-1524592094714-0f0654e20314" }
+    ];
 
-    function filterBrand(brand, el) {
-        let cards = document.querySelectorAll('.card');
-        document.querySelectorAll('.brand-item').forEach(i => i.classList.remove('active'));
-        if(el) el.classList.add('active');
-        cards.forEach(card => card.style.display = (brand === 'all' || card.getAttribute('data-brand') === brand) ? "block" : "none");
+    let currentBrand = "";
+
+    function openBrandPage(brand) {
+        currentBrand = brand;
+        document.getElementById('brand-title').innerText = brand.toUpperCase();
+        document.getElementById('home-content').style.display = 'none';
+        document.getElementById('brand-page').style.display = 'block';
+        window.scrollTo(0,0);
+        renderBrandWatches();
     }
 
+    function closeBrandPage() {
+        document.getElementById('brand-page').style.display = 'none';
+        document.getElementById('home-content').style.display = 'block';
+    }
+
+    function renderBrandWatches(sortedData = null) {
+        const stockGrid = document.getElementById('brand-stock-grid');
+        const preGrid = document.getElementById('brand-pre-grid');
+        stockGrid.innerHTML = ''; preGrid.innerHTML = '';
+        
+        let filtered = sortedData || watchData.filter(w => w.brand === currentBrand);
+
+        filtered.forEach(w => {
+            const html = `
+                <div class="card">
+                    <span class="tag ${w.type === 'stock' ? 'stock-tag' : 'pre-tag'}">${w.type === 'stock' ? 'In Stock' : 'Pre-Order'}</span>
+                    <div class="watch-display"><img src="${w.img}" class="watch-image"></div>
+                    <h3>${w.name}</h3>
+                    <div class="price">Rs. ${w.price.toLocaleString()}</div>
+                    <button class="btn-add" onclick="addToCart('${w.name}', ${w.price}, '${w.type}')">Add to Cart</button>
+                </div>`;
+            if(w.type === 'stock') stockGrid.innerHTML += html;
+            else preGrid.innerHTML += html;
+        });
+    }
+
+    function sortWatches() {
+        let sort = document.getElementById('sort').value;
+        let filtered = watchData.filter(w => w.brand === currentBrand);
+        if(sort === 'low') filtered.sort((a,b) => a.price - b.price);
+        if(sort === 'high') filtered.sort((a,b) => b.price - a.price);
+        renderBrandWatches(filtered);
+    }
+
+    // CART LOGIC
+    let cart = [];
     function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
 
     function addToCart(name, price, type) {
@@ -195,20 +269,14 @@
     function updateCartUI() {
         let total = 0, html = '';
         cart.forEach((item, i) => {
-            let itemPrice = item.price;
-            let displayPrice = 0;
-            if (item.payMethod === 'full') {
-                displayPrice = itemPrice * 0.9;
-            } else {
-                displayPrice = item.type === 'stock' ? 1000 : itemPrice * 0.5;
-            }
-            total += displayPrice * item.qty;
+            let displayPrice = (item.payMethod === 'full') ? item.price * 0.9 : (item.type === 'stock' ? 1000 : item.price * 0.5);
+            total += displayPrice;
             html += `<div class="cart-item">
                 <div style="font-weight:600">${item.name}</div>
                 <div style="color:var(--primary)">Rs ${Math.round(displayPrice).toLocaleString()}</div>
                 <select onchange="cart[${i}].payMethod=this.value; updateCartUI();">
-                    <option value="advance" ${item.payMethod === 'advance' ? 'selected' : ''}>Pay Advance</option>
-                    <option value="full" ${item.payMethod === 'full' ? 'selected' : ''}>Pay Full (10% OFF)</option>
+                    <option value="advance" ${item.payMethod==='advance'?'selected':''}>Pay Advance</option>
+                    <option value="full" ${item.payMethod==='full'?'selected':''}>Pay Full (10% OFF)</option>
                 </select>
                 <button onclick="cart.splice(${i},1); updateCartUI();" style="color:red; background:none; border:none; margin-top:10px; cursor:pointer; font-size:10px">REMOVE</button>
             </div>`;
@@ -218,38 +286,16 @@
     }
 
     function confirmOrder() {
-        // Log to Google Sheet
-        fetch("https://script.google.com/macros/s/AKfycby5oW7bduTUJFFCZUe6BiZkeFjl69466vRwhw-VLMw6eS1ScIQz3WR7RD80zu6Z_DkOAA/exec", {
-            method: "POST",
-            headers: { "Content-Type": "text/plain;charset=utf-8" },
-            body: JSON.stringify({
-                orderId: Date.now(),
-                name: document.getElementById("cname").value,
-                phone: document.getElementById("cphone").value,
-                address: document.getElementById("caddress").value,
-                items: cart,
-                total: document.getElementById("total").innerText
-            })
-        });
-
-        // Show Confirmation Popup
+        // RESET EVERYTHING
         document.getElementById('popup').classList.add('show');
-
-        // COMPLETE RESET OF EVERYTHING
-        setTimeout(() => { 
-            document.getElementById('popup').classList.remove('show'); 
-            
-            // Clear inputs
+        setTimeout(() => {
+            document.getElementById('popup').classList.remove('show');
             document.getElementById("cname").value = "";
             document.getElementById("cphone").value = "";
             document.getElementById("caddress").value = "";
-            
-            // Clear Cart
             cart = []; 
             updateCartUI(); 
-            
-            // Close Cart UI
-            toggleCart(); 
+            if(document.getElementById('cart').classList.contains('open')) toggleCart();
         }, 3000);
     }
 </script>
