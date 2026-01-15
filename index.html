@@ -18,9 +18,42 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* HERO SECTION */
+        /* HEADER & INTRO ANIMATION STYLE */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 1px solid var(--border);
+            animation: fadeInDown 1.2s ease-out;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 32px; letter-spacing: 5px; color: #fff; }
+
+        /* SEARCH BAR */
+        .search-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        #search-input {
+            width: 100%;
+            padding: 15px 25px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            outline: none;
+            transition: 0.3s;
+        }
+        #search-input:focus { border-color: var(--primary); background: rgba(255,255,255,0.08); }
+
+        /* HERO */
         .hero-container {
-            height: 50vh;
+            height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -29,104 +62,107 @@
                         url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
         }
-
-        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 8vw, 4rem); letter-spacing: 4px; cursor: pointer; }
-        .hero-content p { letter-spacing: 5px; text-transform: uppercase; color: var(--primary); font-size: 0.8rem; margin-top: 10px; }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: 4px; }
+        .hero-content p { letter-spacing: 6px; text-transform: uppercase; color: var(--primary); font-size: 0.9rem; margin-top: 10px; }
 
         /* SECTIONS */
-        .section { padding: 50px 5%; max-width: 1400px; margin: auto; transition: 0.3s; }
-        .section-header { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 35px; border-left: 3px solid var(--primary); padding-left: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .section { padding: 60px 5%; max-width: 1400px; margin: auto; }
+        .section-header { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 40px; border-left: 3px solid var(--primary); padding-left: 20px; display: flex; justify-content: space-between; align-items: center; }
 
-        /* BRANDS SECTION */
+        /* BRAND LOGOS */
         .brands-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 30px;
             align-items: center;
             justify-items: center;
-            padding: 20px 0;
+            margin-bottom: 40px;
         }
         @media (min-width: 768px) { .brands-grid { grid-template-columns: repeat(4, 1fr); } }
-        
-        .brand-link { 
-            filter: grayscale(1) brightness(2); 
-            opacity: 0.5; 
-            transition: 0.4s; 
-            cursor: pointer; 
-            display: flex;
-            justify-content: center;
-        }
-        .brand-link:hover { filter: grayscale(0) brightness(1); opacity: 1; transform: scale(1.1); }
-        .brand-logo { width: 120px; height: auto; max-height: 60px; object-fit: contain; }
+        .brand-item { filter: grayscale(1) brightness(2); opacity: 0.5; transition: 0.4s; cursor: pointer; }
+        .brand-item:hover, .brand-item.active { filter: grayscale(0) brightness(1); opacity: 1; transform: scale(1.1); }
+        .brand-logo { width: 110px; height: auto; pointer-events: none; }
 
-        /* WATCH GRID */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 12px; position: relative; display: block; }
-        .watch-display { width: 100%; height: 300px; overflow: hidden; border-radius: 8px; }
+        /* GRID & CARDS (ORIGINAL STYLE) */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 8px; transition: 0.4s; position: relative; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .watch-display { width: 100%; height: 320px; overflow: hidden; border-radius: 4px; position: relative; }
         .watch-image { width: 100%; height: 100%; object-fit: cover; }
-
-        .tag { position: absolute; top: 15px; right: 15px; padding: 4px 12px; font-size: 10px; border-radius: 20px; text-transform: uppercase; z-index: 2; color: #fff; }
+        .tag { position: absolute; top: 15px; right: 15px; padding: 4px 12px; font-size: 10px; border-radius: 20px; text-transform: uppercase; z-index: 2; }
         .stock { background: #1f7a3f; }
         .preorder { background: #7a3f1f; }
+        .price { color: var(--primary); font-size: 1.2rem; margin: 15px 0; font-weight: 300; }
 
-        .price { color: var(--primary); font-size: 1.2rem; margin: 15px 0; }
         .btn-add {
-            width: 100%; padding: 14px; background: transparent; color: var(--text-light);
-            border: 1px solid var(--primary); text-transform: uppercase; letter-spacing: 1px;
-            cursor: pointer; font-size: 12px; border-radius: 6px;
+            width: 100%; padding: 12px; background: transparent; color: var(--text-light);
+            border: 1px solid var(--primary); text-transform: uppercase; cursor: pointer; transition: 0.3s;
         }
+        .btn-add:hover { background: var(--primary); color: #000; }
 
-        /* BACK BUTTON */
-        .btn-back { font-size: 0.9rem; color: var(--primary); cursor: pointer; text-decoration: underline; display: none; }
-
-        /* CART & UI ELEMENTS (Same as previous) */
-        #cart { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100%; z-index: 2001; padding: 25px; transition: 0.4s; background: #0f0f0f; background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png"); box-shadow: -10px 0 30px rgba(0,0,0,0.8); overflow-y: auto; }
+        /* CART (TEXTURIZED LEATHER) */
+        #cart {
+            position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%;
+            z-index: 2001; padding: 30px; transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            background-color: #111; background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png");
+            box-shadow: -10px 0 30px rgba(0,0,0,0.8); overflow-y: auto;
+        }
         #cart.open { right: 0; }
-        .close-cart { position: absolute; top: 20px; right: 20px; background: #222; border: 1px solid var(--border); color: #fff; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
-        .cart-item { background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 15px; border-radius: 10px; margin-bottom: 15px; }
-        input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 6px; font-size: 16px; }
-        #cart-btn { position: fixed; bottom: 25px; right: 25px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; }
-        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 10px; letter-spacing: 2px; }
-        #popup { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--primary); color: #000; padding: 12px 25px; border-radius: 30px; font-weight: 700; z-index: 3000; transition: 0.5s; text-align: center; width: 80%; }
+        .close-cart { position: absolute; top: 20px; right: 20px; background: none; border: 1px solid var(--border); color: #fff; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
+
+        /* FORM ELEMENTS */
+        input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 4px; }
+
+        #cart-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 11px; letter-spacing: 2px; border-top: 1px solid var(--border); }
+        #popup { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--primary); color: #000; padding: 12px 25px; border-radius: 4px; font-weight: 700; z-index: 3000; transition: 0.5s; }
         #popup.show { transform: translateX(-50%) translateY(0); }
     </style>
 </head>
-<body id="home">
+<body>
 
-<div id="popup">ORDER LOGGED TO SYSTEM</div>
+<header>
+    <div class="logo">HAYAT & CO. WATCHES</div>
+</header>
+
+<div class="search-container">
+    <input type="text" id="search-input" placeholder="Search by model or brand (e.g. Rolex, Submariner)..." onkeyup="searchWatches()">
+</div>
+
+<div id="popup">ORDER PROCESSED SUCCESSFULLY</div>
 
 <section class="hero-container">
     <div class="hero-content">
-        <h1 onclick="filterBrand('all')">HAYAT & CO.</h1>
-        <p>Est. 1994 | Horology</p>
+        <h1>Horological Excellence</h1>
+        <p>Curated Collection Since 1994</p>
     </div>
 </section>
 
-<section class="section" id="brand-selection">
-    <h2 class="section-header">Select a Heritage Brand</h2>
+<section class="section">
+    <h2 class="section-header">Elite Heritage</h2>
     <div class="brands-grid">
-        <div class="brand-link" onclick="filterBrand('rolex')">
+        <div class="brand-item" onclick="filterBrand('rolex', this)">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Rolex_logo.svg/2560px-Rolex_logo.svg.png" class="brand-logo" alt="Rolex">
         </div>
-        <div class="brand-link" onclick="filterBrand('omega')">
+        <div class="brand-item" onclick="filterBrand('omega', this)">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Omega_Logo.svg/2560px-Omega_Logo.svg.png" class="brand-logo" alt="Omega">
         </div>
-        <div class="brand-link" onclick="filterBrand('tag')">
+        <div class="brand-item" onclick="filterBrand('tag', this)">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Tag_Heuer_Logo.svg/1200px-Tag_Heuer_Logo.svg.png" class="brand-logo" alt="TAG">
         </div>
-        <div class="brand-link" onclick="filterBrand('patek')">
+        <div class="brand-item" onclick="filterBrand('patek', this)">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Patek_Philippe_logo.svg/2560px-Patek_Philippe_logo.svg.png" class="brand-logo" alt="Patek">
         </div>
     </div>
 </section>
 
-<section class="section" id="collection">
-    <div class="section-header">
-        <span id="collection-title">Full Collection</span>
-        <span class="btn-back" id="back-btn" onclick="filterBrand('all')">← Back to Brands</span>
-    </div>
-    
+<section class="section" id="full-collection">
+    <h2 class="section-header">
+        <span id="col-title">Masterpiece Collection</span>
+        <button onclick="filterBrand('all')" style="background:none; border:none; color:var(--primary); cursor:pointer; font-size:12px; text-decoration:underline;">View All</button>
+    </h2>
     <div class="grid" id="watch-grid">
         <div class="card" data-brand="rolex">
             <span class="tag stock">In Stock</span>
@@ -144,6 +180,14 @@
             <button class="btn-add" onclick="addToCart('Omega Speedmaster', 950000, 'stock')">Add to Cart</button>
         </div>
 
+        <div class="card" data-brand="tag">
+            <span class="tag preorder">Pre Order</span>
+            <div class="watch-display"><img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314" class="watch-image"></div>
+            <h3>TAG Heuer Carrera</h3>
+            <div class="price">Rs. 450,000</div>
+            <button class="btn-add" onclick="addToCart('TAG Heuer Carrera', 450000, 'preorder')">Reserve Now</button>
+        </div>
+
         <div class="card" data-brand="patek">
             <span class="tag preorder">Pre Order</span>
             <div class="watch-display"><img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a" class="watch-image"></div>
@@ -151,14 +195,13 @@
             <div class="price">Rs. 12,000,000</div>
             <button class="btn-add" onclick="addToCart('Patek Philippe Nautilus', 12000000, 'preorder')">Reserve Now</button>
         </div>
+    </div>
+</section>
 
-        <div class="card" data-brand="tag">
-            <span class="tag stock">In Stock</span>
-            <div class="watch-display"><img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314" class="watch-image"></div>
-            <h3>TAG Heuer Carrera</h3>
-            <div class="price">Rs. 450,000</div>
-            <button class="btn-add" onclick="addToCart('TAG Heuer Carrera', 450000, 'stock')">Add to Cart</button>
-        </div>
+<section class="section">
+    <div style="background:#111; padding:40px; border-radius:12px; border:1px solid var(--border);">
+        <h2 style="font-family:'Playfair Display'; color:var(--primary); margin-bottom:20px;">The Hayat Legacy</h2>
+        <p style="line-height:1.8; color:var(--text-muted);">Founded on the principles of precision and heritage, Hayat & Co. serves as the premier destination for serious horologists. Every piece in our collection is authenticated by master watchmakers and backed by our lifetime guarantee of excellence.</p>
     </div>
 </section>
 
@@ -166,50 +209,53 @@
 
 <div id="cart">
     <button class="close-cart" onclick="toggleCart()">×</button>
-    <h2 style="font-family:'Playfair Display'; margin-bottom:25px;">Checkout</h2>
-    <div id="cartItems">Empty Cart</div>
+    <h2 style="font-family:'Playfair Display'; margin-bottom:25px;">Your Selection</h2>
+    <div id="cartItems">Empty</div>
     <div style="margin-top:25px; border-top:1px solid var(--border); padding-top:20px;">
         <div id="total" style="font-size:1.3rem; color:var(--primary); margin-bottom:20px;">Total: Rs 0</div>
         <div id="checkout-form">
             <input type="text" id="cname" placeholder="Full Name">
             <input type="tel" id="cphone" placeholder="Phone Number">
-            <textarea id="caddress" placeholder="Delivery Address" rows="3"></textarea>
-            <select id="cpayment">
-                <option>Cash on Delivery</option>
-                <option>Bank Transfer</option>
-            </select>
-            <button class="btn-add" style="background:var(--primary); color:#000; font-weight:700; margin-top:10px" onclick="confirmOrder()">PLACE ORDER</button>
+            <textarea id="caddress" placeholder="Address" rows="3"></textarea>
+            <button class="btn-add" style="background:var(--primary); color:#000; font-weight:700" onclick="confirmOrder()">Confirm & Sync</button>
         </div>
     </div>
 </div>
 
-<footer>© 2026 HAYAT & CO. WATCHES | EXCELLENCE IN TIME</footer>
+<footer>© 2026 HAYAT & CO. WATCHES | ESTABLISHED IN EXCELLENCE</footer>
 
 <script>
     let cart = [];
 
-    // BRAND FILTERING LOGIC
-    function filterBrand(brand) {
-        const cards = document.querySelectorAll('.card');
-        const title = document.getElementById('collection-title');
-        const backBtn = document.getElementById('back-btn');
-        const brandSelection = document.getElementById('brand-selection');
+    // SEARCH LOGIC
+    function searchWatches() {
+        let input = document.getElementById('search-input').value.toLowerCase();
+        let cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            let name = card.querySelector('h3').innerText.toLowerCase();
+            let brand = card.getAttribute('data-brand').toLowerCase();
+            if (name.includes(input) || brand.includes(input)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
 
-        if (brand === 'all') {
-            cards.forEach(card => card.style.display = 'block');
-            title.innerText = "Full Collection";
-            backBtn.style.display = 'none';
-            brandSelection.style.display = 'block';
-        } else {
-            cards.forEach(card => {
-                card.style.display = (card.getAttribute('data-brand') === brand) ? 'block' : 'none';
-            });
-            title.innerText = brand.toUpperCase() + " Collection";
-            backBtn.style.display = 'block';
-            brandSelection.style.display = 'none';
-            // Scroll to collection
-            document.getElementById('collection').scrollIntoView();
-        }
+    // FILTER LOGIC
+    function filterBrand(brand, el) {
+        let cards = document.querySelectorAll('.card');
+        document.querySelectorAll('.brand-item').forEach(i => i.classList.remove('active'));
+        if(el) el.classList.add('active');
+
+        cards.forEach(card => {
+            if(brand === 'all' || card.getAttribute('data-brand') === brand) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+        document.getElementById('col-title').innerText = brand === 'all' ? "Masterpiece Collection" : brand.toUpperCase() + " Collection";
     }
 
     function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
@@ -223,32 +269,20 @@
     function updateCartUI() {
         let total = 0, html = '';
         cart.forEach((item, i) => {
-            let base = item.type === 'stock' 
-                ? (item.pay === 'full' ? item.price * 0.9 : 1000) 
-                : (item.pay === 'full' ? item.price * 0.9 : item.price * 0.5);
+            let base = item.type === 'stock' ? 1000 : item.price * 0.5;
             total += base * item.qty;
-            html += `<div class="cart-item">
-                <div style="font-weight:600">${item.name}</div>
+            html += `<div class="cart-item" style="padding:10px; border-bottom:1px solid #333; margin-bottom:10px;">
+                <div>${item.name}</div>
                 <div style="color:var(--primary)">Rs ${Math.round(base).toLocaleString()}</div>
-                <select onchange="cart[${i}].pay=this.value; updateCartUI();">
-                    <option value="advance" ${item.pay==='advance'?'selected':''}>Pay Advance</option>
-                    <option value="full" ${item.pay==='full'?'selected':''}>Pay Full (-10%)</option>
-                </select>
-                <div style="margin-top:10px; display:flex; justify-content:space-between">
-                    <span>Qty: ${item.qty}</span>
-                    <button onclick="cart.splice(${i},1); updateCartUI();" style="background:none; border:none; color:red; font-size:11px">REMOVE</button>
-                </div>
+                <button onclick="cart.splice(${i},1); updateCartUI();" style="background:none; border:none; color:red; cursor:pointer; font-size:10px">REMOVE</button>
             </div>`;
         });
-        document.getElementById('cartItems').innerHTML = html || 'Cart is empty';
-        document.getElementById('total').innerText = 'Total Payable: Rs ' + Math.round(total).toLocaleString();
+        document.getElementById('cartItems').innerHTML = html || 'Empty';
+        document.getElementById('total').innerText = 'Total: Rs ' + Math.round(total).toLocaleString();
     }
 
     function confirmOrder() {
-        const btn = event.target;
-        btn.innerText = "SENDING...";
-        btn.disabled = true;
-
+        // FETCH TO GOOGLE SHEETS
         fetch("https://script.google.com/macros/s/AKfycby5oW7bduTUJFFCZUe6BiZkeFjl69466vRwhw-VLMw6eS1ScIQz3WR7RD80zu6Z_DkOAA/exec", {
             method: "POST",
             headers: { "Content-Type": "text/plain;charset=utf-8" },
@@ -257,22 +291,16 @@
                 name: document.getElementById("cname").value,
                 phone: document.getElementById("cphone").value,
                 address: document.getElementById("caddress").value,
-                payment: document.getElementById("cpayment").value,
                 items: cart,
                 total: document.getElementById("total").innerText
             })
-        }).then(() => {
-            document.getElementById('popup').classList.add('show');
-            setTimeout(() => {
-                document.getElementById('popup').classList.remove('show');
-                cart = []; updateCartUI(); toggleCart();
-                btn.innerText = "PLACE ORDER";
-                btn.disabled = false;
-                document.getElementById("cname").value = "";
-                document.getElementById("cphone").value = "";
-                document.getElementById("caddress").value = "";
-            }, 3000);
         });
+
+        document.getElementById('popup').classList.add('show');
+        setTimeout(() => {
+            document.getElementById('popup').classList.remove('show');
+            cart = []; updateCartUI(); toggleCart();
+        }, 3000);
     }
 </script>
 
