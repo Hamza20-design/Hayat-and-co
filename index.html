@@ -18,7 +18,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* THE ORIGINAL INTRO ANIMATION */
+        /* INTRO ANIMATION */
         .intro-header {
             position: fixed; top:0; left:0; width:100%; height: 100vh;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -65,7 +65,7 @@
         .btn-add { width: 100%; padding: 12px; background: transparent; color: var(--text-light); border: 1px solid var(--primary); text-transform: uppercase; cursor: pointer; transition: 0.3s; }
         .btn-add:hover { background: var(--primary); color: #000; }
 
-        /* CART PANEL */
+        /* CART PANEL (LEATHER TEXTURE) */
         #cart {
             position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%;
             z-index: 2001; padding: 30px; transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
@@ -78,8 +78,14 @@
         .cart-item { background: rgba(0,0,0,0.3); border: 1px solid var(--border); padding: 15px; border-radius: 8px; margin-bottom: 15px; }
         .cart-item select { margin-top: 10px; width: 100%; padding: 8px; background: #222; border: 1px solid #444; color: #fff; border-radius: 4px; }
 
-        input, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 4px; }
+        input, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 4px; font-family: inherit; }
         #cart-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; cursor: pointer; }
+        
+        /* ABOUT US */
+        .about-us-container { background: #0f0f0f; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 5%; line-height: 1.8; color: var(--text-muted); }
+        .about-us-content { max-width: 1000px; margin: 0 auto; }
+        .about-us-content h2 { font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 25px; font-size: 2.5rem; text-align: center; }
+
         footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 11px; letter-spacing: 2px; }
         #popup { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--primary); color: #000; padding: 12px 25px; border-radius: 4px; font-weight: 700; z-index: 3000; transition: 0.5s; }
         #popup.show { transform: translateX(-50%) translateY(0); }
@@ -144,6 +150,13 @@
     </div>
 </section>
 
+<section class="about-us-container">
+    <div class="about-us-content">
+        <h2>About Us</h2>
+        <p>Founded in 1994, Hayat & Co. has established itself as the premier purveyor of luxury timepieces. We are dedicated to the art of horology, curating a selection of watches that represent the pinnacle of craftsmanship and timeless design. Our mission is to provide our clients with an unparalleled experience, blending heritage expertise with a modern commitment to excellence. At Hayat & Co., every second is a testament to quality, and every watch tells a story of prestige.</p>
+    </div>
+</section>
+
 <div id="cart-btn" onclick="toggleCart()">🛒</div>
 
 <div id="cart">
@@ -184,14 +197,11 @@
         cart.forEach((item, i) => {
             let itemPrice = item.price;
             let displayPrice = 0;
-
             if (item.payMethod === 'full') {
-                displayPrice = itemPrice * 0.9; // 10% Discount
+                displayPrice = itemPrice * 0.9;
             } else {
-                // Advance Calculation: Stock = 1000, Preorder = 50%
                 displayPrice = item.type === 'stock' ? 1000 : itemPrice * 0.5;
             }
-
             total += displayPrice * item.qty;
             html += `<div class="cart-item">
                 <div style="font-weight:600">${item.name}</div>
@@ -208,6 +218,7 @@
     }
 
     function confirmOrder() {
+        // Log to Google Sheet
         fetch("https://script.google.com/macros/s/AKfycby5oW7bduTUJFFCZUe6BiZkeFjl69466vRwhw-VLMw6eS1ScIQz3WR7RD80zu6Z_DkOAA/exec", {
             method: "POST",
             headers: { "Content-Type": "text/plain;charset=utf-8" },
@@ -220,8 +231,26 @@
                 total: document.getElementById("total").innerText
             })
         });
+
+        // Show Confirmation Popup
         document.getElementById('popup').classList.add('show');
-        setTimeout(() => { document.getElementById('popup').classList.remove('show'); cart = []; updateCartUI(); toggleCart(); }, 3000);
+
+        // COMPLETE RESET OF EVERYTHING
+        setTimeout(() => { 
+            document.getElementById('popup').classList.remove('show'); 
+            
+            // Clear inputs
+            document.getElementById("cname").value = "";
+            document.getElementById("cphone").value = "";
+            document.getElementById("caddress").value = "";
+            
+            // Clear Cart
+            cart = []; 
+            updateCartUI(); 
+            
+            // Close Cart UI
+            toggleCart(); 
+        }, 3000);
     }
 </script>
 
