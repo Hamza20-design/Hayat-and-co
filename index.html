@@ -20,95 +20,52 @@
 
         /* THE ORIGINAL INTRO ANIMATION */
         .intro-header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
-            animation: fadeOutBackground 2s ease-in-out forwards;
-            animation-delay: 3s;
+            position: fixed; top:0; left:0; width:100%; height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+            z-index: 9999; animation: fadeOutBackground 1.5s ease-in-out forwards; animation-delay: 3s;
         }
+        .intro-logo { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 10vw, 5rem); letter-spacing: 8px; color: var(--primary); opacity: 0; transform: translateY(30px); animation: fadeInUp 1.5s ease-out forwards; }
+        .intro-subtitle { letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; margin-top: 20px; color: var(--text-muted); opacity: 0; animation: fadeIn 2s ease-out forwards; animation-delay: 1s; }
 
-        .intro-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 10vw, 5rem);
-            letter-spacing: 8px;
-            color: var(--primary);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1.5s ease-out forwards;
-        }
-
-        .intro-subtitle {
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            margin-top: 20px;
-            color: var(--text-muted);
-            opacity: 0;
-            animation: fadeIn 2s ease-out forwards;
-            animation-delay: 1s;
-        }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes fadeOutBackground { to { opacity: 0; visibility: hidden; } }
 
         /* HERO SECTION */
         .hero-container {
-            height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover; background-position: center; background-attachment: fixed;
         }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: 4px; margin-bottom: 10px; }
+        .hero-content h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--primary); font-weight: 400; letter-spacing: 3px; }
 
-        /* BRANDS LOGO SECTION */
+        /* SECTIONS */
         .section { padding: 60px 5%; max-width: 1400px; margin: auto; }
-        .section-header { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 40px; border-left: 3px solid var(--primary); padding-left: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .section-header { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 40px; border-left: 3px solid var(--primary); padding-left: 20px; }
 
-        .brands-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            align-items: center;
-            justify-items: center;
-        }
+        .brands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; align-items: center; justify-items: center; margin-bottom: 40px; }
         @media (min-width: 768px) { .brands-grid { grid-template-columns: repeat(4, 1fr); } }
-        
         .brand-item { filter: grayscale(1) brightness(2); opacity: 0.5; transition: 0.4s; cursor: pointer; }
         .brand-item:hover, .brand-item.active { filter: grayscale(0) brightness(1); opacity: 1; transform: scale(1.1); }
-        .brand-logo { width: 110px; height: auto; pointer-events: none; }
+        .brand-logo { width: 110px; pointer-events: none; }
 
-        /* PRODUCT GRIDS */
+        /* PRODUCT CARDS */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .card { background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 8px; transition: 0.4s; position: relative; }
         .card:hover { transform: translateY(-10px); border-color: var(--primary); }
         .watch-display { width: 100%; height: 320px; overflow: hidden; border-radius: 4px; }
         .watch-image { width: 100%; height: 100%; object-fit: cover; }
-        
-        .tag { position: absolute; top: 15px; right: 15px; padding: 4px 12px; font-size: 10px; border-radius: 20px; text-transform: uppercase; z-index: 2; color: #fff; }
+        .tag { position: absolute; top: 15px; right: 15px; padding: 4px 12px; font-size: 10px; border-radius: 20px; text-transform: uppercase; color: #fff; }
         .stock { background: #1f7a3f; }
         .preorder-tag { background: #7a3f1f; }
-
         .price { color: var(--primary); font-size: 1.2rem; margin: 15px 0; font-weight: 300; }
-        .btn-add {
-            width: 100%; padding: 12px; background: transparent; color: var(--text-light);
-            border: 1px solid var(--primary); text-transform: uppercase; cursor: pointer; transition: 0.3s;
-        }
+
+        .btn-add { width: 100%; padding: 12px; background: transparent; color: var(--text-light); border: 1px solid var(--primary); text-transform: uppercase; cursor: pointer; transition: 0.3s; }
         .btn-add:hover { background: var(--primary); color: #000; }
 
-        /* CART DESIGN (LEATHER TEXTURE) */
+        /* CART PANEL */
         #cart {
             position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%;
             z-index: 2001; padding: 30px; transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
@@ -118,10 +75,12 @@
         #cart.open { right: 0; }
         .close-cart { position: absolute; top: 20px; right: 20px; background: none; border: 1px solid var(--border); color: #fff; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
 
-        input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 4px; }
+        .cart-item { background: rgba(0,0,0,0.3); border: 1px solid var(--border); padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        .cart-item select { margin-top: 10px; width: 100%; padding: 8px; background: #222; border: 1px solid #444; color: #fff; border-radius: 4px; }
 
-        #cart-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
-        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 11px; letter-spacing: 2px; border-top: 1px solid var(--border); }
+        input, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 4px; }
+        #cart-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; cursor: pointer; }
+        footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 11px; letter-spacing: 2px; }
         #popup { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--primary); color: #000; padding: 12px 25px; border-radius: 4px; font-weight: 700; z-index: 3000; transition: 0.5s; }
         #popup.show { transform: translateX(-50%) translateY(0); }
     </style>
@@ -133,39 +92,28 @@
     <div class="intro-subtitle">Precision In Every Second</div>
 </div>
 
-<div id="popup">ORDER PROCESSED SUCCESSFULLY</div>
+<div id="popup">ORDER SYNCED TO SHEET</div>
 
 <section class="hero-container">
     <div class="hero-content">
-        <h1 style="font-family:'Playfair Display'; font-size: 3rem;">Timeless Heritage</h1>
-        <p>Est. 1994 | Horology Experts</p>
+        <h1>HAYAT & CO.</h1>
+        <h2>Timeless Heritage</h2>
     </div>
 </section>
 
 <section class="section">
-    <h2 class="section-header">Our Curated Brands</h2>
+    <h2 class="section-header">Elite Heritage</h2>
     <div class="brands-grid">
-        <div class="brand-item" onclick="filterBrand('rolex', this)">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Rolex_logo.svg/2560px-Rolex_logo.svg.png" class="brand-logo" alt="Rolex">
-        </div>
-        <div class="brand-item" onclick="filterBrand('omega', this)">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Omega_Logo.svg/2560px-Omega_Logo.svg.png" class="brand-logo" alt="Omega">
-        </div>
-        <div class="brand-item" onclick="filterBrand('tag', this)">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Tag_Heuer_Logo.svg/1200px-Tag_Heuer_Logo.svg.png" class="brand-logo" alt="TAG">
-        </div>
-        <div class="brand-item" onclick="filterBrand('patek', this)">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Patek_Philippe_logo.svg/2560px-Patek_Philippe_logo.svg.png" class="brand-logo" alt="Patek">
-        </div>
+        <div class="brand-item" onclick="filterBrand('rolex', this)"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Rolex_logo.svg/2560px-Rolex_logo.svg.png" class="brand-logo"></div>
+        <div class="brand-item" onclick="filterBrand('omega', this)"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Omega_Logo.svg/2560px-Omega_Logo.svg.png" class="brand-logo"></div>
+        <div class="brand-item" onclick="filterBrand('tag', this)"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Tag_Heuer_Logo.svg/1200px-Tag_Heuer_Logo.svg.png" class="brand-logo"></div>
+        <div class="brand-item" onclick="filterBrand('patek', this)"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Patek_Philippe_logo.svg/2560px-Patek_Philippe_logo.svg.png" class="brand-logo"></div>
     </div>
 </section>
 
 <section class="section">
-    <h2 class="section-header">
-        <span>Ready for Delivery</span>
-        <button onclick="filterBrand('all')" style="background:none; border:none; color:var(--primary); cursor:pointer; font-size:12px; text-decoration:underline;">View All</button>
-    </h2>
-    <div class="grid" id="stock-grid">
+    <h2 class="section-header">Ready for Delivery</h2>
+    <div class="grid">
         <div class="card" data-brand="rolex">
             <span class="tag stock">In Stock</span>
             <div class="watch-display"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="watch-image"></div>
@@ -185,7 +133,7 @@
 
 <section class="section" style="background: #0d0d0d;">
     <h2 class="section-header">Pre-Order Series</h2>
-    <div class="grid" id="preorder-grid">
+    <div class="grid">
         <div class="card" data-brand="patek">
             <span class="tag preorder-tag">Pre Order</span>
             <div class="watch-display"><img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a" class="watch-image"></div>
@@ -193,67 +141,40 @@
             <div class="price">Rs. 12,000,000</div>
             <button class="btn-add" onclick="addToCart('Patek Nautilus', 12000000, 'preorder')">Reserve Now</button>
         </div>
-        <div class="card" data-brand="tag">
-            <span class="tag preorder-tag">Pre Order</span>
-            <div class="watch-display"><img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314" class="watch-image"></div>
-            <h3>TAG Heuer Carrera</h3>
-            <div class="price">Rs. 450,000</div>
-            <button class="btn-add" onclick="addToCart('TAG Heuer Carrera', 450000, 'preorder')">Reserve Now</button>
-        </div>
-    </div>
-</section>
-
-<section class="section">
-    <div style="background:var(--glass); padding:50px; border-radius:15px; border:1px solid var(--border); line-height:1.8;">
-        <h2 style="font-family:'Playfair Display'; color:var(--primary); margin-bottom:20px;">The Hayat Legacy</h2>
-        <p style="color:var(--text-muted);">Founded in 1994, Hayat & Co. has stood as a guardian of horological history. We specialize in sourcing the world's most sought-after timepieces for the discerning collector. Every watch we offer is verified for authenticity and precision, ensuring that your investment stands the test of time.</p>
     </div>
 </section>
 
 <div id="cart-btn" onclick="toggleCart()">🛒</div>
+
 <div id="cart">
     <button class="close-cart" onclick="toggleCart()">×</button>
-    <h2 style="font-family:'Playfair Display'; margin-bottom:30px;">Your Selection</h2>
+    <h2 style="font-family:'Playfair Display'; margin-bottom:20px;">Cart Details</h2>
     <div id="cartItems">No items selected</div>
-    <div style="margin-top:30px; border-top:1px solid var(--border); padding-top:20px;">
+    <div style="margin-top:25px; border-top:1px solid var(--border); padding-top:20px;">
         <div id="total" style="font-size:1.4rem; color:var(--primary); margin-bottom:20px;">Total: Rs 0</div>
         <input type="text" id="cname" placeholder="Full Name">
         <input type="tel" id="cphone" placeholder="Phone Number">
-        <textarea id="caddress" placeholder="Shipping Address" rows="3"></textarea>
-        <button class="btn-add" style="background:var(--primary); color:#000; font-weight:700" onclick="confirmOrder()">Confirm Order</button>
+        <textarea id="caddress" placeholder="Address" rows="3"></textarea>
+        <button class="btn-add" style="background:var(--primary); color:#000; font-weight:700" onclick="confirmOrder()">Confirm & Sync</button>
     </div>
 </div>
 
-<footer>© 2026 HAYAT & CO. WATCHES | EXCELLENCE IN TIME</footer>
+<footer>© 2026 HAYAT & CO. WATCHES | EST. 1994</footer>
 
 <script>
-    // SMOOTH INTRO HANDLING
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            document.getElementById('intro').style.display = 'none';
-        }, 5000); // Intro lasts 5 seconds total
-    });
-
     let cart = [];
 
     function filterBrand(brand, el) {
         let cards = document.querySelectorAll('.card');
         document.querySelectorAll('.brand-item').forEach(i => i.classList.remove('active'));
         if(el) el.classList.add('active');
-
-        cards.forEach(card => {
-            if(brand === 'all' || card.getAttribute('data-brand') === brand) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
-        });
+        cards.forEach(card => card.style.display = (brand === 'all' || card.getAttribute('data-brand') === brand) ? "block" : "none");
     }
 
     function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
 
     function addToCart(name, price, type) {
-        cart.push({name, price, type, qty: 1});
+        cart.push({name, price, type, qty: 1, payMethod: 'advance'});
         updateCartUI();
         if(!document.getElementById('cart').classList.contains('open')) toggleCart();
     }
@@ -261,16 +182,29 @@
     function updateCartUI() {
         let total = 0, html = '';
         cart.forEach((item, i) => {
-            let charge = item.type === 'stock' ? 1000 : item.price * 0.5; // Custom logic
-            total += charge;
-            html += `<div style="margin-bottom:15px; border-bottom:1px solid #333; padding-bottom:10px;">
-                <div>${item.name}</div>
-                <div style="color:var(--primary)">Rs ${charge.toLocaleString()}</div>
-                <button onclick="cart.splice(${i},1); updateCartUI();" style="color:red; background:none; border:none; cursor:pointer; font-size:10px">REMOVE</button>
+            let itemPrice = item.price;
+            let displayPrice = 0;
+
+            if (item.payMethod === 'full') {
+                displayPrice = itemPrice * 0.9; // 10% Discount
+            } else {
+                // Advance Calculation: Stock = 1000, Preorder = 50%
+                displayPrice = item.type === 'stock' ? 1000 : itemPrice * 0.5;
+            }
+
+            total += displayPrice * item.qty;
+            html += `<div class="cart-item">
+                <div style="font-weight:600">${item.name}</div>
+                <div style="color:var(--primary)">Rs ${Math.round(displayPrice).toLocaleString()}</div>
+                <select onchange="cart[${i}].payMethod=this.value; updateCartUI();">
+                    <option value="advance" ${item.payMethod === 'advance' ? 'selected' : ''}>Pay Advance</option>
+                    <option value="full" ${item.payMethod === 'full' ? 'selected' : ''}>Pay Full (10% OFF)</option>
+                </select>
+                <button onclick="cart.splice(${i},1); updateCartUI();" style="color:red; background:none; border:none; margin-top:10px; cursor:pointer; font-size:10px">REMOVE</button>
             </div>`;
         });
         document.getElementById('cartItems').innerHTML = html || 'No items selected';
-        document.getElementById('total').innerText = 'Total: Rs ' + total.toLocaleString();
+        document.getElementById('total').innerText = 'Total Payable: Rs ' + Math.round(total).toLocaleString();
     }
 
     function confirmOrder() {
@@ -278,6 +212,7 @@
             method: "POST",
             headers: { "Content-Type": "text/plain;charset=utf-8" },
             body: JSON.stringify({
+                orderId: Date.now(),
                 name: document.getElementById("cname").value,
                 phone: document.getElementById("cphone").value,
                 address: document.getElementById("caddress").value,
@@ -285,12 +220,8 @@
                 total: document.getElementById("total").innerText
             })
         });
-
         document.getElementById('popup').classList.add('show');
-        setTimeout(() => {
-            document.getElementById('popup').classList.remove('show');
-            cart = []; updateCartUI(); toggleCart();
-        }, 3000);
+        setTimeout(() => { document.getElementById('popup').classList.remove('show'); cart = []; updateCartUI(); toggleCart(); }, 3000);
     }
 </script>
 
