@@ -182,8 +182,8 @@
 </div>
 
 <script>
-    // --- GOOGLE SCRIPT CONFIGURATION ---
-    const GOOGLE_SCRIPT_URL = "YOUR_DEPLOYED_WEB_APP_URL_HERE";
+    // --- INTEGRATED GOOGLE SCRIPT URL ---
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby5oW7bduTUJFFCZUe6BiZkeFjl69466vRwhw-VLMw6eS1ScIQz3WR7RD80zu6Z_DkOAA/exec";
 
     const brandsList = [
         { name: "Hamilton", logo: "hamilton.png" },
@@ -290,7 +290,7 @@
         document.getElementById('total').innerText = 'Total: Rs. ' + Math.round(total).toLocaleString();
     }
 
-    // --- UPDATED CONFIRM ORDER WITH RESET SYSTEM ---
+    // --- UPDATED CONFIRM ORDER WITH SCRIPT URL AND RESET SYSTEM ---
     function confirmOrder() {
         const nameInput = document.getElementById('cname');
         const phoneInput = document.getElementById('cphone');
@@ -334,7 +334,7 @@
                 btn.innerText = "CONFIRM ORDER"; 
                 btn.disabled = false;
                 toggleCart(); 
-                showHome(); // Return to main page
+                showHome(); // Return to main page automatically
             }, 3000);
         })
         .catch(() => {
