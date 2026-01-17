@@ -34,11 +34,11 @@
         .marquee { display: inline-block; animation: marquee 20s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* LOGO PLACEHOLDERS */
+        /* HEADER LOGO */
         .main-logo-container { text-align: center; padding: 20px; background: var(--bg-dark); }
-        .main-logo-img { height: 70px; width: auto; object-fit: contain; }
+        .main-logo-img { height: 75px; width: auto; object-fit: contain; }
 
-        /* SECTION HEADINGS WITH IMAGE BG */
+        /* SECTION HEADINGS WITH BG */
         .section-header { 
             font-family: 'Playfair Display', serif; 
             font-size: 1.8rem; 
@@ -54,14 +54,6 @@
 
         .section { padding: 60px 5%; max-width: 1400px; margin: auto; }
 
-        /* BRANDS GRID */
-        .brands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 40px; }
-        @media (min-width: 768px) { .brands-grid { grid-template-columns: repeat(5, 1fr); } }
-        .brand-item { cursor: pointer; transition: 0.4s; text-align: center; background: var(--glass); padding: 20px; border: 1px solid var(--border); border-radius: 8px; }
-        .brand-item:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .brand-logo { width: 100%; height: 50px; object-fit: contain; margin-bottom: 10px; }
-        .brand-label { font-size: 10px; color: var(--primary); font-weight: 600; text-transform: uppercase; }
-
         /* HERO */
         .hero-container {
             height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center;
@@ -70,7 +62,15 @@
         }
         .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; }
 
-        /* MODERN ABOUT SECTION */
+        /* BRANDS */
+        .brands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 40px; }
+        @media (min-width: 768px) { .brands-grid { grid-template-columns: repeat(5, 1fr); } }
+        .brand-item { cursor: pointer; transition: 0.4s; text-align: center; background: var(--glass); padding: 20px; border: 1px solid var(--border); border-radius: 8px; }
+        .brand-item:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .brand-logo { width: 100%; height: 50px; object-fit: contain; margin-bottom: 10px; }
+        .brand-label { font-size: 10px; color: var(--primary); font-weight: 600; text-transform: uppercase; }
+
+        /* ABOUT SECTION */
         .modern-about { position: relative; padding: 120px 5%; background: #0a0a0a; overflow: hidden; display: flex; justify-content: center; }
         .about-bg-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('about-bg.jpg') center/cover no-repeat; opacity: 0.15; z-index: 1; }
         .about-card { 
@@ -79,18 +79,15 @@
             text-align: center; transform: translateY(40px); opacity: 0; transition: 1.5s ease;
         }
         .about-card.visible { transform: translateY(0); opacity: 1; }
-        .about-card h2 { font-family: 'Playfair Display', serif; color: var(--primary); font-size: 2.8rem; margin-bottom: 25px; }
-        .about-card p { font-size: 1.1rem; line-height: 2; color: var(--text-muted); }
 
-        /* ELEMENTS */
+        /* PRODUCT CARDS */
         .popular-slider { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scrollbar-width: none; }
         .popular-slider::-webkit-scrollbar { display: none; }
         .popular-card { min-width: 280px; background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 12px; }
         .watch-display { width: 100%; height: 280px; overflow: hidden; border-radius: 8px; margin-bottom: 15px; }
         .watch-image { width: 100%; height: 100%; object-fit: cover; }
         .price { color: var(--primary); font-size: 1.1rem; margin-bottom: 15px; }
-        .btn-add { width: 100%; padding: 12px; background: transparent; color: #fff; border: 1px solid var(--primary); cursor: pointer; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
-        .btn-add:hover { background: var(--primary); color: #000; }
+        .btn-add { width: 100%; padding: 12px; background: transparent; color: #fff; border: 1px solid var(--primary); cursor: pointer; text-transform: uppercase; font-weight: 600; }
 
         /* CART */
         #cart {
@@ -138,8 +135,8 @@
     <section class="modern-about">
         <div class="about-bg-overlay"></div>
         <div class="about-card" id="aboutCard">
-            <h2>The Legacy</h2>
-            <p>For over three decades, Hayat & Co. has remained at the forefront of luxury horology. Our journey began with a single vision: to connect collectors with timepieces that embody absolute mechanical perfection.</p>
+            <h2 style="font-family:'Playfair Display'; color:var(--primary); font-size:2.5rem; margin-bottom:20px;">The Legacy</h2>
+            <p style="line-height:1.8; color:var(--text-muted);">For over three decades, Hayat & Co. has remained at the forefront of luxury horology. Our journey began with a single vision: to connect collectors with timepieces that embody absolute mechanical perfection.</p>
         </div>
     </section>
 </div>
@@ -147,8 +144,8 @@
 <div id="brand-view" style="display:none;">
     <div class="main-logo-container"><img src="main-logo.png" class="main-logo-img"></div>
     <h2 id="brand-name-display" style="text-align:center; font-family:'Playfair Display'; font-size:3rem; color:var(--primary); margin:20px 0;">Brand</h2>
-    <div style="display:flex; justify-content:space-between; padding:0 5%; margin-bottom:30px;">
-        <button class="btn-add" style="width:auto; padding:10px 20px;" onclick="showHome()">← BACK</button>
+    <div style="padding: 0 5%; margin-bottom: 20px;">
+        <button class="btn-add" style="width:auto; padding:8px 20px;" onclick="showHome()">← BACK</button>
     </div>
     <div class="section">
         <div id="stock-container">
@@ -192,7 +189,7 @@
 
     const watchData = [];
     brandsList.forEach(b => {
-        watchData.push({ brand: b.name, name: b.name + " Elite", price: 95000, type: 'stock', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30' });
+        watchData.push({ brand: b.name, name: b.name + " Signature", price: 95000, type: 'stock', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30' });
         watchData.push({ brand: b.name, name: b.name + " Limited", price: 185000, type: 'preorder', img: 'https://images.unsplash.com/photo-1547996160-81dfa63595dd' });
     });
 
@@ -233,8 +230,7 @@
         const stockGrid = document.getElementById('brand-stock-grid');
         const preGrid = document.getElementById('brand-pre-grid');
         stockGrid.innerHTML = ''; preGrid.innerHTML = '';
-        const filtered = watchData.filter(w => w.brand === brand);
-        filtered.forEach(w => {
+        watchData.filter(w => w.brand === brand).forEach(w => {
             const card = `<div class="popular-card" style="min-width:0;">
                 <div class="watch-display"><img src="${w.img}" class="watch-image"></div>
                 <h4>${w.name}</h4>
@@ -280,21 +276,19 @@
         document.getElementById('total').innerText = 'Total: Rs. ' + currentTotal.toLocaleString();
     }
 
-    // CONFIRM ORDER WITH GOOGLE SHEETS & RESET
     function confirmOrder() {
         const name = document.getElementById('cname').value;
         const phone = document.getElementById('cphone').value;
         const address = document.getElementById('caddress').value;
 
         if(!name || !phone || !address || cart.length === 0) {
-            alert("Please fill all fields and add items to cart.");
+            alert("Please fill all details.");
             return;
         }
 
         const itemsString = cart.map(i => `${i.name} (${i.payMethod})`).join(', ');
         const btn = document.getElementById('submitBtn');
-        btn.innerText = "SENDING...";
-        btn.disabled = true;
+        btn.innerText = "SENDING..."; btn.disabled = true;
 
         const url =https://script.google.com/macros/s/AKfycby5oW7bduTUJFFCZUe6BiZkeFjl69466vRwhw-VLMw6eS1ScIQz3WR7RD80zu6Z_DkOAA/exec
 
@@ -305,11 +299,8 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, phone, address, items: itemsString, total: currentTotal })
         }).then(() => {
-            // SUCCESS UI
             document.getElementById('popup').classList.add('show');
-            
-            // RESET EVERYTHING
-            cart = [];
+            cart = []; 
             document.getElementById('cname').value = '';
             document.getElementById('cphone').value = '';
             document.getElementById('caddress').value = '';
@@ -317,15 +308,13 @@
             
             setTimeout(() => {
                 document.getElementById('popup').classList.remove('show');
-                btn.innerText = "CONFIRM ORDER";
-                btn.disabled = false;
+                btn.innerText = "CONFIRM ORDER"; btn.disabled = false;
                 toggleCart();
-                showHome(); // Return to home screen
+                showHome();
             }, 3000);
         }).catch(err => {
-            alert("Connection error. Please try again.");
-            btn.innerText = "CONFIRM ORDER";
-            btn.disabled = false;
+            alert("Error connecting. Try again.");
+            btn.innerText = "CONFIRM ORDER"; btn.disabled = false;
         });
     }
 </script>
