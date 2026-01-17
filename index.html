@@ -18,7 +18,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* INTRO ANIMATION (ORIGINAL) */
+        /* INTRO ANIMATION */
         .intro-header {
             position: fixed; top:0; left:0; width:100%; height: 100vh;
             display: flex; align-items: center; justify-content: center;
@@ -29,7 +29,7 @@
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOutBackground { to { opacity: 0; visibility: hidden; } }
 
-        /* SALE BANNER (ORIGINAL) */
+        /* SALE BANNER */
         .sale-banner { background: var(--primary); color: #000; overflow: hidden; white-space: nowrap; padding: 8px 0; font-weight: 700; font-size: 12px; position: sticky; top: 0; z-index: 1000; }
         .marquee { display: inline-block; animation: marquee 20s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
@@ -62,11 +62,6 @@
         .brand-logo { width: 100%; height: 50px; object-fit: contain; margin-bottom: 10px; }
         .brand-label { font-size: 10px; color: var(--primary); font-weight: 600; text-transform: uppercase; }
 
-        /* MOST POPULAR SLIDER */
-        .popular-slider { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scrollbar-width: none; }
-        .popular-slider::-webkit-scrollbar { display: none; }
-        .popular-card { min-width: 280px; background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 12px; }
-
         /* HERO */
         .hero-container {
             height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center;
@@ -88,6 +83,9 @@
         .about-card p { font-size: 1.1rem; line-height: 2; color: var(--text-muted); }
 
         /* ELEMENTS */
+        .popular-slider { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scrollbar-width: none; }
+        .popular-slider::-webkit-scrollbar { display: none; }
+        .popular-card { min-width: 280px; background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 12px; }
         .watch-display { width: 100%; height: 280px; overflow: hidden; border-radius: 8px; margin-bottom: 15px; }
         .watch-image { width: 100%; height: 100%; object-fit: cover; }
         .price { color: var(--primary); font-size: 1.1rem; margin-bottom: 15px; }
@@ -118,9 +116,7 @@
 <div id="popup">ORDER SYNCED SUCCESSFULLY</div>
 
 <div id="home-view">
-    <div class="main-logo-container">
-        <img src="main-logo.png" alt="Hayat & Co." class="main-logo-img">
-    </div>
+    <div class="main-logo-container"><img src="main-logo.png" alt="Hayat & Co." class="main-logo-img"></div>
 
     <section class="hero-container">
         <div class="hero-content">
@@ -155,11 +151,11 @@
         <button class="btn-add" style="width:auto; padding:10px 20px;" onclick="showHome()">← BACK</button>
     </div>
     <div class="section">
-        <div id="stock-container" style="display:none;">
+        <div id="stock-container">
             <h2 class="section-header">IN STOCK</h2>
             <div id="brand-stock-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px;"></div>
         </div>
-        <div id="pre-container" style="display:none; margin-top:50px;">
+        <div id="pre-container" style="margin-top:50px;">
             <h2 class="section-header">PRE-ORDER</h2>
             <div id="brand-pre-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px;"></div>
         </div>
@@ -176,7 +172,7 @@
         <input type="text" id="cname" placeholder="Full Name" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
         <input type="tel" id="cphone" placeholder="Phone" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
         <textarea id="caddress" placeholder="Address" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;"></textarea>
-        <button class="btn-add" style="background:var(--primary); color:#000;" onclick="confirmOrder()">CONFIRM ORDER</button>
+        <button id="submitBtn" class="btn-add" style="background:var(--primary); color:#000;" onclick="confirmOrder()">CONFIRM ORDER</button>
         <button class="btn-add" style="margin-top:10px; border:none;" onclick="toggleCart()">CLOSE</button>
     </div>
 </div>
@@ -196,7 +192,7 @@
 
     const watchData = [];
     brandsList.forEach(b => {
-        watchData.push({ brand: b.name, name: b.name + " Classic", price: 95000, type: 'stock', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30' });
+        watchData.push({ brand: b.name, name: b.name + " Elite", price: 95000, type: 'stock', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30' });
         watchData.push({ brand: b.name, name: b.name + " Limited", price: 185000, type: 'preorder', img: 'https://images.unsplash.com/photo-1547996160-81dfa63595dd' });
     });
 
@@ -238,10 +234,6 @@
         const preGrid = document.getElementById('brand-pre-grid');
         stockGrid.innerHTML = ''; preGrid.innerHTML = '';
         const filtered = watchData.filter(w => w.brand === brand);
-        
-        document.getElementById('stock-container').style.display = 'block';
-        document.getElementById('pre-container').style.display = 'block';
-
         filtered.forEach(w => {
             const card = `<div class="popular-card" style="min-width:0;">
                 <div class="watch-display"><img src="${w.img}" class="watch-image"></div>
@@ -256,10 +248,11 @@
 
     window.addEventListener('scroll', () => {
         const card = document.getElementById('aboutCard');
-        if(card.getBoundingClientRect().top < window.innerHeight * 0.85) card.classList.add('visible');
+        if(card && card.getBoundingClientRect().top < window.innerHeight * 0.85) card.classList.add('visible');
     });
 
     let cart = [];
+    let currentTotal = 0;
     function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
     function addToCart(name, price, type) {
         cart.push({name, price, type, payMethod: 'advance'});
@@ -282,13 +275,58 @@
                 <button onclick="cart.splice(${i},1); updateCartUI();" style="color:red; background:none; border:none; cursor:pointer; font-size:10px;">REMOVE</button>
             </div>`;
         });
+        currentTotal = Math.round(total);
         document.getElementById('cartItems').innerHTML = html || 'Cart is empty';
-        document.getElementById('total').innerText = 'Total: Rs. ' + Math.round(total).toLocaleString();
+        document.getElementById('total').innerText = 'Total: Rs. ' + currentTotal.toLocaleString();
     }
 
+    // CONFIRM ORDER WITH GOOGLE SHEETS & RESET
     function confirmOrder() {
-        document.getElementById('popup').classList.add('show');
-        setTimeout(() => { document.getElementById('popup').classList.remove('show'); cart = []; updateCartUI(); toggleCart(); }, 3000);
+        const name = document.getElementById('cname').value;
+        const phone = document.getElementById('cphone').value;
+        const address = document.getElementById('caddress').value;
+
+        if(!name || !phone || !address || cart.length === 0) {
+            alert("Please fill all fields and add items to cart.");
+            return;
+        }
+
+        const itemsString = cart.map(i => `${i.name} (${i.payMethod})`).join(', ');
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = "SENDING...";
+        btn.disabled = true;
+
+        const url = "YOUR_GOOGLE_SCRIPT_URL"; // PASTE YOUR WEB APP URL HERE
+
+        fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            cache: 'no-cache',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, phone, address, items: itemsString, total: currentTotal })
+        }).then(() => {
+            // SUCCESS UI
+            document.getElementById('popup').classList.add('show');
+            
+            // RESET EVERYTHING
+            cart = [];
+            document.getElementById('cname').value = '';
+            document.getElementById('cphone').value = '';
+            document.getElementById('caddress').value = '';
+            updateCartUI();
+            
+            setTimeout(() => {
+                document.getElementById('popup').classList.remove('show');
+                btn.innerText = "CONFIRM ORDER";
+                btn.disabled = false;
+                toggleCart();
+                showHome(); // Return to home screen
+            }, 3000);
+        }).catch(err => {
+            alert("Connection error. Please try again.");
+            btn.innerText = "CONFIRM ORDER";
+            btn.disabled = false;
+        });
     }
 </script>
 </body>
