@@ -176,12 +176,15 @@
         <input type="text" id="cname" placeholder="Full Name" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
         <input type="tel" id="cphone" placeholder="Phone" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
         <textarea id="caddress" placeholder="Address" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;"></textarea>
-        <button class="btn-add" style="background:var(--primary); color:#000;" onclick="confirmOrder()">CONFIRM ORDER</button>
+        <button id="submitBtn" class="btn-add" style="background:var(--primary); color:#000;" onclick="confirmOrder()">CONFIRM ORDER</button>
         <button class="btn-add" style="margin-top:10px; border:none;" onclick="toggleCart()">CLOSE</button>
     </div>
 </div>
 
 <script>
+    // --- GOOGLE SCRIPT CONFIGURATION ---
+    const GOOGLE_SCRIPT_URL = "YOUR_DEPLOYED_WEB_APP_URL_HERE";
+
     const brandsList = [
         { name: "Hamilton", logo: "hamilton.png" },
         { name: "Seiko", logo: "seiko.png" },
@@ -261,6 +264,7 @@
 
     let cart = [];
     function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
+    
     function addToCart(name, price, type) {
         cart.push({name, price, type, payMethod: 'advance'});
         updateCartUI();
@@ -286,9 +290,58 @@
         document.getElementById('total').innerText = 'Total: Rs. ' + Math.round(total).toLocaleString();
     }
 
+    // --- UPDATED CONFIRM ORDER WITH RESET SYSTEM ---
     function confirmOrder() {
-        document.getElementById('popup').classList.add('show');
-        setTimeout(() => { document.getElementById('popup').classList.remove('show'); cart = []; updateCartUI(); toggleCart(); }, 3000);
+        const nameInput = document.getElementById('cname');
+        const phoneInput = document.getElementById('cphone');
+        const addressInput = document.getElementById('caddress');
+        const btn = document.getElementById('submitBtn');
+
+        if(!nameInput.value || !phoneInput.value || cart.length === 0) {
+            alert("Please fill details and add items to cart!");
+            return;
+        }
+
+        btn.innerText = "SENDING...";
+        btn.disabled = true;
+
+        const data = {
+            name: nameInput.value,
+            phone: phoneInput.value,
+            address: addressInput.value,
+            items: cart.map(item => `${item.name} [${item.payMethod}]`).join(', '),
+            total: document.getElementById('total').innerText
+        };
+
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            // SHOW POPUP
+            document.getElementById('popup').classList.add('show');
+            
+            // RESET SYSTEM: Clear Cart & Fields
+            cart = []; 
+            nameInput.value = '';
+            phoneInput.value = '';
+            addressInput.value = '';
+            updateCartUI();
+
+            setTimeout(() => { 
+                document.getElementById('popup').classList.remove('show'); 
+                btn.innerText = "CONFIRM ORDER"; 
+                btn.disabled = false;
+                toggleCart(); 
+                showHome(); // Return to main page
+            }, 3000);
+        })
+        .catch(() => {
+            alert("Sync Error. Please check connection.");
+            btn.innerText = "CONFIRM ORDER";
+            btn.disabled = false;
+        });
     }
 </script>
 </body>
