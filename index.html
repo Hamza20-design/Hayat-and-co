@@ -34,51 +34,67 @@
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOutBackground { to { opacity: 0; visibility: hidden; } }
 
+        /* SECTION HEADING WITH IMAGE BACKGROUND */
+        .section-header { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 2rem; 
+            margin-bottom: 40px; 
+            padding: 30px 20px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            /* This targets the image you put in your folder */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('heading-bg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            border-left: 5px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
         /* HERO */
         .hero-container {
             height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000');
             background-size: cover; background-position: center;
         }
-        .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; }
+        .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; transition: 0.3s; }
+        .shop-now-btn:hover { background: #fff; }
 
-        /* SECTIONS */
         .section { padding: 60px 5%; max-width: 1400px; margin: auto; }
-        .section-header { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 40px; border-left: 3px solid var(--primary); padding-left: 20px; text-transform: uppercase; }
         
-        /* BRANDS */
+        /* BRANDS GRID */
         .brands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 40px; }
         @media (min-width: 768px) { .brands-grid { grid-template-columns: repeat(5, 1fr); } }
         .brand-item { filter: grayscale(1) brightness(2); opacity: 0.5; cursor: pointer; transition: 0.4s; text-align: center; background: var(--glass); padding: 15px; border: 1px solid var(--border); }
-        .brand-item:hover { opacity: 1; filter: grayscale(0); border-color: var(--primary); }
+        .brand-item:hover { opacity: 1; filter: grayscale(0); border-color: var(--primary); transform: translateY(-5px); }
         .brand-logo { width: 100%; height: 50px; object-fit: contain; }
 
-        /* MOST POPULAR SLIDER */
+        /* HORIZONTAL POPULAR SLIDER */
         .popular-slider { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
         .popular-slider::-webkit-scrollbar { display: none; }
         .popular-card { min-width: 280px; scroll-snap-align: start; background: var(--glass); border: 1px solid var(--border); padding: 15px; border-radius: 12px; }
 
-        /* WATCH ELEMENTS */
         .watch-display { width: 100%; height: 280px; overflow: hidden; border-radius: 8px; margin-bottom: 15px; }
         .watch-image { width: 100%; height: 100%; object-fit: cover; }
         .price { color: var(--primary); font-size: 1.1rem; margin-bottom: 15px; }
         .btn-add { width: 100%; padding: 12px; background: transparent; color: #fff; border: 1px solid var(--primary); cursor: pointer; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
         .btn-add:hover { background: var(--primary); color: #000; }
 
-        /* MODERN ABOUT SECTION */
-        .modern-about { background: linear-gradient(180deg, #0a0a0a 0%, #151515 100%); padding: 100px 5%; overflow: hidden; }
+        /* MODERN ABOUT */
+        .modern-about { background: #0a0a0a; padding: 100px 5%; }
         .about-card { 
             max-width: 900px; margin: auto; background: var(--glass); border: 1px solid var(--border); 
             padding: 50px; border-radius: 24px; backdrop-filter: blur(10px); text-align: center;
-            transform: translateY(50px); opacity: 0; transition: 1s ease-out;
+            transform: translateY(50px); opacity: 0; transition: 1.2s ease-out;
         }
         .about-card.visible { transform: translateY(0); opacity: 1; }
-        .about-card h2 { font-family: 'Playfair Display', serif; color: var(--primary); font-size: 3rem; margin-bottom: 20px; }
-        .about-card p { font-size: 1.1rem; line-height: 1.8; color: var(--text-muted); }
+        .about-card h2 { font-family: 'Playfair Display', serif; color: var(--primary); font-size: 2.5rem; margin-bottom: 20px; }
+        .about-card p { font-size: 1rem; line-height: 1.8; color: var(--text-muted); }
 
-        /* BRAND VIEW PAGE */
+        /* BRAND VIEW */
         #brand-view { display: none; min-height: 100vh; padding-top: 20px; }
-        .brand-title-main { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); text-align: center; color: var(--primary); margin-bottom: 20px; text-transform: uppercase; }
+        .brand-title-main { font-family: 'Playfair Display', serif; font-size: 3.5rem; text-align: center; color: var(--primary); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 4px; }
         .brand-controls { display: flex; justify-content: space-between; padding: 0 5%; max-width: 1400px; margin: 0 auto 30px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
 
@@ -103,7 +119,7 @@
 </div>
 
 <div class="sale-banner">
-    <div class="marquee">✨ 10% DISCOUNT ON FULL ADVANCE PAYMENTS — CURATING EXCELLENCE SINCE 1994 ✨</div>
+    <div class="marquee">✨ EXCLUSIVE OFFER: 10% OFF ON FULL ADVANCE PAYMENTS — FREE WORLDWIDE SHIPPING — ESTABLISHED 1994 ✨</div>
 </div>
 
 <div id="popup">ORDER SYNCED SUCCESSFULLY</div>
@@ -128,8 +144,8 @@
 
     <section class="modern-about">
         <div class="about-card" id="aboutCard">
-            <h2>Our Legacy</h2>
-            <p>Since 1994, Hayat & Co. has been the definitive home for those who appreciate the mechanical heartbeat of a master-crafted timepiece. We don't just sell watches; we curate the heritage of time itself.</p>
+            <h2>The Legacy</h2>
+            <p>Since 1994, Hayat & Co. has remained at the forefront of luxury horology. Our journey began with a single vision: to connect the most discerning collectors with timepieces that embody absolute mechanical perfection.</p>
         </div>
     </section>
 </div>
@@ -139,18 +155,18 @@
     <div class="brand-controls">
         <button class="btn-add" style="width:auto; padding:8px 20px;" onclick="showHome()">← BACK</button>
         <select class="btn-add" style="width:auto; background:#111;" onchange="applySort(this.value)">
-            <option value="default">SORT BY</option>
-            <option value="low">PRICE: LOW-HIGH</option>
-            <option value="high">PRICE: HIGH-LOW</option>
+            <option value="default">FILTER BY PRICE</option>
+            <option value="low">LOW TO HIGH</option>
+            <option value="high">HIGH TO LOW</option>
         </select>
     </div>
     <div class="section">
         <div id="stock-container" style="display:none;">
-            <h3 class="section-header">In Stock</h3>
+            <h2 class="section-header">IN STOCK</h2>
             <div id="brand-stock-grid" class="grid"></div>
         </div>
         <div id="pre-container" style="display:none; margin-top:50px;">
-            <h3 class="section-header">Pre-Order</h3>
+            <h2 class="section-header">PRE-ORDER</h2>
             <div id="brand-pre-grid" class="grid"></div>
         </div>
     </div>
@@ -158,29 +174,29 @@
 
 <div id="cart-btn" onclick="toggleCart()">🛒</div>
 <div id="cart">
-    <h2 style="font-family:'Playfair Display'; margin-bottom:20px;">Your Selection</h2>
-    <div id="cartItems">Empty</div>
+    <h2 style="font-family:'Playfair Display'; margin-bottom:20px;">Cart Details</h2>
+    <div id="cartItems">No items selected</div>
     <div style="margin-top:20px; border-top:1px solid var(--border); padding-top:20px;">
         <div id="total" style="font-size:1.2rem; color:var(--primary); margin-bottom:15px;">Total: Rs 0</div>
-        <input type="text" id="cname" placeholder="Full Name" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
-        <input type="tel" id="cphone" placeholder="Phone" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
-        <textarea id="caddress" placeholder="Address" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;"></textarea>
-        <button class="btn-add" style="background:var(--primary); color:#000;" onclick="confirmOrder()">CONFIRM ORDER</button>
-        <button class="btn-add" style="margin-top:10px; border:none;" onclick="toggleCart()">CLOSE</button>
+        <input type="text" id="cname" placeholder="Full Name">
+        <input type="tel" id="cphone" placeholder="Phone Number">
+        <textarea id="caddress" placeholder="Complete Shipping Address" rows="3" style="width:100%; padding:10px; background:#1a1a1a; border:1px solid #333; color:#fff; margin-bottom:10px;"></textarea>
+        <button class="btn-add" style="background:var(--primary); color:#000;" onclick="confirmOrder()">PLACE ORDER</button>
+        <button class="btn-add" style="margin-top:10px; border:none;" onclick="toggleCart()">CLOSE CART</button>
     </div>
 </div>
 
 <script>
-    const brands = ["Hamilton", "Seiko", "Omega X Swatch", "Orient", "Rado", "Oris", "Tissot", "Rolex", "Patek Philip"];
+    const brandsList = ["Hamilton", "Seiko", "Omega X Swatch", "Orient", "Rado", "Oris", "Tissot", "Rolex", "Patek Philip"];
     const watchData = [];
 
-    // Automatically generate 2 watches per brand (1 stock, 1 pre-order)
-    brands.forEach((b, i) => {
-        watchData.push({ brand: b, name: b + " Classic", price: 50000 + (i * 10000), type: 'stock', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30' });
-        watchData.push({ brand: b, name: b + " Heritage", price: 120000 + (i * 15000), type: 'preorder', img: 'https://images.unsplash.com/photo-1547996160-81dfa63595dd' });
+    // Auto-Generating 2 watches per brand (1 stock, 1 pre-order)
+    brandsList.forEach((b, i) => {
+        watchData.push({ brand: b, name: b + " Signature Edition", price: 65000 + (i * 12000), type: 'stock', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30' });
+        watchData.push({ brand: b, name: b + " Limited Preorder", price: 145000 + (i * 18000), type: 'preorder', img: 'https://images.unsplash.com/photo-1547996160-81dfa63595dd' });
     });
 
-    // Populate Popular Slider
+    // Populate Most Popular
     const popularSlider = document.getElementById('popular-slider');
     watchData.slice(0, 6).forEach(w => {
         popularSlider.innerHTML += `
@@ -194,7 +210,7 @@
 
     // Populate Brands Grid
     const brandsContainer = document.getElementById('brands-container');
-    brands.forEach(b => {
+    brandsList.forEach(b => {
         const fileName = b.toLowerCase().replace(/ /g, "-") + ".png";
         brandsContainer.innerHTML += `
             <div class="brand-item" onclick="showBrand('${b}')">
@@ -252,13 +268,13 @@
         renderBrandGrid(filtered);
     }
 
-    // Scroll Animation for About Section
+    // Modern About Animation
     window.addEventListener('scroll', () => {
         const card = document.getElementById('aboutCard');
-        if(card.getBoundingClientRect().top < window.innerHeight * 0.8) card.classList.add('visible');
+        if(card.getBoundingClientRect().top < window.innerHeight * 0.85) card.classList.add('visible');
     });
 
-    // Cart Functions
+    // Cart System
     function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
     function addToCart(name, price, type) {
         cart.push({name, price, type, payMethod: 'advance'});
@@ -272,18 +288,18 @@
         cart.forEach((item, i) => {
             let p = (item.payMethod === 'full') ? item.price * 0.9 : (item.type === 'stock' ? 1000 : item.price * 0.5);
             total += p;
-            html += `<div style="background:rgba(255,255,255,0.05); padding:10px; margin-bottom:10px;">
+            html += `<div style="background:rgba(255,255,255,0.05); padding:10px; margin-bottom:10px; border:1px solid #333;">
                 <div style="font-size:12px;">${item.name}</div>
-                <select onchange="cart[${i}].payMethod=this.value; updateCartUI();" style="background:#000; color:#fff; border:1px solid #444; font-size:10px; margin:5px 0;">
-                    <option value="advance" ${item.payMethod==='advance'?'selected':''}>Advance</option>
-                    <option value="full" ${item.payMethod==='full'?'selected':''}>Full (10% OFF)</option>
+                <select onchange="cart[${i}].payMethod=this.value; updateCartUI();" style="background:#000; color:#fff; border:1px solid #444; font-size:10px; margin:5px 0; padding:5px; width:100%;">
+                    <option value="advance" ${item.payMethod==='advance'?'selected':''}>Pay Advance</option>
+                    <option value="full" ${item.payMethod==='full'?'selected':''}>Pay Full (10% OFF)</option>
                 </select>
                 <div style="color:var(--primary); font-size:12px;">Rs. ${Math.round(p).toLocaleString()}</div>
-                <button onclick="cart.splice(${i},1); updateCartUI();" style="color:red; background:none; border:none; font-size:10px; cursor:pointer;">REMOVE</button>
+                <button onclick="cart.splice(${i},1); updateCartUI();" style="color:#ff4444; background:none; border:none; font-size:10px; cursor:pointer; margin-top:5px;">REMOVE ITEM</button>
             </div>`;
         });
-        document.getElementById('cartItems').innerHTML = html || 'Cart is empty';
-        document.getElementById('total').innerText = 'Total: Rs. ' + Math.round(total).toLocaleString();
+        document.getElementById('cartItems').innerHTML = html || 'Your cart is empty';
+        document.getElementById('total').innerText = 'Total Due: Rs. ' + Math.round(total).toLocaleString();
     }
 
     function confirmOrder() {
@@ -294,8 +310,7 @@
             document.getElementById('cname').value = '';
             document.getElementById('cphone').value = '';
             document.getElementById('caddress').value = '';
-            updateCartUI(); 
-            toggleCart();
+            updateCartUI(); toggleCart();
         }, 3000);
     }
 </script>
