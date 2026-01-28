@@ -18,6 +18,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
 
+        /* LOGIN STYLES */
+        #login-btn { position: fixed; top: 60px; right: 20px; z-index: 1001; background: var(--primary); color: #000; padding: 8px 20px; border-radius: 4px; font-weight: 700; cursor: pointer; border: none; font-size: 12px; }
+        #login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+        .login-card { background: #111; padding: 40px; border: 1px solid var(--primary); width: 90%; max-width: 400px; text-align: center; border-radius: 8px; }
+        .login-card input { width: 100%; padding: 12px; margin-bottom: 15px; background: #1a1a1a; border: 1px solid #333; color: #fff; }
+        .login-card h2 { font-family: 'Playfair Display', serif; margin-bottom: 25px; color: var(--primary); }
+
         /* INTRO ANIMATION (ORIGINAL) */
         .intro-header {
             position: fixed; top:0; left:0; width:100%; height: 100vh;
@@ -116,6 +123,17 @@
 
 <div class="intro-header" id="intro"><div class="intro-logo">HAYAT & CO.</div></div>
 
+<button id="login-btn" onclick="openLogin()">LOGIN</button>
+<div id="login-overlay">
+    <div class="login-card">
+        <h2>Member Access</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button class="btn-add" style="background:var(--primary); color:#000;" onclick="handleLogin()">ENTER</button>
+        <button class="btn-add" style="margin-top:10px; border:none;" onclick="closeLogin()">CANCEL</button>
+    </div>
+</div>
+
 <div class="sale-banner">
     <div class="marquee">✨ ADDITIONAL 10% DISCOUNT ON PRE PAID ORDERS— AUTHENTIC LUXURY SINCE 2024 — ORDER NOW! ✨                ✨ FREE SHIPPING ON ALL ORDERS ✨</div>
 </div>
@@ -202,6 +220,38 @@ Hayat & Co. Watches — Est. 2024.</p>
 <script>
     // --- INTEGRATED GOOGLE SCRIPT URL ---
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbySi8nkyczBMWRXDuIe3T4Y3gFtJrUro4ntuXN8xv1li0zfUt3yZzk52HmIfxErWE8VaQ/exec";
+
+    // --- LOGIN SYSTEM LOGIC ---
+    function openLogin() { document.getElementById('login-overlay').style.display = 'flex'; }
+    function closeLogin() { document.getElementById('login-overlay').style.display = 'none'; }
+
+    function handleLogin() {
+        const user = document.getElementById('username').value;
+        const pass = document.getElementById('password').value;
+        const btn = document.getElementById('login-btn');
+
+        if (user === "admin" && pass === "hayatadmin") {
+            window.open("https://hayat-and-co-admin-panel.vercel.app/", "_blank");
+            localStorage.setItem('hayat_logged', 'true');
+            btn.style.display = 'none';
+            closeLogin();
+        } else if (user !== "" && pass !== "") {
+            // Normal login success
+            localStorage.setItem('hayat_logged', 'true');
+            btn.style.display = 'none';
+            closeLogin();
+            alert("Login Successful!");
+        } else {
+            alert("Please enter valid credentials.");
+        }
+    }
+
+    // Check login state on load
+    window.addEventListener('DOMContentLoaded', () => {
+        if(localStorage.getItem('hayat_logged') === 'true') {
+            document.getElementById('login-btn').style.display = 'none';
+        }
+    });
 
     const brandsList = [
         { name: "Hamilton", logo: "hamilton.png" },
