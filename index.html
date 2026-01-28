@@ -25,7 +25,7 @@
         .login-card input { width: 100%; padding: 12px; margin-bottom: 15px; background: #1a1a1a; border: 1px solid #333; color: #fff; }
         .login-card h2 { font-family: 'Playfair Display', serif; margin-bottom: 25px; color: var(--primary); }
 
-        /* INTRO ANIMATION (ORIGINAL) */
+        /* INTRO ANIMATION */
         .intro-header {
             position: fixed; top:0; left:0; width:100%; height: 100vh;
             display: flex; align-items: center; justify-content: center;
@@ -36,16 +36,16 @@
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOutBackground { to { opacity: 0; visibility: hidden; } }
 
-        /* SALE BANNER (ORIGINAL) */
+        /* SALE BANNER */
         .sale-banner { background: var(--primary); color: #000; overflow: hidden; white-space: nowrap; padding: 8px 0; font-weight: 700; font-size: 12px; position: sticky; top: 0; z-index: 1000; }
         .marquee { display: inline-block; animation: marquee 15s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* LOGO PLACEHOLDERS */
+        /* LOGO */
         .main-logo-container { text-align: center; padding: 20px; background: var(--bg-dark); }
         .main-logo-img { height: 70px; width: auto; object-fit: contain; }
 
-        /* SECTION HEADINGS WITH IMAGE BG */
+        /* SECTION HEADINGS */
         .section-header { 
             font-family: 'Playfair Display', serif; 
             font-size: 1.8rem; 
@@ -69,7 +69,7 @@
         .brand-logo { width: 100%; height: 50px; object-fit: contain; margin-bottom: 10px; }
         .brand-label { font-size: 10px; color: var(--primary); font-weight: 600; text-transform: uppercase; }
 
-        /* MOST POPULAR SLIDER */
+        /* SLIDER */
         .popular-slider { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scrollbar-width: none; }
         .popular-slider::-webkit-scrollbar { display: none; }
         .popular-card { min-width: 280px; background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 12px; }
@@ -82,7 +82,7 @@
         }
         .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; }
 
-        /* MODERN ABOUT SECTION */
+        /* ABOUT SECTION */
         .modern-about { position: relative; padding: 120px 5%; background: #0a0a0a; overflow: hidden; display: flex; justify-content: center; }
         .about-bg-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('about-bg.jpg') center/cover no-repeat; opacity: 0.15; z-index: 1; }
         .about-card { 
@@ -94,7 +94,7 @@
         .about-card h2 { font-family: 'Playfair Display', serif; color: var(--primary); font-size: 2.8rem; margin-bottom: 25px; }
         .about-card p { font-size: 1.1rem; line-height: 2; color: var(--text-muted); }
 
-        /* SOCIAL ICONS CSS */
+        /* SOCIALS */
         .social-links { display: flex; justify-content: center; gap: 30px; margin-top: 30px; }
         .social-icon svg { width: 35px; height: 35px; fill: var(--primary); transition: 0.3s; }
         .social-icon:hover svg { transform: scale(1.1); fill: #fff; }
@@ -166,11 +166,7 @@
         <div class="about-bg-overlay"></div>
         <div class="about-card" id="aboutCard">
             <h2>The Legacy</h2>
-            <p>Hayat & Co. Watches, established in 2024, is a modern watch store offering a curated selection of timepieces designed to complement your style and confidence.
-
-We focus on quality, design, and value, aiming to provide a smooth and reliable shopping experience for every customer.
-
-Hayat & Co. Watches — Est. 2024.</p>
+            <p>Hayat & Co. Watches, established in 2024, is a modern watch store offering a curated selection of timepieces designed to complement your style and confidence. We focus on quality, design, and value, aiming to provide a smooth and reliable shopping experience for every customer. Hayat & Co. Watches — Est. 2024.</p>
             
             <div class="social-links">
                 <a href="https://wa.me/923009325696" target="_blank" class="social-icon">
@@ -221,9 +217,14 @@ Hayat & Co. Watches — Est. 2024.</p>
     // --- INTEGRATED GOOGLE SCRIPT URL ---
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbySi8nkyczBMWRXDuIe3T4Y3gFtJrUro4ntuXN8xv1li0zfUt3yZzk52HmIfxErWE8VaQ/exec";
 
-    // --- LOGIN SYSTEM LOGIC ---
-    function openLogin() { document.getElementById('login-overlay').style.display = 'flex'; }
-    function closeLogin() { document.getElementById('login-overlay').style.display = 'none'; }
+    // --- LOGIN SYSTEM LOGIC (RE-APPEARS ON FRESH LOAD) ---
+    function openLogin() { 
+        document.getElementById('login-overlay').style.display = 'flex'; 
+    }
+    
+    function closeLogin() { 
+        document.getElementById('login-overlay').style.display = 'none'; 
+    }
 
     function handleLogin() {
         const user = document.getElementById('username').value;
@@ -232,13 +233,10 @@ Hayat & Co. Watches — Est. 2024.</p>
 
         if (user === "admin" && pass === "hayatadmin") {
             window.open("https://hayat-and-co-admin-panel.vercel.app/", "_blank");
-            localStorage.setItem('hayat_logged', 'true');
-            btn.style.display = 'none';
+            btn.style.display = 'none'; // Only hidden for current view
             closeLogin();
         } else if (user !== "" && pass !== "") {
-            // Normal login success
-            localStorage.setItem('hayat_logged', 'true');
-            btn.style.display = 'none';
+            btn.style.display = 'none'; // Only hidden for current view
             closeLogin();
             alert("Login Successful!");
         } else {
@@ -246,11 +244,9 @@ Hayat & Co. Watches — Est. 2024.</p>
         }
     }
 
-    // Check login state on load
+    // Always ensure login button is visible on fresh page load
     window.addEventListener('DOMContentLoaded', () => {
-        if(localStorage.getItem('hayat_logged') === 'true') {
-            document.getElementById('login-btn').style.display = 'none';
-        }
+        document.getElementById('login-btn').style.display = 'block';
     });
 
     const brandsList = [
@@ -267,9 +263,9 @@ Hayat & Co. Watches — Est. 2024.</p>
 
     const watchData = [];
     brandsList.forEach(b => {
-        watchData.push({ brand: "Hamilton", name: "Hamilton Jazz master"+ " Classic", price: 95000, type: 'stock', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30' });
+        watchData.push({ brand: "Hamilton", name: "Hamilton Jazz master Classic", price: 95000, type: 'stock', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30' });
         watchData.push({ brand: b.name, name: b.name + " Limited", price: 185000, type: 'preorder', img: 'https://images.unsplash.com/photo-1547996160-81dfa63595dd' });
-        watchData.push({ brand: "Rolex", name: "Rolex Daytona"+ " Limited", price:105000, type: 'stock', img:'https://images.unsplash.com/photo-1547996160-81dfa63595dd' });
+        watchData.push({ brand: "Rolex", name: "Rolex Daytona Limited", price:105000, type: 'stock', img:'https://images.unsplash.com/photo-1547996160-81dfa63595dd' });
      });
 
     const brandsContainer = document.getElementById('brands-container');
@@ -388,18 +384,14 @@ Hayat & Co. Watches — Est. 2024.</p>
         })
         .then(() => {
             document.getElementById('popup').classList.add('show');
-            cart = []; 
-            nameInput.value = '';
-            phoneInput.value = '';
-            addressInput.value = '';
+            cart = []; nameInput.value = ''; phoneInput.value = ''; addressInput.value = '';
             updateCartUI();
 
             setTimeout(() => { 
                 document.getElementById('popup').classList.remove('show'); 
                 btn.innerText = "CONFIRM ORDER"; 
                 btn.disabled = false;
-                toggleCart(); 
-                showHome();
+                toggleCart(); showHome();
             }, 3000);
         })
         .catch(() => {
