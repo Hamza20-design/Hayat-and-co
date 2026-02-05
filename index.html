@@ -11,11 +11,30 @@
         body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
         
         /* Intro Header */
-        .intro-header { position: fixed; top:0; left:0; width:100%; height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%); z-index: 9999; animation: fadeOutBackground 1.5s ease-in-out forwards; animation-delay: 3s; }
+        .intro-header { position: fixed; top:0; left:0; width:100%; height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%); z-index: 9999; animation: fadeOutBackground 1.5s ease-in-out forwards; animation-delay: 3s; }
         .intro-logo { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 10vw, 5rem); letter-spacing: 8px; color: var(--primary); opacity: 0; transform: translateY(30px); animation: fadeInUp 1.5s ease-out forwards; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOutBackground { to { opacity: 0; visibility: hidden; } }
         
+        /* Navigation Sidebar */
+        #nav-menu { position: fixed; top: 0; left: -100%; width: 280px; height: 100%; background: #000; z-index: 3001; transition: 0.5s; padding: 60px 30px; border-right: 1px solid var(--primary); }
+        #nav-menu.active { left: 0; }
+        .nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; display: none; }
+        .nav-overlay.active { display: block; }
+        .nav-link { display: block; color: #fff; text-decoration: none; font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 25px; transition: 0.3s; cursor: pointer; }
+        .nav-link:hover { color: var(--primary); padding-left: 10px; }
+        
+        /* Burger Icon */
+        .burger-btn { position: fixed; top: 55px; left: 20px; z-index: 2000; cursor: pointer; padding: 10px; }
+        .burger-line { width: 25px; height: 2px; background: var(--primary); margin: 5px 0; transition: 0.3s; }
+
+        /* WhatsApp Floating Button */
+        .wa-float { position: fixed; bottom: 110px; right: 30px; display: flex; align-items: center; z-index: 2000; text-decoration: none; }
+        .wa-tooltip { background: white; color: black; padding: 8px 15px; border-radius: 4px; font-size: 13px; font-weight: 600; margin-right: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); position: relative; }
+        .wa-tooltip::after { content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%); border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 6px solid white; }
+        .wa-icon-circle { width: 55px; height: 55px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); position: relative; }
+        .wa-badge { position: absolute; top: 0; right: 0; background: #ff4d4d; color: white; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #000; }
+
         /* Sale Banner */
         .sale-banner { background: var(--primary); color: #000; overflow: hidden; white-space: nowrap; padding: 8px 0; font-weight: 700; font-size: 12px; position: sticky; top: 0; z-index: 1000; }
         .marquee { display: inline-block; animation: marquee 15s linear infinite; }
@@ -24,10 +43,20 @@
         .main-logo-container { text-align: center; padding: 20px; background: var(--bg-dark); }
         .main-logo-img { height: 70px; width: auto; object-fit: contain; }
         
-        /* Section Headers with Background */
-        .section-header { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 40px; padding: 50px 25px; text-transform: uppercase; color: #fff; border-left: 6px solid var(--primary); background: #111; }
-        .stock-header, .pre-header { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('heading-bg.jpg'); background-size: cover; background-position: center; border-left: none; text-align: center; border-bottom: 2px solid var(--primary); }
-
+        /* RECOVERED HEADER IMAGE */
+        .section-header { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 40px; 
+            padding: 50px 25px; 
+            text-transform: uppercase; 
+            color: #fff; 
+            border-left: 6px solid var(--primary); 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('heading-bg.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+        
         .section { padding: 60px 5%; max-width: 1400px; margin: auto; }
         
         /* Brand Grid */
@@ -38,26 +67,40 @@
         .brand-logo { width: 100%; height: 50px; object-fit: contain; margin-bottom: 10px; }
         .brand-label { font-size: 10px; color: var(--primary); font-weight: 600; text-transform: uppercase; }
         
-        /* Product Cards */
         .popular-slider { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scrollbar-width: none; }
         .popular-slider::-webkit-scrollbar { display: none; }
-        .popular-card { min-width: 280px; background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 12px; }
         
+        /* WATCH CARD STYLES */
+        .popular-card { min-width: 280px; background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 12px; transition: 0.3s; position: relative; }
+        .watch-display { width: 100%; height: 280px; overflow: hidden; border-radius: 8px; margin-bottom: 10px; position: relative; touch-action: pan-y; }
+        
+        .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: grab; }
+        .slider-track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; user-select: none; pointer-events: none; }
+
+        .slider-dots { display: flex; justify-content: center; gap: 5px; margin-bottom: 15px; height: 10px; }
+        .dot { width: 6px; height: 6px; border-radius: 50%; background: #333; transition: 0.3s; }
+        .dot.active { background: var(--primary); transform: scale(1.2); }
+
         .hero-container { height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center; }
         .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; }
         
         /* About Section */
         .modern-about { position: relative; padding: 120px 5%; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('about-bg.jpg'); background-size: cover; background-position: center; overflow: hidden; display: flex; justify-content: center; }
-        .about-card { position: relative; z-index: 2; max-width: 800px; background: rgba(0, 0, 0, 0.7); border: 1px solid var(--primary); padding: 60px 40px; border-radius: 15px; backdrop-filter: blur(10px); text-align: center; transition: 1.5s ease; }
+        .about-card { position: relative; z-index: 2; max-width: 800px; background: rgba(0, 0, 0, 0.7); border: 1px solid var(--primary); padding: 60px 40px; border-radius: 15px; backdrop-filter: blur(10px); text-align: center; }
         .about-card h2 { font-family: 'Playfair Display', serif; color: var(--primary); font-size: 2.8rem; margin-bottom: 25px; }
         
-        .watch-display { width: 100%; height: 280px; overflow: hidden; border-radius: 8px; margin-bottom: 15px; }
-        .watch-image { width: 100%; height: 100%; object-fit: cover; }
+        .insta-btn { display: inline-block; margin-top: 20px; padding: 12px 30px; background: var(--primary); color: #000; text-decoration: none; font-weight: 600; border-radius: 4px; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .insta-btn:hover { background: #fff; transform: translateY(-3px); }
+
         .price { color: var(--primary); font-size: 1.1rem; margin-bottom: 15px; }
         .btn-add { width: 100%; padding: 12px; background: transparent; color: #fff; border: 1px solid var(--primary); cursor: pointer; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
         .btn-add:hover { background: var(--primary); color: #000; }
+
+        /* Credits Footer */
+        .credits-section { background: #000; padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); }
+        .credits-text { color: var(--text-muted); font-size: 13px; letter-spacing: 1px; font-weight: 300; }
         
-        /* Cart */
+        /* Cart UI */
         #cart { position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%; z-index: 2001; padding: 30px; transition: 0.5s; background-color: #111; box-shadow: -10px 0 30px rgba(0,0,0,0.8); overflow-y: auto; }
         #cart.open { right: 0; }
         #cart-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; cursor: pointer; color: black; font-weight: bold; }
@@ -68,6 +111,28 @@
 <body>
 
 <div class="intro-header" id="intro"><div class="intro-logo">HAYAT & CO.</div></div>
+
+<div class="burger-btn" onclick="toggleNav()">
+    <div class="burger-line"></div>
+    <div class="burger-line"></div>
+    <div class="burger-line"></div>
+</div>
+
+<div class="nav-overlay" id="nav-overlay" onclick="toggleNav()"></div>
+<div id="nav-menu">
+    <div style="margin-bottom: 40px;"><img src="main-logo.png" style="height: 50px;"></div>
+    <div class="nav-link" onclick="handleNav('home')">HOME</div>
+    <div class="nav-link" onclick="handleNav('about')">ABOUT US</div>
+    <div class="nav-link" onclick="handleNav('shop')">SHOP NOW</div>
+</div>
+
+<a href="https://wa.me/923009325696" class="wa-float" target="_blank">
+    <div class="wa-tooltip">Chat with us</div>
+    <div class="wa-icon-circle">
+        <svg fill="#ffffff" width="30px" height="30px" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <div class="wa-badge">1</div>
+    </div>
+</a>
 
 <div class="sale-banner">
     <div class="marquee">✨ ADDITIONAL 10% DISCOUNT ON PRE PAID ORDERS — AUTHENTIC LUXURY SINCE 2024 — ORDER NOW! ✨                ✨ FREE SHIPPING ON ALL ORDERS ✨</div>
@@ -80,7 +145,7 @@
         <img src="main-logo.png" alt="Hayat & Co." class="main-logo-img">
     </div>
 
-    <section class="hero-container">
+    <section class="hero-container" id="hero-sec">
         <div class="hero-content">
             <h1 style="font-family:'Playfair Display'; font-size: clamp(3rem, 10vw, 5rem);">HAYAT & CO.</h1>
             <button class="shop-now-btn" onclick="document.getElementById('brand-sec').scrollIntoView({behavior:'smooth'})">EXPLORE BRANDS</button>
@@ -97,12 +162,25 @@
         <div class="popular-slider" id="popular-slider"></div>
     </section>
 
-    <section class="modern-about">
+    <section class="modern-about" id="about-sec">
         <div class="about-card">
             <h2>OUR LEGACY</h2>
-            <p style="line-height: 1.8; font-size: 1.1rem; color: #ddd;">Hayat & Co. stands as a beacon of horological excellence in Pakistan. Established in 2024, we specialize in sourcing the world's most coveted timepieces. From the precision of Seiko to the prestige of Rolex, we ensure every watch tells a story of luxury, authenticity, and timeless style.</p>
+            <p style="line-height: 1.8; font-size: 1.1rem; color: #ddd;">
+
+Hayat & Co. Watches, established in 2024, is a modern watch store offering a curated selection of timepieces designed to complement your style and confidence.
+
+We focus on quality, design, and value, aiming to provide a smooth and reliable shopping experience for every customer.
+
+Hayat & Co. Watches — Est. 2024</p>
+            <div class="social-container">
+                <a href="https://www.instagram.com/hayatandco_watches" target="_blank" class="insta-btn">Instagram</a>
+            </div>
         </div>
     </section>
+
+    <footer class="credits-section">
+        <div class="credits-text">&copy; 2024 HAYAT & CO. ALL RIGHTS RESERVED</div>
+    </footer>
 </div>
 
 <div id="brand-view" style="display:none;">
@@ -113,11 +191,11 @@
     </div>
     <div class="section">
         <div id="stock-container">
-            <h2 class="section-header stock-header">IN STOCK</h2>
+            <h2 class="section-header">IN STOCK</h2>
             <div id="brand-stock-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px;"></div>
         </div>
         <div id="pre-container" style="margin-top:50px;">
-            <h2 class="section-header pre-header">PRE-ORDER</h2>
+            <h2 class="section-header">PRE-ORDER</h2>
             <div id="brand-pre-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px;"></div>
         </div>
     </div>
@@ -125,8 +203,7 @@
 
 <div id="cart-btn" onclick="toggleCart()">CART</div>
 <div id="cart">
-    <div style="text-align:center; margin-bottom:20px;"><img src="main-logo.png" style="height:50px;"></div>
-    <h2 style="font-family:'Playfair Display'; margin-bottom:20px; text-align:center;">Your Selection</h2>
+    <h2 style="font-family:'Playfair Display'; text-align:center;">Your Selection</h2>
     <div id="cartItems">Empty</div>
     <div style="margin-top:20px; border-top:1px solid var(--border); padding-top:20px;">
         <div id="total" style="font-size:1.2rem; color:var(--primary); margin-bottom:15px;">Total: Rs 0</div>
@@ -134,7 +211,6 @@
         <input type="tel" id="cphone" placeholder="Phone Number" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
         <textarea id="caddress" placeholder="Shipping Address" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;"></textarea>
         <button id="submitBtn" class="btn-add" style="background:var(--primary); color:#000;" onclick="confirmOrder()">CONFIRM ORDER</button>
-        <button class="btn-add" style="margin-top:10px; border:none;" onclick="toggleCart()">CLOSE</button>
     </div>
 </div>
 
@@ -154,42 +230,106 @@ const brandsList = [
 ];
 
 let watchData = [];
+let swipeStartX = 0;
+let isDragging = false;
+
+function toggleNav() {
+    document.getElementById('nav-menu').classList.toggle('active');
+    document.getElementById('nav-overlay').classList.toggle('active');
+}
+
+function handleNav(target) {
+    toggleNav();
+    showHome();
+    if(target === 'home') window.scrollTo(0,0);
+    if(target === 'about') document.getElementById('about-sec').scrollIntoView({behavior:'smooth'});
+    if(target === 'shop') document.getElementById('brand-sec').scrollIntoView({behavior:'smooth'});
+}
 
 function loadProducts() {
+    // Render brands immediately from brandsList so they never disappear
+    renderBrands();
+    
     fetch(`${DATABASE_URL}/watches.json`)
     .then(res => res.json())
     .then(data => {
         if (data) {
             watchData = Object.values(data);
-            renderBrands();
             renderPopularSlider();
+        } else {
+            watchData = [];
+            document.getElementById('popular-slider').innerHTML = '<p style="text-align:center; width:100%; color:var(--text-muted);">Stay tuned for new arrivals.</p>';
         }
     });
 }
 
-window.onload = () => {
-    loadProducts();
-    renderBrands();
-};
+window.onload = loadProducts;
 
 function renderBrands() {
     const container = document.getElementById('brands-container');
     container.innerHTML = brandsList.map(b => `
         <div class="brand-item" onclick="showBrand('${b.name}')">
-            <img src="${b.logo}" class="brand-logo" alt="${b.name}" onerror="this.style.display='none'">
+            <img src="${b.logo}" class="brand-logo" alt="${b.name}" onerror="this.src='https://via.placeholder.com/150x50?text=${b.name}'">
             <div class="brand-label">${b.name}</div>
         </div>`).join('');
 }
 
-function renderPopularSlider() {
-    const slider = document.getElementById('popular-slider');
-    slider.innerHTML = watchData.slice(0, 8).map(w => `
+function generateCardHTML(w) {
+    const images = w.images || [w.img];
+    const slides = images.map(imgSrc => `<img src="${imgSrc}">`).join('');
+    const dots = images.length > 1 ? `<div class="slider-dots">${images.map((_, i) => `<div class="dot ${i===0?'active':''}"></div>`).join('')}</div>` : '';
+    
+    return `
         <div class="popular-card">
-            <div class="watch-display"><img src="${w.img}" class="watch-image"></div>
+            <div class="watch-display" 
+                onmousedown="swipeStart(event)" 
+                onmouseup="swipeEnd(event, this)" 
+                ontouchstart="swipeStart(event)" 
+                ontouchend="swipeEnd(event, this)">
+                <div class="slider-track" data-index="0" data-count="${images.length}">${slides}</div>
+            </div>
+            ${dots}
             <h4>${w.name}</h4>
             <div class="price">${w.price}</div>
             <button class="btn-add" onclick="addToCart('${w.name}', '${w.price}', '${w.type}')">Add to Cart</button>
-        </div>`).join('');
+        </div>`;
+}
+
+function swipeStart(e) {
+    isDragging = true;
+    swipeStartX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+}
+
+function swipeEnd(e, container) {
+    if (!isDragging) return;
+    isDragging = false;
+    const endX = e.type.includes('touch') ? e.changedTouches[0].clientX : e.clientX;
+    const diff = swipeStartX - endX;
+
+    const track = container.querySelector('.slider-track');
+    let index = parseInt(track.getAttribute('data-index'));
+    const count = parseInt(track.getAttribute('data-count'));
+
+    if (Math.abs(diff) > 50) {
+        if (diff > 0 && index < count - 1) index++; 
+        else if (diff < 0 && index > 0) index--;    
+    }
+
+    track.setAttribute('data-index', index);
+    track.style.transform = `translateX(-${index * 100}%)`;
+    
+    const dots = container.parentElement.querySelectorAll('.dot');
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+}
+
+function renderPopularSlider() {
+    const slider = document.getElementById('popular-slider');
+    const populars = watchData.filter(w => w.type === 'popular');
+    if(populars.length > 0) {
+        slider.innerHTML = populars.map(w => generateCardHTML(w)).join('');
+    } else {
+        slider.innerHTML = '<p style="text-align:center; width:100%; color:var(--text-muted);">New stock arriving soon.</p>';
+    }
 }
 
 function showBrand(brand) {
@@ -203,17 +343,15 @@ function showBrand(brand) {
     stockGrid.innerHTML = ''; preGrid.innerHTML = '';
     
     const filtered = watchData.filter(w => w.brand.toLowerCase() === brand.toLowerCase());
-    filtered.forEach(w => {
-        const card = `
-        <div class="popular-card" style="min-width:0;">
-            <div class="watch-display"><img src="${w.img}" class="watch-image"></div>
-            <h4>${w.name}</h4>
-            <div class="price">${w.price}</div>
-            <button class="btn-add" onclick="addToCart('${w.name}', '${w.price}', '${w.type}')">Add to Cart</button>
-        </div>`;
-        if(w.type === 'stock') stockGrid.innerHTML += card;
-        else preGrid.innerHTML += card;
-    });
+    
+    if(filtered.length === 0) {
+        stockGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:var(--text-muted);">Currently no items for this brand. Check back later!</p>';
+    } else {
+        filtered.forEach(w => {
+            if(w.type === 'stock' || w.type === 'popular') stockGrid.innerHTML += generateCardHTML(w);
+            else preGrid.innerHTML += generateCardHTML(w);
+        });
+    }
 }
 
 function showHome() {
@@ -225,7 +363,6 @@ let cart = [];
 function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
 
 function addToCart(name, price, type) {
-    // Convert price string to number for math
     const numPrice = parseInt(price.replace(/[^0-9]/g, '')) || 0;
     cart.push({name, price: numPrice, displayPrice: price, type, payMethod: 'advance'});
     updateCartUI();
@@ -237,15 +374,14 @@ function updateCartUI() {
     cart.forEach((item, i) => {
         let p = (item.payMethod === 'full') ? item.price * 0.9 : (item.type === 'stock' ? 1000 : item.price * 0.5);
         total += p;
-        html += `
-        <div style="background:rgba(255,255,255,0.05); padding:10px; margin-bottom:10px; border:1px solid #333;">
+        html += `<div style="background:rgba(255,255,255,0.05); padding:10px; margin-bottom:10px;">
             <div style="font-size:12px;">${item.name}</div>
-            <select onchange="cart[${i}].payMethod=this.value; updateCartUI();" style="background:#000; color:#fff; width:100%; margin:5px 0; padding:5px;">
+            <select onchange="cart[${i}].payMethod=this.value; updateCartUI();" style="background:#000; color:#fff; width:100%; margin:5px 0;">
                 <option value="advance">Pay Advance</option>
                 <option value="full">Pay Full (10% OFF)</option>
             </select>
             <div style="color:var(--primary);">Rs. ${Math.round(p).toLocaleString()}</div>
-            <button onclick="cart.splice(${i},1); updateCartUI();" style="color:red; background:none; border:none; cursor:pointer; font-size:10px;">REMOVE</button>
+            <button onclick="cart.splice(${i},1); updateCartUI();" style="color:red; background:none; border:none;">REMOVE</button>
         </div>`;
     });
     document.getElementById('cartItems').innerHTML = html || 'Cart is empty';
@@ -256,20 +392,10 @@ function confirmOrder() {
     const name = document.getElementById('cname').value;
     const phone = document.getElementById('cphone').value;
     const address = document.getElementById('caddress').value;
-    const btn = document.getElementById('submitBtn');
-
-    if(!name || !phone || cart.length === 0) {
-        alert("Please fill details and add items to cart!");
-        return;
-    }
-
-    btn.innerText = "SENDING...";
-    btn.disabled = true;
+    if(!name || !phone || cart.length === 0) { alert("Please fill details!"); return; }
 
     const newOrder = {
-        user: name,
-        phone: phone,
-        address: address,
+        user: name, phone, address,
         item: cart.map(i => i.name).join(', '),
         status: "Pending",
         total: document.getElementById('total').innerText,
@@ -280,12 +406,7 @@ function confirmOrder() {
     .then(() => {
         document.getElementById('popup').classList.add('show');
         cart = []; updateCartUI();
-        setTimeout(() => {
-            document.getElementById('popup').classList.remove('show');
-            btn.innerText = "CONFIRM ORDER";
-            btn.disabled = false;
-            toggleCart(); showHome();
-        }, 3000);
+        setTimeout(() => { document.getElementById('popup').classList.remove('show'); toggleCart(); showHome(); }, 3000);
     });
 }
 </script>
