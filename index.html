@@ -42,70 +42,38 @@
         
         .main-logo-container { text-align: center; padding: 20px; background: var(--bg-dark); }
         .main-logo-img { height: 70px; width: auto; object-fit: contain; }
-        
-        /* RECOVERED HEADER IMAGE */
-        .section-header { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.8rem; 
-            margin-bottom: 40px; 
-            padding: 50px 25px; 
-            text-transform: uppercase; 
-            color: #fff; 
-            border-left: 6px solid var(--primary); 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('heading-bg.jpg'); 
-            background-size: cover; 
-            background-position: center; 
-        }
-        
-        .section { padding: 60px 5%; max-width: 1400px; margin: auto; }
-        
-        /* Brand Grid */
-        .brands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 40px; }
-        @media (min-width: 768px) { .brands-grid { grid-template-columns: repeat(5, 1fr); } }
-        .brand-item { cursor: pointer; transition: 0.4s; text-align: center; background: var(--glass); padding: 20px; border: 1px solid var(--border); border-radius: 8px; }
-        .brand-item:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .brand-logo { width: 100%; height: 50px; object-fit: contain; margin-bottom: 10px; }
-        .brand-label { font-size: 10px; color: var(--primary); font-weight: 600; text-transform: uppercase; }
-        
-        .popular-slider { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scrollbar-width: none; }
-        .popular-slider::-webkit-scrollbar { display: none; }
-        
-        /* WATCH CARD STYLES */
-        .popular-card { min-width: 280px; background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 12px; transition: 0.3s; position: relative; }
-        .watch-display { width: 100%; height: 280px; overflow: hidden; border-radius: 8px; margin-bottom: 10px; position: relative; touch-action: pan-y; }
-        
-        .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: grab; }
-        .slider-track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; user-select: none; pointer-events: none; }
 
-        .slider-dots { display: flex; justify-content: center; gap: 5px; margin-bottom: 15px; height: 10px; }
-        .dot { width: 6px; height: 6px; border-radius: 50%; background: #333; transition: 0.3s; }
-        .dot.active { background: var(--primary); transform: scale(1.2); }
-
-        .hero-container { height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center; }
+        .hero-container { height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center; }
         .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; }
+
+        /* NEW FEATURE SECTION - BLACK & GOLD */
+        .feature-section { padding: 100px 5%; display: flex; align-items: center; justify-content: center; gap: 60px; background: #000; overflow: hidden; flex-wrap: wrap; }
+        .feature-img-wrapper { flex: 1; min-width: 300px; max-width: 600px; opacity: 0; transform: translateX(-50px); transition: 1s ease-out; }
+        .feature-img-wrapper.visible { opacity: 1; transform: translateX(0); }
+        .feature-img { width: 100%; border-radius: 4px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         
+        .feature-content { flex: 1; min-width: 300px; max-width: 500px; opacity: 0; transform: translateX(50px); transition: 1s ease-out; }
+        .feature-content.visible { opacity: 1; transform: translateX(0); }
+        .feature-content h2 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--primary); margin-bottom: 30px; }
+        .feature-content ul { list-style: none; }
+        .feature-content li { margin-bottom: 20px; color: #ccc; line-height: 1.6; font-style: italic; position: relative; padding-left: 30px; }
+        .feature-content li::before { content: "✦"; position: absolute; left: 0; color: var(--primary); font-size: 14px; }
+        .feature-shop-btn { margin-top: 30px; padding: 12px 35px; background: transparent; color: var(--primary); border: 1px solid var(--primary); font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .feature-shop-btn:hover { background: var(--primary); color: #000; }
+
         /* About Section */
-        .modern-about { position: relative; padding: 120px 5%; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('about-bg.jpg'); background-size: cover; background-position: center; overflow: hidden; display: flex; justify-content: center; }
-        .about-card { position: relative; z-index: 2; max-width: 800px; background: rgba(0, 0, 0, 0.7); border: 1px solid var(--primary); padding: 60px 40px; border-radius: 15px; backdrop-filter: blur(10px); text-align: center; }
+        .modern-about { position: relative; padding: 120px 5%; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('about-bg.jpg'); background-size: cover; background-position: center; display: flex; justify-content: center; }
+        .about-card { max-width: 800px; background: rgba(0, 0, 0, 0.7); border: 1px solid var(--primary); padding: 60px 40px; border-radius: 15px; backdrop-filter: blur(10px); text-align: center; }
         .about-card h2 { font-family: 'Playfair Display', serif; color: var(--primary); font-size: 2.8rem; margin-bottom: 25px; }
         
-        .insta-btn { display: inline-block; margin-top: 20px; padding: 12px 30px; background: var(--primary); color: #000; text-decoration: none; font-weight: 600; border-radius: 4px; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
-        .insta-btn:hover { background: #fff; transform: translateY(-3px); }
-
-        .price { color: var(--primary); font-size: 1.1rem; margin-bottom: 15px; }
-        .btn-add { width: 100%; padding: 12px; background: transparent; color: #fff; border: 1px solid var(--primary); cursor: pointer; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
-        .btn-add:hover { background: var(--primary); color: #000; }
-
         /* Credits Footer */
         .credits-section { background: #000; padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); }
-        .credits-text { color: var(--text-muted); font-size: 13px; letter-spacing: 1px; font-weight: 300; }
-        
-        /* Cart UI */
-        #cart { position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%; z-index: 2001; padding: 30px; transition: 0.5s; background-color: #111; box-shadow: -10px 0 30px rgba(0,0,0,0.8); overflow-y: auto; }
+        .credits-text { color: var(--text-muted); font-size: 13px; letter-spacing: 1px; }
+
+        /* Cart UI (Minimal versions kept for functionality) */
+        #cart { position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%; z-index: 2001; padding: 30px; background: #111; transition: 0.5s; overflow-y: auto; }
         #cart.open { right: 0; }
         #cart-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; cursor: pointer; color: black; font-weight: bold; }
-        #popup { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--primary); color: #000; padding: 12px 25px; border-radius: 4px; font-weight: 700; z-index: 3000; transition: 0.5s; }
-        #popup.show { transform: translateX(-50%) translateY(0); }
     </style>
 </head>
 <body>
@@ -135,46 +103,41 @@
 </a>
 
 <div class="sale-banner">
-    <div class="marquee">✨ ADDITIONAL 10% DISCOUNT ON PRE PAID ORDERS — AUTHENTIC LUXURY SINCE 2024 — ORDER NOW! ✨                ✨ FREE SHIPPING ON ALL ORDERS ✨</div>
+    <div class="marquee">✨ ADDITIONAL 10% DISCOUNT ON PRE PAID ORDERS — AUTHENTIC LUXURY SINCE 2024 — ORDER NOW! ✨</div>
 </div>
-
-<div id="popup">ORDER PLACED SUCCESSFULLY✅</div>
 
 <div id="home-view">
     <div class="main-logo-container">
         <img src="main-logo.png" alt="Hayat & Co." class="main-logo-img">
     </div>
 
-    <section class="hero-container" id="hero-sec">
+    <section class="hero-container">
         <div class="hero-content">
             <h1 style="font-family:'Playfair Display'; font-size: clamp(3rem, 10vw, 5rem);">HAYAT & CO.</h1>
-            <button class="shop-now-btn" onclick="document.getElementById('brand-sec').scrollIntoView({behavior:'smooth'})">EXPLORE BRANDS</button>
+            <button class="shop-now-btn" onclick="scrollToFeature()">DISCOVER MORE</button>
         </div>
     </section>
 
-    <section class="section" id="brand-sec">
-        <h2 class="section-header">SHOP BY BRAND</h2>
-        <div class="brands-grid" id="brands-container"></div>
-    </section>
-
-    <section class="section">
-        <h2 class="section-header">MOST POPULAR</h2>
-        <div class="popular-slider" id="popular-slider"></div>
+    <section class="feature-section" id="feature-sec">
+        <div class="feature-img-wrapper" id="feat-img">
+            <img src="https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=80&w=1000" class="feature-img" alt="Luxury Timepiece">
+        </div>
+        <div class="feature-content" id="feat-text">
+            <h2>Hayat & Co.</h2>
+            <ul>
+                <li>Introducing Pakistan's curated destination for authentic Luxury Timepieces.</li>
+                <li>Luxury is not only the Statement, It's our craftsmanship that we put into sourcing these pieces of Art.</li>
+                <li>It's an addiction. Once you experience horological excellence, you no longer switch the standard.</li>
+                <li>Redefining time.</li>
+            </ul>
+            <button class="feature-shop-btn" onclick="alert('Shop navigation coming soon!')">Shop Collection</button>
+        </div>
     </section>
 
     <section class="modern-about" id="about-sec">
         <div class="about-card">
             <h2>OUR LEGACY</h2>
-            <p style="line-height: 1.8; font-size: 1.1rem; color: #ddd;">
-
-Hayat & Co. Watches, established in 2024, is a modern watch store offering a curated selection of timepieces designed to complement your style and confidence.
-
-We focus on quality, design, and value, aiming to provide a smooth and reliable shopping experience for every customer.
-
-Hayat & Co. Watches — Est. 2024</p>
-            <div class="social-container">
-                <a href="https://www.instagram.com/hayatandco_watches" target="_blank" class="insta-btn">Instagram</a>
-            </div>
+            <p style="line-height: 1.8; font-size: 1.1rem; color: #ddd;">Established in 2024, Hayat & Co. is a beacon of horological excellence in Pakistan. We specialize in sourcing the world's most coveted timepieces.</p>
         </div>
     </section>
 
@@ -183,56 +146,13 @@ Hayat & Co. Watches — Est. 2024</p>
     </footer>
 </div>
 
-<div id="brand-view" style="display:none;">
-    <div class="main-logo-container"><img src="main-logo.png" class="main-logo-img"></div>
-    <h2 id="brand-name-display" style="text-align:center; font-family:'Playfair Display'; font-size:3rem; color:var(--primary); margin:20px 0;">Brand</h2>
-    <div style="display:flex; justify-content:center; margin-bottom:30px;">
-        <button class="btn-add" style="width:auto; padding:10px 40px;" onclick="showHome()">← BACK</button>
-    </div>
-    <div class="section">
-        <div id="stock-container">
-            <h2 class="section-header">IN STOCK</h2>
-            <div id="brand-stock-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px;"></div>
-        </div>
-        <div id="pre-container" style="margin-top:50px;">
-            <h2 class="section-header">PRE-ORDER</h2>
-            <div id="brand-pre-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px;"></div>
-        </div>
-    </div>
-</div>
-
 <div id="cart-btn" onclick="toggleCart()">CART</div>
 <div id="cart">
-    <h2 style="font-family:'Playfair Display'; text-align:center;">Your Selection</h2>
-    <div id="cartItems">Empty</div>
-    <div style="margin-top:20px; border-top:1px solid var(--border); padding-top:20px;">
-        <div id="total" style="font-size:1.2rem; color:var(--primary); margin-bottom:15px;">Total: Rs 0</div>
-        <input type="text" id="cname" placeholder="Full Name" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
-        <input type="tel" id="cphone" placeholder="Phone Number" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
-        <textarea id="caddress" placeholder="Shipping Address" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;"></textarea>
-        <button id="submitBtn" class="btn-add" style="background:var(--primary); color:#000;" onclick="confirmOrder()">CONFIRM ORDER</button>
-    </div>
+    <h2 style="font-family:'Playfair Display'; text-align:center; color: var(--primary);">Your Cart</h2>
+    <div id="cartItems" style="color: white; padding-top: 20px;">Your cart is empty.</div>
 </div>
 
 <script>
-const DATABASE_URL = "https://hayatwatches-e7bd1-default-rtdb.firebaseio.com/";
-
-const brandsList = [
-    { name: "Hamilton", logo: "hamilton.png" },
-    { name: "Seiko", logo: "seiko.png" },
-    { name: "Omega X Swatch", logo: "omega-x-swatch.png" },
-    { name: "Orient", logo: "orient.png" },
-    { name: "Rado", logo: "rado.png" },
-    { name: "Oris", logo: "oris.png" },
-    { name: "Tissot", logo: "tissot.png" },
-    { name: "Rolex", logo: "rolex.png" },
-    { name: "Patek Philip", logo: "patek-philip.png" }
-];
-
-let watchData = [];
-let swipeStartX = 0;
-let isDragging = false;
-
 function toggleNav() {
     document.getElementById('nav-menu').classList.toggle('active');
     document.getElementById('nav-overlay').classList.toggle('active');
@@ -240,175 +160,31 @@ function toggleNav() {
 
 function handleNav(target) {
     toggleNav();
-    showHome();
     if(target === 'home') window.scrollTo(0,0);
     if(target === 'about') document.getElementById('about-sec').scrollIntoView({behavior:'smooth'});
-    if(target === 'shop') document.getElementById('brand-sec').scrollIntoView({behavior:'smooth'});
+    if(target === 'shop') scrollToFeature();
 }
 
-function loadProducts() {
-    // Render brands immediately from brandsList so they never disappear
-    renderBrands();
-    
-    fetch(`${DATABASE_URL}/watches.json`)
-    .then(res => res.json())
-    .then(data => {
-        if (data) {
-            watchData = Object.values(data);
-            renderPopularSlider();
-        } else {
-            watchData = [];
-            document.getElementById('popular-slider').innerHTML = '<p style="text-align:center; width:100%; color:var(--text-muted);">Stay tuned for new arrivals.</p>';
-        }
-    });
+function scrollToFeature() {
+    document.getElementById('feature-sec').scrollIntoView({behavior:'smooth'});
 }
 
-window.onload = loadProducts;
-
-function renderBrands() {
-    const container = document.getElementById('brands-container');
-    container.innerHTML = brandsList.map(b => `
-        <div class="brand-item" onclick="showBrand('${b.name}')">
-            <img src="${b.logo}" class="brand-logo" alt="${b.name}" onerror="this.src='https://via.placeholder.com/150x50?text=${b.name}'">
-            <div class="brand-label">${b.name}</div>
-        </div>`).join('');
-}
-
-function generateCardHTML(w) {
-    const images = w.images || [w.img];
-    const slides = images.map(imgSrc => `<img src="${imgSrc}">`).join('');
-    const dots = images.length > 1 ? `<div class="slider-dots">${images.map((_, i) => `<div class="dot ${i===0?'active':''}"></div>`).join('')}</div>` : '';
-    
-    return `
-        <div class="popular-card">
-            <div class="watch-display" 
-                onmousedown="swipeStart(event)" 
-                onmouseup="swipeEnd(event, this)" 
-                ontouchstart="swipeStart(event)" 
-                ontouchend="swipeEnd(event, this)">
-                <div class="slider-track" data-index="0" data-count="${images.length}">${slides}</div>
-            </div>
-            ${dots}
-            <h4>${w.name}</h4>
-            <div class="price">${w.price}</div>
-            <button class="btn-add" onclick="addToCart('${w.name}', '${w.price}', '${w.type}')">Add to Cart</button>
-        </div>`;
-}
-
-function swipeStart(e) {
-    isDragging = true;
-    swipeStartX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-}
-
-function swipeEnd(e, container) {
-    if (!isDragging) return;
-    isDragging = false;
-    const endX = e.type.includes('touch') ? e.changedTouches[0].clientX : e.clientX;
-    const diff = swipeStartX - endX;
-
-    const track = container.querySelector('.slider-track');
-    let index = parseInt(track.getAttribute('data-index'));
-    const count = parseInt(track.getAttribute('data-count'));
-
-    if (Math.abs(diff) > 50) {
-        if (diff > 0 && index < count - 1) index++; 
-        else if (diff < 0 && index > 0) index--;    
-    }
-
-    track.setAttribute('data-index', index);
-    track.style.transform = `translateX(-${index * 100}%)`;
-    
-    const dots = container.parentElement.querySelectorAll('.dot');
-    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-}
-
-function renderPopularSlider() {
-    const slider = document.getElementById('popular-slider');
-    const populars = watchData.filter(w => w.type === 'popular');
-    if(populars.length > 0) {
-        slider.innerHTML = populars.map(w => generateCardHTML(w)).join('');
-    } else {
-        slider.innerHTML = '<p style="text-align:center; width:100%; color:var(--text-muted);">New stock arriving soon.</p>';
-    }
-}
-
-function showBrand(brand) {
-    document.getElementById('home-view').style.display = 'none';
-    document.getElementById('brand-view').style.display = 'block';
-    document.getElementById('brand-name-display').innerText = brand;
-    window.scrollTo(0,0);
-    
-    const stockGrid = document.getElementById('brand-stock-grid');
-    const preGrid = document.getElementById('brand-pre-grid');
-    stockGrid.innerHTML = ''; preGrid.innerHTML = '';
-    
-    const filtered = watchData.filter(w => w.brand.toLowerCase() === brand.toLowerCase());
-    
-    if(filtered.length === 0) {
-        stockGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:var(--text-muted);">Currently no items for this brand. Check back later!</p>';
-    } else {
-        filtered.forEach(w => {
-            if(w.type === 'stock' || w.type === 'popular') stockGrid.innerHTML += generateCardHTML(w);
-            else preGrid.innerHTML += generateCardHTML(w);
-        });
-    }
-}
-
-function showHome() {
-    document.getElementById('brand-view').style.display = 'none';
-    document.getElementById('home-view').style.display = 'block';
-}
-
-let cart = [];
 function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
 
-function addToCart(name, price, type) {
-    const numPrice = parseInt(price.replace(/[^0-9]/g, '')) || 0;
-    cart.push({name, price: numPrice, displayPrice: price, type, payMethod: 'advance'});
-    updateCartUI();
-    toggleCart();
-}
-
-function updateCartUI() {
-    let total = 0, html = '';
-    cart.forEach((item, i) => {
-        let p = (item.payMethod === 'full') ? item.price * 0.9 : (item.type === 'stock' ? 1000 : item.price * 0.5);
-        total += p;
-        html += `<div style="background:rgba(255,255,255,0.05); padding:10px; margin-bottom:10px;">
-            <div style="font-size:12px;">${item.name}</div>
-            <select onchange="cart[${i}].payMethod=this.value; updateCartUI();" style="background:#000; color:#fff; width:100%; margin:5px 0;">
-                <option value="advance">Pay Advance</option>
-                <option value="full">Pay Full (10% OFF)</option>
-            </select>
-            <div style="color:var(--primary);">Rs. ${Math.round(p).toLocaleString()}</div>
-            <button onclick="cart.splice(${i},1); updateCartUI();" style="color:red; background:none; border:none;">REMOVE</button>
-        </div>`;
+// SCROLL ANIMATION LOGIC
+const observerOptions = { threshold: 0.2 };
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
     });
-    document.getElementById('cartItems').innerHTML = html || 'Cart is empty';
-    document.getElementById('total').innerText = 'Total: Rs. ' + Math.round(total).toLocaleString();
-}
+}, observerOptions);
 
-function confirmOrder() {
-    const name = document.getElementById('cname').value;
-    const phone = document.getElementById('cphone').value;
-    const address = document.getElementById('caddress').value;
-    if(!name || !phone || cart.length === 0) { alert("Please fill details!"); return; }
-
-    const newOrder = {
-        user: name, phone, address,
-        item: cart.map(i => i.name).join(', '),
-        status: "Pending",
-        total: document.getElementById('total').innerText,
-        date: new Date().toLocaleString()
-    };
-
-    fetch(`${DATABASE_URL}/orders.json`, { method: 'POST', body: JSON.stringify(newOrder) })
-    .then(() => {
-        document.getElementById('popup').classList.add('show');
-        cart = []; updateCartUI();
-        setTimeout(() => { document.getElementById('popup').classList.remove('show'); toggleCart(); showHome(); }, 3000);
-    });
-}
+window.onload = () => {
+    observer.observe(document.getElementById('feat-img'));
+    observer.observe(document.getElementById('feat-text'));
+};
 </script>
 </body>
 </html>
