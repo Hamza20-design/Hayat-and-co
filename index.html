@@ -6,79 +6,117 @@
     <title>Hayat & Co. | Timeless Luxury</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #c5a059; --bg-dark: #0a0a0a; --text-light: #f8f8f8; --text-muted: #a0a0a0; --border: rgba(255, 255, 255, 0.1); }
+        :root { --primary: #c5a059; --bg-dark: #0a0a0a; --text-light: #f8f8f8; --text-muted: #a0a0a0; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Navigation & UI */
-        .intro-header { position: fixed; top:0; left:0; width:100%; height: 100vh; display: flex; align-items: center; justify-content: center; background: #000; z-index: 9999; animation: fadeOutBackground 1s ease-in-out forwards 2s; }
+        /* Intro Animation */
+        .intro-header { position: fixed; top:0; left:0; width:100%; height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%); z-index: 9999; animation: fadeOutBackground 1.5s ease-in-out forwards; animation-delay: 3s; }
+        .intro-logo { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 10vw, 5rem); letter-spacing: 8px; color: var(--primary); opacity: 0; transform: translateY(30px); animation: fadeInUp 1.5s ease-out forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOutBackground { to { opacity: 0; visibility: hidden; } }
         
+        /* Navigation */
+        #nav-menu { position: fixed; top: 0; left: -100%; width: 280px; height: 100%; background: #000; z-index: 3001; transition: 0.5s; padding: 60px 30px; border-right: 1px solid var(--primary); }
+        #nav-menu.active { left: 0; }
+        .nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; display: none; }
+        .nav-overlay.active { display: block; }
+        .nav-link { display: block; color: #fff; text-decoration: none; font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 25px; cursor: pointer; }
+        
+        .burger-btn { position: fixed; top: 55px; left: 20px; z-index: 2000; cursor: pointer; padding: 10px; }
+        .burger-line { width: 25px; height: 2px; background: var(--primary); margin: 5px 0; }
+
         .sale-banner { background: var(--primary); color: #000; overflow: hidden; white-space: nowrap; padding: 8px 0; font-weight: 700; font-size: 12px; position: sticky; top: 0; z-index: 1000; }
         .marquee { display: inline-block; animation: marquee 15s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        
+        .main-logo-container { text-align: center; padding: 20px; background: var(--bg-dark); }
+        .main-logo-img { height: 70px; width: auto; }
 
         .hero-container { height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center; }
-        .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; transition: 0.3s; }
-        .shop-now-btn:hover { transform: scale(1.05); }
+        .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; }
 
-        /* SHOPPING SYSTEM STYLES */
-        #shop-view, #product-view { display: none; padding: 60px 5%; min-height: 100vh; background: #000; }
-        .brand-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
-        .brand-card { background: #111; border: 1px solid var(--border); padding: 50px; text-align: center; cursor: pointer; transition: 0.3s; border-radius: 4px; }
-        .brand-card:hover { border-color: var(--primary); background: #161616; }
-        .brand-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--primary); letter-spacing: 2px; }
-
-        .watch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
-        .watch-card { background: #0a0a0a; border: 1px solid var(--border); padding: 20px; border-radius: 8px; transition: 0.4s; position: relative; }
-        .watch-card:hover { transform: translateY(-10px); border-color: var(--primary); }
-        .watch-img { width: 100%; height: 300px; object-fit: cover; border-radius: 4px; margin-bottom: 15px; }
-        .badge { position: absolute; top: 30px; right: 30px; padding: 5px 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 20px; }
-        .instock { background: #25D366; color: white; }
-        .preorder { background: var(--primary); color: black; }
-        .back-btn { background: transparent; color: var(--primary); border: 1px solid var(--primary); padding: 10px 20px; cursor: pointer; margin-bottom: 30px; }
-
-        /* ORIGINAL ANIMATION SECTIONS */
+        /* RE-ENABLED ANIMATION CLASSES */
         .feature-section, .advance-section { padding: 100px 5%; display: flex; align-items: center; justify-content: center; gap: 60px; background: #000; overflow: hidden; flex-wrap: wrap; }
+        
         .content-wrapper { flex: 1; min-width: 300px; max-width: 600px; opacity: 0; transition: 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+        
+        /* Directions for animations */
         .slide-left { transform: translateX(-100px); }
         .slide-right { transform: translateX(100px); }
         .slide-up { transform: translateY(50px); }
+        
         .visible { opacity: 1; transform: translate(0, 0); }
+        
         .feature-img { width: 100%; border-radius: 4px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .feature-content h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--primary); margin-bottom: 30px; }
+        .feature-content ul { list-style: none; }
+        .feature-content li { margin-bottom: 20px; color: #ccc; line-height: 1.6; font-style: italic; position: relative; padding-left: 30px; }
+        .feature-content li::before { content: "✦"; position: absolute; left: 0; color: var(--primary); }
 
-        /* Brand Slider */
+        /* Slider */
         .brand-showcase { background: #050505; padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; white-space: nowrap; }
         .brand-track { display: inline-block; animation: scrollBrands 25s linear infinite; }
         .brand-item { display: inline-block; padding: 0 50px; color: var(--text-muted); font-family: 'Playfair Display', serif; font-size: 1.5rem; letter-spacing: 3px; text-transform: uppercase; }
         @keyframes scrollBrands { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Advance Section Layout */
+        .advance-section { flex-direction: column; text-align: center; }
+        .img-top-container { max-width: 900px; }
+
+        .modern-about { padding: 120px 5%; background: #000; display: flex; justify-content: center; }
+        .about-card { max-width: 800px; border: 1px solid var(--primary); padding: 60px 40px; border-radius: 15px; text-align: center; }
+        
+        .credits-section { background: #000; padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 13px; }
 
         #cart-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; cursor: pointer; color: black; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="intro-header" id="intro"><h1 style="color:var(--primary); font-family:'Playfair Display'; letter-spacing:8px;">HAYAT & CO.</h1></div>
+<div class="intro-header" id="intro"><div class="intro-logo">HAYAT & CO.</div></div>
+
+<div class="burger-btn" onclick="toggleNav()">
+    <div class="burger-line"></div>
+    <div class="burger-line"></div>
+    <div class="burger-line"></div>
+</div>
+
+<div class="nav-overlay" id="nav-overlay" onclick="toggleNav()"></div>
+<div id="nav-menu">
+    <div style="margin-bottom: 40px;"><img src="main-logo.png" style="height: 50px;"></div>
+    <div class="nav-link" onclick="handleNav('home')">HOME</div>
+    <div class="nav-link" onclick="handleNav('about')">ABOUT US</div>
+</div>
 
 <div class="sale-banner">
     <div class="marquee">✨ ADDITIONAL 10% DISCOUNT ON PRE PAID ORDERS — AUTHENTIC LUXURY SINCE 2024 — ORDER NOW! ✨</div>
 </div>
 
 <div id="home-view">
-    <div style="text-align: center; padding: 20px;"><img src="main-logo.png" style="height: 70px;"></div>
+    <div class="main-logo-container">
+        <img src="main-logo.png" alt="Hayat & Co." class="main-logo-img">
+    </div>
 
     <section class="hero-container">
         <div class="hero-content">
             <h1 style="font-family:'Playfair Display'; font-size: clamp(3rem, 10vw, 5rem);">HAYAT & CO.</h1>
-            <button class="shop-now-btn" onclick="openShop()">SHOP NOW</button>
+            <button class="shop-now-btn" onclick="scrollToSection('feature-sec')">DISCOVER MORE</button>
         </div>
     </section>
 
     <section class="feature-section" id="feature-sec">
-        <div class="content-wrapper slide-left anim-box"><img src="Luxury.jpg" class="feature-img"></div>
-        <div class="content-wrapper slide-right anim-box">
-            <h2 style="font-family:'Playfair Display'; font-size:2.8rem; color:var(--primary); margin-bottom:20px;">Hayat & Co.</h2>
-            <p style="font-style:italic; color:#ccc;">Luxury is not only the Statement, It's our craftsmanship that we put into sourcing these pieces of Art.</p>
+        <div class="content-wrapper slide-left" id="feat-img">
+            <img src="Luxury.jpg" class="feature-img" alt="Luxury Timepiece">
+        </div>
+        <div class="content-wrapper feature-content slide-right" id="feat-text">
+            <h2>Hayat & Co.</h2>
+            <ul>
+                <li>Introducing Pakistan's curated destination for authentic Luxury Timepieces.</li>
+                <li>Luxury is not only the Statement, It's our craftsmanship that we put into sourcing these pieces of Art.</li>
+                <li>It's an addiction. Once you experience horological excellence, you no longer switch the standard.</li>
+                <li>Redefining time.</li>
+            </ul>
         </div>
     </section>
 
@@ -89,97 +127,65 @@
         </div>
     </div>
 
-    <section class="advance-section">
-        <div class="content-wrapper slide-up anim-box" style="max-width:900px; text-align:center;">
-            <img src="advance.jpg" class="feature-img" style="margin-bottom: 40px;">
-            <h2 style="font-family:'Playfair Display'; color:var(--primary); font-size:2.5rem; margin-bottom:20px;">Why Rs. 1000 Advance?</h2>
-            <ul style="text-align: left; display: inline-block; color:#ccc; list-style:none;">
-                <li style="margin-bottom:15px;">✦ <strong>Commitment:</strong> Confirms serious interest.</li>
-                <li style="margin-bottom:15px;">✦ <strong>Reservation:</strong> Locks the piece in our pipeline.</li>
-                <li style="margin-bottom:15px;">✦ <strong>Deductible:</strong> Subtracted from final COD bill.</li>
+    <section class="advance-section" id="advance-sec">
+        <div class="content-wrapper img-top-container slide-up" id="adv-img">
+            <img src="advance.jpg" class="feature-img" alt="Order Safety" style="margin-bottom: 50px;">
+        </div>
+        <div class="content-wrapper feature-content slide-up" id="adv-text">
+            <h2>Why Rs. 1000 Advance?</h2>
+            <ul style="display: inline-block; text-align: left;">
+                <li><strong>Order Commitment:</strong> Confirms your serious interest and ensures dedicated sourcing.</li>
+                <li><strong>Logistics Security:</strong> Covers specialized handling for your reserved timepiece.</li>
+                <li><strong>Seamless Reservation:</strong> Your piece is locked in our global pipeline immediately.</li>
+                <li><strong>100% Deductible:</strong> This amount is subtracted from your final cash-on-delivery bill.</li>
             </ul>
         </div>
     </section>
-</div>
 
-<div id="shop-view">
-    <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
-    <h2 style="font-family:'Playfair Display'; color:var(--primary); font-size: 3rem; text-align:center;">SELECT BRAND</h2>
-    <div class="brand-grid" id="brand-list">
+    <section class="modern-about" id="about-sec">
+        <div class="about-card">
+            <h2 style="font-family:'Playfair Display'; color:var(--primary); font-size: 2.5rem; margin-bottom: 20px;">OUR LEGACY</h2>
+            <p style="color: #ddd; line-height: 1.6;">Established in 2024, Hayat & Co. is a beacon of horological excellence in Pakistan.</p>
         </div>
+    </section>
+
+    <footer class="credits-section">
+        &copy; 2024 HAYAT & CO. ALL RIGHTS RESERVED
+    </footer>
 </div>
 
-<div id="product-view">
-    <button class="back-btn" onclick="openShop()">← BACK TO BRANDS</button>
-    <h2 id="selected-brand-name" style="font-family:'Playfair Display'; color:var(--primary); font-size: 3rem; text-align:center; margin-bottom:40px;"></h2>
-    <div class="watch-grid" id="watch-list">
-        </div>
-</div>
-
-<div id="cart-btn" onclick="alert('Cart empty')">CART</div>
+<div id="cart-btn">CART</div>
 
 <script>
-    const brands = ["Rolex", "Tissot", "Patek Philippe", "Rado", "Seiko", "Hamilton"];
-    
-    // Example Data Structure
-    const watchData = [
-        { brand: "Rolex", name: "Submariner Date", price: "Contact for Price", type: "preorder", img: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?auto=format&fit=crop&q=80&w=500" },
-        { brand: "Tissot", name: "PRX Powermatic 80", price: "Rs. 185,000", type: "instock", img: "https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=500" },
-        { brand: "Seiko", name: "Seiko 5 GMT", price: "Rs. 115,000", type: "instock", img: "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?auto=format&fit=crop&q=80&w=500" }
-    ];
+function toggleNav() {
+    document.getElementById('nav-menu').classList.toggle('active');
+    document.getElementById('nav-overlay').classList.toggle('active');
+}
+function handleNav(target) {
+    toggleNav();
+    if(target === 'home') window.scrollTo(0,0);
+    if(target === 'about') document.getElementById('about-sec').scrollIntoView({behavior:'smooth'});
+}
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
 
-    function openShop() {
-        document.getElementById('home-view').style.display = 'none';
-        document.getElementById('product-view').style.display = 'none';
-        document.getElementById('shop-view').style.display = 'block';
-        
-        const list = document.getElementById('brand-list');
-        list.innerHTML = brands.map(b => `
-            <div class="brand-card" onclick="showWatches('${b}')">
-                <h3>${b}</h3>
-            </div>
-        `).join('');
-        window.scrollTo(0,0);
-    }
-
-    function showWatches(brandName) {
-        document.getElementById('shop-view').style.display = 'none';
-        document.getElementById('product-view').style.display = 'block';
-        document.getElementById('selected-brand-name').innerText = brandName;
-        
-        const list = document.getElementById('watch-list');
-        const filtered = watchData.filter(w => w.brand === brandName);
-        
-        if(filtered.length === 0) {
-            list.innerHTML = `<p style="text-align:center; width:100%; color:var(--text-muted);">New arrivals for ${brandName} coming soon...</p>`;
-        } else {
-            list.innerHTML = filtered.map(w => `
-                <div class="watch-card">
-                    <span class="badge ${w.type}">${w.type === 'instock' ? 'In Stock' : 'Pre-Order'}</span>
-                    <img src="${w.img}" class="watch-img">
-                    <h4 style="color:var(--primary); margin-bottom:10px;">${w.name}</h4>
-                    <p style="font-weight:bold;">${w.price}</p>
-                </div>
-            `).join('');
+const observerOptions = { threshold: 0.15 };
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
         }
-        window.scrollTo(0,0);
-    }
+    });
+}, observerOptions);
 
-    function goHome() {
-        document.getElementById('shop-view').style.display = 'none';
-        document.getElementById('home-view').style.display = 'block';
-    }
-
-    // Animation Observer
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, { threshold: 0.15 });
-
-    window.onload = () => {
-        document.querySelectorAll('.anim-box').forEach(box => observer.observe(box));
-    };
+window.onload = () => {
+    // Applying observer to all animated elements
+    observer.observe(document.getElementById('feat-img'));
+    observer.observe(document.getElementById('feat-text'));
+    observer.observe(document.getElementById('adv-img'));
+    observer.observe(document.getElementById('adv-text'));
+};
 </script>
 </body>
 </html>
