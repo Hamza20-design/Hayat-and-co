@@ -29,29 +29,31 @@
         .marquee { display: inline-block; animation: marquee 15s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* Home Layout Sections */
-        .section-wrap { padding: 100px 5%; display: flex; align-items: center; justify-content: center; background: #000; flex-wrap: wrap; }
+        /* Content Sections */
+        .section-wrap { padding: 80px 5%; display: flex; align-items: center; justify-content: center; background: #000; flex-wrap: wrap; gap: 60px; }
         .hero-container { height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center; }
         .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* ABOUT US SUB-SECTION (SIDE HEADING) */
-        .about-links-container { width: 100%; max-width: 850px; display: flex; align-items: flex-start; gap: 50px; border-top: 1px solid var(--border); padding-top: 50px; margin-top: 40px; }
-        .about-side-heading { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--primary); min-width: 200px; text-transform: uppercase; }
-        .links-list { list-style: none; }
-        .links-list li { margin-bottom: 15px; }
-        .links-list a { color: var(--text-light); text-decoration: none; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
-        .links-list a:hover { color: var(--primary); }
+        .feature-img { width: 100%; max-width: 600px; border-radius: 4px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .feature-content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+        .feature-content li { margin-bottom: 15px; color: #ccc; list-style: none; position: relative; padding-left: 25px; line-height: 1.6; }
+        .feature-content li::before { content: "✦"; position: absolute; left: 0; color: var(--primary); }
 
-        .insta-btn { margin-top: 20px; display: inline-block; transition: 0.3s; }
-        .insta-btn:hover { transform: scale(1.1); }
-        .insta-icon { width: 35px; height: 35px; filter: invert(72%) sepia(21%) saturate(765%) hue-rotate(5deg); }
+        /* ABOUT US LINKS SECTION */
+        .about-links-container { width: 100%; max-width: 850px; display: flex; align-items: flex-start; gap: 50px; border-top: 1px solid var(--border); padding-top: 50px; margin-top: 40px; }
+        .about-side-heading { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--primary); min-width: 180px; text-transform: uppercase; }
+        .links-list { list-style: none; }
+        .links-list li { margin-bottom: 12px; }
+        .links-list a { color: var(--text-light); text-decoration: none; font-size: 1rem; cursor: pointer; transition: 0.3s; }
+        .links-list a:hover { color: var(--primary); padding-left: 5px; }
+        .insta-icon { width: 30px; height: 30px; filter: invert(72%) sepia(21%) saturate(765%) hue-rotate(5deg); margin-top: 15px; }
 
         /* BRAND GRID (2 PER ROW) */
         #shop-view { display: none; padding: 80px 5%; background: #000; min-height: 100vh; }
         .brand-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
         .brand-card { background: #111; border: 1px solid var(--border); padding: 40px 15px; text-align: center; cursor: pointer; border-radius: 8px; opacity: 0; transform: scale(0.9); transition: 0.5s; }
         .brand-card.pop-in { opacity: 1; transform: scale(1); }
-        .brand-logo-img { width: 65px; height: 65px; object-fit: contain; margin-bottom: 15px; filter: grayscale(1) invert(1); }
+        .brand-logo-img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 15px; filter: grayscale(1) invert(1); }
 
         /* PRODUCT VIEW */
         #product-view { display: none; background: #000; min-height: 100vh; }
@@ -62,8 +64,9 @@
         .back-btn { background: transparent; color: var(--primary); border: 1px solid var(--primary); padding: 12px 25px; cursor: pointer; margin: 30px 5%; font-weight: 600; }
         .credits-section { background: #000; padding: 40px; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 12px; }
         
-        .content-wrapper { opacity: 0; transition: 1.2s; transform: translateY(30px); }
-        .content-wrapper.visible { opacity: 1; transform: translateY(0); }
+        /* Animations */
+        .anim-box { opacity: 0; transition: 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67); transform: translateY(30px); }
+        .anim-box.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
@@ -94,8 +97,32 @@
         </div>
     </section>
 
+    <section class="section-wrap">
+        <div class="anim-box"><img src="Luxury.jpg" class="feature-img"></div>
+        <div class="anim-box feature-content">
+            <h2>The Hayat Standard</h2>
+            <ul>
+                <li>Pakistan's curated destination for authentic Luxury Timepieces.</li>
+                <li>Craftsmanship sourced from the finest horological masters.</li>
+                <li>Redefining time as an addiction and a statement of art.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section-wrap" style="flex-direction: column; text-align: center;">
+        <div class="anim-box"><img src="advance.jpg" class="feature-img" style="margin-bottom: 40px;"></div>
+        <div class="anim-box feature-content" style="text-align: left; max-width: 600px;">
+            <h2 style="text-align: center;">Why Rs. 1000 Advance?</h2>
+            <ul>
+                <li><strong>Order Commitment:</strong> Confirms serious interest.</li>
+                <li><strong>Logistics Security:</strong> Ensures safe and dedicated handling.</li>
+                <li><strong>100% Deductible:</strong> Subtracted from your final bill.</li>
+            </ul>
+        </div>
+    </section>
+
     <section class="section-wrap" id="about-section">
-        <div class="content-wrapper anim-box" style="width: 100%; max-width: 850px;">
+        <div class="anim-box" style="width: 100%; max-width: 850px;">
             <div style="border: 1px solid var(--primary); padding: 60px 40px; text-align: center; margin-bottom: 50px;">
                 <h2 style="font-family: 'Playfair Display'; color: var(--primary); font-size: 2.2rem; margin-bottom: 25px; letter-spacing: 3px;">OUR LEGACY</h2>
                 <p style="line-height: 1.8; color: var(--text-light); font-weight: 300;">Established in 2024, Hayat & Co. is a beacon of horological excellence in Pakistan. We specialize in sourcing the world's most prestigious timepieces, ensuring every piece is a masterpiece of precision.</p>
@@ -109,7 +136,7 @@
                         <li><a onclick="openShop()">SHOP NOW</a></li>
                         <li><a href="#about-section">ABOUT</a></li>
                     </ul>
-                    <a href="https://www.instagram.com/hayatandco_watches?igsh=MTlzMWY1eHk3ZjNyZQ==" target="_blank" class="insta-btn">
+                    <a href="https://www.instagram.com/hayatandco_watches?igsh=MTlzMWY1eHk3ZjNyZQ==" target="_blank">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="insta-icon" alt="Instagram">
                     </a>
                 </div>
