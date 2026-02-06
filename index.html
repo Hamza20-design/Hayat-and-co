@@ -10,13 +10,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* PRESERVED INTRO ANIMATION */
+        /* ORIGINAL INTRO ANIMATION */
         .intro-header { position: fixed; top:0; left:0; width:100%; height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%); z-index: 9999; animation: fadeOutBackground 1.5s ease-in-out forwards; animation-delay: 3s; }
         .intro-logo { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 10vw, 5rem); letter-spacing: 8px; color: var(--primary); opacity: 0; transform: translateY(30px); animation: fadeInUp 1.5s ease-out forwards; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOutBackground { to { opacity: 0; visibility: hidden; } }
 
-        /* Navigation Components */
+        /* Navigation */
         .burger-btn { position: fixed; top: 55px; left: 20px; z-index: 2000; cursor: pointer; padding: 10px; }
         .burger-line { width: 25px; height: 2px; background: var(--primary); margin: 5px 0; }
         #nav-menu { position: fixed; top: 0; left: -100%; width: 280px; height: 100%; background: #000; z-index: 3001; transition: 0.5s; padding: 60px 30px; border-right: 1px solid var(--primary); }
@@ -29,27 +29,22 @@
         .marquee { display: inline-block; animation: marquee 15s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* General Sections */
-        .section-padding { padding: 80px 5%; display: flex; align-items: center; justify-content: center; background: #000; flex-wrap: wrap; }
-        .content-wrapper { opacity: 0; transition: 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
-        .slide-up { transform: translateY(50px); }
-        .visible { opacity: 1; transform: translate(0, 0); }
+        /* Home Layout Sections */
+        .section-wrap { padding: 100px 5%; display: flex; align-items: center; justify-content: center; background: #000; flex-wrap: wrap; }
+        .hero-container { height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center; }
+        .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* LEGACY CARD */
-        .about-card { border: 1px solid var(--primary); padding: 60px 40px; text-align: center; max-width: 850px; width: 100%; margin: 40px auto; }
-        .about-card h2 { font-family: 'Playfair Display', serif; color: var(--primary); font-size: 2.2rem; margin-bottom: 25px; letter-spacing: 3px; }
+        /* ABOUT US SUB-SECTION (SIDE HEADING) */
+        .about-links-container { width: 100%; max-width: 850px; display: flex; align-items: flex-start; gap: 50px; border-top: 1px solid var(--border); padding-top: 50px; margin-top: 40px; }
+        .about-side-heading { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--primary); min-width: 200px; text-transform: uppercase; }
+        .links-list { list-style: none; }
+        .links-list li { margin-bottom: 15px; }
+        .links-list a { color: var(--text-light); text-decoration: none; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
+        .links-list a:hover { color: var(--primary); }
 
-        /* QUICK LINKS SECTION (SIDE HEADING) */
-        .links-container { width: 100%; max-width: 850px; display: flex; align-items: flex-start; gap: 40px; border-top: 1px solid var(--border); padding-top: 40px; margin-top: 20px; }
-        .side-heading { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--primary); min-width: 150px; line-height: 1; }
-        .links-list { list-style: none; flex-grow: 1; }
-        .links-list li { margin-bottom: 12px; }
-        .links-list a { color: var(--text-light); text-decoration: none; font-weight: 400; transition: 0.3s; cursor: pointer; }
-        .links-list a:hover { color: var(--primary); padding-left: 5px; }
-
-        .social-box { margin-top: 20px; }
-        .instagram-icon { width: 30px; height: 30px; filter: invert(72%) sepia(21%) saturate(765%) hue-rotate(5deg) brightness(92%) contrast(87%); transition: 0.3s; }
-        .instagram-icon:hover { transform: scale(1.1); filter: invert(100%); }
+        .insta-btn { margin-top: 20px; display: inline-block; transition: 0.3s; }
+        .insta-btn:hover { transform: scale(1.1); }
+        .insta-icon { width: 35px; height: 35px; filter: invert(72%) sepia(21%) saturate(765%) hue-rotate(5deg); }
 
         /* BRAND GRID (2 PER ROW) */
         #shop-view { display: none; padding: 80px 5%; background: #000; min-height: 100vh; }
@@ -66,6 +61,9 @@
 
         .back-btn { background: transparent; color: var(--primary); border: 1px solid var(--primary); padding: 12px 25px; cursor: pointer; margin: 30px 5%; font-weight: 600; }
         .credits-section { background: #000; padding: 40px; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 12px; }
+        
+        .content-wrapper { opacity: 0; transition: 1.2s; transform: translateY(30px); }
+        .content-wrapper.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
@@ -79,7 +77,7 @@
 <div class="nav-overlay" id="nav-overlay" onclick="toggleNav()"></div>
 <div id="nav-menu">
     <div class="nav-link" onclick="goHome(); toggleNav();">HOME</div>
-    <div class="nav-link" onclick="openShop(); toggleNav();">SHOP COLLECTION</div>
+    <div class="nav-link" onclick="openShop(); toggleNav();">SHOP NOW</div>
 </div>
 
 <div class="sale-banner">
@@ -87,7 +85,7 @@
 </div>
 
 <div id="home-view">
-    <div id="top-anchor" style="text-align: center; padding: 20px;"><img src="main-logo.png" style="height: 70px;"></div>
+    <div style="text-align: center; padding: 20px;"><img src="main-logo.png" style="height: 70px;"></div>
 
     <section class="hero-container">
         <div class="hero-content">
@@ -96,23 +94,25 @@
         </div>
     </section>
 
-    <section class="section-padding" id="about-anchor">
-        <div class="about-card slide-up anim-box">
-            <h2>OUR LEGACY</h2>
-            <p>Established in 2024, Hayat & Co. is a beacon of horological excellence in Pakistan. We specialize in sourcing the world's most prestigious timepieces, ensuring that every watch we offer is a masterpiece of precision and luxury.</p>
-            
-            <div class="links-container">
-                <div class="side-heading">ABOUT US</div>
-                <ul class="links-list">
-                    <li><a onclick="goHome()">HOME</a></li>
-                    <li><a onclick="openShop()">SHOP NOW</a></li>
-                    <li><a href="#about-anchor">ABOUT</a></li>
-                    <li class="social-box">
-                        <a href="https://www.instagram.com/hayatandco_watches?igsh=MTlzMWY1eHk3ZjNyZQ==" target="_blank">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="instagram-icon" alt="Instagram">
-                        </a>
-                    </li>
-                </ul>
+    <section class="section-wrap" id="about-section">
+        <div class="content-wrapper anim-box" style="width: 100%; max-width: 850px;">
+            <div style="border: 1px solid var(--primary); padding: 60px 40px; text-align: center; margin-bottom: 50px;">
+                <h2 style="font-family: 'Playfair Display'; color: var(--primary); font-size: 2.2rem; margin-bottom: 25px; letter-spacing: 3px;">OUR LEGACY</h2>
+                <p style="line-height: 1.8; color: var(--text-light); font-weight: 300;">Established in 2024, Hayat & Co. is a beacon of horological excellence in Pakistan. We specialize in sourcing the world's most prestigious timepieces, ensuring every piece is a masterpiece of precision.</p>
+            </div>
+
+            <div class="about-links-container">
+                <div class="about-side-heading">ABOUT US</div>
+                <div style="flex-grow: 1;">
+                    <ul class="links-list">
+                        <li><a onclick="goHome()">HOME</a></li>
+                        <li><a onclick="openShop()">SHOP NOW</a></li>
+                        <li><a href="#about-section">ABOUT</a></li>
+                    </ul>
+                    <a href="https://www.instagram.com/hayatandco_watches?igsh=MTlzMWY1eHk3ZjNyZQ==" target="_blank" class="insta-btn">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="insta-icon" alt="Instagram">
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -155,7 +155,7 @@
         list.innerHTML = brands.map((b, i) => `
             <div class="brand-card" onclick="showWatches('${b.name}')" style="transition-delay: ${i*0.05}s">
                 <img src="${b.img}" class="brand-logo-img" onerror="this.src='https://via.placeholder.com/60/111/c5a059?text=Logo'">
-                <h3>${b.name}</h3>
+                <h3 style="color:var(--primary); font-family:'Playfair Display'; font-size:1rem;">${b.name}</h3>
             </div>
         `).join('');
         setTimeout(() => document.querySelectorAll('.brand-card').forEach(c => c.classList.add('pop-in')), 50);
