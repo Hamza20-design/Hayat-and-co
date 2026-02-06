@@ -46,15 +46,17 @@
         .hero-container { height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center; }
         .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; }
 
-        /* FEATURE SECTION */
-        .feature-section { padding: 100px 5%; display: flex; align-items: center; justify-content: center; gap: 60px; background: #000; overflow: hidden; flex-wrap: wrap; }
-        .feature-img-wrapper { flex: 1; min-width: 300px; max-width: 600px; opacity: 0; transform: translateX(-50px); transition: 1s ease-out; }
-        .feature-img-wrapper.visible { opacity: 1; transform: translateX(0); }
-        .feature-img { width: 100%; border-radius: 4px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        /* FEATURE & ADVANCE SECTIONS */
+        .feature-section, .advance-section { padding: 100px 5%; display: flex; align-items: center; justify-content: center; gap: 60px; background: #000; overflow: hidden; flex-wrap: wrap; }
+        .content-wrapper { flex: 1; min-width: 300px; max-width: 600px; opacity: 0; transition: 1s ease-out; }
+        .img-left { transform: translateX(-50px); }
+        .img-right { transform: translateX(50px); }
+        .text-left { transform: translateX(-50px); }
+        .text-right { transform: translateX(50px); }
+        .visible { opacity: 1; transform: translateX(0); }
         
-        .feature-content { flex: 1; min-width: 300px; max-width: 500px; opacity: 0; transform: translateX(50px); transition: 1s ease-out; }
-        .feature-content.visible { opacity: 1; transform: translateX(0); }
-        .feature-content h2 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--primary); margin-bottom: 30px; }
+        .feature-img { width: 100%; border-radius: 4px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .feature-content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary); margin-bottom: 30px; }
         .feature-content ul { list-style: none; }
         .feature-content li { margin-bottom: 20px; color: #ccc; line-height: 1.6; font-style: italic; position: relative; padding-left: 30px; }
         .feature-content li::before { content: "✦"; position: absolute; left: 0; color: var(--primary); font-size: 14px; }
@@ -65,10 +67,7 @@
         .brand-showcase { background: #050505; padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; white-space: nowrap; position: relative; }
         .brand-track { display: inline-block; animation: scrollBrands 25s linear infinite; }
         .brand-item { display: inline-block; padding: 0 50px; color: var(--text-muted); font-family: 'Playfair Display', serif; font-size: 1.5rem; letter-spacing: 3px; text-transform: uppercase; pointer-events: none; }
-        @keyframes scrollBrands { 
-            0% { transform: translateX(0); } 
-            100% { transform: translateX(-50%); } 
-        }
+        @keyframes scrollBrands { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* About Section */
         .modern-about { position: relative; padding: 120px 5%; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('about-bg.jpg'); background-size: cover; background-position: center; display: flex; justify-content: center; }
@@ -91,7 +90,7 @@
 
 <div class="burger-btn" onclick="toggleNav()">
     <div class="burger-line"></div>
-    <div class="burger-line (burger-line)"></div>
+    <div class="burger-line"></div>
     <div class="burger-line"></div>
 </div>
 
@@ -123,15 +122,15 @@
     <section class="hero-container">
         <div class="hero-content">
             <h1 style="font-family:'Playfair Display'; font-size: clamp(3rem, 10vw, 5rem);">HAYAT & CO.</h1>
-            <button class="shop-now-btn" onclick="scrollToFeature()">DISCOVER MORE</button>
+            <button class="shop-now-btn" onclick="scrollToSection('feature-sec')">DISCOVER MORE</button>
         </div>
     </section>
 
     <section class="feature-section" id="feature-sec">
-        <div class="feature-img-wrapper" id="feat-img">
+        <div class="content-wrapper img-left" id="feat-img">
             <img src="Luxury.jpg" class="feature-img" alt="Luxury Timepiece">
         </div>
-        <div class="feature-content" id="feat-text">
+        <div class="content-wrapper text-right feature-content" id="feat-text">
             <h2>Hayat & Co.</h2>
             <ul>
                 <li>Introducing Pakistan's curated destination for authentic Luxury Timepieces.</li>
@@ -139,7 +138,7 @@
                 <li>It's an addiction. Once you experience horological excellence, you no longer switch the standard.</li>
                 <li>Redefining time.</li>
             </ul>
-            <button class="feature-shop-btn" onclick="scrollToFeature()">Shop Collection</button>
+            <button class="feature-shop-btn" onclick="scrollToSection('feature-sec')">Shop Collection</button>
         </div>
     </section>
 
@@ -159,6 +158,21 @@
             <span class="brand-item">Hamilton</span>
         </div>
     </div>
+
+    <section class="advance-section" id="advance-sec">
+        <div class="content-wrapper text-left feature-content" id="adv-text">
+            <h2>Why Rs. 1000 Advance?</h2>
+            <ul>
+                <li><strong>Order Commitment:</strong> The advance payment helps us confirm your serious interest and filters out non-serious inquiries.</li>
+                <li><strong>Logistics Security:</strong> Since pre-order items are specifically arranged for you, this covers the initial transit and handling safety.</li>
+                <li><strong>Seamless Reservation:</strong> Once paid, your chosen timepiece is immediately reserved in our global pipeline, ensuring no one else grabs it.</li>
+                <li><strong>Deductible Amount:</strong> This small fee is not extra—it is fully deducted from your final bill upon delivery.</li>
+            </ul>
+        </div>
+        <div class="content-wrapper img-right" id="adv-img">
+            <img src="advance.jpg" class="feature-img" alt="Order Safety">
+        </div>
+    </section>
 
     <section class="modern-about" id="about-sec">
         <div class="about-card">
@@ -188,11 +202,11 @@ function handleNav(target) {
     toggleNav();
     if(target === 'home') window.scrollTo(0,0);
     if(target === 'about') document.getElementById('about-sec').scrollIntoView({behavior:'smooth'});
-    if(target === 'shop') scrollToFeature();
+    if(target === 'shop') scrollToSection('feature-sec');
 }
 
-function scrollToFeature() {
-    document.getElementById('feature-sec').scrollIntoView({behavior:'smooth'});
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
 function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
@@ -209,6 +223,8 @@ const observer = new IntersectionObserver((entries) => {
 window.onload = () => {
     observer.observe(document.getElementById('feat-img'));
     observer.observe(document.getElementById('feat-text'));
+    observer.observe(document.getElementById('adv-img'));
+    observer.observe(document.getElementById('adv-text'));
 };
 </script>
 </body>
