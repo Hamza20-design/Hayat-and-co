@@ -10,11 +10,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Intro Animation */
-        .intro-header { position: fixed; top:0; left:0; width:100%; height: 100vh; display: flex; align-items: center; justify-content: center; background: #000; z-index: 9999; animation: fadeOutBackground 1s ease-in-out forwards 2.5s; }
+        /* Intro Header (STRICTLY PRESERVED) */
+        .intro-header { position: fixed; top:0; left:0; width:100%; height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%); z-index: 9999; animation: fadeOutBackground 1.5s ease-in-out forwards; animation-delay: 3s; }
+        .intro-logo { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 10vw, 5rem); letter-spacing: 8px; color: var(--primary); opacity: 0; transform: translateY(30px); animation: fadeInUp 1.5s ease-out forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOutBackground { to { opacity: 0; visibility: hidden; } }
 
-        /* Navigation Sidebar */
+        /* Navigation */
         #nav-menu { position: fixed; top: 0; left: -100%; width: 280px; height: 100%; background: #000; z-index: 3001; transition: 0.5s; padding: 60px 30px; border-right: 1px solid var(--primary); }
         #nav-menu.active { left: 0; }
         .nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; display: none; }
@@ -32,7 +34,7 @@
         .hero-container { height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center; }
         .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
 
-        /* Animated Sections */
+        /* Content Sections & Animations */
         .feature-section, .advance-section { padding: 100px 5%; display: flex; align-items: center; justify-content: center; gap: 60px; background: #000; overflow: hidden; flex-wrap: wrap; }
         .content-wrapper { flex: 1; min-width: 300px; max-width: 600px; opacity: 0; transition: 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
         .slide-left { transform: translateX(-100px); }
@@ -45,13 +47,13 @@
         .feature-content li { margin-bottom: 15px; color: #ccc; line-height: 1.6; list-style: none; padding-left: 25px; position: relative; }
         .feature-content li::before { content: "✦"; position: absolute; left: 0; color: var(--primary); }
 
-        /* Brand Slider */
+        /* Brand Showcase Slider */
         .brand-showcase { background: #050505; padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; white-space: nowrap; }
         .brand-track { display: inline-block; animation: scrollBrands 25s linear infinite; }
-        .brand-item { display: inline-block; padding: 0 50px; color: var(--text-muted); font-family: 'Playfair Display', serif; font-size: 1.5rem; letter-spacing: 3px; text-transform: uppercase; }
+        .brand-item { display: inline-block; padding: 0 50px; color: var(--text-muted); font-family: 'Playfair Display', serif; font-size: 1.5rem; letter-spacing: 3px; text-transform: uppercase; pointer-events: none; }
         @keyframes scrollBrands { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Shop & Brand Views */
+        /* Shop System Styles */
         #shop-view, #product-view { display: none; padding: 80px 5%; min-height: 100vh; background: #000; }
         .brand-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
         .brand-card { background: #111; border: 1px solid var(--border); padding: 60px 20px; text-align: center; cursor: pointer; transition: 0.3s; border-radius: 4px; }
@@ -66,7 +68,6 @@
         .preorder { background: var(--primary); color: black; }
         .back-btn { background: transparent; color: var(--primary); border: 1px solid var(--primary); padding: 12px 25px; cursor: pointer; margin-bottom: 40px; font-weight: 600; }
 
-        /* Footer */
         .modern-about { padding: 100px 5%; background: #000; text-align: center; }
         .about-card { max-width: 800px; margin: 0 auto; border: 1px solid var(--primary); padding: 50px; border-radius: 10px; }
         .credits-section { background: #000; padding: 40px; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 12px; }
@@ -76,7 +77,9 @@
 </head>
 <body>
 
-<div class="intro-header" id="intro"><h1 style="color:var(--primary); font-family:'Playfair Display'; letter-spacing:8px;">HAYAT & CO.</h1></div>
+<div class="intro-header" id="intro">
+    <div class="intro-logo">HAYAT & CO.</div>
+</div>
 
 <div class="burger-btn" onclick="toggleNav()">
     <div class="burger-line"></div>
@@ -119,8 +122,8 @@
 
     <div class="brand-showcase">
         <div class="brand-track">
-            <span class="brand-item">Rolex</span><span class="brand-item">Tissot</span><span class="brand-item">Patek Philippe</span><span class="brand-item">Rado</span><span class="brand-item">Seiko</span><span class="brand-item">Hamilton</span>
-            <span class="brand-item">Rolex</span><span class="brand-item">Tissot</span><span class="brand-item">Patek Philippe</span><span class="brand-item">Rado</span><span class="brand-item">Seiko</span><span class="brand-item">Hamilton</span>
+            <span class="brand-item">Tissot</span><span class="brand-item">Rolex</span><span class="brand-item">Patek Philippe</span><span class="brand-item">Rado</span><span class="brand-item">Seiko</span><span class="brand-item">Hamilton</span>
+            <span class="brand-item">Tissot</span><span class="brand-item">Rolex</span><span class="brand-item">Patek Philippe</span><span class="brand-item">Rado</span><span class="brand-item">Seiko</span><span class="brand-item">Hamilton</span>
         </div>
     </div>
 
@@ -141,7 +144,7 @@
     <section class="modern-about">
         <div class="about-card">
             <h2 style="color:var(--primary); font-family:'Playfair Display'; margin-bottom:15px;">OUR LEGACY</h2>
-            <p style="color: #ccc; line-height: 1.8;">Founded in 2024, Hayat & Co. brings the world's most prestigious timepieces to the heart of Pakistan.</p>
+            <p style="color: #ccc; line-height: 1.8;">Established in 2024, Hayat & Co. is a beacon of horological excellence in Pakistan.</p>
         </div>
     </section>
 
@@ -163,13 +166,13 @@
 <div id="cart-btn" onclick="alert('Cart empty')">CART</div>
 
 <script>
-    const brandArray = ["Rolex", "Tissot", "Patek Philippe", "Rado", "Seiko", "Hamilton"];
+    // Logic for Brands and Placeholder Products
+    const brandArray = ["Tissot", "Rolex", "Patek Philippe", "Rado", "Seiko", "Hamilton"];
     
-    // Placeholder Data
     const watches = [
-        { brand: "Rolex", name: "Datejust 41", price: "Contact for Price", type: "preorder", img: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=500" },
-        { brand: "Tissot", name: "PRX Mint", price: "Rs. 135,000", type: "instock", img: "https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=500" },
-        { brand: "Seiko", name: "Presage Cocktail", price: "Rs. 110,000", type: "instock", img: "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=500" }
+        { brand: "Tissot", name: "PRX Powermatic 80", price: "Rs. 185,000", type: "instock", img: "tissot-prx.jpg" },
+        { brand: "Rolex", name: "Submariner", price: "Contact for Quote", type: "preorder", img: "rolex-sub.jpg" },
+        { brand: "Seiko", name: "Seiko 5 Sport", price: "Rs. 95,000", type: "instock", img: "seiko-5.jpg" }
     ];
 
     function toggleNav() {
@@ -200,7 +203,7 @@
         const filtered = watches.filter(w => w.brand === brand);
         
         if(filtered.length === 0) {
-            list.innerHTML = `<p style="text-align:center; width:100%; color:var(--text-muted); grid-column: 1/-1;">No items currently available for ${brand}. Check back soon.</p>`;
+            list.innerHTML = `<p style="text-align:center; width:100%; color:var(--text-muted); grid-column: 1/-1;">New collection for ${brand} arriving soon.</p>`;
         } else {
             list.innerHTML = filtered.map(w => `
                 <div class="watch-card">
@@ -220,7 +223,7 @@
         document.getElementById('home-view').style.display = 'block';
     }
 
-    // Intersection Observer for Scroll Animations
+    // Scroll Animations Observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) entry.target.classList.add('visible');
