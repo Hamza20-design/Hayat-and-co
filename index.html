@@ -6,48 +6,156 @@
     <title>Hayat & Co. | Timeless Luxury</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #c5a059; --bg-dark: #0a0a0a; --text-light: #f8f8f8; --text-muted: #a0a0a0; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); --discount: #ff4d4d; }
+        :root { --primary: #c5a059; --bg-dark: #0a0a0a; --text-light: #f8f8f8; --text-muted: #a0a0a0; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Intro & Navigation (Same as original) */
+        /* Intro Header */
         .intro-header { position: fixed; top:0; left:0; width:100%; height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%); z-index: 9999; animation: fadeOutBackground 1.5s ease-in-out forwards; animation-delay: 3s; }
         .intro-logo { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 10vw, 5rem); letter-spacing: 8px; color: var(--primary); opacity: 0; transform: translateY(30px); animation: fadeInUp 1.5s ease-out forwards; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOutBackground { to { opacity: 0; visibility: hidden; } }
+        
+        /* Navigation Sidebar */
         #nav-menu { position: fixed; top: 0; left: -100%; width: 280px; height: 100%; background: #000; z-index: 3001; transition: 0.5s; padding: 60px 30px; border-right: 1px solid var(--primary); }
         #nav-menu.active { left: 0; }
         .nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; display: none; }
         .nav-overlay.active { display: block; }
-        .nav-link { display: block; color: #fff; text-decoration: none; font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 25px; cursor: pointer; }
+        .nav-link { display: block; color: #fff; text-decoration: none; font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 25px; transition: 0.3s; cursor: pointer; }
+        .nav-link:hover { color: var(--primary); padding-left: 10px; }
+        
+        /* Submenu */
+        .submenu { height: 0; overflow: hidden; transition: 0.3s; padding-left: 20px; }
+        .submenu.active { height: auto; margin-bottom: 20px; }
+        .sub-link { display: block; color: var(--text-muted); text-decoration: none; font-size: 1.1rem; margin-bottom: 15px; cursor: pointer; transition: 0.3s; }
+        .sub-link:hover { color: var(--primary); }
+
+        /* Burger Icon */
         .burger-btn { position: fixed; top: 55px; left: 20px; z-index: 2000; cursor: pointer; padding: 10px; }
-        .burger-line { width: 25px; height: 2px; background: var(--primary); margin: 5px 0; }
+        .burger-line { width: 25px; height: 2px; background: var(--primary); margin: 5px 0; transition: 0.3s; }
 
-        /* SALE TAG STYLING */
-        .discount-tag { position: absolute; top: 10px; left: 10px; background: var(--discount); color: white; padding: 4px 8px; font-size: 10px; font-weight: 800; border-radius: 3px; z-index: 10; letter-spacing: 1px; }
-        .old-price { text-decoration: line-through; color: var(--text-muted); font-size: 0.9rem; margin-right: 8px; }
-        .new-price { color: var(--primary); font-weight: 700; font-size: 1.1rem; }
+        /* WhatsApp Floating Button */
+        .wa-float { position: fixed; bottom: 110px; right: 30px; display: flex; align-items: center; z-index: 2000; text-decoration: none; }
+        .wa-tooltip { background: white; color: black; padding: 8px 15px; border-radius: 4px; font-size: 13px; font-weight: 600; margin-right: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); position: relative; }
+        .wa-tooltip::after { content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%); border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 6px solid white; }
+        .wa-icon-circle { width: 55px; height: 55px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); position: relative; }
+        .wa-badge { position: absolute; top: 0; right: 0; background: #ff4d4d; color: white; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #000; }
 
-        /* Sections & Cards */
+        /* Sale Banner */
         .sale-banner { background: var(--primary); color: #000; overflow: hidden; white-space: nowrap; padding: 8px 0; font-weight: 700; font-size: 12px; position: sticky; top: 0; z-index: 1000; }
         .marquee { display: inline-block; animation: marquee 15s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .main-logo-container { text-align: center; padding: 20px; }
-        .main-logo-img { height: 70px; }
-        .section-header { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 40px; padding: 20px 25px; text-transform: uppercase; color: #fff; border-left: 6px solid var(--primary); background: var(--glass); }
-        .section { padding: 40px 5%; max-width: 1400px; margin: auto; }
-        .popular-slider { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scrollbar-width: none; }
-        .popular-card { min-width: 280px; background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 12px; position: relative; }
-        .watch-display { width: 100%; height: 280px; overflow: hidden; border-radius: 8px; position: relative; }
-        .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.4s; }
-        .slider-track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
         
+        .main-logo-container { text-align: center; padding: 20px; background: var(--bg-dark); }
+        .main-logo-img { height: 70px; width: auto; object-fit: contain; }
+        
+        /* Section Header */
+        .section-header { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 40px; 
+            padding: 50px 25px; 
+            text-transform: uppercase; 
+            color: #fff; 
+            border-left: 6px solid var(--primary); 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('heading-bg.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+        
+        .section { padding: 60px 5%; max-width: 1400px; margin: auto; }
+        
+        /* Brands Grid */
+        .brands-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 40px; }
+        @media (min-width: 768px) { .brands-grid { grid-template-columns: repeat(5, 1fr); } }
+        .brand-item { cursor: pointer; transition: 0.4s; text-align: center; background: var(--glass); padding: 20px; border: 1px solid var(--border); border-radius: 8px; }
+        .brand-item:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .brand-logo { width: 100%; height: 50px; object-fit: contain; margin-bottom: 10px; }
+        .brand-label { font-size: 10px; color: var(--primary); font-weight: 600; text-transform: uppercase; }
+        
+        /* Slider Sections */
+        .about-slider-wrapper { position: relative; width: 100%; overflow: hidden; background: #000; }
+        .about-slides-container { display: flex; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
+        .about-slide { min-width: 100%; display: flex; flex-direction: row; align-items: center; padding: 80px 5%; background: #000; }
+        .slide-img { flex: 1; max-width: 500px; height: 400px; object-fit: cover; border-radius: 10px; box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1); border: 1px solid var(--border); }
+        .slide-content { flex: 1; padding: 40px; }
+        .slide-content h2 { font-family: 'Playfair Display', serif; color: var(--primary); font-size: 2.5rem; margin-bottom: 20px; text-transform: uppercase; }
+        .slide-content p { color: #ddd; line-height: 1.8; font-size: 1.1rem; margin-bottom: 20px; }
+        
+        @media (max-width: 768px) { 
+            .about-slide { flex-direction: column; text-align: center; padding: 40px 5%; } 
+            .slide-img { max-width: 100%; height: 300px; margin-bottom: 20px; }
+        }
+
         /* Cart UI */
-        #cart { position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%; z-index: 3100; padding: 30px; transition: 0.5s; background-color: #111; overflow-y: auto; }
+        #cart { position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%; z-index: 2001; padding: 30px; transition: 0.5s; background-color: #111; box-shadow: -10px 0 30px rgba(0,0,0,0.8); overflow-y: auto; }
         #cart.open { right: 0; }
-        .close-cart { cursor: pointer; font-size: 24px; color: var(--primary); }
-        #cart-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; cursor: pointer; color: #000; font-weight: bold; }
-        .shop-now-btn { margin-top: 15px; padding: 12px; width: 100%; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; }
+        #cart-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; cursor: pointer; color: black; font-weight: bold; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .close-cart { cursor: pointer; font-size: 24px; color: var(--primary); font-weight: bold; }
+        
+        #popup { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--primary); color: #000; padding: 12px 25px; border-radius: 4px; font-weight: 700; z-index: 3000; transition: 0.5s; }
+        #popup.show { transform: translateX(-50%) translateY(0); }
+
+        .popular-slider { display: flex; overflow-x: auto; gap: 20px; padding: 20px 0; scrollbar-width: none; }
+        .popular-slider::-webkit-scrollbar { display: none; }
+        .popular-card { min-width: 280px; background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 12px; transition: 0.3s; position: relative; }
+        .watch-display { width: 100%; height: 280px; overflow: hidden; border-radius: 8px; margin-bottom: 10px; position: relative; touch-action: pan-y; }
+        .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: grab; }
+        .slider-track img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; user-select: none; pointer-events: none; }
+        .hero-container { height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center; }
+        .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; }
+        
+        /* Popup Styles */
+        #sale-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        #sale-popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .popup-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            padding: 20px;
+            background: #000;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+            text-align: center;
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--primary);
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .popup-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -55,66 +163,234 @@
 <div class="intro-header" id="intro"><div class="intro-logo">HAYAT & CO.</div></div>
 
 <div class="burger-btn" onclick="toggleNav()">
-    <div class="burger-line"></div><div class="burger-line"></div><div class="burger-line"></div>
+    <div class="burger-line"></div>
+    <div class="burger-line"></div>
+    <div class="burger-line"></div>
 </div>
 
 <div class="nav-overlay" id="nav-overlay" onclick="toggleNav()"></div>
 <div id="nav-menu">
     <div style="margin-bottom: 40px;"><img src="main-logo.png" style="height: 50px;"></div>
     <div class="nav-link" onclick="handleNav('home')">HOME</div>
-    <div class="nav-link" onclick="handleNav('shop-all')">SHOP ALL</div>
+    <div class="nav-link" onclick="handleNav('about')">ABOUT US</div>
+    <div class="nav-link" onclick="toggleSubmenu()">SHOP NOW ▼</div>
+    <div class="submenu" id="shop-submenu">
+        <div class="sub-link" onclick="handleNav('shop-all')">SHOP ALL</div>
+        <div class="sub-link" onclick="handleNav('shop-brands')">SHOP BY BRAND</div>
+    </div>
 </div>
 
+<a href="https://wa.me/923009325696" class="wa-float" target="_blank">
+    <div class="wa-tooltip">Chat with us</div>
+    <div class="wa-icon-circle">
+        <svg fill="#ffffff" width="30px" height="30px" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <div class="wa-badge">1</div>
+    </div>
+</a>
+
 <div class="sale-banner">
-    <div class="marquee">✨ LIMITED TIME: 40% FLAT DISCOUNT ON ALL WATCHES — RS 1,000 ADVANCE FOR STOCK ITEMS — FREE SHIPPING ✨</div>
+    <div class="marquee">✨ ADDITIONAL 10% DISCOUNT ON PRE PAID ORDERS — AUTHENTIC LUXURY SINCE 2024 — ORDER NOW! ✨                ✨ FREE SHIPPING ON ALL ORDERS ✨</div>
+</div>
+
+<div id="popup">ORDER PLACED SUCCESSFULLY✅</div>
+
+<!-- Sale Popup -->
+<div id="sale-popup">
+    <div class="popup-content">
+        <button class="close-btn" onclick="closeSalePopup()">&times;</button>
+        <img src="sale.jpg" alt="Special Offer" class="popup-image">
+    </div>
 </div>
 
 <div id="home-view">
-    <div class="main-logo-container"><img src="main-logo.png" class="main-logo-img"></div>
+    <div class="main-logo-container">
+        <img src="main-logo.png" alt="Hayat & Co." class="main-logo-img">
+    </div>
+
+    <section class="hero-container" id="hero-sec">
+        <div class="hero-content">
+            <h1 style="font-family:'Playfair Display'; font-size: clamp(3rem, 10vw, 5rem);">HAYAT & CO.</h1>
+            <button class="shop-now-btn" onclick="handleNav('shop-all')">EXPLORE COLLECTION</button>
+        </div>
+    </section>
+
     <section class="section">
         <h2 class="section-header">MOST POPULAR</h2>
         <div class="popular-slider" id="popular-slider"></div>
     </section>
+
+    <section class="about-slider-wrapper" id="about-sec">
+        <div class="about-slides-container" id="about-slides">
+            <div class="about-slide">
+                <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=800" class="slide-img" alt="Legacy">
+                <div class="slide-content">
+                    <h2>OUR LEGACY</h2>
+                    <p>Hayat & Co. stands as a beacon of horological excellence in Pakistan. Established in 2024, we specialize in sourcing the world's most coveted timepieces.</p>
+                </div>
+            </div>
+            <div class="about-slide">
+                <img src="https://images.unsplash.com/photo-1585123334904-845d60e97b29?auto=format&fit=crop&q=80&w=800" class="slide-img" alt="Luxury Standard">
+                <div class="slide-content">
+                    <h2>THE HAYAT STANDARD</h2>
+                    <p>Authenticity guaranteed. Every timepiece is hand-verified to ensure it meets our rigorous standards of luxury and precision.</p>
+                </div>
+            </div>
+            <div class="about-slide">
+                <img src="advance.jpg" class="slide-img" alt="Advance Payment">
+                <div class="slide-content">
+                    <h2>WHY RS 1000</h2>
+                    <ul style="color: #ddd; line-height: 1.8; font-size: 1.1rem; margin-bottom: 20px;">
+                        <li>RS 1000 advance payment ensures commitment to your purchase</li>
+                        <li>This amount covers our verification and authentication process</li>
+                        <li>It guarantees priority handling of your order</li>
+                        <li>RS 1000 includes packaging and shipping charges</li>
+                        <li>The balance can be paid upon delivery or pickup</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #0a0a0a; text-align: center; border-top: 1px solid var(--border);">
+        <h2 class="section-header" style="border: none; padding: 20px 0; margin-bottom: 20px;">ABOUT US</h2>
+        <div style="max-width: 600px; margin: auto; padding: 0 20px;">
+            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 25px;">
+                Hayat & Co. is Pakistan's premier destination for authentic luxury watches. We believe a watch is more than a tool—it's a legacy.
+            </p>
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: var(--primary); margin-bottom: 10px; font-family: 'Playfair Display';">Contact Details</h3>
+                <a href="tel:+923009325696" style="color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: 600;">+92 300 9325696</a>
+            </div>
+            <div>
+                <h3 style="color: var(--primary); margin-bottom: 15px; font-family: 'Playfair Display';">Follow Us</h3>
+                <a href="https://www.instagram.com/hayatandco_watches?igsh=MTZldHR5MDJjb2JtZA==" target="_blank" style="display: inline-block; transition: 0.3s;">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #fff;">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="credits-section" style="background: #000; padding: 40px 20px; text-align: center; border-top: 1px solid var(--border);">
+        <div class="credits-text" style="color: var(--text-muted); font-size: 13px;">&copy; 2024 HAYAT & CO. ALL RIGHTS RESERVED</div>
+    </footer>
+</div>
+
+<div id="all-brands-view" style="display:none;">
+    <div class="main-logo-container"><img src="main-logo.png" class="main-logo-img"></div>
+    <div class="section">
+        <h2 class="section-header">OUR BRANDS</h2>
+        <div class="brands-grid" id="brands-container"></div>
+        <button class="shop-now-btn" style="width:auto; padding:10px 40px;" onclick="showHome()">← BACK</button>
+    </div>
 </div>
 
 <div id="shop-all-view" style="display:none;">
+    <div class="main-logo-container"><img src="main-logo.png" class="main-logo-img"></div>
     <div class="section">
-        <h2 class="section-header">COLLECTION</h2>
+        <h2 class="section-header">COMPLETE COLLECTION</h2>
         <div id="all-watches-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px;"></div>
+        <button class="shop-now-btn" style="width:auto; padding:10px 40px; margin-top:30px;" onclick="showHome()">← BACK</button>
+    </div>
+</div>
+
+<div id="brand-view" style="display:none;">
+    <div class="main-logo-container"><img src="main-logo.png" class="main-logo-img"></div>
+    <h2 id="brand-name-display" style="text-align:center; font-family:'Playfair Display'; font-size:3rem; color:var(--primary); margin:20px 0;">Brand</h2>
+    <div style="display:flex; justify-content:center; margin-bottom:30px;">
+        <button class="shop-now-btn" style="width:auto; padding:10px 40px;" onclick="handleNav('shop-brands')">← BACK TO BRANDS</button>
+    </div>
+    <div class="section">
+        <div id="stock-container">
+            <h2 class="section-header">IN STOCK</h2>
+            <div id="brand-stock-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px;"></div>
+        </div>
+        <div id="pre-container" style="margin-top:50px;">
+            <h2 class="section-header">PRE-ORDER</h2>
+            <div id="brand-pre-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px;"></div>
+        </div>
     </div>
 </div>
 
 <div id="cart-btn" onclick="toggleCart()">CART</div>
 <div id="cart">
-    <div class="cart-header" style="display:flex; justify-content:space-between; margin-bottom:20px;">
+    <div class="cart-header">
         <h2 style="font-family:'Playfair Display';">Your Selection</h2>
         <div class="close-cart" onclick="toggleCart()">✕</div>
     </div>
     <div id="cartItems">Empty</div>
     <div style="margin-top:20px; border-top:1px solid var(--border); padding-top:20px;">
-        <div id="total" style="font-size:1.2rem; color:var(--primary); margin-bottom:15px; font-weight: bold;">Total Advance: Rs 0</div>
-        <input type="text" id="cname" placeholder="Full Name" style="width:100%; padding:12px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
-        <input type="tel" id="cphone" placeholder="Phone Number" style="width:100%; padding:12px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
-        <textarea id="caddress" placeholder="Shipping Address" style="width:100%; padding:12px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;"></textarea>
-        <button class="shop-now-btn" onclick="confirmOrder()">CONFIRM ORDER</button>
+        <div id="total" style="font-size:1.2rem; color:var(--primary); margin-bottom:15px;">Total: Rs 0</div>
+        <input type="text" id="cname" placeholder="Full Name" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
+        <input type="tel" id="cphone" placeholder="Phone Number" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;">
+        <textarea id="caddress" placeholder="Shipping Address" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #333; color:#fff;"></textarea>
+        <button id="submitBtn" class="shop-now-btn" style="background:var(--primary); color:#000; width: 100%;" onclick="confirmOrder()">CONFIRM ORDER</button>
     </div>
 </div>
 
 <script>
 const DATABASE_URL = "https://hayatwatches-e7bd1-default-rtdb.firebaseio.com/";
+
+const brandsList = [
+    { name: "Hamilton", logo: "hamilton.png" },
+    { name: "Seiko", logo: "seiko.png" },
+    { name: "Omega X Swatch", logo: "omega-x-swatch.png" },
+    { name: "Orient", logo: "orient.png" },
+    { name: "Rado", logo: "rado.png" },
+    { name: "Oris", logo: "oris.png" },
+    { name: "Tissot", logo: "tissot.png" },
+    { name: "Rolex", logo: "rolex.png" },
+    { name: "Patek Philip", logo: "patek-philip.png" }
+];
+
 let watchData = [];
-let cart = [];
+let swipeStartX = 0;
+let isDragging = false;
+let currentAboutSlide = 0;
+
+function startAboutSlider() {
+    const container = document.getElementById('about-slides');
+    setInterval(() => {
+        currentAboutSlide = (currentAboutSlide + 1) % 3;
+        container.style.transform = `translateX(-${currentAboutSlide * 100}%)`;
+    }, 5000);
+}
 
 function toggleNav() {
     document.getElementById('nav-menu').classList.toggle('active');
     document.getElementById('nav-overlay').classList.toggle('active');
 }
 
+function toggleSubmenu() {
+    document.getElementById('shop-submenu').classList.toggle('active');
+}
+
+function hideAllViews() {
+    ['home-view', 'brand-view', 'shop-all-view', 'all-brands-view'].forEach(id => {
+        document.getElementById(id).style.display = 'none';
+    });
+}
+
 function handleNav(target) {
     toggleNav();
-    document.getElementById('home-view').style.display = target === 'home' ? 'block' : 'none';
-    document.getElementById('shop-all-view').style.display = target === 'shop-all' ? 'block' : 'none';
-    if(target === 'shop-all') renderShopAll();
+    hideAllViews();
+    window.scrollTo(0,0);
+    
+    if(target === 'home') {
+        document.getElementById('home-view').style.display = 'block';
+    } else if(target === 'about') {
+        document.getElementById('home-view').style.display = 'block';
+        window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
+    } else if(target === 'shop-all') {
+        document.getElementById('shop-all-view').style.display = 'block';
+        renderShopAll();
+    } else if(target === 'shop-brands') {
+        document.getElementById('all-brands-view').style.display = 'block';
+        renderBrands();
+    }
 }
 
 function loadProducts() {
@@ -126,92 +402,148 @@ function loadProducts() {
             renderPopularSlider();
         }
     });
+    startAboutSlider();
+    
+    // Show popup after intro animation completes
+    setTimeout(() => {
+        openSalePopup();
+    }, 4500);
+}
+
+window.onload = loadProducts;
+
+function renderBrands() {
+    const container = document.getElementById('brands-container');
+    container.innerHTML = brandsList.map(b => `
+        <div class="brand-item" onclick="showBrand('${b.name}')">
+            <img src="${b.logo}" class="brand-logo" alt="${b.name}" onerror="this.src='https://via.placeholder.com/150x50?text=${b.name}'">
+            <div class="brand-label">${b.name}</div>
+        </div>`).join('');
+}
+
+function renderShopAll() {
+    const container = document.getElementById('all-watches-grid');
+    if(watchData.length > 0) {
+        container.innerHTML = watchData.map(w => generateCardHTML(w)).join('');
+    } else {
+        container.innerHTML = '<p style="text-align:center; color:var(--text-muted);">Collection loading...</p>';
+    }
 }
 
 function generateCardHTML(w) {
     const images = w.images || [w.img];
     const slides = images.map(imgSrc => `<img src="${imgSrc}">`).join('');
     
-    // DISCOUNT LOGIC
-    const originalPrice = parseInt(w.price.replace(/[^0-9]/g, '')) || 0;
-    const discountedPrice = Math.round(originalPrice * 0.60); // 40% OFF
-    
     return `
         <div class="popular-card">
-            <div class="discount-tag">40% OFF</div>
-            <div class="watch-display" onclick="nextSlide(this)">
+            <div class="watch-display" 
+                onmousedown="swipeStart(event)" 
+                onmouseup="swipeEnd(event, this)" 
+                ontouchstart="swipeStart(event)" 
+                ontouchend="swipeEnd(event, this)">
                 <div class="slider-track" data-index="0" data-count="${images.length}">${slides}</div>
             </div>
-            <h4 style="margin:10px 0 5px">${w.name}</h4>
-            <div>
-                <span class="old-price">Rs. ${originalPrice.toLocaleString()}</span>
-                <span class="new-price">Rs. ${discountedPrice.toLocaleString()}</span>
-            </div>
-            <button class="shop-now-btn" onclick="addToCart('${w.name}', ${discountedPrice}, '${w.type}')">Add to Cart</button>
+            <h4>${w.name}</h4>
+            <div class="price">${w.price}</div>
+            <button class="shop-now-btn" style="width:100%; margin-top:10px; padding:10px;" onclick="addToCart('${w.name}', '${w.price}', '${w.type}')">Add to Cart</button>
         </div>`;
 }
 
-function nextSlide(container) {
+function swipeStart(e) {
+    isDragging = true;
+    swipeStartX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+}
+
+function swipeEnd(e, container) {
+    if (!isDragging) return;
+    isDragging = false;
+    const endX = e.type.includes('touch') ? e.changedTouches[0].clientX : e.clientX;
+    const diff = swipeStartX - endX;
+
     const track = container.querySelector('.slider-track');
-    let index = parseInt(track.dataset.index);
-    const count = parseInt(track.dataset.count);
-    index = (index + 1) % count;
-    track.dataset.index = index;
+    let index = parseInt(track.getAttribute('data-index'));
+    const count = parseInt(track.getAttribute('data-count'));
+
+    if (Math.abs(diff) > 50) {
+        if (diff > 0 && index < count - 1) index++; 
+        else if (diff < 0 && index > 0) index--;    
+    }
+
+    track.setAttribute('data-index', index);
     track.style.transform = `translateX(-${index * 100}%)`;
 }
 
 function renderPopularSlider() {
     const slider = document.getElementById('popular-slider');
     const populars = watchData.filter(w => w.type === 'popular');
-    slider.innerHTML = populars.map(w => generateCardHTML(w)).join('');
+    if(populars.length > 0) {
+        slider.innerHTML = populars.map(w => generateCardHTML(w)).join('');
+    }
 }
 
-function renderShopAll() {
-    const grid = document.getElementById('all-watches-grid');
-    grid.innerHTML = watchData.map(w => generateCardHTML(w)).join('');
+function showBrand(brand) {
+    hideAllViews();
+    document.getElementById('brand-view').style.display = 'block';
+    document.getElementById('brand-name-display').innerText = brand;
+    window.scrollTo(0,0);
+    
+    const stockGrid = document.getElementById('brand-stock-grid');
+    const preGrid = document.getElementById('brand-pre-grid');
+    stockGrid.innerHTML = ''; preGrid.innerHTML = '';
+    
+    const filtered = watchData.filter(w => w.brand.toLowerCase() === brand.toLowerCase());
+    
+    if(filtered.length === 0) {
+        stockGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:var(--text-muted);">Currently no items for this brand.</p>';
+    } else {
+        filtered.forEach(w => {
+            if(w.type === 'stock' || w.type === 'popular') stockGrid.innerHTML += generateCardHTML(w);
+            else preGrid.innerHTML += generateCardHTML(w);
+        });
+    }
 }
 
+function showHome() {
+    hideAllViews();
+    document.getElementById('home-view').style.display = 'block';
+}
+
+let cart = [];
 function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
 
 function addToCart(name, price, type) {
-    // Note: price passed here is already the discounted price
-    cart.push({name, price: price, type, payMethod: 'advance'});
+    const numPrice = parseInt(price.replace(/[^0-9]/g, '')) || 0;
+    cart.push({name, price: numPrice, displayPrice: price, type, payMethod: 'advance'});
     updateCartUI();
-    if(!document.getElementById('cart').classList.contains('open')) toggleCart();
+    toggleCart();
 }
 
 function updateCartUI() {
     let total = 0, html = '';
     cart.forEach((item, i) => {
         let p = 0;
-        let label = "";
-
+        
         if (item.payMethod === 'full') {
-            p = item.price * 0.9; // Extra 10% off for full pre-payment
-            label = "Full Pre-payment (Extra 10% OFF)";
+            // 10% Discount for full payment
+            p = item.price * 0.9;
         } else {
-            if (item.type === 'stock' || item.type === 'popular') {
-                p = 1000;
-                label = "Fixed Advance (Stock)";
-            } else {
-                p = item.price * 0.5;
-                label = "50% Advance (Pre-order)";
-            }
+            // Logic restored: Stock/Popular items are flat Rs 1,000. Others (Pre-order) are 50%
+            p = (item.type === 'stock' || item.type === 'popular') ? 1000 : item.price * 0.5;
         }
         
         total += p;
-        html += `<div style="background:rgba(255,255,255,0.05); padding:15px; margin-bottom:10px; border-radius:8px;">
-            <div style="font-size:12px; font-weight:600; margin-bottom:5px;">${item.name}</div>
-            <select onchange="cart[${i}].payMethod=this.value; updateCartUI();" style="background:#000; color:#fff; width:100%; padding:5px; border:1px solid #444;">
-                <option value="advance" ${item.payMethod === 'advance' ? 'selected' : ''}>${label}</option>
-                <option value="full" ${item.payMethod === 'full' ? 'selected' : ''}>Pay Full (Extra 10% OFF)</option>
+        html += `<div style="background:rgba(255,255,255,0.05); padding:10px; margin-bottom:10px;">
+            <div style="font-size:12px;">${item.name}</div>
+            <select onchange="cart[${i}].payMethod=this.value; updateCartUI();" style="background:#000; color:#fff; width:100%; margin:5px 0; border: 1px solid var(--border);">
+                <option value="advance" ${item.payMethod === 'advance' ? 'selected' : ''}>Pay Advance</option>
+                <option value="full" ${item.payMethod === 'full' ? 'selected' : ''}>Pay Full (10% OFF)</option>
             </select>
-            <div style="color:var(--primary); font-weight:bold; margin-top:5px;">Rs. ${Math.round(p).toLocaleString()}</div>
-            <button onclick="cart.splice(${i},1); updateCartUI();" style="color:#ff4d4d; background:none; border:none; cursor:pointer; font-size:10px; margin-top:5px;">REMOVE</button>
+            <div style="color:var(--primary); font-weight: 600;">Rs. ${Math.round(p).toLocaleString()}</div>
+            <button onclick="cart.splice(${i},1); updateCartUI();" style="color:#ff4d4d; background:none; border:none; font-size: 10px; cursor: pointer; margin-top: 5px; text-transform: uppercase;">[ Remove ]</button>
         </div>`;
     });
-    document.getElementById('cartItems').innerHTML = html || 'Cart is empty';
-    document.getElementById('total').innerText = 'Total Advance: Rs. ' + Math.round(total).toLocaleString();
+    document.getElementById('cartItems').innerHTML = html || '<div style="text-align:center; color:var(--text-muted);">Cart is empty</div>';
+    document.getElementById('total').innerText = 'Total: Rs. ' + Math.round(total).toLocaleString();
 }
 
 function confirmOrder() {
@@ -220,21 +552,34 @@ function confirmOrder() {
     const address = document.getElementById('caddress').value;
     if(!name || !phone || cart.length === 0) { alert("Please fill details!"); return; }
 
-    const orderData = {
-        customer: name, phone: phone, address: address,
-        items: cart.map(i => `${i.name} (${i.payMethod})`).join(', '),
+    const newOrder = {
+        user: name, phone, address,
+        item: cart.map(i => i.name).join(', '),
+        status: "Pending",
         total: document.getElementById('total').innerText,
         date: new Date().toLocaleString()
     };
 
-    fetch(`${DATABASE_URL}/orders.json`, { method: 'POST', body: JSON.stringify(orderData) })
+    fetch(`${DATABASE_URL}/orders.json`, { method: 'POST', body: JSON.stringify(newOrder) })
     .then(() => {
-        alert("Order placed successfully!");
-        cart = []; updateCartUI(); toggleCart();
+        document.getElementById('popup').classList.add('show');
+        cart = []; updateCartUI();
+        setTimeout(() => { document.getElementById('popup').classList.remove('show'); toggleCart(); showHome(); }, 3000);
     });
 }
 
-window.onload = loadProducts;
+// Sale Popup Functions
+function openSalePopup() {
+    const popup = document.getElementById('sale-popup');
+    setTimeout(() => {
+        popup.classList.add('active');
+    }, 100);
+}
+
+function closeSalePopup() {
+    const popup = document.getElementById('sale-popup');
+    popup.classList.remove('active');
+}
 </script>
 </body>
 </html>
