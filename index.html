@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hayat & Co. | Timeless Luxury</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root { --primary: #c5a059; --bg-dark: #0a0a0a; --text-light: #f8f8f8; --text-muted: #a0a0a0; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -155,6 +156,31 @@
             max-width: 100%;
             max-height: 80vh;
             border-radius: 8px;
+        }
+        
+        .discount-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff4d4d;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            z-index: 10;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9rem;
+            margin-right: 5px;
+        }
+        
+        .discount-price {
+            color: var(--primary);
+            font-weight: bold;
         }
     </style>
 </head>
@@ -434,6 +460,14 @@ function generateCardHTML(w) {
     const images = w.images || [w.img];
     const slides = images.map(imgSrc => `<img src="${imgSrc}">`).join('');
     
+    // Calculate discounted price
+    let originalPrice = w.price || 0;
+    let discountPrice = originalPrice * 0.6; // 40% discount
+    
+    // Format prices
+    const formattedOriginal = originalPrice.toLocaleString('en-PK', { style: 'currency', currency: 'PKR' });
+    const formattedDiscount = discountPrice.toLocaleString('en-PK', { style: 'currency', currency: 'PKR' });
+    
     return `
         <div class="popular-card">
             <div class="watch-display" 
@@ -441,11 +475,15 @@ function generateCardHTML(w) {
                 onmouseup="swipeEnd(event, this)" 
                 ontouchstart="swipeStart(event)" 
                 ontouchend="swipeEnd(event, this)">
+                <div class="discount-tag">40% OFF</div>
                 <div class="slider-track" data-index="0" data-count="${images.length}">${slides}</div>
             </div>
             <h4>${w.name}</h4>
-            <div class="price">${w.price}</div>
-            <button class="shop-now-btn" style="width:100%; margin-top:10px; padding:10px;" onclick="addToCart('${w.name}', '${w.price}', '${w.type}')">Add to Cart</button>
+            <div class="price">
+                <span class="original-price">${formattedOriginal}</span>
+                <span class="discount-price">${formattedDiscount}</span>
+            </div>
+            <button class="shop-now-btn" style="width:100%; margin-top:10px; padding:10px;" onclick="addToCart('${w.name}', '${discountPrice}', '${w.type}')">Add to Cart</button>
         </div>`;
 }
 
@@ -512,7 +550,7 @@ let cart = [];
 function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
 
 function addToCart(name, price, type) {
-    const numPrice = parseInt(price.replace(/[^0-9]/g, '')) || 0;
+    const numPrice = parseFloat(price) || 0;
     cart.push({name, price: numPrice, displayPrice: price, type, payMethod: 'advance'});
     updateCartUI();
     toggleCart();
