@@ -374,7 +374,7 @@ function generateCardHTML(w) {
     const slides = images.map(imgSrc => `<img src="${imgSrc}">`).join('');
     
     // DISCOUNT LOGIC
-    const originalPriceNum = parseInt(w.price.replace(/[^0-9]/g, '')) || 0;
+    const originalPriceNum = parseInt(w.price.toString().replace(/[^0-9]/g, '')) || 0;
     const discountedPriceNum = Math.round(originalPriceNum * 0.60); // 40% OFF means pay 60%
     
     return `
@@ -430,13 +430,23 @@ function showBrand(brand) {
     document.getElementById('brand-view').style.display = 'block';
     document.getElementById('brand-name-display').innerText = brand;
     window.scrollTo(0,0);
+    
     const stockGrid = document.getElementById('brand-stock-grid');
     const preGrid = document.getElementById('brand-pre-grid');
     stockGrid.innerHTML = ''; preGrid.innerHTML = '';
-    const filtered = watchData.filter(w => w.brand.toLowerCase() === brand.toLowerCase());
+    
+    // Improved Filter: Normalizes brand names to match even with spacing/casing issues
+    const filtered = watchData.filter(w => {
+        return w.brand && w.brand.toString().trim().toLowerCase() === brand.trim().toLowerCase();
+    });
+    
     if(filtered.length === 0) {
-        stockGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:var(--text-muted);">Currently no items for this brand.</p>';
+        stockGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:var(--text-muted); padding:40px;">Currently no items for this brand.</p>';
+        document.getElementById('stock-container').style.display = 'none';
+        document.getElementById('pre-container').style.display = 'none';
     } else {
+        document.getElementById('stock-container').style.display = 'block';
+        document.getElementById('pre-container').style.display = 'block';
         filtered.forEach(w => {
             if(w.type === 'stock' || w.type === 'popular') stockGrid.innerHTML += generateCardHTML(w);
             else preGrid.innerHTML += generateCardHTML(w);
