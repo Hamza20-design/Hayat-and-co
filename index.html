@@ -6,7 +6,7 @@
     <title>Hayat & Co. | Timeless Luxury</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #c5a059; --bg-dark: #0a0a0a; --text-light: #f8f8f8; --text-muted: #a0a0a0; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); }
+        :root { --primary: #c5a059; --bg-dark: #0a0a0a; --text-light: #f8f8f8; --text-muted: #a0a0a0; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); --discount: #ff4d4d; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Montserrat', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
         
@@ -24,13 +24,11 @@
         .nav-link { display: block; color: #fff; text-decoration: none; font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 25px; transition: 0.3s; cursor: pointer; }
         .nav-link:hover { color: var(--primary); padding-left: 10px; }
         
-        /* Submenu */
         .submenu { height: 0; overflow: hidden; transition: 0.3s; padding-left: 20px; }
         .submenu.active { height: auto; margin-bottom: 20px; }
         .sub-link { display: block; color: var(--text-muted); text-decoration: none; font-size: 1.1rem; margin-bottom: 15px; cursor: pointer; transition: 0.3s; }
         .sub-link:hover { color: var(--primary); }
 
-        /* Burger Icon */
         .burger-btn { position: fixed; top: 55px; left: 20px; z-index: 2000; cursor: pointer; padding: 10px; }
         .burger-line { width: 25px; height: 2px; background: var(--primary); margin: 5px 0; transition: 0.3s; }
 
@@ -49,20 +47,7 @@
         .main-logo-container { text-align: center; padding: 20px; background: var(--bg-dark); }
         .main-logo-img { height: 70px; width: auto; object-fit: contain; }
         
-        /* Section Header */
-        .section-header { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.8rem; 
-            margin-bottom: 40px; 
-            padding: 50px 25px; 
-            text-transform: uppercase; 
-            color: #fff; 
-            border-left: 6px solid var(--primary); 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('heading-bg.jpg'); 
-            background-size: cover; 
-            background-position: center; 
-        }
-        
+        .section-header { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 40px; padding: 50px 25px; text-transform: uppercase; color: #fff; border-left: 6px solid var(--primary); background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('heading-bg.jpg'); background-size: cover; background-position: center; }
         .section { padding: 60px 5%; max-width: 1400px; margin: auto; }
         
         /* Brands Grid */
@@ -73,6 +58,12 @@
         .brand-logo { width: 100%; height: 50px; object-fit: contain; margin-bottom: 10px; }
         .brand-label { font-size: 10px; color: var(--primary); font-weight: 600; text-transform: uppercase; }
         
+        /* Discount Logic Styling */
+        .discount-badge { position: absolute; top: 10px; left: 10px; background: var(--discount); color: white; padding: 4px 8px; font-size: 10px; font-weight: 800; border-radius: 3px; z-index: 10; letter-spacing: 1px; }
+        .price-container { margin: 10px 0; }
+        .price-cut { text-decoration: line-through; color: var(--text-muted); font-size: 0.85rem; margin-right: 8px; }
+        .price-new { color: var(--primary); font-weight: 700; font-size: 1.1rem; }
+
         /* Slider Sections */
         .about-slider-wrapper { position: relative; width: 100%; overflow: hidden; background: #000; }
         .about-slides-container { display: flex; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
@@ -82,10 +73,7 @@
         .slide-content h2 { font-family: 'Playfair Display', serif; color: var(--primary); font-size: 2.5rem; margin-bottom: 20px; text-transform: uppercase; }
         .slide-content p { color: #ddd; line-height: 1.8; font-size: 1.1rem; margin-bottom: 20px; }
         
-        @media (max-width: 768px) { 
-            .about-slide { flex-direction: column; text-align: center; padding: 40px 5%; } 
-            .slide-img { max-width: 100%; height: 300px; margin-bottom: 20px; }
-        }
+        @media (max-width: 768px) { .about-slide { flex-direction: column; text-align: center; padding: 40px 5%; } .slide-img { max-width: 100%; height: 300px; margin-bottom: 20px; } }
 
         /* Cart UI */
         #cart { position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%; z-index: 2001; padding: 30px; transition: 0.5s; background-color: #111; box-shadow: -10px 0 30px rgba(0,0,0,0.8); overflow-y: auto; }
@@ -106,56 +94,11 @@
         .hero-container { height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center; }
         .shop-now-btn { margin-top: 25px; padding: 15px 40px; background: var(--primary); color: #000; border: none; font-weight: 700; cursor: pointer; letter-spacing: 2px; }
         
-        /* Popup Styles */
-        #sale-popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        #sale-popup.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .popup-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            padding: 20px;
-            background: #000;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
-            text-align: center;
-        }
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 24px;
-            color: var(--primary);
-            cursor: pointer;
-            background: none;
-            border: none;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .popup-image {
-            max-width: 100%;
-            max-height: 80vh;
-            border-radius: 8px;
-        }
+        #sale-popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); display: flex; align-items: center; justify-content: center; z-index: 9999; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        #sale-popup.active { opacity: 1; visibility: visible; }
+        .popup-content { position: relative; max-width: 90%; max-height: 90%; padding: 20px; background: #000; border-radius: 10px; box-shadow: 0 0 30px rgba(197, 160, 89, 0.3); text-align: center; }
+        .close-btn { position: absolute; top: 15px; right: 15px; font-size: 24px; color: var(--primary); cursor: pointer; background: none; border: none; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+        .popup-image { max-width: 100%; max-height: 80vh; border-radius: 8px; }
     </style>
 </head>
 <body>
@@ -189,12 +132,11 @@
 </a>
 
 <div class="sale-banner">
-    <div class="marquee">✨ ADDITIONAL 10% DISCOUNT ON PRE PAID ORDERS — AUTHENTIC LUXURY SINCE 2024 — ORDER NOW! ✨                ✨ FREE SHIPPING ON ALL ORDERS ✨</div>
+    <div class="marquee">✨ FLAT 40% OFF ON ALL ITEMS — ADDITIONAL 10% DISCOUNT ON PRE PAID ORDERS — FREE SHIPPING ✨</div>
 </div>
 
 <div id="popup">ORDER PLACED SUCCESSFULLY✅</div>
 
-<!-- Sale Popup -->
 <div id="sale-popup">
     <div class="popup-content">
         <button class="close-btn" onclick="closeSalePopup()">&times;</button>
@@ -404,10 +346,7 @@ function loadProducts() {
     });
     startAboutSlider();
     
-    // Show popup after intro animation completes
-    setTimeout(() => {
-        openSalePopup();
-    }, 4500);
+    setTimeout(() => { openSalePopup(); }, 4500);
 }
 
 window.onload = loadProducts;
@@ -434,8 +373,13 @@ function generateCardHTML(w) {
     const images = w.images || [w.img];
     const slides = images.map(imgSrc => `<img src="${imgSrc}">`).join('');
     
+    // DISCOUNT LOGIC
+    const originalPriceNum = parseInt(w.price.replace(/[^0-9]/g, '')) || 0;
+    const discountedPriceNum = Math.round(originalPriceNum * 0.60); // 40% OFF means pay 60%
+    
     return `
         <div class="popular-card">
+            <div class="discount-badge">40% OFF</div>
             <div class="watch-display" 
                 onmousedown="swipeStart(event)" 
                 onmouseup="swipeEnd(event, this)" 
@@ -444,8 +388,11 @@ function generateCardHTML(w) {
                 <div class="slider-track" data-index="0" data-count="${images.length}">${slides}</div>
             </div>
             <h4>${w.name}</h4>
-            <div class="price">${w.price}</div>
-            <button class="shop-now-btn" style="width:100%; margin-top:10px; padding:10px;" onclick="addToCart('${w.name}', '${w.price}', '${w.type}')">Add to Cart</button>
+            <div class="price-container">
+                <span class="price-cut">Rs. ${originalPriceNum.toLocaleString()}</span>
+                <span class="price-new">Rs. ${discountedPriceNum.toLocaleString()}</span>
+            </div>
+            <button class="shop-now-btn" style="width:100%; margin-top:10px; padding:10px;" onclick="addToCart('${w.name}', ${discountedPriceNum}, '${w.type}')">Add to Cart</button>
         </div>`;
 }
 
@@ -459,16 +406,13 @@ function swipeEnd(e, container) {
     isDragging = false;
     const endX = e.type.includes('touch') ? e.changedTouches[0].clientX : e.clientX;
     const diff = swipeStartX - endX;
-
     const track = container.querySelector('.slider-track');
     let index = parseInt(track.getAttribute('data-index'));
     const count = parseInt(track.getAttribute('data-count'));
-
     if (Math.abs(diff) > 50) {
         if (diff > 0 && index < count - 1) index++; 
         else if (diff < 0 && index > 0) index--;    
     }
-
     track.setAttribute('data-index', index);
     track.style.transform = `translateX(-${index * 100}%)`;
 }
@@ -486,13 +430,10 @@ function showBrand(brand) {
     document.getElementById('brand-view').style.display = 'block';
     document.getElementById('brand-name-display').innerText = brand;
     window.scrollTo(0,0);
-    
     const stockGrid = document.getElementById('brand-stock-grid');
     const preGrid = document.getElementById('brand-pre-grid');
     stockGrid.innerHTML = ''; preGrid.innerHTML = '';
-    
     const filtered = watchData.filter(w => w.brand.toLowerCase() === brand.toLowerCase());
-    
     if(filtered.length === 0) {
         stockGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:var(--text-muted);">Currently no items for this brand.</p>';
     } else {
@@ -511,9 +452,8 @@ function showHome() {
 let cart = [];
 function toggleCart() { document.getElementById('cart').classList.toggle('open'); }
 
-function addToCart(name, price, type) {
-    const numPrice = parseInt(price.replace(/[^0-9]/g, '')) || 0;
-    cart.push({name, price: numPrice, displayPrice: price, type, payMethod: 'advance'});
+function addToCart(name, priceNum, type) {
+    cart.push({name, price: priceNum, type, payMethod: 'advance'});
     updateCartUI();
     toggleCart();
 }
@@ -522,21 +462,17 @@ function updateCartUI() {
     let total = 0, html = '';
     cart.forEach((item, i) => {
         let p = 0;
-        
         if (item.payMethod === 'full') {
-            // 10% Discount for full payment
             p = item.price * 0.9;
         } else {
-            // Logic restored: Stock/Popular items are flat Rs 1,000. Others (Pre-order) are 50%
             p = (item.type === 'stock' || item.type === 'popular') ? 1000 : item.price * 0.5;
         }
-        
         total += p;
         html += `<div style="background:rgba(255,255,255,0.05); padding:10px; margin-bottom:10px;">
             <div style="font-size:12px;">${item.name}</div>
             <select onchange="cart[${i}].payMethod=this.value; updateCartUI();" style="background:#000; color:#fff; width:100%; margin:5px 0; border: 1px solid var(--border);">
                 <option value="advance" ${item.payMethod === 'advance' ? 'selected' : ''}>Pay Advance</option>
-                <option value="full" ${item.payMethod === 'full' ? 'selected' : ''}>Pay Full (10% OFF)</option>
+                <option value="full" ${item.payMethod === 'full' ? 'selected' : ''}>Pay Full (Extra 10% OFF)</option>
             </select>
             <div style="color:var(--primary); font-weight: 600;">Rs. ${Math.round(p).toLocaleString()}</div>
             <button onclick="cart.splice(${i},1); updateCartUI();" style="color:#ff4d4d; background:none; border:none; font-size: 10px; cursor: pointer; margin-top: 5px; text-transform: uppercase;">[ Remove ]</button>
@@ -551,7 +487,6 @@ function confirmOrder() {
     const phone = document.getElementById('cphone').value;
     const address = document.getElementById('caddress').value;
     if(!name || !phone || cart.length === 0) { alert("Please fill details!"); return; }
-
     const newOrder = {
         user: name, phone, address,
         item: cart.map(i => i.name).join(', '),
@@ -559,7 +494,6 @@ function confirmOrder() {
         total: document.getElementById('total').innerText,
         date: new Date().toLocaleString()
     };
-
     fetch(`${DATABASE_URL}/orders.json`, { method: 'POST', body: JSON.stringify(newOrder) })
     .then(() => {
         document.getElementById('popup').classList.add('show');
@@ -568,12 +502,9 @@ function confirmOrder() {
     });
 }
 
-// Sale Popup Functions
 function openSalePopup() {
     const popup = document.getElementById('sale-popup');
-    setTimeout(() => {
-        popup.classList.add('active');
-    }, 100);
+    setTimeout(() => { popup.classList.add('active'); }, 100);
 }
 
 function closeSalePopup() {
