@@ -99,6 +99,13 @@
             .banner-content { font-size: 0.65rem; animation-duration: 15s; }
             .header { top: 30px !important; }
             .page-section { padding-top: calc(75px + 30px) !important; }
+            .product-detail-hero { flex-direction: column !important; padding: 1rem !important; }
+            .product-detail-image { width: 100% !important; min-height: 250px !important; }
+            .product-detail-info { width: 100% !important; padding: 1.2rem !important; }
+            .product-detail-name { font-size: 1.8rem !important; }
+            .slider-container { gap: 0.8rem !important; }
+            .slider-item { min-width: 140px !important; }
+            .pd-details-grid { grid-template-columns: 1fr !important; }
         }
 
         /* ----- HEADER (navy tint) ----- */
@@ -552,9 +559,10 @@
             box-shadow: var(--shadow-sm);
             min-height: 380px;
             position: relative;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+            cursor: pointer;
         }
-        .product-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); }
+        .product-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-4px); }
 
         .product-card-image {
             display: flex;
@@ -568,7 +576,6 @@
             overflow: hidden;
         }
         
-        /* FIX: Image fills the entire card */
         .watch-img {
             width: 100%;
             height: 100%;
@@ -766,6 +773,239 @@
         .social-link-instagram { display: inline-flex; align-items: center; gap: 10px; color: var(--text-secondary); text-decoration: none; margin-top: 1.5rem; padding: 10px 22px; border: 1px solid var(--border); border-radius: 30px; transition: all 0.3s; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 500; }
         .social-link-instagram:hover { color: var(--instagram); border-color: var(--instagram); background: rgba(228, 64, 95, 0.05); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(228, 64, 95, 0.1); }
         .social-link-instagram svg { width: 22px; height: 22px; fill: currentColor; }
+
+        /* ============================================================
+           PRODUCT DETAIL PAGE
+           ============================================================ */
+        .product-detail-hero {
+            display: flex;
+            gap: 2rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            margin-bottom: 3rem;
+            padding: 0;
+        }
+        .product-detail-image {
+            flex: 1;
+            min-height: 400px;
+            background: var(--bg-elevated);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-detail-image .watch-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-detail-info {
+            flex: 1;
+            padding: 2.5rem 2.5rem 2.5rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .product-detail-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .product-detail-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0.3rem 0 0.5rem;
+            line-height: 1.2;
+        }
+        .product-detail-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .product-detail-price .original {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            text-decoration: line-through;
+        }
+        .product-detail-discount {
+            background: var(--accent);
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .product-detail-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin: 0.8rem 0 1.5rem;
+            max-width: 90%;
+        }
+        .product-detail-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .btn-add-to-cart {
+            padding: 14px 40px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-add-to-cart:hover { background: var(--accent-dark); box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3); transform: translateY(-2px); }
+        .btn-add-to-cart.added { background: #27ae60; }
+        .btn-add-to-cart.added:hover { background: #219a52; }
+
+        /* Product Details Section */
+        .pd-details-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .pd-details-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+            letter-spacing: 1px;
+        }
+        .pd-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .pd-detail-item {
+            padding: 0.8rem 1.2rem;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+        .pd-detail-item .label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .pd-detail-item .value {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-top: 0.2rem;
+        }
+
+        /* PEOPLE ALSO LIKE - Manual Slider */
+        .pal-section {
+            margin-top: 2rem;
+        }
+        .pal-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+        .slider-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding: 0 10px;
+        }
+        .slider-container {
+            display: flex;
+            gap: 1.5rem;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+            cursor: grab;
+            padding: 0.5rem 0;
+        }
+        .slider-container:active { cursor: grabbing; }
+        .slider-item {
+            min-width: 220px;
+            max-width: 220px;
+            flex-shrink: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .slider-item:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-4px); }
+        .slider-item-img {
+            height: 180px;
+            background: var(--bg-elevated);
+            position: relative;
+            overflow: hidden;
+        }
+        .slider-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .slider-item-body { padding: 0.8rem 1rem; }
+        .slider-item-brand { font-family: 'Playfair Display', serif; font-size: 0.55rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+        .slider-item-name { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .slider-item-price { font-size: 0.85rem; font-weight: 600; color: var(--accent-dark); margin-top: 0.2rem; }
+        .slider-item-price .original { font-size: 0.7rem; color: var(--text-muted); font-weight: 400; text-decoration: line-through; margin-right: 0.5rem; }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .slider-nav button {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        .slider-nav button:hover { background: var(--accent); color: #fff; box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3); }
+        .slider-nav button:disabled { opacity: 0.3; cursor: not-allowed; }
+        .slider-nav button:disabled:hover { background: transparent; color: var(--accent); box-shadow: none; }
 
         /* ----- CART SIDEBAR (Compact items) ----- */
         .cart-overlay {
@@ -1241,6 +1481,16 @@
         </div>
     </section>
 
+    <!-- ===== PAGE : PRODUCT DETAIL ===== -->
+    <section class="page-section" id="page-product-detail">
+        <div class="section-container">
+            <button class="btn-back" onclick="goBackFromDetail()">← Back</button>
+            <div id="productDetailContent">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </section>
+
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <p>&copy; 2024 <span>HAYAT AND CO</span> · All Rights Reserved</p>
@@ -1260,10 +1510,34 @@
         ];
 
         // ============================================================
-        // DATA – Single watch: Rolex Bluesy
+        // DATA – Single watch: Rolex Bluesy (with extra product details)
         // ============================================================
         const rawProducts = [
-            { id: 1, brand: 'Rolex', name: 'Bluesy', price: 10000, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'R', strapColor: '#1a1a2e', dialColor: '#0a1628', caseColor: '#c9a96e' }
+            { 
+                id: 1, 
+                brand: 'Rolex', 
+                name: 'Bluesy', 
+                price: 10000, 
+                originalPrice: 0, 
+                discount: '-40%', 
+                popular: true, 
+                featured: true, 
+                brandInitial: 'R', 
+                strapColor: '#1a1a2e', 
+                dialColor: '#0a1628', 
+                caseColor: '#c9a96e',
+                description: 'The Rolex Bluesy is a iconic timepiece featuring a stunning blue dial and gold accents. Crafted with precision and elegance, this watch is a symbol of luxury and status. The automatic movement ensures accurate timekeeping, while the scratch-resistant sapphire crystal protects the dial.',
+                details: {
+                    'Movement': 'Automatic Caliber 3135',
+                    'Power Reserve': '48 hours',
+                    'Water Resistance': '300 meters',
+                    'Case Material': '18K Yellow Gold & Stainless Steel',
+                    'Dial': 'Blue with Gold Accents',
+                    'Bracelet': 'Oyster with Gold Links',
+                    'Crystal': 'Scratch-resistant Sapphire',
+                    'Warranty': '5 Years International'
+                }
+            }
         ];
 
         // Apply 40% discount
@@ -1281,6 +1555,8 @@
         let cart = JSON.parse(localStorage.getItem('hayatCart')) || [];
         let shopSubmenuOpen = false;
         let activeBrandFilter = null;
+        let currentSliderPosition = 0;
+        let sliderMaxPosition = 0;
 
         // ============================================================
         // REVIEWS CAROUSEL (4s, no hover pause)
@@ -1350,6 +1626,190 @@
             document.querySelectorAll('.why-dot').forEach((dot, i) => {
                 dot.classList.toggle('active', i === index);
             });
+        }
+
+        // ============================================================
+        // PRODUCT DETAIL PAGE
+        // ============================================================
+        let detailProductId = null;
+
+        function openProductDetail(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            detailProductId = productId;
+            const container = document.getElementById('productDetailContent');
+            
+            // Get "People Also Like" products (all other products)
+            const otherProducts = products.filter(p => p.id !== productId);
+            
+            // Build product details HTML
+            let detailsHtml = '';
+            if (product.details) {
+                detailsHtml = Object.entries(product.details).map(([key, value]) => `
+                    <div class="pd-detail-item">
+                        <div class="label">${key}</div>
+                        <div class="value">${value}</div>
+                    </div>
+                `).join('');
+            } else {
+                detailsHtml = `
+                    <div class="pd-detail-item">
+                        <div class="label">Brand</div>
+                        <div class="value">${product.brand}</div>
+                    </div>
+                    <div class="pd-detail-item">
+                        <div class="label">Model</div>
+                        <div class="value">${product.name}</div>
+                    </div>
+                    <div class="pd-detail-item">
+                        <div class="label">Case Material</div>
+                        <div class="value">Stainless Steel</div>
+                    </div>
+                    <div class="pd-detail-item">
+                        <div class="label">Movement</div>
+                        <div class="value">Automatic</div>
+                    </div>
+                `;
+            }
+
+            const discountBadge = product.discount ? `<span class="product-detail-discount">${product.discount}</span>` : '';
+            const originalPriceHtml = product.originalPrice ? `<span class="original">Rs ${product.originalPrice.toLocaleString()}</span>` : '';
+
+            container.innerHTML = `
+                <div class="product-detail-hero">
+                    <div class="product-detail-image">
+                        <img src="rolexbluesy.jpg" alt="${product.brand} ${product.name}" class="watch-img" />
+                    </div>
+                    <div class="product-detail-info">
+                        <p class="product-detail-brand">${product.brand}</p>
+                        <h1 class="product-detail-name">${product.name}</h1>
+                        <div class="product-detail-price">
+                            ${originalPriceHtml}
+                            Rs ${product.price.toLocaleString()}
+                            ${discountBadge}
+                        </div>
+                        <p class="product-detail-desc">${product.description || 'A timeless masterpiece crafted with precision and elegance. This watch embodies the perfect blend of tradition and innovation.'}</p>
+                        <div class="product-detail-actions">
+                            <button class="btn-add-to-cart" id="detailAddToCart" onclick="addToCartFromDetail(${product.id})">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pd-details-section">
+                    <h3>📋 Product Details</h3>
+                    <div class="pd-details-grid">
+                        ${detailsHtml}
+                    </div>
+                </div>
+
+                <div class="pal-section">
+                    <h3>🔄 People Also Like</h3>
+                    <div class="slider-wrapper">
+                        <div class="slider-container" id="palSlider">
+                            ${otherProducts.length > 0 ? otherProducts.map(p => `
+                                <div class="slider-item" onclick="openProductDetail(${p.id})">
+                                    <div class="slider-item-img">
+                                        <img src="rolexbluesy.jpg" alt="${p.brand} ${p.name}" />
+                                    </div>
+                                    <div class="slider-item-body">
+                                        <div class="slider-item-brand">${p.brand}</div>
+                                        <div class="slider-item-name">${p.name}</div>
+                                        <div class="slider-item-price">
+                                            ${p.originalPrice ? `<span class="original">Rs ${p.originalPrice.toLocaleString()}</span>` : ''}
+                                            Rs ${p.price.toLocaleString()}
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('') : '<div style="padding:1rem;color:var(--text-muted);">No other watches available</div>'}
+                        </div>
+                    </div>
+                    ${otherProducts.length > 1 ? `
+                        <div class="slider-nav">
+                            <button id="sliderPrev" onclick="slidePal(-1)">‹</button>
+                            <button id="sliderNext" onclick="slidePal(1)">›</button>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            // Initialize slider
+            currentSliderPosition = 0;
+            updateSliderButtons();
+            
+            // Show the page
+            navigateTo('product-detail');
+        }
+
+        function goBackFromDetail() {
+            navigateTo('shop-all');
+        }
+
+        // ============================================================
+        // PEOPLE ALSO LIKE - MANUAL SLIDER
+        // ============================================================
+        function slidePal(direction) {
+            const container = document.getElementById('palSlider');
+            if (!container) return;
+            const items = container.querySelectorAll('.slider-item');
+            if (items.length === 0) return;
+            
+            const itemWidth = items[0].offsetWidth + 24; // width + gap
+            const visibleItems = Math.floor(container.parentElement.offsetWidth / itemWidth);
+            const totalItems = items.length;
+            const maxPosition = Math.max(0, totalItems - visibleItems);
+            
+            currentSliderPosition += direction;
+            currentSliderPosition = Math.max(0, Math.min(maxPosition, currentSliderPosition));
+            
+            container.style.transform = `translateX(-${currentSliderPosition * itemWidth}px)`;
+            updateSliderButtons();
+        }
+
+        function updateSliderButtons() {
+            const container = document.getElementById('palSlider');
+            if (!container) return;
+            const items = container.querySelectorAll('.slider-item');
+            if (items.length === 0) return;
+            
+            const itemWidth = items[0].offsetWidth + 24;
+            const visibleItems = Math.floor(container.parentElement.offsetWidth / itemWidth);
+            const totalItems = items.length;
+            const maxPosition = Math.max(0, totalItems - visibleItems);
+            
+            const prevBtn = document.getElementById('sliderPrev');
+            const nextBtn = document.getElementById('sliderNext');
+            if (prevBtn) prevBtn.disabled = currentSliderPosition === 0;
+            if (nextBtn) nextBtn.disabled = currentSliderPosition >= maxPosition;
+        }
+
+        // Re-calculate slider on resize
+        let sliderTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(sliderTimeout);
+            sliderTimeout = setTimeout(() => {
+                if (document.getElementById('page-product-detail').classList.contains('active')) {
+                    updateSliderButtons();
+                }
+            }, 300);
+        });
+
+        // ============================================================
+        // ADD TO CART FROM DETAIL PAGE
+        // ============================================================
+        function addToCartFromDetail(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            const existing = cart.find(i => i.id === productId);
+            if (existing) existing.qty++;
+            else cart.push({ id: productId, qty: 1 });
+            saveCart();
+            showToast('Added to Cart ✓');
+            const btn = document.getElementById('detailAddToCart');
+            if (btn) {
+                btn.classList.add('added');
+                btn.textContent = '✓ Added';
+                setTimeout(() => { btn.classList.remove('added'); btn.textContent = 'Add to Cart'; }, 1500);
+            }
         }
 
         // ============================================================
@@ -1508,6 +1968,10 @@
             if (page === 'shop-by-brand') { activeBrandFilter = null; renderBrandPage(); }
             if (page === 'shop-all') renderShopAllPage();
             if (page === 'home') renderHomePage();
+            if (page === 'product-detail') {
+                // Re-calculate slider after render
+                setTimeout(updateSliderButtons, 100);
+            }
         }
 
         // ============================================================
@@ -1519,7 +1983,7 @@
             title.textContent = brand;
             const filtered = products.filter(p => p.brand === brand);
             if (filtered.length) {
-                grid.innerHTML = filtered.map(p => createProductCard(p)).join('');
+                grid.innerHTML = filtered.map(p => createProductCard(p, true)).join('');
             } else {
                 grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:3rem 1rem;font-size:1.1rem;">No watches available for this brand.</p>';
             }
@@ -1537,15 +2001,12 @@
         }
 
         // ============================================================
-        // RENDER PRODUCT CARDS with external image - FIXED to fill card
+        // RENDER PRODUCT CARDS with click handler
         // ============================================================
-        function createProductCard(product) {
-            // Using external image placeholder: rolexbluesy.jpg
-            // The image will fill the entire card via CSS
+        function createProductCard(product, isBrandDetail = false) {
             const watchImage = `<img src="rolexbluesy.jpg" alt="${product.brand} ${product.name}" class="watch-img" />`;
-            
             const discountBadge = product.discount ? `<span class="product-card-badge">${product.discount}</span>` : '';
-            return `<div class="product-card">
+            return `<div class="product-card" onclick="openProductDetail(${product.id})">
                         <div class="product-card-image">
                             ${watchImage}
                             ${discountBadge}
@@ -1558,7 +2019,7 @@
                             <div>
                                 <p class="product-card-price">${product.originalPrice ? `<span class="original">Rs${product.originalPrice.toLocaleString()}</span>` : ''} Rs ${product.price.toLocaleString()}</p>
                                 <div class="product-card-actions">
-                                    <button class="btn-cart-icon" data-id="${product.id}" onclick="addToCart(${product.id})" aria-label="Add to cart">
+                                    <button class="btn-cart-icon" data-id="${product.id}" onclick="event.stopPropagation(); addToCart(${product.id})" aria-label="Add to cart">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
                                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
