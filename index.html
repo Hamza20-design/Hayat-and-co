@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HAYAT AND CO | Luxury Watches</title>
+    <title>HAYAT AND CO | Rolex Bluesy</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
         /* ----- ROOT : NAVY, WHITE & METALLIC ACCENT ----- */
@@ -1084,7 +1084,7 @@
     <div class="toast" id="toast"></div>
 
     <!-- ===== WHATSAPP FLOATING BUTTON ===== -->
-    <a href="https://wa.me/923009325696?text=Hello%20HAYAT%20AND%20CO%2C%20I'm%20interested%20in%20your%20watch%20collection!" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/923009325696?text=Hello%20HAYAT%20AND%20CO%2C%20I'm%20interested%20in%20the%20Rolex%20Bluesy!" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
         <span class="whatsapp-tooltip">Chat with us</span>
         <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
     </a>
@@ -1244,37 +1244,10 @@
         ];
 
         // ============================================================
-        // DATA – Multi-brand watch collection (filtered to only brands in brandList)
+        // DATA – Single watch: Rolex Bluesy
         // ============================================================
         const rawProducts = [
-            // Rolex
-            { id: 5, brand: 'Rolex', name: 'Submariner Date', price: 12500, originalPrice: 13500, discount: '', popular: true, featured: true, brandInitial: 'R', strapColor: '#1a1a2e', dialColor: '#0a1628', caseColor: '#c9a96e' },
-            { id: 6, brand: 'Rolex', name: 'Daytona Chronograph', price: 35000, originalPrice: 0, discount: '', popular: true, featured: false, brandInitial: 'R', strapColor: '#2c2a28', dialColor: '#1a1715', caseColor: '#d4af37' },
-            { id: 7, brand: 'Rolex', name: 'Datejust 41', price: 9800, originalPrice: 0, discount: '', popular: false, featured: true, brandInitial: 'R', strapColor: '#8B6B4A', dialColor: '#f5efe8', caseColor: '#c9a96e' },
-            // Patek Philippe
-            { id: 8, brand: 'Patek Philippe', name: 'Nautilus 5711', price: 85000, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'PP', strapColor: '#1a1715', dialColor: '#0f0e0d', caseColor: '#d4af37' },
-            { id: 9, brand: 'Patek Philippe', name: 'Calatrava', price: 28000, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'PP', strapColor: '#6B4F3A', dialColor: '#f5efe8', caseColor: '#c9a96e' },
-            // Omega X Swatch
-            { id: 10, brand: 'Omega X Swatch', name: 'MoonSwatch Mission', price: 450, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'Ω', strapColor: '#2c2a28', dialColor: '#1a1715', caseColor: '#d4af37' },
-            { id: 11, brand: 'Omega X Swatch', name: 'MoonSwatch Neptune', price: 480, originalPrice: 0, discount: '', popular: false, featured: true, brandInitial: 'Ω', strapColor: '#1a3a6a', dialColor: '#0a1a3a', caseColor: '#d4af37' },
-            // Hamilton
-            { id: 12, brand: 'Hamilton', name: 'Khaki Field Auto', price: 850, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'H', strapColor: '#6B4F3A', dialColor: '#1a1715', caseColor: '#c9a96e' },
-            { id: 13, brand: 'Hamilton', name: 'Intra-Matic Chrono', price: 2200, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'H', strapColor: '#2c2a28', dialColor: '#f5efe8', caseColor: '#c9a96e' },
-            // Seiko
-            { id: 14, brand: 'Seiko', name: 'Prospex Diver', price: 950, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'S', strapColor: '#1a1a2e', dialColor: '#0a1628', caseColor: '#d4af37' },
-            { id: 15, brand: 'Seiko', name: 'Presage Cocktail', price: 680, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'S', strapColor: '#8B6B4A', dialColor: '#f5efe8', caseColor: '#c9a96e' },
-            // Orient
-            { id: 16, brand: 'Orient', name: 'Bambino V2', price: 520, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'O', strapColor: '#6B4F3A', dialColor: '#f5efe8', caseColor: '#c9a96e' },
-            { id: 17, brand: 'Orient', name: 'Kamasu Diver', price: 620, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'O', strapColor: '#1a1a2e', dialColor: '#0a1628', caseColor: '#d4af37' },
-            // Rado
-            { id: 18, brand: 'Rado', name: 'Captain Cook', price: 2400, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'R', strapColor: '#1a1715', dialColor: '#0f0e0d', caseColor: '#d4af37' },
-            { id: 19, brand: 'Rado', name: 'True Square', price: 1800, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'R', strapColor: '#2c2a28', dialColor: '#1a1715', caseColor: '#c9a96e' },
-            // Oris
-            { id: 20, brand: 'Oris', name: 'Aquis Date', price: 2100, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'O', strapColor: '#1a1a2e', dialColor: '#0a1628', caseColor: '#c9a96e' },
-            { id: 21, brand: 'Oris', name: 'Big Crown Pointer', price: 1700, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'O', strapColor: '#6B4F3A', dialColor: '#f5efe8', caseColor: '#d4af37' },
-            // Tissot
-            { id: 22, brand: 'Tissot', name: 'PRX Powermatic', price: 725, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'T', strapColor: '#1a1715', dialColor: '#f5efe8', caseColor: '#c9a96e' },
-            { id: 23, brand: 'Tissot', name: 'Le Locle', price: 550, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'T', strapColor: '#8B6B4A', dialColor: '#f5efe8', caseColor: '#c9a96e' }
+            { id: 1, brand: 'Rolex', name: 'Bluesy', price: 10000, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'R', strapColor: '#1a1a2e', dialColor: '#0a1628', caseColor: '#c9a96e' }
         ];
 
         // Apply 40% discount
@@ -1287,7 +1260,7 @@
         }
 
         const products = applyDiscounts(rawProducts);
-        const brandList = ['Hamilton', 'Seiko', 'Omega X Swatch', 'Orient', 'Rado', 'Oris', 'Tissot', 'Rolex', 'Patek Philippe'];
+        const brandList = ['Rolex'];
 
         let cart = JSON.parse(localStorage.getItem('hayatCart')) || [];
         let shopSubmenuOpen = false;
@@ -1548,13 +1521,13 @@
         }
 
         // ============================================================
-        // SVG WATCH GENERATOR
+        // SVG WATCH GENERATOR - Rolex Bluesy
         // ============================================================
         function generateWatchSVG(product) {
-            const strap = product.strapColor || '#8B6B4A';
-            const dial = product.dialColor || '#f5efe8';
+            const strap = product.strapColor || '#1a1a2e';
+            const dial = product.dialColor || '#0a1628';
             const caseColor = product.caseColor || '#c9a96e';
-            const initial = product.brandInitial || 'C';
+            const initial = product.brandInitial || 'R';
             return `<svg class="watch-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                         <rect x="70" y="8" width="60" height="55" rx="6" fill="${strap}" />
                         <rect x="76" y="12" width="48" height="48" rx="4" fill="${strap}" opacity="0.6" />
