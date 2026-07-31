@@ -512,7 +512,7 @@
             .product-card-image { min-height: 160px !important; padding: 0.5rem !important; }
             .product-card-name { font-size: 0.85rem !important; }
             .product-card-price { font-size: 0.8rem !important; }
-            .watch-svg { width: 100px !important; height: 100px !important; }
+            .watch-img { width: 100px !important; height: 100px !important; }
             .btn-cart-icon { width: 34px !important; height: 34px !important; min-width: 34px !important; }
             .btn-cart-icon svg { width: 16px !important; height: 16px !important; }
             .product-card-body { padding: 0.6rem 0.8rem 0.8rem !important; }
@@ -566,7 +566,14 @@
             padding: 1rem;
             flex: 1;
         }
-        .watch-svg { width: 140px; height: 140px; display: block; flex-shrink: 0; }
+        .watch-img {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            display: block;
+            flex-shrink: 0;
+            border-radius: 8px;
+        }
         .product-card-badge {
             position: absolute;
             top: 12px;
@@ -1521,66 +1528,18 @@
         }
 
         // ============================================================
-        // SVG WATCH GENERATOR - Rolex Bluesy
-        // ============================================================
-        function generateWatchSVG(product) {
-            const strap = product.strapColor || '#1a1a2e';
-            const dial = product.dialColor || '#0a1628';
-            const caseColor = product.caseColor || '#c9a96e';
-            const initial = product.brandInitial || 'R';
-            return `<svg class="watch-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="70" y="8" width="60" height="55" rx="6" fill="${strap}" />
-                        <rect x="76" y="12" width="48" height="48" rx="4" fill="${strap}" opacity="0.6" />
-                        <rect x="74" y="10" width="52" height="50" rx="5" fill="none" stroke="${strap}" stroke-width="1.5" stroke-dasharray="3,4" opacity="0.5" />
-                        <rect x="70" y="137" width="60" height="55" rx="6" fill="${strap}" />
-                        <rect x="76" y="140" width="48" height="48" rx="4" fill="${strap}" opacity="0.6" />
-                        <rect x="74" y="139" width="52" height="50" rx="5" fill="none" stroke="${strap}" stroke-width="1.5" stroke-dasharray="3,4" opacity="0.5" />
-                        <circle cx="100" cy="100" r="52" fill="rgba(0,0,0,0.08)" />
-                        <circle cx="100" cy="100" r="50" fill="${caseColor}" stroke="#a08050" stroke-width="1.5" />
-                        <circle cx="100" cy="100" r="43" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
-                        <circle cx="100" cy="100" r="40" fill="${dial}" />
-                        <circle cx="100" cy="100" r="38" fill="none" stroke="rgba(0,0,0,0.04)" stroke-width="1" />
-                        <g stroke="#1a1715" stroke-width="1.5" stroke-linecap="round">
-                            <line x1="100" y1="64" x2="100" y2="70" />
-                            <line x1="132" y1="100" x2="126" y2="100" />
-                            <line x1="100" y1="136" x2="100" y2="130" />
-                            <line x1="68" y1="100" x2="74" y2="100" />
-                            <line x1="123" y1="71" x2="119" y2="75" stroke-width="1" />
-                            <line x1="129" y1="77" x2="125" y2="81" stroke-width="1" />
-                            <line x1="132" y1="86" x2="126" y2="88" stroke-width="1" />
-                            <line x1="132" y1="114" x2="126" y2="112" stroke-width="1" />
-                            <line x1="129" y1="123" x2="125" y2="119" stroke-width="1" />
-                            <line x1="123" y1="129" x2="119" y2="125" stroke-width="1" />
-                            <line x1="77" y1="129" x2="81" y2="125" stroke-width="1" />
-                            <line x1="71" y1="123" x2="75" y2="119" stroke-width="1" />
-                            <line x1="68" y1="114" x2="74" y2="112" stroke-width="1" />
-                            <line x1="68" y1="86" x2="74" y2="88" stroke-width="1" />
-                            <line x1="71" y1="77" x2="75" y2="81" stroke-width="1" />
-                            <line x1="77" y1="71" x2="81" y2="75" stroke-width="1" />
-                        </g>
-                        <text x="100" y="82" text-anchor="middle" font-family="'Playfair Display',serif" font-size="11" font-weight="700" fill="${caseColor}" letter-spacing="1">${initial}</text>
-                        <g transform="rotate(75, 100, 100)">
-                            <rect x="98" y="80" width="4" height="22" rx="2" fill="#1a1715" />
-                            <circle cx="100" cy="100" r="3" fill="#1a1715" />
-                        </g>
-                        <g transform="rotate(210, 100, 100)">
-                            <rect x="98.5" y="70" width="3" height="30" rx="1.5" fill="#1a1715" opacity="0.85" />
-                        </g>
-                        <circle cx="100" cy="100" r="3.5" fill="${caseColor}" stroke="#1a1715" stroke-width="0.8" />
-                        <rect x="118" y="96" width="10" height="8" rx="1.5" fill="#fcf9f5" stroke="rgba(0,0,0,0.15)" stroke-width="0.5" />
-                        <text x="123" y="103" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="5" font-weight="600" fill="#1a1715">31</text>
-                        <text x="100" y="118" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="4.5" font-weight="400" fill="var(--text-muted)" letter-spacing="1.5" opacity="0.6">AUTOMATIC</text>
-                    </svg>`;
-        }
-
-        // ============================================================
-        // RENDER PRODUCT CARDS
+        // RENDER PRODUCT CARDS with external image
         // ============================================================
         function createProductCard(product) {
-            const svg = generateWatchSVG(product);
+            // Using external image placeholder: rolexbluesy.jpg
+            const watchImage = `<img src="rolexbluesy.jpg" alt="${product.brand} ${product.name}" class="watch-img" />`;
+            
             const discountBadge = product.discount ? `<span class="product-card-badge">${product.discount}</span>` : '';
             return `<div class="product-card">
-                        <div class="product-card-image">${svg}${discountBadge}</div>
+                        <div class="product-card-image">
+                            ${watchImage}
+                            ${discountBadge}
+                        </div>
                         <div class="product-card-body">
                             <div>
                                 <p class="product-card-brand">${product.brand}</p>
