@@ -90,29 +90,15 @@
             letter-spacing: 0.5px;
         }
         @keyframes scrollBanner {
-            0% {
-                transform: translateX(100vw);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
         }
 
         @media (max-width: 600px) {
-            #top-banner {
-                height: 30px;
-                padding: 4px 0;
-            }
-            .banner-content {
-                font-size: 0.65rem;
-                animation-duration: 15s;
-            }
-            .header {
-                top: 30px !important;
-            }
-            .page-section {
-                padding-top: calc(75px + 30px) !important;
-            }
+            #top-banner { height: 30px; padding: 4px 0; }
+            .banner-content { font-size: 0.65rem; animation-duration: 15s; }
+            .header { top: 30px !important; }
+            .page-section { padding-top: calc(75px + 30px) !important; }
         }
 
         /* ----- HEADER (navy tint) ----- */
@@ -149,14 +135,8 @@
             cursor: pointer;
             white-space: nowrap;
         }
-        .logo span {
-            color: var(--white);
-            font-weight: 400;
-            letter-spacing: 1px;
-        }
-        .logo:hover {
-            color: var(--accent-light);
-        }
+        .logo span { color: var(--white); font-weight: 400; letter-spacing: 1px; }
+        .logo:hover { color: var(--accent-light); }
 
         .header-actions {
             display: flex;
@@ -175,13 +155,8 @@
             justify-content: center;
             transition: color 0.3s;
         }
-        .cart-icon-wrapper:hover {
-            color: var(--accent);
-        }
-        .cart-icon-wrapper svg {
-            width: 22px;
-            height: 22px;
-        }
+        .cart-icon-wrapper:hover { color: var(--accent); }
+        .cart-icon-wrapper svg { width: 22px; height: 22px; }
         .cart-count {
             position: absolute;
             top: -2px;
@@ -222,19 +197,10 @@
             transition: all 0.3s;
             transform-origin: center;
         }
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-            transform: scaleX(0);
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-        .hamburger:hover span {
-            background: var(--accent);
-        }
+        .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        .hamburger:hover span { background: var(--accent); }
 
         /* ----- MENU OVERLAY (navy) ----- */
         .menu-overlay {
@@ -253,10 +219,7 @@
             pointer-events: none;
             transition: opacity 0.4s;
         }
-        .menu-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .menu-overlay.active { opacity: 1; pointer-events: all; }
         .menu-content {
             text-align: center;
             display: flex;
@@ -278,24 +241,18 @@
             transform: translateY(30px);
             transition: all 0.35s;
         }
-        .menu-overlay.active .menu-item {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .menu-overlay.active .menu-item { opacity: 1; transform: translateY(0); }
         .menu-overlay.active .menu-item:nth-child(1) { transition-delay: 0.1s; }
         .menu-overlay.active .menu-item:nth-child(2) { transition-delay: 0.2s; }
         .menu-overlay.active .menu-item:nth-child(3) { transition-delay: 0.3s; }
         .menu-overlay.active .menu-item:nth-child(4) { transition-delay: 0.35s; }
         .menu-overlay.active .menu-item:nth-child(5) { transition-delay: 0.4s; }
-        .menu-item:hover {
-            color: var(--accent);
-            letter-spacing: 5px;
-        }
+        .menu-item:hover { color: var(--accent); letter-spacing: 5px; }
         .menu-item-sub {
             font-size: 1.5rem;
             font-weight: 400;
             letter-spacing: 2px;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255,255,255,0.6);
             cursor: pointer;
             background: none;
             border: none;
@@ -308,18 +265,11 @@
             transform: translateY(20px);
             transition: all 0.3s;
         }
-        .menu-overlay.active .menu-item-sub {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .menu-overlay.active .menu-item-sub { opacity: 1; transform: translateY(0); }
         .menu-overlay.active .menu-item-sub:nth-child(3) { transition-delay: 0.35s; }
         .menu-overlay.active .menu-item-sub:nth-child(4) { transition-delay: 0.4s; }
-        .menu-item-sub.hidden {
-            display: none !important;
-        }
-        .menu-item-sub:hover {
-            color: var(--accent);
-        }
+        .menu-item-sub.hidden { display: none !important; }
+        .menu-item-sub:hover { color: var(--accent); }
         .menu-divider {
             width: 60px;
             height: 1px;
@@ -328,10 +278,7 @@
             opacity: 0;
             transition: opacity 0.5s;
         }
-        .menu-overlay.active .menu-divider {
-            opacity: 1;
-            transition-delay: 0.45s;
-        }
+        .menu-overlay.active .menu-divider { opacity: 1; transition-delay: 0.45s; }
 
         /* ----- PAGE SECTIONS ----- */
         .page-section {
@@ -340,18 +287,10 @@
             min-height: 100vh;
             animation: fadeInSection 0.5s ease;
         }
-        .page-section.active {
-            display: block;
-        }
+        .page-section.active { display: block; }
         @keyframes fadeInSection {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ----- HERO (NAVY BLUE) ----- */
@@ -366,34 +305,40 @@
             overflow: hidden;
             background: radial-gradient(ellipse at center, #1A2A4A 0%, #0A1628 100%);
         }
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.35;
+            pointer-events: none;
+        }
         .hero-bg-glow {
             position: absolute;
             width: 600px;
             height: 600px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             animation: heroGlow 6s ease-in-out infinite;
             pointer-events: none;
+            z-index: 1;
         }
         @keyframes heroGlow {
-            0%,
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.7;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.3);
-                opacity: 1;
-            }
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
         }
         .hero-particles {
             position: absolute;
             inset: 0;
             pointer-events: none;
             overflow: hidden;
+            z-index: 1;
         }
         .particle {
             position: absolute;
@@ -405,20 +350,10 @@
             opacity: 0;
         }
         @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-            20% {
-                opacity: 0.9;
-            }
-            50% {
-                opacity: 0.5;
-            }
-            100% {
-                transform: translateY(-200px) scale(2);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            20% { opacity: 0.9; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-200px) scale(2); opacity: 0; }
         }
         .hero-content {
             position: relative;
@@ -445,13 +380,10 @@
             color: var(--white);
             animation: fadeInUp 1s 0.4s both;
         }
-        .hero-title em {
-            font-style: italic;
-            color: var(--accent);
-        }
+        .hero-title em { font-style: italic; color: var(--accent); }
         .hero-subtitle {
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255,255,255,0.8);
             letter-spacing: 1px;
             margin-bottom: 2.5rem;
             animation: fadeInUp 1s 0.6s both;
@@ -484,22 +416,11 @@
             transform-origin: left;
             transition: transform 0.5s;
         }
-        .hero-cta:hover {
-            color: #0A1628;
-            border-color: var(--accent);
-        }
-        .hero-cta:hover::before {
-            transform: scaleX(1);
-        }
+        .hero-cta:hover { color: #0A1628; border-color: var(--accent); }
+        .hero-cta:hover::before { transform: scaleX(1); }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .hero-scroll-indicator {
             position: absolute;
@@ -514,28 +435,11 @@
             cursor: pointer;
             z-index: 2;
         }
-        .hero-scroll-indicator span {
-            font-size: 0.6rem;
-            letter-spacing: 3px;
-            color: rgba(255, 255, 255, 0.4);
-            text-transform: uppercase;
-        }
-        .hero-scroll-line {
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--accent), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
+        .hero-scroll-indicator span { font-size: 0.6rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+        .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollPulse 2s ease-in-out infinite; }
         @keyframes scrollPulse {
-            0%,
-            100% {
-                opacity: 0.3;
-                height: 40px;
-            }
-            50% {
-                opacity: 1;
-                height: 55px;
-            }
+            0%, 100% { opacity: 0.3; height: 40px; }
+            50% { opacity: 1; height: 55px; }
         }
 
         .section-container {
@@ -587,160 +491,54 @@
             align-items: center;
             gap: 8px;
         }
-        .btn-back:hover {
-            background: var(--accent);
-            color: #fff;
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
-        }
+        .btn-back:hover { background: var(--accent); color: #fff; box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3); }
 
         /* ----- PRODUCT GRID : 2 per row ----- */
-        .product-grid,
-        .popular-grid,
-        .brand-filtered-grid {
+        .product-grid, .popular-grid, .brand-filtered-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
         @media (max-width: 600px) {
-            .product-grid,
-            .popular-grid,
-            .brand-filtered-grid {
-                gap: 1rem;
-            }
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            .menu-item {
-                font-size: 1.6rem;
-            }
-            .menu-item-sub {
-                font-size: 1.2rem;
-            }
-            .section-container {
-                padding: 2rem 1rem;
-            }
-            .header {
-                padding: 0 0.8rem;
-            }
-            .logo {
-                font-size: 1.2rem;
-            }
-            .product-card {
-                min-height: 320px !important;
-            }
-            .product-card-image {
-                min-height: 160px !important;
-                padding: 0.5rem !important;
-            }
-            .product-card-name {
-                font-size: 0.85rem !important;
-            }
-            .product-card-price {
-                font-size: 0.8rem !important;
-            }
-            .watch-svg {
-                width: 100px !important;
-                height: 100px !important;
-            }
-            .btn-cart-icon {
-                width: 34px !important;
-                height: 34px !important;
-                min-width: 34px !important;
-            }
-            .btn-cart-icon svg {
-                width: 16px !important;
-                height: 16px !important;
-            }
-            .product-card-body {
-                padding: 0.6rem 0.8rem 0.8rem !important;
-            }
-            .product-card-badge {
-                font-size: 0.55rem !important;
-                padding: 3px 10px !important;
-                top: 8px !important;
-                left: 8px !important;
-            }
-            .brand-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 0.8rem !important;
-            }
-            .brand-card {
-                padding: 1rem 0.8rem !important;
-                font-size: 0.8rem !important;
-            }
-            .brand-card .brand-icon {
-                font-size: 1.5rem !important;
-            }
-            .btn-back {
-                font-size: 0.7rem !important;
-                padding: 8px 16px !important;
-            }
-            .brand-logo-placeholder img {
-                width: 40px !important;
-                height: 40px !important;
-            }
-            .brand-name-fallback {
-                font-size: 0.7rem !important;
-            }
-            /* Reviews mobile */
-            .review-card {
-                padding: 1rem 1rem !important;
-                min-height: 180px !important;
-                aspect-ratio: 1 / 1 !important;
-            }
-            .review-text {
-                font-size: 0.8rem !important;
-                line-height: 1.5 !important;
-            }
-            .review-stars {
-                font-size: 0.9rem !important;
-            }
-            .review-avatar {
-                width: 32px !important;
-                height: 32px !important;
-                font-size: 0.8rem !important;
-            }
-            .review-author-info h4 {
-                font-size: 0.85rem !important;
-            }
-            .review-author-info span {
-                font-size: 0.65rem !important;
-            }
-            .reviews-section {
-                padding: 2.5rem 1rem !important;
-            }
-            .review-dots {
-                margin-top: 1rem !important;
-            }
-            .review-dot {
-                width: 10px !important;
-                height: 10px !important;
-            }
-            /* Why Choose Us mobile */
-            .why-slide .why-card {
-                max-width: 340px !important;
-                padding: 1.2rem !important;
-            }
-            .why-img {
-                height: 140px !important;
-            }
-            .why-choose-us {
-                padding: 2.5rem 1rem !important;
-            }
-            .why-choose-us .section-title {
-                font-size: 2rem !important;
-            }
-            .about-landing {
-                padding: 2rem 1rem !important;
-            }
-            .about-landing h2 {
-                font-size: 2rem !important;
-            }
-            .about-values-landing {
-                grid-template-columns: 1fr !important;
-                gap: 1rem !important;
-            }
+            .product-grid, .popular-grid, .brand-filtered-grid { gap: 1rem; }
+            .hero-title { font-size: 2.2rem; }
+            .menu-item { font-size: 1.6rem; }
+            .menu-item-sub { font-size: 1.2rem; }
+            .section-container { padding: 2rem 1rem; }
+            .header { padding: 0 0.8rem; }
+            .logo { font-size: 1.2rem; }
+            .product-card { min-height: 320px !important; }
+            .product-card-image { min-height: 160px !important; padding: 0.5rem !important; }
+            .product-card-name { font-size: 0.85rem !important; }
+            .product-card-price { font-size: 0.8rem !important; }
+            .watch-svg { width: 100px !important; height: 100px !important; }
+            .btn-cart-icon { width: 34px !important; height: 34px !important; min-width: 34px !important; }
+            .btn-cart-icon svg { width: 16px !important; height: 16px !important; }
+            .product-card-body { padding: 0.6rem 0.8rem 0.8rem !important; }
+            .product-card-badge { font-size: 0.55rem !important; padding: 3px 10px !important; top: 8px !important; left: 8px !important; }
+            .brand-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.8rem !important; }
+            .brand-card { padding: 1rem 0.8rem !important; font-size: 0.8rem !important; }
+            .brand-card .brand-icon { font-size: 1.5rem !important; }
+            .btn-back { font-size: 0.7rem !important; padding: 8px 16px !important; }
+            .brand-logo-placeholder img { width: 40px !important; height: 40px !important; }
+            .brand-name-fallback { font-size: 0.7rem !important; }
+            .review-card { padding: 1rem 1rem !important; min-height: 180px !important; aspect-ratio: 1 / 1 !important; }
+            .review-text { font-size: 0.8rem !important; line-height: 1.5 !important; }
+            .review-stars { font-size: 0.9rem !important; }
+            .review-avatar { width: 32px !important; height: 32px !important; font-size: 0.8rem !important; }
+            .review-author-info h4 { font-size: 0.85rem !important; }
+            .review-author-info span { font-size: 0.65rem !important; }
+            .reviews-section { padding: 2.5rem 1rem !important; }
+            .review-dots { margin-top: 1rem !important; }
+            .review-dot { width: 10px !important; height: 10px !important; }
+            .why-slide .why-card { max-width: 340px !important; padding: 1.2rem !important; }
+            .why-img { height: 140px !important; }
+            .why-choose-us { padding: 2.5rem 1rem !important; }
+            .why-choose-us .section-title { font-size: 2rem !important; }
+            .about-landing { padding: 2rem 1rem !important; }
+            .about-landing h2 { font-size: 2rem !important; }
+            .about-values-landing { grid-template-columns: 1fr !important; gap: 1rem !important; }
         }
 
         /* ----- PRODUCT CARD ----- */
@@ -756,10 +554,7 @@
             position: relative;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .product-card:hover {
-            border-color: var(--accent);
-            box-shadow: var(--shadow-md);
-        }
+        .product-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); }
 
         .product-card-image {
             display: flex;
@@ -771,14 +566,7 @@
             padding: 1rem;
             flex: 1;
         }
-
-        .watch-svg {
-            width: 140px;
-            height: 140px;
-            display: block;
-            flex-shrink: 0;
-        }
-
+        .watch-svg { width: 140px; height: 140px; display: block; flex-shrink: 0; }
         .product-card-badge {
             position: absolute;
             top: 12px;
@@ -794,7 +582,6 @@
             z-index: 2;
             box-shadow: var(--shadow-sm);
         }
-
         .product-card-body {
             padding: 0.8rem 1.2rem 1rem;
             display: flex;
@@ -834,20 +621,8 @@
             flex-wrap: wrap;
             margin-bottom: 0.2rem;
         }
-        .product-card-price .original {
-            text-decoration: line-through;
-            color: var(--text-muted);
-            font-weight: 400;
-            font-size: 0.8rem;
-        }
-
-        .product-card-actions {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            margin-top: 0.1rem;
-        }
-
+        .product-card-price .original { text-decoration: line-through; color: var(--text-muted); font-weight: 400; font-size: 0.8rem; }
+        .product-card-actions { display: flex; align-items: center; justify-content: flex-start; margin-top: 0.1rem; }
         .btn-cart-icon {
             width: 42px;
             height: 42px;
@@ -863,31 +638,10 @@
             transition: background 0.25s, color 0.25s, border-color 0.25s, box-shadow 0.25s;
             padding: 0;
         }
-        .btn-cart-icon:hover {
-            background: var(--accent);
-            color: #fff;
-            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
-        }
-        .btn-cart-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        .btn-cart-icon.added {
-            background: #27ae60;
-            border-color: #27ae60;
-            color: #fff;
-        }
-        .btn-cart-icon.added:hover {
-            background: #27ae60;
-            border-color: #27ae60;
-            color: #fff;
-            box-shadow: 0 4px 16px rgba(39, 174, 96, 0.4);
-        }
+        .btn-cart-icon:hover { background: var(--accent); color: #fff; box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3); }
+        .btn-cart-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-cart-icon.added { background: #27ae60; border-color: #27ae60; color: #fff; }
+        .btn-cart-icon.added:hover { background: #27ae60; border-color: #27ae60; color: #fff; box-shadow: 0 4px 16px rgba(39, 174, 96, 0.4); }
 
         /* ----- BRAND GRID (Shop by Brand) ----- */
         .brand-grid {
@@ -909,53 +663,16 @@
             align-items: center;
             justify-content: center;
         }
-        .brand-card:hover {
-            border-color: var(--accent);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-3px);
-        }
-        .brand-card.active {
-            border-color: var(--accent);
-            background: var(--bg-elevated);
-            box-shadow: var(--shadow-md);
-        }
-
-        .brand-logo-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            width: 100%;
-        }
-        .brand-logo-placeholder img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            border-radius: 8px;
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            padding: 4px;
-            transition: border-color 0.3s;
-        }
-        .brand-card:hover .brand-logo-placeholder img {
-            border-color: var(--accent);
-        }
-        .brand-name-fallback {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-        .brand-card:hover .brand-name-fallback {
-            color: var(--accent);
-        }
+        .brand-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+        .brand-card.active { border-color: var(--accent); background: var(--bg-elevated); box-shadow: var(--shadow-md); }
+        .brand-logo-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; width: 100%; }
+        .brand-logo-placeholder img { width: 60px; height: 60px; object-fit: contain; border-radius: 8px; background: var(--bg-elevated); border: 1px solid var(--border); padding: 4px; transition: border-color 0.3s; }
+        .brand-card:hover .brand-logo-placeholder img { border-color: var(--accent); }
+        .brand-name-fallback { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
+        .brand-card:hover .brand-name-fallback { color: var(--accent); }
 
         /* ============================================================
-           REVIEWS SECTION – AUTO-SLIDE (No pause on hover)
+           REVIEWS SECTION
            ============================================================ */
         .reviews-section {
             background: var(--bg-secondary);
@@ -965,23 +682,9 @@
             border-bottom: 1px solid var(--border);
             overflow: hidden;
         }
-        .reviews-container {
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-        .reviews-track {
-            display: flex;
-            width: 100%;
-            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
-        }
-        .review-slide {
-            flex: 0 0 100%;
-            max-width: 100%;
-            padding: 0.3rem;
-        }
+        .reviews-container { max-width: 600px; margin: 0 auto; position: relative; overflow: hidden; }
+        .reviews-track { display: flex; width: 100%; transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; }
+        .review-slide { flex: 0 0 100%; max-width: 100%; padding: 0.3rem; }
         .review-card {
             background: var(--bg-card);
             border-radius: 10px;
@@ -997,80 +700,19 @@
             justify-content: center;
             min-height: 220px;
         }
-        .review-stars {
-            color: var(--accent);
-            font-size: 1rem;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-        }
-        .review-text {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: var(--text-primary);
-            font-style: italic;
-            margin-bottom: 0.8rem;
-            flex: 1;
-            display: flex;
-            align-items: center;
-        }
-        .review-author {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-top: 0.2rem;
-            border-top: 1px solid var(--border);
-            padding-top: 0.6rem;
-        }
-        .review-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--navy);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-            flex-shrink: 0;
-        }
-        .review-author-info h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.9rem;
-            color: var(--text-primary);
-        }
-        .review-author-info span {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-        .review-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.2rem;
-        }
-        .review-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: 2px solid var(--accent);
-            background: transparent;
-            cursor: pointer;
-            transition: all 0.3s;
-            padding: 0;
-        }
-        .review-dot.active {
-            background: var(--accent);
-            transform: scale(1.2);
-        }
-        .review-dot:hover {
-            background: var(--accent-light);
-            border-color: var(--accent-light);
-        }
+        .review-stars { color: var(--accent); font-size: 1rem; letter-spacing: 2px; margin-bottom: 0.5rem; }
+        .review-text { font-size: 0.9rem; line-height: 1.6; color: var(--text-primary); font-style: italic; margin-bottom: 0.8rem; flex: 1; display: flex; align-items: center; }
+        .review-author { display: flex; align-items: center; gap: 0.8rem; margin-top: 0.2rem; border-top: 1px solid var(--border); padding-top: 0.6rem; }
+        .review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; font-family: 'Playfair Display', serif; flex-shrink: 0; }
+        .review-author-info h4 { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--text-primary); }
+        .review-author-info span { font-size: 0.7rem; color: var(--text-muted); }
+        .review-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.2rem; }
+        .review-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--accent); background: transparent; cursor: pointer; transition: all 0.3s; padding: 0; }
+        .review-dot.active { background: var(--accent); transform: scale(1.2); }
+        .review-dot:hover { background: var(--accent-light); border-color: var(--accent-light); }
 
         /* ============================================================
-           WHY CHOOSE US – CAROUSEL (3s auto-slide, no pause)
+           WHY CHOOSE US – CAROUSEL
            ============================================================ */
         .why-choose-us {
             background: var(--bg-primary);
@@ -1078,98 +720,20 @@
             text-align: center;
             border-bottom: 1px solid var(--border);
         }
-        .why-choose-us .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-        .why-choose-us .section-divider {
-            width: 50px;
-            height: 2px;
-            background: var(--accent);
-            margin: 1rem auto 2.5rem;
-        }
-        .why-carousel {
-            max-width: 600px;
-            margin: 0 auto;
-            overflow: hidden;
-            position: relative;
-        }
-        .why-track {
-            display: flex;
-            width: 100%;
-            transition: transform 0.6s ease-in-out;
-            will-change: transform;
-        }
-        .why-slide {
-            flex: 0 0 100%;
-            max-width: 100%;
-            padding: 0.3rem;
-        }
-        .why-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.8rem 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-            max-width: 420px;
-            margin: 0 auto;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        .why-card:hover {
-            border-color: var(--accent);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-4px);
-        }
-        .why-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1.2rem;
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-        }
-        .why-card h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: var(--accent);
-            margin-bottom: 0.6rem;
-            letter-spacing: 1px;
-        }
-        .why-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-        .why-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.8rem;
-        }
-        .why-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: 2px solid var(--accent);
-            background: transparent;
-            cursor: pointer;
-            transition: all 0.3s;
-            padding: 0;
-        }
-        .why-dot.active {
-            background: var(--accent);
-            transform: scale(1.2);
-        }
-        .why-dot:hover {
-            background: var(--accent-light);
-            border-color: var(--accent-light);
-        }
+        .why-choose-us .section-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 600; letter-spacing: 2px; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .why-choose-us .section-divider { width: 50px; height: 2px; background: var(--accent); margin: 1rem auto 2.5rem; }
+        .why-carousel { max-width: 600px; margin: 0 auto; overflow: hidden; position: relative; }
+        .why-track { display: flex; width: 100%; transition: transform 0.6s ease-in-out; will-change: transform; }
+        .why-slide { flex: 0 0 100%; max-width: 100%; padding: 0.3rem; }
+        .why-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem 1.5rem; text-align: center; box-shadow: var(--shadow-sm); max-width: 420px; margin: 0 auto; transition: border-color 0.3s, box-shadow 0.3s; }
+        .why-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-4px); }
+        .why-img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 1.2rem; background: var(--bg-elevated); border: 1px solid var(--border); }
+        .why-card h4 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--accent); margin-bottom: 0.6rem; letter-spacing: 1px; }
+        .why-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+        .why-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.8rem; }
+        .why-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--accent); background: transparent; cursor: pointer; transition: all 0.3s; padding: 0; }
+        .why-dot.active { background: var(--accent); transform: scale(1.2); }
+        .why-dot:hover { background: var(--accent-light); border-color: var(--accent-light); }
 
         /* ----- ABOUT SECTION ----- */
         .about-landing {
@@ -1180,59 +744,14 @@
             border-bottom: 1px solid var(--border);
             margin: 0 0 2rem 0;
         }
-        .about-landing h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--accent);
-            letter-spacing: 3px;
-            margin-bottom: 1rem;
-        }
-        .about-landing .about-tagline {
-            max-width: 750px;
-            margin: 0 auto 1.5rem;
-            color: var(--text-secondary);
-            font-size: 1.15rem;
-            letter-spacing: 0.5px;
-            line-height: 1.8;
-        }
-        .about-landing .about-description {
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            color: var(--text-primary);
-            font-size: 1rem;
-            line-height: 1.9;
-            letter-spacing: 0.3px;
-        }
+        .about-landing h2 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--accent); letter-spacing: 3px; margin-bottom: 1rem; }
+        .about-landing .about-tagline { max-width: 750px; margin: 0 auto 1.5rem; color: var(--text-secondary); font-size: 1.15rem; letter-spacing: 0.5px; line-height: 1.8; }
+        .about-landing .about-description { max-width: 800px; margin: 0 auto 2rem; color: var(--text-primary); font-size: 1rem; line-height: 1.9; letter-spacing: 0.3px; }
+        .social-link-instagram { display: inline-flex; align-items: center; gap: 10px; color: var(--text-secondary); text-decoration: none; margin-top: 1.5rem; padding: 10px 22px; border: 1px solid var(--border); border-radius: 30px; transition: all 0.3s; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 500; }
+        .social-link-instagram:hover { color: var(--instagram); border-color: var(--instagram); background: rgba(228, 64, 95, 0.05); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(228, 64, 95, 0.1); }
+        .social-link-instagram svg { width: 22px; height: 22px; fill: currentColor; }
 
-        .social-link-instagram {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin-top: 1.5rem;
-            padding: 10px 22px;
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            transition: all 0.3s;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        .social-link-instagram:hover {
-            color: var(--instagram);
-            border-color: var(--instagram);
-            background: rgba(228, 64, 95, 0.05);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(228, 64, 95, 0.1);
-        }
-        .social-link-instagram svg {
-            width: 22px;
-            height: 22px;
-            fill: currentColor;
-        }
-
-        /* ----- CART SIDEBAR ----- */
+        /* ----- CART SIDEBAR (Compact items) ----- */
         .cart-overlay {
             position: fixed;
             inset: 0;
@@ -1242,10 +761,7 @@
             pointer-events: none;
             transition: opacity 0.4s;
         }
-        .cart-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .cart-overlay.active { opacity: 1; pointer-events: all; }
         .cart-sidebar {
             position: fixed;
             top: 0;
@@ -1261,161 +777,50 @@
             box-shadow: var(--shadow-md);
             border-left: 1px solid var(--border);
         }
-        .cart-sidebar.active {
-            right: 0;
-        }
-        .cart-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-        .cart-header h3 {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 2px;
-            font-size: 1.3rem;
-            color: var(--text-primary);
-        }
-        .cart-close {
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            cursor: pointer;
-            font-size: 1.8rem;
-            padding: 5px;
-        }
-        .cart-close:hover {
-            color: var(--accent);
-        }
-        .cart-items {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .cart-empty {
-            text-align: center;
-            color: var(--text-muted);
-            padding: 3rem 1rem;
-            font-style: italic;
-            letter-spacing: 1px;
-        }
+        .cart-sidebar.active { right: 0; }
+        .cart-header { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; border-bottom: 1px solid var(--border); }
+        .cart-header h3 { font-family: 'Playfair Display', serif; letter-spacing: 2px; font-size: 1.3rem; color: var(--text-primary); }
+        .cart-close { background: none; border: none; color: var(--text-primary); cursor: pointer; font-size: 1.8rem; padding: 5px; }
+        .cart-close:hover { color: var(--accent); }
+        .cart-items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+        .cart-empty { text-align: center; color: var(--text-muted); padding: 3rem 1rem; font-style: italic; letter-spacing: 1px; }
         .cart-item {
             display: flex;
-            gap: 1rem;
-            background: var(--bg-card);
-            border-radius: 8px;
-            padding: 1rem;
-            border: 1px solid var(--border);
             align-items: center;
+            gap: 0.6rem;
+            background: var(--bg-card);
+            border-radius: 6px;
+            padding: 0.5rem 0.8rem;
+            border: 1px solid var(--border);
             box-shadow: var(--shadow-sm);
         }
-        .cart-item-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 35% 30%, #e8ddd0 0%, #f5efe8 100%);
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border);
-        }
-        .cart-item-img span {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.7rem;
-            color: var(--accent);
-            font-weight: 700;
-        }
-        .cart-item-info {
-            flex: 1;
-            min-width: 0;
-        }
-        .cart-item-info h5 {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: var(--text-primary);
-        }
-        .cart-item-brand {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.6rem;
-            letter-spacing: 2px;
-            color: var(--accent);
-            text-transform: uppercase;
-        }
-        .cart-item-price {
-            font-weight: 600;
-            color: var(--accent-dark);
-            font-size: 0.85rem;
-            margin-top: 3px;
-        }
-        .cart-item-qty {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .cart-item-info { flex: 1; min-width: 0; }
+        .cart-item-brand { font-family: 'Playfair Display', serif; font-size: 0.55rem; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; display: block; }
+        .cart-item-name { font-family: 'Playfair Display', serif; font-size: 0.8rem; font-weight: 600; color: var(--text-primary); margin: 1px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .cart-item-price { font-weight: 600; color: var(--accent-dark); font-size: 0.75rem; }
+        .cart-item-qty { display: flex; align-items: center; gap: 4px; }
         .qty-btn {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             border: 1px solid var(--border);
             background: transparent;
             color: var(--text-primary);
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: border-color 0.2s, color 0.2s;
+            padding: 0;
         }
-        .qty-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-        .cart-item-remove {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 4px;
-        }
-        .cart-item-remove:hover {
-            color: #c0392b;
-        }
-        .cart-footer {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border);
-        }
-        .cart-totals {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-            margin-bottom: 1.2rem;
-        }
-        .cart-totals div {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-        }
-        .cart-total {
-            font-weight: 700;
-            font-size: 1.1rem !important;
-            color: var(--accent-dark) !important;
-            border-top: 1px solid var(--border);
-            padding-top: 0.8rem;
-            margin-top: 0.3rem;
-        }
+        .qty-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .cart-item-remove { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1rem; padding: 2px; line-height: 1; }
+        .cart-item-remove:hover { color: #c0392b; }
+        .cart-footer { padding: 1.5rem; border-top: 1px solid var(--border); }
+        .cart-totals { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.2rem; }
+        .cart-totals div { display: flex; justify-content: space-between; font-size: 0.85rem; letter-spacing: 1px; color: var(--text-secondary); }
+        .cart-total { font-weight: 700; font-size: 1.1rem !important; color: var(--accent-dark) !important; border-top: 1px solid var(--border); padding-top: 0.8rem; margin-top: 0.3rem; }
         .btn-checkout {
             width: 100%;
             padding: 14px;
@@ -1431,10 +836,7 @@
             text-transform: uppercase;
             transition: background 0.25s, box-shadow 0.25s;
         }
-        .btn-checkout:hover {
-            background: var(--accent-dark);
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
-        }
+        .btn-checkout:hover { background: var(--accent-dark); box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3); }
 
         /* ----- CHECKOUT MODAL ----- */
         .checkout-modal-overlay {
@@ -1450,10 +852,7 @@
             transition: opacity 0.4s;
             padding: 1rem;
         }
-        .checkout-modal-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .checkout-modal-overlay.active { opacity: 1; pointer-events: all; }
         .checkout-modal {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
@@ -1466,28 +865,10 @@
             box-shadow: var(--shadow-md);
             position: relative;
         }
-        .checkout-modal h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            letter-spacing: 2px;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--text-primary);
-        }
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-        .form-group label {
-            display: block;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 0.4rem;
-        }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .checkout-modal h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; letter-spacing: 2px; text-align: center; margin-bottom: 2rem; color: var(--text-primary); }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label { display: block; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.4rem; }
+        .form-group input, .form-group select {
             width: 100%;
             padding: 12px 15px;
             background: var(--bg-card);
@@ -1499,24 +880,10 @@
             outline: none;
             transition: border-color 0.2s;
         }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: var(--accent);
-        }
-        .form-row {
-            display: flex;
-            gap: 1rem;
-        }
-        .form-row .form-group {
-            flex: 1;
-        }
-        @media (max-width: 500px) {
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-        }
+        .form-group input:focus, .form-group select:focus { border-color: var(--accent); }
+        .form-row { display: flex; gap: 1rem; }
+        .form-row .form-group { flex: 1; }
+        @media (max-width: 500px) { .form-row { flex-direction: column; gap: 0; } }
         .btn-submit-order {
             width: 100%;
             padding: 15px;
@@ -1533,45 +900,13 @@
             margin-top: 0.5rem;
             transition: background 0.25s, box-shadow 0.25s;
         }
-        .btn-submit-order:hover {
-            background: var(--accent-dark);
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
-        }
-        .btn-close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.8rem;
-            cursor: pointer;
-            line-height: 1;
-        }
-        .btn-close-modal:hover {
-            color: var(--accent);
-        }
-        .order-confirmation {
-            text-align: center;
-            padding: 2rem;
-            display: none;
-        }
-        .order-confirmation.show {
-            display: block;
-            animation: fadeInSection 0.5s;
-        }
-        .order-confirmation .check-icon {
-            font-size: 4rem;
-            display: block;
-            margin-bottom: 1rem;
-        }
-        .order-confirmation h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
+        .btn-submit-order:hover { background: var(--accent-dark); box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3); }
+        .btn-close-modal { position: absolute; top: 15px; right: 20px; background: none; border: none; color: var(--text-primary); font-size: 1.8rem; cursor: pointer; line-height: 1; }
+        .btn-close-modal:hover { color: var(--accent); }
+        .order-confirmation { text-align: center; padding: 2rem; display: none; }
+        .order-confirmation.show { display: block; animation: fadeInSection 0.5s; }
+        .order-confirmation .check-icon { font-size: 4rem; display: block; margin-bottom: 1rem; }
+        .order-confirmation h4 { font-family: 'Playfair Display', serif; font-size: 1.5rem; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.5rem; }
 
         /* ----- WHATSAPP FLOATING BUTTON ----- */
         .whatsapp-float {
@@ -1592,26 +927,12 @@
             text-decoration: none;
             animation: pulseWhatsApp 2.5s ease-in-out infinite;
         }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 35px rgba(37, 211, 102, 0.55);
-            background: var(--whatsapp-dark);
-            animation: none;
-        }
+        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 10px 35px rgba(37, 211, 102, 0.55); background: var(--whatsapp-dark); animation: none; }
         @keyframes pulseWhatsApp {
-            0%,
-            100% {
-                box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
-            }
-            50% {
-                box-shadow: 0 6px 40px rgba(37, 211, 102, 0.7), 0 0 0 18px rgba(37, 211, 102, 0);
-            }
+            0%, 100% { box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 6px 40px rgba(37, 211, 102, 0.7), 0 0 0 18px rgba(37, 211, 102, 0); }
         }
-        .whatsapp-float svg {
-            width: 30px;
-            height: 30px;
-            fill: #fff;
-        }
+        .whatsapp-float svg { width: 30px; height: 30px; fill: #fff; }
         .whatsapp-tooltip {
             position: absolute;
             right: 72px;
@@ -1629,10 +950,7 @@
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        .whatsapp-float:hover .whatsapp-tooltip {
-            opacity: 1;
-            transform: translateX(0);
-        }
+        .whatsapp-float:hover .whatsapp-tooltip { opacity: 1; transform: translateX(0); }
 
         /* ----- FOOTER (navy) ----- */
         .footer {
@@ -1640,13 +958,11 @@
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             text-align: center;
             padding: 2.5rem 2rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255,255,255,0.6);
             font-size: 0.8rem;
             letter-spacing: 2px;
         }
-        .footer span {
-            color: var(--accent);
-        }
+        .footer span { color: var(--accent); }
 
         /* ----- TOAST ----- */
         .toast {
@@ -1669,23 +985,14 @@
             text-transform: uppercase;
             font-weight: 600;
         }
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .hidden {
-            display: none !important;
-        }
+        .toast.show { opacity: 1; transform: translateY(0); }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
     <!-- ===== TOP BANNER ===== -->
-    <div id="top-banner">
-        <div class="banner-content">
-            ✨ FLAT 40% OFF ON ALL ITEMS — ADDITIONAL 10% DISCOUNT ON PRE PAID ORDERS — FREE SHIPPING
-        </div>
-    </div>
+    <div id="top-banner"><div class="banner-content">✨ FLAT 40% OFF ON ALL ITEMS — ADDITIONAL 10% DISCOUNT ON PRE PAID ORDERS — FREE SHIPPING</div></div>
 
     <!-- ===== HEADER ===== -->
     <header class="header" id="header">
@@ -1727,9 +1034,7 @@
             <h3>Your Cart</h3>
             <button class="cart-close" onclick="toggleCart()">✕</button>
         </div>
-        <div class="cart-items" id="cartItems">
-            <div class="cart-empty">Your cart is empty</div>
-        </div>
+        <div class="cart-items" id="cartItems"><div class="cart-empty">Your cart is empty</div></div>
         <div class="cart-footer" id="cartFooter" style="display:none;">
             <div class="cart-totals">
                 <div><span>Subtotal</span><span id="cartSubtotal">$0</span></div>
@@ -1754,11 +1059,15 @@
                     <div class="form-group"><label>Email</label><input type="email" required placeholder="john@example.com" /></div>
                     <div class="form-group"><label>Phone</label><input type="tel" required placeholder="+92 300 9325696" /></div>
                     <div class="form-group"><label>Address</label><input type="text" required placeholder="123 Luxury Lane" /></div>
-                    <div class="form-row">
-                        <div class="form-group"><label>City</label><input type="text" required placeholder="Karachi" /></div>
-                        <div class="form-group"><label>Country</label><select required><option value="">Select</option><option>Pakistan</option><option>United States</option><option>United Kingdom</option><option>Canada</option><option>Australia</option><option>UAE</option><option>Other</option></select></div>
+                    <div class="form-group"><label>City</label><input type="text" required placeholder="Karachi" /></div>
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <select required>
+                            <option value="">Select</option>
+                            <option>Cash on Delivery</option>
+                            <option>Credit/Debit Card</option>
+                        </select>
                     </div>
-                    <div class="form-group"><label>Payment Method</label><select required><option value="">Select</option><option>Credit Card</option><option>PayPal</option><option>Bank Transfer</option><option>Cash on Delivery</option></select></div>
                     <button type="submit" class="btn-submit-order">Place Order</button>
                 </form>
             </div>
@@ -1783,6 +1092,7 @@
     <!-- ===== PAGE : HOME ===== -->
     <section class="page-section active" id="page-home">
         <div class="hero" id="hero">
+            <img src="hero.jpg" alt="Hero background" class="hero-image" />
             <div class="hero-bg-glow"></div>
             <div class="hero-particles" id="heroParticles"></div>
             <div class="hero-content">
@@ -1817,7 +1127,7 @@
             <div class="product-grid" id="featuredGrid"></div>
         </div>
 
-        <!-- ===== REVIEWS SECTION – Auto-slide, NO hover pause ===== -->
+        <!-- ===== REVIEWS SECTION ===== -->
         <div class="reviews-section">
             <div class="section-header">
                 <p class="section-eyebrow">What Our Customers Say</p>
@@ -1830,7 +1140,7 @@
             </div>
         </div>
 
-        <!-- ===== WHY CHOOSE US – Carousel (3s, NO pause) ===== -->
+        <!-- ===== WHY CHOOSE US ===== -->
         <div class="why-choose-us">
             <div class="section-header">
                 <p class="section-eyebrow">Why HAYAT AND CO</p>
@@ -1915,7 +1225,7 @@
         </div>
     </section>
 
-    <!-- ===== FOOTER (navy) ===== -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <p>&copy; 2024 <span>HAYAT AND CO</span> · All Rights Reserved</p>
     </footer>
@@ -1924,117 +1234,47 @@
         // ============================================================
         // REVIEWS DATA – Pakistani customers
         // ============================================================
-        const reviewsData = [{
-            name: 'Ahmed Raza',
-            location: 'Karachi, Pakistan',
-            text: 'Absolutely blown away by the quality! I ordered a Rolex Submariner and it arrived in perfect condition. The authentication certificate gave me complete peace of mind.',
-            stars: 5,
-            initial: 'A'
-        }, {
-            name: 'Sana Malik',
-            location: 'Lahore, Pakistan',
-            text: 'I was skeptical about buying a luxury watch online, but HAYAT AND CO exceeded all my expectations. The watch is stunning and the packaging was impeccable.',
-            stars: 5,
-            initial: 'S'
-        }, {
-            name: 'Usman Khan',
-            location: 'Islamabad, Pakistan',
-            text: 'The best place to buy authentic watches in Pakistan! I got my Patek Philippe at an amazing price with the 40% discount. Customer service was top-notch.',
-            stars: 5,
-            initial: 'U'
-        }, {
-            name: 'Fatima Zaidi',
-            location: 'Rawalpindi, Pakistan',
-            text: 'I purchased a Cartier Tank for my husband\'s birthday and he was thrilled! The watch is absolutely gorgeous and the price was unbeatable.',
-            stars: 5,
-            initial: 'F'
-        }, {
-            name: 'Bilal Ahmed',
-            location: 'Faisalabad, Pakistan',
-            text: 'The entire experience was seamless. From browsing the collection to delivery, everything was perfect. The watch is 100% authentic and the 40% discount made it a steal.',
-            stars: 5,
-            initial: 'B'
-        }, {
-            name: 'Hira Tariq',
-            location: 'Multan, Pakistan',
-            text: 'I love my new Omega Seamaster! The quality is incredible and the service was exceptional. They kept me updated throughout the process.',
-            stars: 5,
-            initial: 'H'
-        }];
+        const reviewsData = [
+            { name: 'Ahmed Raza', location: 'Karachi, Pakistan', text: 'Absolutely blown away by the quality! I ordered a Rolex Submariner and it arrived in perfect condition. The authentication certificate gave me complete peace of mind.', stars: 5, initial: 'A' },
+            { name: 'Sana Malik', location: 'Lahore, Pakistan', text: 'I was skeptical about buying a luxury watch online, but HAYAT AND CO exceeded all my expectations. The watch is stunning and the packaging was impeccable.', stars: 5, initial: 'S' },
+            { name: 'Usman Khan', location: 'Islamabad, Pakistan', text: 'The best place to buy authentic watches in Pakistan! I got my Patek Philippe at an amazing price with the 40% discount. Customer service was top-notch.', stars: 5, initial: 'U' },
+            { name: 'Fatima Zaidi', location: 'Rawalpindi, Pakistan', text: 'I purchased a Cartier Tank for my husband\'s birthday and he was thrilled! The watch is absolutely gorgeous and the price was unbeatable.', stars: 5, initial: 'F' },
+            { name: 'Bilal Ahmed', location: 'Faisalabad, Pakistan', text: 'The entire experience was seamless. From browsing the collection to delivery, everything was perfect. The watch is 100% authentic and the 40% discount made it a steal.', stars: 5, initial: 'B' },
+            { name: 'Hira Tariq', location: 'Multan, Pakistan', text: 'I love my new Omega Seamaster! The quality is incredible and the service was exceptional. They kept me updated throughout the process.', stars: 5, initial: 'H' }
+        ];
 
         // ============================================================
-        // DATA – Multi-brand watch collection
+        // DATA – Multi-brand watch collection (filtered to only brands in brandList)
         // ============================================================
         const rawProducts = [
-            { id: 1, brand: 'Cartier', name: 'Tank Solo Large', price: 22500, originalPrice: 31000, discount: '-27%',
-                popular: true, featured: true, brandInitial: 'C', strapColor: '#8B6B4A', dialColor: '#f5efe8',
-                caseColor: '#c9a96e' },
-            { id: 2, brand: 'Cartier', name: 'Tank Louis', price: 19500, originalPrice: 23000, discount: '-15%',
-                popular: true, featured: true, brandInitial: 'C', strapColor: '#2c2a28', dialColor: '#f5efe8',
-                caseColor: '#c9a96e' },
-            { id: 3, brand: 'Cartier', name: 'Sarasin', price: 24500, originalPrice: 35000, discount: '-30%',
-                popular: true, featured: true, brandInitial: 'C', strapColor: '#6B4F3A', dialColor: '#e8ddd0',
-                caseColor: '#d4af37' },
-            { id: 4, brand: 'Cartier', name: 'Tank Française', price: 24500, originalPrice: 37000, discount: '-34%',
-                popular: true, featured: true, brandInitial: 'C', strapColor: '#1a1715', dialColor: '#f0ebe3',
-                caseColor: '#c9a96e' },
-            { id: 5, brand: 'Rolex', name: 'Submariner Date', price: 12500, originalPrice: 13500, discount: '',
-                popular: true, featured: true, brandInitial: 'R', strapColor: '#1a1a2e', dialColor: '#0a1628',
-                caseColor: '#c9a96e' },
-            { id: 6, brand: 'Rolex', name: 'Daytona Chronograph', price: 35000, originalPrice: 0, discount: '',
-                popular: true, featured: false, brandInitial: 'R', strapColor: '#2c2a28', dialColor: '#1a1715',
-                caseColor: '#d4af37' },
-            { id: 7, brand: 'Rolex', name: 'Datejust 41', price: 9800, originalPrice: 0, discount: '',
-                popular: false, featured: true, brandInitial: 'R', strapColor: '#8B6B4A', dialColor: '#f5efe8',
-                caseColor: '#c9a96e' },
-            { id: 8, brand: 'Patek Philippe', name: 'Nautilus 5711', price: 85000, originalPrice: 0, discount: '',
-                popular: true, featured: true, brandInitial: 'PP', strapColor: '#1a1715', dialColor: '#0f0e0d',
-                caseColor: '#d4af37' },
-            { id: 9, brand: 'Patek Philippe', name: 'Calatrava', price: 28000, originalPrice: 0, discount: '',
-                popular: false, featured: false, brandInitial: 'PP', strapColor: '#6B4F3A', dialColor: '#f5efe8',
-                caseColor: '#c9a96e' },
-            { id: 10, brand: 'Omega X Swatch', name: 'MoonSwatch Mission', price: 450, originalPrice: 0, discount: '',
-                popular: true, featured: true, brandInitial: 'Ω', strapColor: '#2c2a28', dialColor: '#1a1715',
-                caseColor: '#d4af37' },
-            { id: 11, brand: 'Omega X Swatch', name: 'MoonSwatch Neptune', price: 480, originalPrice: 0, discount: '',
-                popular: false, featured: true, brandInitial: 'Ω', strapColor: '#1a3a6a', dialColor: '#0a1a3a',
-                caseColor: '#d4af37' },
-            { id: 12, brand: 'Hamilton', name: 'Khaki Field Auto', price: 850, originalPrice: 0, discount: '',
-                popular: true, featured: true, brandInitial: 'H', strapColor: '#6B4F3A', dialColor: '#1a1715',
-                caseColor: '#c9a96e' },
-            { id: 13, brand: 'Hamilton', name: 'Intra-Matic Chrono', price: 2200, originalPrice: 0, discount: '',
-                popular: false, featured: false, brandInitial: 'H', strapColor: '#2c2a28', dialColor: '#f5efe8',
-                caseColor: '#c9a96e' },
-            { id: 14, brand: 'Seiko', name: 'Prospex Diver', price: 950, originalPrice: 0, discount: '',
-                popular: true, featured: true, brandInitial: 'S', strapColor: '#1a1a2e', dialColor: '#0a1628',
-                caseColor: '#d4af37' },
-            { id: 15, brand: 'Seiko', name: 'Presage Cocktail', price: 680, originalPrice: 0, discount: '',
-                popular: false, featured: false, brandInitial: 'S', strapColor: '#8B6B4A', dialColor: '#f5efe8',
-                caseColor: '#c9a96e' },
-            { id: 16, brand: 'Orient', name: 'Bambino V2', price: 520, originalPrice: 0, discount: '',
-                popular: true, featured: true, brandInitial: 'O', strapColor: '#6B4F3A', dialColor: '#f5efe8',
-                caseColor: '#c9a96e' },
-            { id: 17, brand: 'Orient', name: 'Kamasu Diver', price: 620, originalPrice: 0, discount: '',
-                popular: false, featured: false, brandInitial: 'O', strapColor: '#1a1a2e', dialColor: '#0a1628',
-                caseColor: '#d4af37' },
-            { id: 18, brand: 'Rado', name: 'Captain Cook', price: 2400, originalPrice: 0, discount: '',
-                popular: true, featured: true, brandInitial: 'R', strapColor: '#1a1715', dialColor: '#0f0e0d',
-                caseColor: '#d4af37' },
-            { id: 19, brand: 'Rado', name: 'True Square', price: 1800, originalPrice: 0, discount: '',
-                popular: false, featured: false, brandInitial: 'R', strapColor: '#2c2a28', dialColor: '#1a1715',
-                caseColor: '#c9a96e' },
-            { id: 20, brand: 'Oris', name: 'Aquis Date', price: 2100, originalPrice: 0, discount: '',
-                popular: true, featured: true, brandInitial: 'O', strapColor: '#1a1a2e', dialColor: '#0a1628',
-                caseColor: '#c9a96e' },
-            { id: 21, brand: 'Oris', name: 'Big Crown Pointer', price: 1700, originalPrice: 0, discount: '',
-                popular: false, featured: false, brandInitial: 'O', strapColor: '#6B4F3A', dialColor: '#f5efe8',
-                caseColor: '#d4af37' },
-            { id: 22, brand: 'Tissot', name: 'PRX Powermatic', price: 725, originalPrice: 0, discount: '',
-                popular: true, featured: true, brandInitial: 'T', strapColor: '#1a1715', dialColor: '#f5efe8',
-                caseColor: '#c9a96e' },
-            { id: 23, brand: 'Tissot', name: 'Le Locle', price: 550, originalPrice: 0, discount: '',
-                popular: false, featured: false, brandInitial: 'T', strapColor: '#8B6B4A', dialColor: '#f5efe8',
-                caseColor: '#c9a96e' }
+            // Rolex
+            { id: 5, brand: 'Rolex', name: 'Submariner Date', price: 12500, originalPrice: 13500, discount: '', popular: true, featured: true, brandInitial: 'R', strapColor: '#1a1a2e', dialColor: '#0a1628', caseColor: '#c9a96e' },
+            { id: 6, brand: 'Rolex', name: 'Daytona Chronograph', price: 35000, originalPrice: 0, discount: '', popular: true, featured: false, brandInitial: 'R', strapColor: '#2c2a28', dialColor: '#1a1715', caseColor: '#d4af37' },
+            { id: 7, brand: 'Rolex', name: 'Datejust 41', price: 9800, originalPrice: 0, discount: '', popular: false, featured: true, brandInitial: 'R', strapColor: '#8B6B4A', dialColor: '#f5efe8', caseColor: '#c9a96e' },
+            // Patek Philippe
+            { id: 8, brand: 'Patek Philippe', name: 'Nautilus 5711', price: 85000, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'PP', strapColor: '#1a1715', dialColor: '#0f0e0d', caseColor: '#d4af37' },
+            { id: 9, brand: 'Patek Philippe', name: 'Calatrava', price: 28000, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'PP', strapColor: '#6B4F3A', dialColor: '#f5efe8', caseColor: '#c9a96e' },
+            // Omega X Swatch
+            { id: 10, brand: 'Omega X Swatch', name: 'MoonSwatch Mission', price: 450, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'Ω', strapColor: '#2c2a28', dialColor: '#1a1715', caseColor: '#d4af37' },
+            { id: 11, brand: 'Omega X Swatch', name: 'MoonSwatch Neptune', price: 480, originalPrice: 0, discount: '', popular: false, featured: true, brandInitial: 'Ω', strapColor: '#1a3a6a', dialColor: '#0a1a3a', caseColor: '#d4af37' },
+            // Hamilton
+            { id: 12, brand: 'Hamilton', name: 'Khaki Field Auto', price: 850, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'H', strapColor: '#6B4F3A', dialColor: '#1a1715', caseColor: '#c9a96e' },
+            { id: 13, brand: 'Hamilton', name: 'Intra-Matic Chrono', price: 2200, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'H', strapColor: '#2c2a28', dialColor: '#f5efe8', caseColor: '#c9a96e' },
+            // Seiko
+            { id: 14, brand: 'Seiko', name: 'Prospex Diver', price: 950, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'S', strapColor: '#1a1a2e', dialColor: '#0a1628', caseColor: '#d4af37' },
+            { id: 15, brand: 'Seiko', name: 'Presage Cocktail', price: 680, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'S', strapColor: '#8B6B4A', dialColor: '#f5efe8', caseColor: '#c9a96e' },
+            // Orient
+            { id: 16, brand: 'Orient', name: 'Bambino V2', price: 520, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'O', strapColor: '#6B4F3A', dialColor: '#f5efe8', caseColor: '#c9a96e' },
+            { id: 17, brand: 'Orient', name: 'Kamasu Diver', price: 620, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'O', strapColor: '#1a1a2e', dialColor: '#0a1628', caseColor: '#d4af37' },
+            // Rado
+            { id: 18, brand: 'Rado', name: 'Captain Cook', price: 2400, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'R', strapColor: '#1a1715', dialColor: '#0f0e0d', caseColor: '#d4af37' },
+            { id: 19, brand: 'Rado', name: 'True Square', price: 1800, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'R', strapColor: '#2c2a28', dialColor: '#1a1715', caseColor: '#c9a96e' },
+            // Oris
+            { id: 20, brand: 'Oris', name: 'Aquis Date', price: 2100, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'O', strapColor: '#1a1a2e', dialColor: '#0a1628', caseColor: '#c9a96e' },
+            { id: 21, brand: 'Oris', name: 'Big Crown Pointer', price: 1700, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'O', strapColor: '#6B4F3A', dialColor: '#f5efe8', caseColor: '#d4af37' },
+            // Tissot
+            { id: 22, brand: 'Tissot', name: 'PRX Powermatic', price: 725, originalPrice: 0, discount: '', popular: true, featured: true, brandInitial: 'T', strapColor: '#1a1715', dialColor: '#f5efe8', caseColor: '#c9a96e' },
+            { id: 23, brand: 'Tissot', name: 'Le Locle', price: 550, originalPrice: 0, discount: '', popular: false, featured: false, brandInitial: 'T', strapColor: '#8B6B4A', dialColor: '#f5efe8', caseColor: '#c9a96e' }
         ];
 
         // Apply 40% discount
@@ -2042,12 +1282,7 @@
             return products.map(p => {
                 let originalPrice = p.originalPrice || p.price;
                 if (originalPrice === 0) originalPrice = p.price * 1.2;
-                return {
-                    ...p,
-                    originalPrice: Math.round(originalPrice),
-                    price: Math.round(originalPrice * 0.6),
-                    discount: '-40%'
-                };
+                return { ...p, originalPrice: Math.round(originalPrice), price: Math.round(originalPrice * 0.6), discount: '-40%' };
             });
         }
 
@@ -2067,7 +1302,6 @@
         function renderReviews() {
             const track = document.getElementById('reviewsTrack');
             const dotsContainer = document.getElementById('reviewDots');
-
             track.innerHTML = reviewsData.map((review, index) => `
                     <div class="review-slide">
                         <div class="review-card">
@@ -2083,11 +1317,9 @@
                         </div>
                     </div>
                 `).join('');
-
             dotsContainer.innerHTML = reviewsData.map((_, index) =>
                 `<button class="review-dot ${index === 0 ? 'active' : ''}" data-index="${index}" onclick="goToReviewSlide(${index})" aria-label="Go to review ${index + 1}"></button>`
             ).join('');
-
             reviewCurrentSlide = 0;
             goToReviewSlide(0);
             setInterval(() => {
@@ -2115,7 +1347,6 @@
             dotsContainer.innerHTML = Array.from({ length: totalWhySlides }, (_, i) =>
                 `<button class="why-dot ${i === 0 ? 'active' : ''}" data-index="${i}" onclick="goToWhySlide(${i})" aria-label="Go to slide ${i + 1}"></button>`
             ).join('');
-
             whyCurrentSlide = 0;
             goToWhySlide(0);
             setInterval(() => {
@@ -2135,9 +1366,7 @@
         // ============================================================
         // CART
         // ============================================================
-        function saveCart() { localStorage.setItem('hayatCart', JSON.stringify(cart));
-            updateCartUI(); }
-
+        function saveCart() { localStorage.setItem('hayatCart', JSON.stringify(cart)); updateCartUI(); }
         function updateCartUI() {
             document.getElementById('cartCount').textContent = cart.reduce((sum, i) => sum + i.qty, 0);
             renderCartItems();
@@ -2158,9 +1387,7 @@
             }
         }
 
-        function removeFromCart(productId) { cart = cart.filter(i => i.id !== productId);
-            saveCart(); }
-
+        function removeFromCart(productId) { cart = cart.filter(i => i.id !== productId); saveCart(); }
         function updateQty(productId, delta) {
             const item = cart.find(i => i.id === productId);
             if (!item) return;
@@ -2169,8 +1396,7 @@
             else saveCart();
         }
 
-        function getCartTotal() { return cart.reduce((sum, i) => { const p = products.find(p => p.id === i.id); return sum + (
-                p ? p.price * i.qty : 0); }, 0); }
+        function getCartTotal() { return cart.reduce((sum, i) => { const p = products.find(p => p.id === i.id); return sum + (p ? p.price * i.qty : 0); }, 0); }
 
         function renderCartItems() {
             const container = document.getElementById('cartItems');
@@ -2184,15 +1410,14 @@
                 const p = products.find(p => p.id === item.id);
                 if (!p) return '';
                 return `<div class="cart-item">
-                            <div class="cart-item-img"><span>${p.brandInitial}</span></div>
                             <div class="cart-item-info">
                                 <span class="cart-item-brand">${p.brand}</span>
-                                <h5>${p.name}</h5>
+                                <div class="cart-item-name">${p.name}</div>
                                 <span class="cart-item-price">Rs ${(p.price * item.qty).toLocaleString()}</span>
                             </div>
                             <div class="cart-item-qty">
                                 <button class="qty-btn" onclick="updateQty(${item.id},-1)">−</button>
-                                <span>${item.qty}</span>
+                                <span style="font-size:0.8rem; min-width:18px; text-align:center;">${item.qty}</span>
                                 <button class="qty-btn" onclick="updateQty(${item.id},1)">+</button>
                             </div>
                             <button class="cart-item-remove" onclick="removeFromCart(${item.id})" title="Remove">✕</button>
@@ -2207,8 +1432,7 @@
         }
 
         function toggleCart() {
-            const sidebar = document.getElementById('cartSidebar'),
-                overlay = document.getElementById('cartOverlay');
+            const sidebar = document.getElementById('cartSidebar'), overlay = document.getElementById('cartOverlay');
             const active = sidebar.classList.contains('active');
             sidebar.classList.toggle('active', !active);
             overlay.classList.toggle('active', !active);
@@ -2238,23 +1462,19 @@
             cart = [];
             saveCart();
             updateCartUI();
-            setTimeout(() => { closeCheckout();
-                showToast('Order Confirmed! 🎉'); }, 2500);
+            setTimeout(() => { closeCheckout(); showToast('Order Confirmed! 🎉'); }, 2500);
         }
 
         // ============================================================
         // MENU
         // ============================================================
         function toggleMenu() {
-            const overlay = document.getElementById('menuOverlay'),
-                hamburger = document.getElementById('hamburger');
+            const overlay = document.getElementById('menuOverlay'), hamburger = document.getElementById('hamburger');
             const active = overlay.classList.contains('active');
             overlay.classList.toggle('active', !active);
             hamburger.classList.toggle('active', !active);
             document.body.style.overflow = !active ? 'hidden' : '';
-            if (!active) { shopSubmenuOpen = false;
-                updateSubmenuVisibility();
-                document.getElementById('shopArrow').style.transform = 'rotate(0deg)'; }
+            if (!active) { shopSubmenuOpen = false; updateSubmenuVisibility(); document.getElementById('shopArrow').style.transform = 'rotate(0deg)'; }
         }
 
         function closeMenu() {
@@ -2274,22 +1494,15 @@
         }
 
         function updateSubmenuVisibility() {
-            const subAll = document.getElementById('subShopAll'),
-                subBrand = document.getElementById('subShopBrand');
+            const subAll = document.getElementById('subShopAll'), subBrand = document.getElementById('subShopBrand');
             if (shopSubmenuOpen) {
-                subAll.classList.remove('hidden');
-                subBrand.classList.remove('hidden');
-                subAll.style.opacity = '1';
-                subAll.style.transform = 'translateY(0)';
-                subBrand.style.opacity = '1';
-                subBrand.style.transform = 'translateY(0)';
+                subAll.classList.remove('hidden'); subBrand.classList.remove('hidden');
+                subAll.style.opacity = '1'; subAll.style.transform = 'translateY(0)';
+                subBrand.style.opacity = '1'; subBrand.style.transform = 'translateY(0)';
             } else {
-                subAll.style.opacity = '0';
-                subAll.style.transform = 'translateY(20px)';
-                subBrand.style.opacity = '0';
-                subBrand.style.transform = 'translateY(20px)';
-                setTimeout(() => { subAll.classList.add('hidden');
-                    subBrand.classList.add('hidden'); }, 350);
+                subAll.style.opacity = '0'; subAll.style.transform = 'translateY(20px)';
+                subBrand.style.opacity = '0'; subBrand.style.transform = 'translateY(20px)';
+                setTimeout(() => { subAll.classList.add('hidden'); subBrand.classList.add('hidden'); }, 350);
             }
         }
 
@@ -2303,10 +1516,7 @@
                 target.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-            if (page === 'shop-by-brand') {
-                activeBrandFilter = null;
-                renderBrandPage();
-            }
+            if (page === 'shop-by-brand') { activeBrandFilter = null; renderBrandPage(); }
             if (page === 'shop-all') renderShopAllPage();
             if (page === 'home') renderHomePage();
         }
@@ -2322,19 +1532,13 @@
             if (filtered.length) {
                 grid.innerHTML = filtered.map(p => createProductCard(p)).join('');
             } else {
-                grid.innerHTML =
-                    '<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:3rem 1rem;font-size:1.1rem;">No watches available for this brand.</p>';
+                grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:3rem 1rem;font-size:1.1rem;">No watches available for this brand.</p>';
             }
             navigateTo('brand-detail');
         }
 
-        function goBackToBrands() {
-            navigateTo('shop-by-brand');
-        }
+        function goBackToBrands() { navigateTo('shop-by-brand'); }
 
-        // ============================================================
-        // TOAST
-        // ============================================================
         function showToast(msg) {
             const toast = document.getElementById('toast');
             toast.textContent = msg;
@@ -2351,7 +1555,6 @@
             const dial = product.dialColor || '#f5efe8';
             const caseColor = product.caseColor || '#c9a96e';
             const initial = product.brandInitial || 'C';
-
             return `<svg class="watch-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                         <rect x="70" y="8" width="60" height="55" rx="6" fill="${strap}" />
                         <rect x="76" y="12" width="48" height="48" rx="4" fill="${strap}" opacity="0.6" />
@@ -2404,25 +1607,18 @@
             const svg = generateWatchSVG(product);
             const discountBadge = product.discount ? `<span class="product-card-badge">${product.discount}</span>` : '';
             return `<div class="product-card">
-                        <div class="product-card-image">
-                            ${svg}
-                            ${discountBadge}
-                        </div>
+                        <div class="product-card-image">${svg}${discountBadge}</div>
                         <div class="product-card-body">
                             <div>
                                 <p class="product-card-brand">${product.brand}</p>
                                 <h4 class="product-card-name">${product.name}</h4>
                             </div>
                             <div>
-                                <p class="product-card-price">
-                                    ${product.originalPrice ? `<span class="original">Rs${product.originalPrice.toLocaleString()}</span>` : ''}
-                                    Rs ${product.price.toLocaleString()}
-                                </p>
+                                <p class="product-card-price">${product.originalPrice ? `<span class="original">Rs${product.originalPrice.toLocaleString()}</span>` : ''} Rs ${product.price.toLocaleString()}</p>
                                 <div class="product-card-actions">
                                     <button class="btn-cart-icon" data-id="${product.id}" onclick="addToCart(${product.id})" aria-label="Add to cart">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <circle cx="9" cy="21" r="1"/>
-                                            <circle cx="20" cy="21" r="1"/>
+                                            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
                                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
                                         </svg>
                                     </button>
@@ -2453,9 +1649,7 @@
                             </div>
                         </div>`;
             }).join('');
-
-            document.getElementById('brandFilteredGrid').innerHTML =
-                '<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:3rem 1rem;font-size:1.1rem;">Select a brand above to view its watches</p>';
+            document.getElementById('brandFilteredGrid').innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:3rem 1rem;font-size:1.1rem;">Select a brand above to view its watches</p>';
         }
 
         // ============================================================
@@ -2483,8 +1677,7 @@
         });
 
         document.getElementById('menuOverlay').addEventListener('click', function(e) { if (e.target === this) closeMenu(); });
-        document.getElementById('checkoutModalOverlay').addEventListener('click', function(e) { if (e.target === this)
-                closeCheckout(); });
+        document.getElementById('checkoutModalOverlay').addEventListener('click', function(e) { if (e.target === this) closeCheckout(); });
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 if (document.getElementById('menuOverlay').classList.contains('active')) closeMenu();
@@ -2499,8 +1692,8 @@
             renderBrandPage();
             updateCartUI();
             createParticles();
-            renderReviews(); // Starts auto-slide with no hover pause
-            renderWhyCarousel(); // Starts auto-slide every 3s
+            renderReviews();
+            renderWhyCarousel();
         }
         document.addEventListener('DOMContentLoaded', init);
     </script>
