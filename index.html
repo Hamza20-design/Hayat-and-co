@@ -6,22 +6,25 @@
     <title>HAYAT AND CO | Luxury Watches</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        /* ----- ROOT : CHARCOAL, WHITE & METALLIC ACCENT ----- */
+        /* ----- ROOT : NAVY, WHITE & METALLIC ACCENT ----- */
         :root {
-            --bg-primary: #F8F9FA;
-            --bg-secondary: #E9ECEF;
+            --bg-primary: #F0F4F8;
+            --bg-secondary: #E8EEF5;
             --bg-card: #FFFFFF;
-            --bg-elevated: #F1F3F5;
+            --bg-elevated: #F5F8FC;
             --accent: #D4AF37;
             --accent-dark: #B8960F;
             --accent-light: #E8C84A;
-            --text-primary: #1A1A1A;
-            --text-secondary: #4A4A4A;
-            --text-muted: #777777;
+            --navy: #1A2A4A;
+            --navy-dark: #0F1D3A;
+            --navy-light: #2C4068;
+            --text-primary: #1A1A2E;
+            --text-secondary: #3A4A5A;
+            --text-muted: #6A7A8A;
             --white: #FFFFFF;
-            --border: #DEE2E6;
-            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --border: #D0D8E0;
+            --shadow-md: 0 8px 24px rgba(26, 42, 74, 0.12);
+            --shadow-sm: 0 2px 8px rgba(26, 42, 74, 0.06);
             --whatsapp: #25D366;
             --whatsapp-dark: #1ea852;
             --instagram: #E4405F;
@@ -112,21 +115,21 @@
             }
         }
 
-        /* ----- HEADER ----- */
+        /* ----- HEADER (navy tint) ----- */
         .header {
             position: fixed;
             top: 36px;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(26, 42, 74, 0.92);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             padding: 0 2rem;
             transition: box-shadow 0.3s ease;
         }
         .header.scrolled {
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(15, 29, 58, 0.98);
             box-shadow: var(--shadow-md);
         }
         .header-inner {
@@ -147,12 +150,12 @@
             white-space: nowrap;
         }
         .logo span {
-            color: var(--text-primary);
+            color: var(--white);
             font-weight: 400;
             letter-spacing: 1px;
         }
         .logo:hover {
-            color: var(--accent-dark);
+            color: var(--accent-light);
         }
 
         .header-actions {
@@ -165,11 +168,12 @@
             cursor: pointer;
             background: none;
             border: none;
-            color: var(--text-primary);
+            color: var(--white);
             padding: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: color 0.3s;
         }
         .cart-icon-wrapper:hover {
             color: var(--accent);
@@ -213,7 +217,7 @@
             display: block;
             width: 28px;
             height: 2px;
-            background: var(--text-primary);
+            background: var(--white);
             border-radius: 2px;
             transition: all 0.3s;
             transform-origin: center;
@@ -232,14 +236,14 @@
             background: var(--accent);
         }
 
-        /* ----- MENU OVERLAY ----- */
+        /* ----- MENU OVERLAY (navy) ----- */
         .menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(255, 255, 255, 0.97);
+            background: rgba(15, 29, 58, 0.97);
             backdrop-filter: blur(15px);
             z-index: 999;
             display: flex;
@@ -263,7 +267,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 2.6rem;
             font-weight: 600;
-            color: var(--text-primary);
+            color: var(--white);
             cursor: pointer;
             letter-spacing: 3px;
             background: none;
@@ -291,7 +295,7 @@
             font-size: 1.5rem;
             font-weight: 400;
             letter-spacing: 2px;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.6);
             cursor: pointer;
             background: none;
             border: none;
@@ -350,7 +354,7 @@
             }
         }
 
-        /* ----- HERO (CHARCOAL) ----- */
+        /* ----- HERO (NAVY BLUE) ----- */
         .hero {
             position: relative;
             height: 100vh;
@@ -360,14 +364,14 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
-            background: radial-gradient(ellipse at center, #2C3E50 0%, #1A252F 100%);
+            background: radial-gradient(ellipse at center, #1A2A4A 0%, #0A1628 100%);
         }
         .hero-bg-glow {
             position: absolute;
             width: 600px;
             height: 600px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -481,7 +485,7 @@
             transition: transform 0.5s;
         }
         .hero-cta:hover {
-            color: #1A252F;
+            color: #0A1628;
             border-color: var(--accent);
         }
         .hero-cta:hover::before {
@@ -668,15 +672,6 @@
             .brand-card .brand-icon {
                 font-size: 1.5rem !important;
             }
-            .about-landing {
-                padding: 2rem 1rem !important;
-            }
-            .about-landing h2 {
-                font-size: 2rem !important;
-            }
-            .about-landing .about-values-landing {
-                grid-template-columns: 1fr !important;
-            }
             .btn-back {
                 font-size: 0.7rem !important;
                 padding: 8px 16px !important;
@@ -687,6 +682,64 @@
             }
             .brand-name-fallback {
                 font-size: 0.7rem !important;
+            }
+            /* Reviews mobile */
+            .review-card {
+                padding: 1rem 1rem !important;
+                min-height: 180px !important;
+                aspect-ratio: 1 / 1 !important;
+            }
+            .review-text {
+                font-size: 0.8rem !important;
+                line-height: 1.5 !important;
+            }
+            .review-stars {
+                font-size: 0.9rem !important;
+            }
+            .review-avatar {
+                width: 32px !important;
+                height: 32px !important;
+                font-size: 0.8rem !important;
+            }
+            .review-author-info h4 {
+                font-size: 0.85rem !important;
+            }
+            .review-author-info span {
+                font-size: 0.65rem !important;
+            }
+            .reviews-section {
+                padding: 2.5rem 1rem !important;
+            }
+            .review-dots {
+                margin-top: 1rem !important;
+            }
+            .review-dot {
+                width: 10px !important;
+                height: 10px !important;
+            }
+            /* Why Choose Us mobile */
+            .why-slide .why-card {
+                max-width: 340px !important;
+                padding: 1.2rem !important;
+            }
+            .why-img {
+                height: 140px !important;
+            }
+            .why-choose-us {
+                padding: 2.5rem 1rem !important;
+            }
+            .why-choose-us .section-title {
+                font-size: 2rem !important;
+            }
+            .about-landing {
+                padding: 2rem 1rem !important;
+            }
+            .about-landing h2 {
+                font-size: 2rem !important;
+            }
+            .about-values-landing {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
             }
         }
 
@@ -901,9 +954,226 @@
             color: var(--accent);
         }
 
-        /* ----- ABOUT SECTION ON LANDING PAGE ----- */
-        .about-landing {
+        /* ============================================================
+           REVIEWS SECTION – AUTO-SLIDE (No pause on hover)
+           ============================================================ */
+        .reviews-section {
             background: var(--bg-secondary);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .reviews-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .reviews-track {
+            display: flex;
+            width: 100%;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+        .review-slide {
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding: 0.3rem;
+        }
+        .review-card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            max-width: 420px;
+            margin: 0 auto;
+            text-align: left;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 220px;
+        }
+        .review-stars {
+            color: var(--accent);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+        .review-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            font-style: italic;
+            margin-bottom: 0.8rem;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.2rem;
+            border-top: 1px solid var(--border);
+            padding-top: 0.6rem;
+        }
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            flex-shrink: 0;
+        }
+        .review-author-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+        .review-author-info span {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        .review-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.2rem;
+        }
+        .review-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0;
+        }
+        .review-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+        .review-dot:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-light);
+        }
+
+        /* ============================================================
+           WHY CHOOSE US – CAROUSEL (3s auto-slide, no pause)
+           ============================================================ */
+        .why-choose-us {
+            background: var(--bg-primary);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .why-choose-us .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        .why-choose-us .section-divider {
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+            margin: 1rem auto 2.5rem;
+        }
+        .why-carousel {
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .why-track {
+            display: flex;
+            width: 100%;
+            transition: transform 0.6s ease-in-out;
+            will-change: transform;
+        }
+        .why-slide {
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding: 0.3rem;
+        }
+        .why-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            max-width: 420px;
+            margin: 0 auto;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .why-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+        .why-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.2rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+        }
+        .why-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 0.6rem;
+            letter-spacing: 1px;
+        }
+        .why-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .why-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.8rem;
+        }
+        .why-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0;
+        }
+        .why-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+        .why-dot:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-light);
+        }
+
+        /* ----- ABOUT SECTION ----- */
+        .about-landing {
+            background: var(--bg-primary);
             padding: 4rem 2rem;
             text-align: center;
             border-top: 1px solid var(--border);
@@ -933,46 +1203,7 @@
             line-height: 1.9;
             letter-spacing: 0.3px;
         }
-        .about-values-landing {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 2rem auto 0;
-        }
-        .value-card-landing {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 2rem 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s;
-        }
-        .value-card-landing:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-        .value-card-landing .value-icon {
-            font-size: 2.8rem;
-            display: block;
-            margin-bottom: 1rem;
-        }
-        .value-card-landing h4 {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-            font-size: 1.3rem;
-        }
-        .value-card-landing p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
 
-        /* ----- SOCIAL LINK (Instagram) ----- */
         .social-link-instagram {
             display: inline-flex;
             align-items: center;
@@ -1403,13 +1634,13 @@
             transform: translateX(0);
         }
 
-        /* ----- FOOTER ----- */
+        /* ----- FOOTER (navy) ----- */
         .footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
+            background: var(--navy-dark);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
             text-align: center;
-            padding: 2rem;
-            color: var(--text-muted);
+            padding: 2.5rem 2rem;
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.8rem;
             letter-spacing: 2px;
         }
@@ -1436,7 +1667,7 @@
             pointer-events: none;
             box-shadow: var(--shadow-md);
             text-transform: uppercase;
-            font-weight: 6   00;
+            font-weight: 600;
         }
         .toast.show {
             opacity: 1;
@@ -1586,35 +1817,63 @@
             <div class="product-grid" id="featuredGrid"></div>
         </div>
 
-        <!-- ===== ABOUT US ON LANDING PAGE ===== -->
+        <!-- ===== REVIEWS SECTION – Auto-slide, NO hover pause ===== -->
+        <div class="reviews-section">
+            <div class="section-header">
+                <p class="section-eyebrow">What Our Customers Say</p>
+                <h2 class="section-title">Customer Reviews</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="reviews-container">
+                <div class="reviews-track" id="reviewsTrack"></div>
+                <div class="review-dots" id="reviewDots"></div>
+            </div>
+        </div>
+
+        <!-- ===== WHY CHOOSE US – Carousel (3s, NO pause) ===== -->
+        <div class="why-choose-us">
+            <div class="section-header">
+                <p class="section-eyebrow">Why HAYAT AND CO</p>
+                <h2 class="section-title">Why Choose Us</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="why-carousel">
+                <div class="why-track" id="whyTrack">
+                    <div class="why-slide">
+                        <div class="why-card">
+                            <img src="auth.jpg" alt="Authenticity" class="why-img" />
+                            <h4>Authenticity</h4>
+                            <p>Every watch is rigorously authenticated and certified by our master horologists, ensuring you receive only the finest.</p>
+                        </div>
+                    </div>
+                    <div class="why-slide">
+                        <div class="why-card">
+                            <img src="exc.jpg" alt="Exclusivity" class="why-img" />
+                            <h4>Exclusivity</h4>
+                            <p>Access to rare and limited-edition pieces that define the pinnacle of collecting. Our network spans the globe.</p>
+                        </div>
+                    </div>
+                    <div class="why-slide">
+                        <div class="why-card">
+                            <img src="con.jpg" alt="Concierge Service" class="why-img" />
+                            <h4>Concierge Service</h4>
+                            <p>Personalized consultations and white‑glove service for every client, from selection to delivery and beyond.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-dots" id="whyDots"></div>
+            </div>
+        </div>
+
+        <!-- ===== ABOUT US ===== -->
         <div class="about-landing" id="aboutLanding">
             <h2>HAYAT AND CO</h2>
             <p class="about-tagline">The epitome of horological excellence — connecting discerning collectors with the world's most prestigious watches.</p>
             <p class="about-description">Authenticated · Curated · Delivered with white‑glove service. From iconic classics to contemporary masterpieces, each timepiece is a testament to luxury and horological artistry.</p>
-
-            <!-- Instagram Link -->
             <a href="https://www.instagram.com/hayatandco_watches?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="social-link-instagram">
                 <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
                 Follow us @hayatandco_watches
             </a>
-
-            <div class="about-values-landing">
-                <div class="value-card-landing">
-                    <span class="value-icon">🔍</span>
-                    <h4>Authenticity</h4>
-                    <p>Every watch is rigorously authenticated and certified by our master horologists, ensuring you receive only the finest.</p>
-                </div>
-                <div class="value-card-landing">
-                    <span class="value-icon">💎</span>
-                    <h4>Exclusivity</h4>
-                    <p>Access to rare and limited-edition pieces that define the pinnacle of collecting. Our network spans the globe.</p>
-                </div>
-                <div class="value-card-landing">
-                    <span class="value-icon">🤝</span>
-                    <h4>Concierge Service</h4>
-                    <p>Personalized consultations and white‑glove service for every client, from selection to delivery and beyond.</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1656,17 +1915,57 @@
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ===== FOOTER (navy) ===== -->
     <footer class="footer">
         <p>&copy; 2024 <span>HAYAT AND CO</span> · All Rights Reserved</p>
     </footer>
 
     <script>
         // ============================================================
+        // REVIEWS DATA – Pakistani customers
+        // ============================================================
+        const reviewsData = [{
+            name: 'Ahmed Raza',
+            location: 'Karachi, Pakistan',
+            text: 'Absolutely blown away by the quality! I ordered a Rolex Submariner and it arrived in perfect condition. The authentication certificate gave me complete peace of mind.',
+            stars: 5,
+            initial: 'A'
+        }, {
+            name: 'Sana Malik',
+            location: 'Lahore, Pakistan',
+            text: 'I was skeptical about buying a luxury watch online, but HAYAT AND CO exceeded all my expectations. The watch is stunning and the packaging was impeccable.',
+            stars: 5,
+            initial: 'S'
+        }, {
+            name: 'Usman Khan',
+            location: 'Islamabad, Pakistan',
+            text: 'The best place to buy authentic watches in Pakistan! I got my Patek Philippe at an amazing price with the 40% discount. Customer service was top-notch.',
+            stars: 5,
+            initial: 'U'
+        }, {
+            name: 'Fatima Zaidi',
+            location: 'Rawalpindi, Pakistan',
+            text: 'I purchased a Cartier Tank for my husband\'s birthday and he was thrilled! The watch is absolutely gorgeous and the price was unbeatable.',
+            stars: 5,
+            initial: 'F'
+        }, {
+            name: 'Bilal Ahmed',
+            location: 'Faisalabad, Pakistan',
+            text: 'The entire experience was seamless. From browsing the collection to delivery, everything was perfect. The watch is 100% authentic and the 40% discount made it a steal.',
+            stars: 5,
+            initial: 'B'
+        }, {
+            name: 'Hira Tariq',
+            location: 'Multan, Pakistan',
+            text: 'I love my new Omega Seamaster! The quality is incredible and the service was exceptional. They kept me updated throughout the process.',
+            stars: 5,
+            initial: 'H'
+        }];
+
+        // ============================================================
         // DATA – Multi-brand watch collection
         // ============================================================
         const rawProducts = [
-            // Cartier
             { id: 1, brand: 'Cartier', name: 'Tank Solo Large', price: 22500, originalPrice: 31000, discount: '-27%',
                 popular: true, featured: true, brandInitial: 'C', strapColor: '#8B6B4A', dialColor: '#f5efe8',
                 caseColor: '#c9a96e' },
@@ -1679,8 +1978,6 @@
             { id: 4, brand: 'Cartier', name: 'Tank Française', price: 24500, originalPrice: 37000, discount: '-34%',
                 popular: true, featured: true, brandInitial: 'C', strapColor: '#1a1715', dialColor: '#f0ebe3',
                 caseColor: '#c9a96e' },
-
-            // Rolex
             { id: 5, brand: 'Rolex', name: 'Submariner Date', price: 12500, originalPrice: 13500, discount: '',
                 popular: true, featured: true, brandInitial: 'R', strapColor: '#1a1a2e', dialColor: '#0a1628',
                 caseColor: '#c9a96e' },
@@ -1690,64 +1987,48 @@
             { id: 7, brand: 'Rolex', name: 'Datejust 41', price: 9800, originalPrice: 0, discount: '',
                 popular: false, featured: true, brandInitial: 'R', strapColor: '#8B6B4A', dialColor: '#f5efe8',
                 caseColor: '#c9a96e' },
-
-            // Patek Philippe
             { id: 8, brand: 'Patek Philippe', name: 'Nautilus 5711', price: 85000, originalPrice: 0, discount: '',
                 popular: true, featured: true, brandInitial: 'PP', strapColor: '#1a1715', dialColor: '#0f0e0d',
                 caseColor: '#d4af37' },
             { id: 9, brand: 'Patek Philippe', name: 'Calatrava', price: 28000, originalPrice: 0, discount: '',
                 popular: false, featured: false, brandInitial: 'PP', strapColor: '#6B4F3A', dialColor: '#f5efe8',
                 caseColor: '#c9a96e' },
-
-            // Omega X Swatch
             { id: 10, brand: 'Omega X Swatch', name: 'MoonSwatch Mission', price: 450, originalPrice: 0, discount: '',
                 popular: true, featured: true, brandInitial: 'Ω', strapColor: '#2c2a28', dialColor: '#1a1715',
                 caseColor: '#d4af37' },
             { id: 11, brand: 'Omega X Swatch', name: 'MoonSwatch Neptune', price: 480, originalPrice: 0, discount: '',
                 popular: false, featured: true, brandInitial: 'Ω', strapColor: '#1a3a6a', dialColor: '#0a1a3a',
                 caseColor: '#d4af37' },
-
-            // Hamilton
             { id: 12, brand: 'Hamilton', name: 'Khaki Field Auto', price: 850, originalPrice: 0, discount: '',
                 popular: true, featured: true, brandInitial: 'H', strapColor: '#6B4F3A', dialColor: '#1a1715',
                 caseColor: '#c9a96e' },
             { id: 13, brand: 'Hamilton', name: 'Intra-Matic Chrono', price: 2200, originalPrice: 0, discount: '',
                 popular: false, featured: false, brandInitial: 'H', strapColor: '#2c2a28', dialColor: '#f5efe8',
                 caseColor: '#c9a96e' },
-
-            // Seiko
             { id: 14, brand: 'Seiko', name: 'Prospex Diver', price: 950, originalPrice: 0, discount: '',
                 popular: true, featured: true, brandInitial: 'S', strapColor: '#1a1a2e', dialColor: '#0a1628',
                 caseColor: '#d4af37' },
             { id: 15, brand: 'Seiko', name: 'Presage Cocktail', price: 680, originalPrice: 0, discount: '',
                 popular: false, featured: false, brandInitial: 'S', strapColor: '#8B6B4A', dialColor: '#f5efe8',
                 caseColor: '#c9a96e' },
-
-            // Orient
             { id: 16, brand: 'Orient', name: 'Bambino V2', price: 520, originalPrice: 0, discount: '',
                 popular: true, featured: true, brandInitial: 'O', strapColor: '#6B4F3A', dialColor: '#f5efe8',
                 caseColor: '#c9a96e' },
             { id: 17, brand: 'Orient', name: 'Kamasu Diver', price: 620, originalPrice: 0, discount: '',
                 popular: false, featured: false, brandInitial: 'O', strapColor: '#1a1a2e', dialColor: '#0a1628',
                 caseColor: '#d4af37' },
-
-            // Rado
             { id: 18, brand: 'Rado', name: 'Captain Cook', price: 2400, originalPrice: 0, discount: '',
                 popular: true, featured: true, brandInitial: 'R', strapColor: '#1a1715', dialColor: '#0f0e0d',
                 caseColor: '#d4af37' },
             { id: 19, brand: 'Rado', name: 'True Square', price: 1800, originalPrice: 0, discount: '',
                 popular: false, featured: false, brandInitial: 'R', strapColor: '#2c2a28', dialColor: '#1a1715',
                 caseColor: '#c9a96e' },
-
-            // Oris
             { id: 20, brand: 'Oris', name: 'Aquis Date', price: 2100, originalPrice: 0, discount: '',
                 popular: true, featured: true, brandInitial: 'O', strapColor: '#1a1a2e', dialColor: '#0a1628',
                 caseColor: '#c9a96e' },
             { id: 21, brand: 'Oris', name: 'Big Crown Pointer', price: 1700, originalPrice: 0, discount: '',
                 popular: false, featured: false, brandInitial: 'O', strapColor: '#6B4F3A', dialColor: '#f5efe8',
                 caseColor: '#d4af37' },
-
-            // Tissot
             { id: 22, brand: 'Tissot', name: 'PRX Powermatic', price: 725, originalPrice: 0, discount: '',
                 popular: true, featured: true, brandInitial: 'T', strapColor: '#1a1715', dialColor: '#f5efe8',
                 caseColor: '#c9a96e' },
@@ -1756,7 +2037,7 @@
                 caseColor: '#c9a96e' }
         ];
 
-        // Apply 40% discount to all products
+        // Apply 40% discount
         function applyDiscounts(products) {
             return products.map(p => {
                 let originalPrice = p.originalPrice || p.price;
@@ -1771,13 +2052,85 @@
         }
 
         const products = applyDiscounts(rawProducts);
-
-        // Unique brands list
         const brandList = ['Hamilton', 'Seiko', 'Omega X Swatch', 'Orient', 'Rado', 'Oris', 'Tissot', 'Rolex', 'Patek Philippe'];
 
         let cart = JSON.parse(localStorage.getItem('hayatCart')) || [];
         let shopSubmenuOpen = false;
         let activeBrandFilter = null;
+
+        // ============================================================
+        // REVIEWS CAROUSEL (4s, no hover pause)
+        // ============================================================
+        let reviewCurrentSlide = 0;
+        const totalReviews = reviewsData.length;
+
+        function renderReviews() {
+            const track = document.getElementById('reviewsTrack');
+            const dotsContainer = document.getElementById('reviewDots');
+
+            track.innerHTML = reviewsData.map((review, index) => `
+                    <div class="review-slide">
+                        <div class="review-card">
+                            <div class="review-stars">${'★'.repeat(review.stars)}</div>
+                            <p class="review-text">"${review.text}"</p>
+                            <div class="review-author">
+                                <div class="review-avatar">${review.initial}</div>
+                                <div class="review-author-info">
+                                    <h4>${review.name}</h4>
+                                    <span>${review.location}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+            dotsContainer.innerHTML = reviewsData.map((_, index) =>
+                `<button class="review-dot ${index === 0 ? 'active' : ''}" data-index="${index}" onclick="goToReviewSlide(${index})" aria-label="Go to review ${index + 1}"></button>`
+            ).join('');
+
+            reviewCurrentSlide = 0;
+            goToReviewSlide(0);
+            setInterval(() => {
+                reviewCurrentSlide = (reviewCurrentSlide + 1) % totalReviews;
+                goToReviewSlide(reviewCurrentSlide);
+            }, 4000);
+        }
+
+        function goToReviewSlide(index) {
+            const track = document.getElementById('reviewsTrack');
+            track.style.transform = `translateX(-${index * 100}%)`;
+            document.querySelectorAll('.review-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        // ============================================================
+        // WHY CHOOSE US CAROUSEL (3s, no hover pause)
+        // ============================================================
+        let whyCurrentSlide = 0;
+        const totalWhySlides = 3;
+
+        function renderWhyCarousel() {
+            const dotsContainer = document.getElementById('whyDots');
+            dotsContainer.innerHTML = Array.from({ length: totalWhySlides }, (_, i) =>
+                `<button class="why-dot ${i === 0 ? 'active' : ''}" data-index="${i}" onclick="goToWhySlide(${i})" aria-label="Go to slide ${i + 1}"></button>`
+            ).join('');
+
+            whyCurrentSlide = 0;
+            goToWhySlide(0);
+            setInterval(() => {
+                whyCurrentSlide = (whyCurrentSlide + 1) % totalWhySlides;
+                goToWhySlide(whyCurrentSlide);
+            }, 3000);
+        }
+
+        function goToWhySlide(index) {
+            const track = document.getElementById('whyTrack');
+            track.style.transform = `translateX(-${index * 100}%)`;
+            document.querySelectorAll('.why-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
 
         // ============================================================
         // CART
@@ -1959,7 +2312,7 @@
         }
 
         // ============================================================
-        // BRAND DETAIL NAVIGATION
+        // BRAND DETAIL
         // ============================================================
         function filterByBrand(brand) {
             const title = document.getElementById('brandDetailTitle');
@@ -2146,6 +2499,8 @@
             renderBrandPage();
             updateCartUI();
             createParticles();
+            renderReviews(); // Starts auto-slide with no hover pause
+            renderWhyCarousel(); // Starts auto-slide every 3s
         }
         document.addEventListener('DOMContentLoaded', init);
     </script>
