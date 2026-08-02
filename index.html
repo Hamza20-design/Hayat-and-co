@@ -551,6 +551,7 @@
             .faq-question { font-size: 0.95rem !important; }
             .faq-section { padding: 2.5rem 1rem !important; }
             .faq-section .section-title { font-size: 2rem !important; }
+            .product-detail-image { min-height: 250px !important; }
         }
 
         /* ----- PRODUCT CARD ----- */
@@ -838,7 +839,7 @@
         .social-link-instagram svg { width: 22px; height: 22px; fill: currentColor; }
 
         /* ============================================================
-           PRODUCT DETAIL PAGE - FIXED IMAGE DISPLAY
+           PRODUCT DETAIL PAGE - BIGGER IMAGE
            ============================================================ */
         .product-detail-hero {
             display: flex;
@@ -852,8 +853,8 @@
             padding: 0;
         }
         .product-detail-image {
-            flex: 1;
-            min-height: 450px;
+            flex: 1.5; /* Make image section larger */
+            min-height: 550px;
             background: var(--bg-elevated);
             display: flex;
             align-items: center;
