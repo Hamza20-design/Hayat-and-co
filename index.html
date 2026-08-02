@@ -99,13 +99,15 @@
             .banner-content { font-size: 0.65rem; animation-duration: 15s; }
             .header { top: 30px !important; }
             .page-section { padding-top: calc(75px + 30px) !important; }
-            .product-detail-hero { flex-direction: column !important; padding: 1rem !important; }
-            .product-detail-image { width: 100% !important; min-height: 250px !important; }
+            .product-detail-hero { flex-direction: column !important; padding: 0 !important; }
+            .product-detail-image { width: 100% !important; min-height: 300px !important; }
             .product-detail-info { width: 100% !important; padding: 1.2rem !important; }
             .product-detail-name { font-size: 1.8rem !important; }
             .slider-container { gap: 0.8rem !important; }
             .slider-item { min-width: 140px !important; }
             .pd-details-grid { grid-template-columns: 1fr !important; }
+            .faq-item { padding: 0.8rem 1rem !important; }
+            .faq-question { font-size: 0.95rem !important; }
         }
 
         /* ----- HEADER (navy tint) ----- */
@@ -545,7 +547,10 @@
             .why-choose-us .section-title { font-size: 2rem !important; }
             .about-landing { padding: 2rem 1rem !important; }
             .about-landing h2 { font-size: 2rem !important; }
-            .about-values-landing { grid-template-columns: 1fr !important; gap: 1rem !important; }
+            .faq-item { padding: 0.8rem 1rem !important; }
+            .faq-question { font-size: 0.95rem !important; }
+            .faq-section { padding: 2.5rem 1rem !important; }
+            .faq-section .section-title { font-size: 2rem !important; }
         }
 
         /* ----- PRODUCT CARD ----- */
@@ -758,6 +763,64 @@
         .why-dot.active { background: var(--accent); transform: scale(1.2); }
         .why-dot:hover { background: var(--accent-light); border-color: var(--accent-light); }
 
+        /* ============================================================
+           FAQ SECTION
+           ============================================================ */
+        .faq-section {
+            background: var(--bg-card);
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            background: var(--bg-primary);
+            transition: all 0.3s;
+        }
+        .faq-item:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); }
+        .faq-question {
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: color 0.3s;
+            user-select: none;
+            gap: 1rem;
+        }
+        .faq-question:hover { color: var(--accent); }
+        .faq-question .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            color: var(--accent);
+        }
+        .faq-item.open .faq-icon { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.3s ease;
+            padding: 0 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.2rem;
+        }
+
         /* ----- ABOUT SECTION ----- */
         .about-landing {
             background: var(--bg-primary);
@@ -775,7 +838,7 @@
         .social-link-instagram svg { width: 22px; height: 22px; fill: currentColor; }
 
         /* ============================================================
-           PRODUCT DETAIL PAGE
+           PRODUCT DETAIL PAGE - FIXED IMAGE DISPLAY
            ============================================================ */
         .product-detail-hero {
             display: flex;
@@ -790,22 +853,24 @@
         }
         .product-detail-image {
             flex: 1;
-            min-height: 400px;
+            min-height: 450px;
             background: var(--bg-elevated);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            padding: 1rem;
         }
         .product-detail-image .watch-img {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
         }
+
         .product-detail-info {
             flex: 1;
             padding: 2.5rem 2.5rem 2.5rem 0;
@@ -1431,6 +1496,18 @@
             </div>
         </div>
 
+        <!-- ===== FAQ SECTION ===== -->
+        <div class="faq-section">
+            <div class="section-header">
+                <p class="section-eyebrow">Got Questions?</p>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="faq-container" id="faqContainer">
+                <!-- FAQ items will be rendered by JavaScript -->
+            </div>
+        </div>
+
         <!-- ===== ABOUT US ===== -->
         <div class="about-landing" id="aboutLanding">
             <h2>HAYAT AND CO</h2>
@@ -1498,6 +1575,32 @@
 
     <script>
         // ============================================================
+        // FAQ DATA
+        // ============================================================
+        const faqData = [
+            {
+                question: 'What is your return policy?',
+                answer: 'We offer a 14-day return policy on all watches. If you are not completely satisfied with your purchase, you can return it within 14 days of delivery for a full refund. The watch must be in its original condition with all packaging and documentation. Return shipping costs are covered by us for defective or incorrect items.'
+            },
+            {
+                question: 'How do I know the watch is authentic?',
+                answer: 'Every watch we sell comes with a comprehensive authenticity certificate and is backed by our team of master horologists. We source all watches from authorized dealers and trusted partners. Each timepiece undergoes a rigorous multi-point inspection process before it reaches you. You also receive the original box, papers, and warranty documentation.'
+            },
+            {
+                question: 'How long does shipping take within Pakistan?',
+                answer: 'We offer free shipping on all orders within Pakistan. Standard delivery takes 2-4 business days for major cities like Karachi, Lahore, Islamabad, and Rawalpindi. For other cities, delivery typically takes 3-6 business days. We also offer express shipping options at checkout for next-day delivery in select cities.'
+            },
+            {
+                question: 'Do you offer international shipping?',
+                answer: 'Yes, we ship worldwide! International shipping is available to most countries. Delivery times vary by destination, typically 7-14 business days. International shipping costs are calculated at checkout based on your location. Customs duties and taxes may apply and are the responsibility of the buyer.'
+            },
+            {
+                question: 'What payment methods do you accept?',
+                answer: 'We accept multiple payment methods for your convenience: Cash on Delivery (COD) across Pakistan, Credit/Debit Cards (Visa, Mastercard, and American Express), Bank Transfers, and EasyPaisa/JazzCash. All payment methods are secure and encrypted for your protection.'
+            }
+        ];
+
+        // ============================================================
         // REVIEWS DATA – Pakistani customers
         // ============================================================
         const reviewsData = [
@@ -1552,11 +1655,175 @@
         const products = applyDiscounts(rawProducts);
         const brandList = ['Rolex'];
 
-        let cart = JSON.parse(localStorage.getItem('hayatCart')) || [];
+        let cart = [];
         let shopSubmenuOpen = false;
         let activeBrandFilter = null;
         let currentSliderPosition = 0;
         let sliderMaxPosition = 0;
+
+        // ============================================================
+        // CART - FIXED (filter out items with qty <= 0)
+        // ============================================================
+        function loadCart() {
+            try {
+                const saved = localStorage.getItem('hayatCart');
+                if (saved) {
+                    cart = JSON.parse(saved);
+                    // Filter out items with qty <= 0
+                    cart = cart.filter(item => item.qty > 0);
+                    saveCart();
+                }
+            } catch (e) {
+                cart = [];
+            }
+        }
+
+        function saveCart() { 
+            // Filter out items with qty <= 0 before saving
+            cart = cart.filter(item => item.qty > 0);
+            localStorage.setItem('hayatCart', JSON.stringify(cart)); 
+            updateCartUI(); 
+        }
+
+        function updateCartUI() {
+            // Filter out items with qty <= 0
+            cart = cart.filter(item => item.qty > 0);
+            const totalItems = cart.reduce((sum, i) => sum + (i.qty || 0), 0);
+            document.getElementById('cartCount').textContent = totalItems;
+            renderCartItems();
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            const existing = cart.find(i => i.id === productId);
+            if (existing) existing.qty++;
+            else cart.push({ id: productId, qty: 1 });
+            saveCart();
+            showToast('Added to Cart ✓');
+            // Update button state
+            const btn = document.querySelector(`.btn-cart-icon[data-id="${productId}"]`);
+            if (btn) {
+                btn.classList.add('added');
+                setTimeout(() => { btn.classList.remove('added'); }, 1200);
+            }
+        }
+
+        function removeFromCart(productId) { 
+            cart = cart.filter(i => i.id !== productId); 
+            saveCart(); 
+        }
+
+        function updateQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                removeFromCart(productId);
+            } else {
+                saveCart();
+            }
+        }
+
+        function getCartTotal() { 
+            return cart.reduce((sum, i) => { 
+                const p = products.find(p => p.id === i.id); 
+                return sum + (p ? p.price * i.qty : 0); 
+            }, 0); 
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cartItems');
+            const footer = document.getElementById('cartFooter');
+            
+            // Filter out items with qty <= 0
+            cart = cart.filter(item => item.qty > 0);
+            
+            if (!cart.length) {
+                container.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+                footer.style.display = 'none';
+                return;
+            }
+            
+            container.innerHTML = cart.map(item => {
+                const p = products.find(p => p.id === item.id);
+                if (!p) return '';
+                return `<div class="cart-item">
+                            <div class="cart-item-info">
+                                <span class="cart-item-brand">${p.brand}</span>
+                                <div class="cart-item-name">${p.name}</div>
+                                <span class="cart-item-price">Rs ${(p.price * item.qty).toLocaleString()}</span>
+                            </div>
+                            <div class="cart-item-qty">
+                                <button class="qty-btn" onclick="updateQty(${item.id},-1)">−</button>
+                                <span style="font-size:0.8rem; min-width:18px; text-align:center;">${item.qty}</span>
+                                <button class="qty-btn" onclick="updateQty(${item.id},1)">+</button>
+                            </div>
+                            <button class="cart-item-remove" onclick="removeFromCart(${item.id})" title="Remove">✕</button>
+                        </div>`;
+            }).join('');
+            
+            footer.style.display = 'block';
+            const subtotal = getCartTotal();
+            const tax = Math.round(subtotal * 0.08);
+            document.getElementById('cartSubtotal').textContent = 'Rs ' + subtotal.toLocaleString();
+            document.getElementById('cartTax').textContent = 'Rs ' + tax.toLocaleString();
+            document.getElementById('cartTotal').textContent = 'Rs ' + (subtotal + tax).toLocaleString();
+        }
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cartSidebar'), overlay = document.getElementById('cartOverlay');
+            const active = sidebar.classList.contains('active');
+            sidebar.classList.toggle('active', !active);
+            overlay.classList.toggle('active', !active);
+            document.body.style.overflow = !active ? 'hidden' : '';
+        }
+
+        function openCheckout() {
+            if (!cart.length) { showToast('Your cart is empty'); return; }
+            document.getElementById('checkoutModalOverlay').classList.add('active');
+            document.getElementById('checkoutFormContainer').style.display = 'block';
+            document.getElementById('orderConfirmation').classList.remove('show');
+            document.getElementById('checkoutForm').reset();
+            document.body.style.overflow = 'hidden';
+            document.getElementById('cartSidebar').classList.remove('active');
+            document.getElementById('cartOverlay').classList.remove('active');
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function submitOrder(e) {
+            e.preventDefault();
+            document.getElementById('checkoutFormContainer').style.display = 'none';
+            document.getElementById('orderConfirmation').classList.add('show');
+            cart = [];
+            saveCart();
+            updateCartUI();
+            setTimeout(() => { closeCheckout(); showToast('Order Confirmed! 🎉'); }, 2500);
+        }
+
+        // ============================================================
+        // RENDER FAQ
+        // ============================================================
+        function renderFAQs() {
+            const container = document.getElementById('faqContainer');
+            container.innerHTML = faqData.map((faq, index) => `
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>${faq.question}</span>
+                        <span class="faq-icon">▾</span>
+                    </div>
+                    <div class="faq-answer">${faq.answer}</div>
+                </div>
+            `).join('');
+        }
+
+        function toggleFAQ(element) {
+            element.classList.toggle('open');
+        }
 
         // ============================================================
         // REVIEWS CAROUSEL (4s, no hover pause)
@@ -1629,7 +1896,7 @@
         }
 
         // ============================================================
-        // PRODUCT DETAIL PAGE
+        // PRODUCT DETAIL PAGE - FIXED IMAGE DISPLAY
         // ============================================================
         let detailProductId = null;
 
@@ -1639,10 +1906,8 @@
             detailProductId = productId;
             const container = document.getElementById('productDetailContent');
             
-            // Get "People Also Like" products (all other products)
             const otherProducts = products.filter(p => p.id !== productId);
             
-            // Build product details HTML
             let detailsHtml = '';
             if (product.details) {
                 detailsHtml = Object.entries(product.details).map(([key, value]) => `
@@ -1732,11 +1997,8 @@
                 </div>
             `;
 
-            // Initialize slider
             currentSliderPosition = 0;
             updateSliderButtons();
-            
-            // Show the page
             navigateTo('product-detail');
         }
 
@@ -1753,7 +2015,7 @@
             const items = container.querySelectorAll('.slider-item');
             if (items.length === 0) return;
             
-            const itemWidth = items[0].offsetWidth + 24; // width + gap
+            const itemWidth = items[0].offsetWidth + 24;
             const visibleItems = Math.floor(container.parentElement.offsetWidth / itemWidth);
             const totalItems = items.length;
             const maxPosition = Math.max(0, totalItems - visibleItems);
@@ -1782,7 +2044,6 @@
             if (nextBtn) nextBtn.disabled = currentSliderPosition >= maxPosition;
         }
 
-        // Re-calculate slider on resize
         let sliderTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(sliderTimeout);
@@ -1810,108 +2071,6 @@
                 btn.textContent = '✓ Added';
                 setTimeout(() => { btn.classList.remove('added'); btn.textContent = 'Add to Cart'; }, 1500);
             }
-        }
-
-        // ============================================================
-        // CART
-        // ============================================================
-        function saveCart() { localStorage.setItem('hayatCart', JSON.stringify(cart)); updateCartUI(); }
-        function updateCartUI() {
-            document.getElementById('cartCount').textContent = cart.reduce((sum, i) => sum + i.qty, 0);
-            renderCartItems();
-        }
-
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-            const existing = cart.find(i => i.id === productId);
-            if (existing) existing.qty++;
-            else cart.push({ id: productId, qty: 1 });
-            saveCart();
-            showToast('Added to Cart ✓');
-            const btn = document.querySelector(`.btn-cart-icon[data-id="${productId}"]`);
-            if (btn) {
-                btn.classList.add('added');
-                setTimeout(() => { btn.classList.remove('added'); }, 1200);
-            }
-        }
-
-        function removeFromCart(productId) { cart = cart.filter(i => i.id !== productId); saveCart(); }
-        function updateQty(productId, delta) {
-            const item = cart.find(i => i.id === productId);
-            if (!item) return;
-            item.qty += delta;
-            if (item.qty <= 0) removeFromCart(productId);
-            else saveCart();
-        }
-
-        function getCartTotal() { return cart.reduce((sum, i) => { const p = products.find(p => p.id === i.id); return sum + (p ? p.price * i.qty : 0); }, 0); }
-
-        function renderCartItems() {
-            const container = document.getElementById('cartItems');
-            const footer = document.getElementById('cartFooter');
-            if (!cart.length) {
-                container.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
-                footer.style.display = 'none';
-                return;
-            }
-            container.innerHTML = cart.map(item => {
-                const p = products.find(p => p.id === item.id);
-                if (!p) return '';
-                return `<div class="cart-item">
-                            <div class="cart-item-info">
-                                <span class="cart-item-brand">${p.brand}</span>
-                                <div class="cart-item-name">${p.name}</div>
-                                <span class="cart-item-price">Rs ${(p.price * item.qty).toLocaleString()}</span>
-                            </div>
-                            <div class="cart-item-qty">
-                                <button class="qty-btn" onclick="updateQty(${item.id},-1)">−</button>
-                                <span style="font-size:0.8rem; min-width:18px; text-align:center;">${item.qty}</span>
-                                <button class="qty-btn" onclick="updateQty(${item.id},1)">+</button>
-                            </div>
-                            <button class="cart-item-remove" onclick="removeFromCart(${item.id})" title="Remove">✕</button>
-                        </div>`;
-            }).join('');
-            footer.style.display = 'block';
-            const subtotal = getCartTotal();
-            const tax = Math.round(subtotal * 0.08);
-            document.getElementById('cartSubtotal').textContent = 'Rs ' + subtotal.toLocaleString();
-            document.getElementById('cartTax').textContent = 'Rs ' + tax.toLocaleString();
-            document.getElementById('cartTotal').textContent = 'Rs ' + (subtotal + tax).toLocaleString();
-        }
-
-        function toggleCart() {
-            const sidebar = document.getElementById('cartSidebar'), overlay = document.getElementById('cartOverlay');
-            const active = sidebar.classList.contains('active');
-            sidebar.classList.toggle('active', !active);
-            overlay.classList.toggle('active', !active);
-            document.body.style.overflow = !active ? 'hidden' : '';
-        }
-
-        function openCheckout() {
-            if (!cart.length) { showToast('Your cart is empty'); return; }
-            document.getElementById('checkoutModalOverlay').classList.add('active');
-            document.getElementById('checkoutFormContainer').style.display = 'block';
-            document.getElementById('orderConfirmation').classList.remove('show');
-            document.getElementById('checkoutForm').reset();
-            document.body.style.overflow = 'hidden';
-            document.getElementById('cartSidebar').classList.remove('active');
-            document.getElementById('cartOverlay').classList.remove('active');
-        }
-
-        function closeCheckout() {
-            document.getElementById('checkoutModalOverlay').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function submitOrder(e) {
-            e.preventDefault();
-            document.getElementById('checkoutFormContainer').style.display = 'none';
-            document.getElementById('orderConfirmation').classList.add('show');
-            cart = [];
-            saveCart();
-            updateCartUI();
-            setTimeout(() => { closeCheckout(); showToast('Order Confirmed! 🎉'); }, 2500);
         }
 
         // ============================================================
@@ -1969,7 +2128,6 @@
             if (page === 'shop-all') renderShopAllPage();
             if (page === 'home') renderHomePage();
             if (page === 'product-detail') {
-                // Re-calculate slider after render
                 setTimeout(updateSliderButtons, 100);
             }
         }
@@ -2090,9 +2248,11 @@
         });
 
         function init() {
+            loadCart();
             renderHomePage();
             renderShopAllPage();
             renderBrandPage();
+            renderFAQs();
             updateCartUI();
             createParticles();
             renderReviews();
