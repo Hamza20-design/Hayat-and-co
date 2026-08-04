@@ -173,6 +173,9 @@
             .pd-specs-grid {
                 grid-template-columns: 1fr 1fr !important;
             }
+            .pd-specs-wrapper {
+                padding: 1.5rem 1rem !important;
+            }
         }
 
         /* ----- HEADER (navy tint) ----- */
@@ -850,6 +853,9 @@
             .pd-specs-grid {
                 grid-template-columns: 1fr 1fr !important;
             }
+            .pd-specs-wrapper {
+                padding: 1.5rem 1rem !important;
+            }
         }
 
         /* ----- PRODUCT CARD ----- */
@@ -1343,7 +1349,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: 2rem;
+            padding: 0;
         }
         .product-detail-image::after {
             content: '';
@@ -1355,14 +1361,13 @@
         .product-detail-image .watch-img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             display: block;
-            max-width: 100%;
-            max-height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
             transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
             z-index: 1;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
         }
         .product-detail-image .watch-img:hover {
             transform: scale(1.04);
@@ -1528,17 +1533,18 @@
             font-weight: 500;
         }
 
-        /* MODERN SPECIFICATIONS */
+        /* MODERN SPECIFICATIONS - FIXED CONTAINMENT */
         .pd-specs-wrapper {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 20px;
-            padding: 3rem 3rem;
+            padding: 2.5rem 2.5rem;
             margin-bottom: 4rem;
             box-shadow: var(--shadow-sm);
             position: relative;
             overflow: hidden;
             transition: box-shadow 0.3s;
+            max-width: 100%;
         }
         .pd-specs-wrapper:hover {
             box-shadow: var(--shadow-md);
@@ -1580,18 +1586,21 @@
 
         .pd-specs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            width: 100%;
         }
         .pd-spec-item {
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1rem 1.5rem;
+            padding: 0.9rem 1.2rem;
             background: var(--bg-primary);
             border-radius: 12px;
             border: 1px solid var(--border);
             transition: all 0.3s;
+            min-width: 0;
+            overflow: hidden;
         }
         .pd-spec-item:hover {
             border-color: var(--accent);
@@ -1599,29 +1608,32 @@
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.08);
         }
         .pd-spec-item .spec-icon {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             flex-shrink: 0;
-            width: 36px;
+            width: 32px;
             text-align: center;
             color: var(--accent);
         }
         .pd-spec-item .spec-content {
             display: flex;
             flex-direction: column;
+            min-width: 0;
+            flex: 1;
         }
         .pd-spec-item .spec-label {
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--text-muted);
             font-weight: 600;
         }
         .pd-spec-item .spec-value {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
             color: var(--text-primary);
             margin-top: 0.1rem;
             letter-spacing: 0.3px;
+            word-break: break-word;
         }
 
         /* PEOPLE ALSO LIKE - MODERN SLIDER */
@@ -1973,7 +1985,7 @@
         }
 
         /* ============================================================
-           CHECKOUT PAGE - REDESIGNED
+           CHECKOUT PAGE - REDESIGNED (NO CREDIT/DEBIT CARD)
            ============================================================ */
         #page-checkout .checkout-container {
             max-width: 1000px;
@@ -2093,6 +2105,7 @@
             cursor: pointer;
         }
 
+        /* Payment options - Only COD and Bank Transfer (no Credit/Debit) */
         .payment-options {
             display: flex;
             flex-direction: column;
@@ -2359,6 +2372,9 @@
             }
             .pd-specs-grid {
                 grid-template-columns: 1fr 1fr !important;
+            }
+            .pd-specs-wrapper {
+                padding: 1.5rem 1rem !important;
             }
             .product-detail-hero {
                 flex-direction: column !important;
@@ -2726,14 +2742,7 @@
                             <h3 style="margin-top:1.5rem;">Payment</h3>
                             <div class="payment-options" id="paymentOptions">
                                 <label class="payment-option selected">
-                                    <input type="radio" name="payment" value="card" checked onchange="updateCheckoutSummary()" />
-                                    <span class="payment-label">
-                                        Debit - Credit Card
-                                        <span class="payment-note">You'll be redirected to complete your purchase.</span>
-                                    </span>
-                                </label>
-                                <label class="payment-option">
-                                    <input type="radio" name="payment" value="cod" onchange="updateCheckoutSummary()" />
+                                    <input type="radio" name="payment" value="cod" checked onchange="updateCheckoutSummary()" />
                                     <span class="payment-label">
                                         Cash on Delivery (COD)
                                         <span class="payment-note">6% tax will be applied.</span>
@@ -3061,7 +3070,7 @@
             const extraItems = document.getElementById('checkoutExtraItems');
             const totalElement = document.getElementById('checkoutTotal');
             const totalBigElement = document.getElementById('checkoutTotalBig');
-            
+
             let subtotal = getCartTotal();
             let tax = 0;
             let discount = 0;
