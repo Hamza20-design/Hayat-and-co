@@ -28,6 +28,8 @@
             --whatsapp: #25D366;
             --whatsapp-dark: #1ea852;
             --instagram: #E4405F;
+            --error: #e74c3c;
+            --error-bg: #fde8e8;
         }
 
         * {
@@ -1703,7 +1705,7 @@
         }
 
         /* ============================================================
-           CART SIDEBAR - FIXED (footer always visible at bottom)
+           CART SIDEBAR - PROCEED TO CHECKOUT BUTTON MOVED ABOVE TOTAL
            ============================================================ */
         .cart-overlay {
             position: fixed;
@@ -1855,18 +1857,42 @@
             color: #c0392b;
         }
 
+        /* Button now inside the main area, above the total */
+        .cart-checkout-btn-wrapper {
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+        }
+        .cart-checkout-btn-wrapper .btn-checkout-cart {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            transition: background 0.25s, box-shadow 0.25s;
+        }
+        .cart-checkout-btn-wrapper .btn-checkout-cart:hover {
+            background: var(--accent-dark);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+        }
+
         .cart-footer {
             padding: 0.8rem 1.5rem;
             border-top: 1px solid var(--border);
             flex-shrink: 0;
             background: var(--bg-secondary);
-            margin-top: auto;
         }
         .cart-totals {
             display: flex;
             flex-direction: column;
             gap: 0.2rem;
-            margin-bottom: 0.8rem;
         }
         .cart-totals div {
             display: flex;
@@ -1882,25 +1908,6 @@
             border-top: 1px solid var(--border);
             padding-top: 0.5rem;
             margin-top: 0.2rem;
-        }
-        .btn-checkout {
-            width: 100%;
-            padding: 12px;
-            background: var(--accent);
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            transition: background 0.25s, box-shadow 0.25s;
-        }
-        .btn-checkout:hover {
-            background: var(--accent-dark);
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
         }
 
         /* ============================================================
@@ -1989,6 +1996,22 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
+        }
+
+        /* India error styling */
+        .country-error {
+            color: var(--error);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.2rem;
+            display: none;
+        }
+        .country-error.show {
+            display: block;
+        }
+        .form-group.error input {
+            border-color: var(--error);
+            background: var(--error-bg);
         }
 
         .save-info {
@@ -2103,7 +2126,6 @@
             text-decoration: underline;
         }
 
-        /* LEFT COLUMN SIMPLE TOTAL & PAY BUTTON */
         .pay-section {
             margin-top: 1.5rem;
             border-top: 1px solid var(--border);
@@ -2136,6 +2158,12 @@
             background: var(--accent-dark);
             box-shadow: 0 8px 28px rgba(212, 175, 55, 0.35);
             transform: translateY(-2px);
+        }
+        .btn-pay-now:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
         }
 
         /* RIGHT COLUMN - MODERN ORDER SUMMARY */
@@ -2408,11 +2436,14 @@
                 <div class="cart-empty">Your cart is empty</div>
             </div>
         </div>
+        <!-- Proceed to Checkout button - now directly below cart items, above total -->
+        <div class="cart-checkout-btn-wrapper" id="cartCheckoutWrapper" style="display:none;">
+            <button class="btn-checkout-cart" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
         <div class="cart-footer" id="cartFooter" style="display:none;">
             <div class="cart-totals">
                 <div class="cart-total"><span>Total</span><span id="cartTotal">Rs 0</span></div>
             </div>
-            <button class="btn-checkout" onclick="proceedToCheckout()">Proceed to Checkout</button>
         </div>
     </div>
 
@@ -2554,9 +2585,10 @@
                         <div class="checkout-form-section">
                             <!-- Delivery -->
                             <h3>Delivery</h3>
-                            <div class="form-group">
+                            <div class="form-group" id="countryGroup">
                                 <label for="country">Country/Region</label>
-                                <input type="text" id="country" value="Pakistan" />
+                                <input type="text" id="country" value="Pakistan" placeholder="Enter your country" />
+                                <div class="country-error" id="countryError">⚠️ We do not ship to India. Please enter a different country.</div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
@@ -2641,17 +2673,17 @@
                                 <span style="font-size:0.8rem;color:var(--text-muted);">Have a promo code?</span>
                             </div>
 
-                            <!-- Simple Total & Pay Now (removed duplicate product summary) -->
+                            <!-- Simple Total & Pay Now -->
                             <div class="pay-section">
                                 <div class="total-line">
                                     <span>Total</span>
                                     <span id="checkoutTotalBig">PKR Rs 0.00</span>
                                 </div>
-                                <button class="btn-pay-now" onclick="submitOrder(event)">Pay now</button>
+                                <button class="btn-pay-now" id="payNowBtn" onclick="submitOrder(event)">Pay now</button>
                             </div>
                         </div>
 
-                        <!-- RIGHT COLUMN: Order Summary (Modern & Professional) -->
+                        <!-- RIGHT COLUMN: Order Summary -->
                         <div class="checkout-summary" id="checkoutSummary">
                             <h3>Order Summary</h3>
                             <div id="checkoutItemsList"></div>
@@ -2662,7 +2694,7 @@
                         </div>
                     </div>
 
-                    <!-- Confirmation (hidden initially) -->
+                    <!-- Confirmation -->
                     <div class="checkout-order-confirmation" id="checkoutOrderConfirmation">
                         <span class="check-icon">✅</span>
                         <h4>Order Placed!</h4>
@@ -2881,12 +2913,14 @@
         function renderCartItems() {
             const container = document.getElementById('cartItems');
             const footer = document.getElementById('cartFooter');
+            const checkoutWrapper = document.getElementById('cartCheckoutWrapper');
 
             cart = cart.filter(item => item.qty > 0);
 
             if (!cart.length) {
                 container.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
                 footer.style.display = 'none';
+                checkoutWrapper.style.display = 'none';
                 return;
             }
 
@@ -2909,6 +2943,7 @@
             }).join('');
 
             footer.style.display = 'block';
+            checkoutWrapper.style.display = 'block';
             const total = getCartTotal();
             document.getElementById('cartTotal').textContent = 'Rs ' + total.toLocaleString();
         }
@@ -2932,7 +2967,7 @@
         }
 
         // ============================================================
-        // CHECKOUT UPDATE - enhanced
+        // CHECKOUT UPDATE
         // ============================================================
         function updateCheckoutSummary() {
             const itemsList = document.getElementById('checkoutItemsList');
@@ -2945,7 +2980,6 @@
                 return;
             }
 
-            // Summary list (right column)
             itemsList.innerHTML = cart.map(item => {
                 const p = products.find(p => p.id === item.id);
                 if (!p) return '';
@@ -2955,8 +2989,6 @@
                         </div>`;
             }).join('');
             document.getElementById('checkoutTotal').textContent = 'Rs ' + total.toLocaleString();
-
-            // Big total (left column)
             document.getElementById('checkoutTotalBig').textContent = 'PKR Rs ' + total.toFixed(2);
         }
 
@@ -2972,10 +3004,40 @@
         }
 
         // ============================================================
+        // COUNTRY VALIDATION - Block India
+        // ============================================================
+        function validateCountry() {
+            const countryInput = document.getElementById('country');
+            const errorEl = document.getElementById('countryError');
+            const group = document.getElementById('countryGroup');
+            const payBtn = document.getElementById('payNowBtn');
+
+            const val = countryInput.value.trim().toLowerCase();
+            if (val === 'india') {
+                group.classList.add('error');
+                errorEl.classList.add('show');
+                payBtn.disabled = true;
+                return false;
+            } else {
+                group.classList.remove('error');
+                errorEl.classList.remove('show');
+                payBtn.disabled = false;
+                return true;
+            }
+        }
+
+        // ============================================================
         // CHECKOUT SUBMIT (with validation)
         // ============================================================
         function submitOrder(e) {
             e.preventDefault();
+
+            // First check country
+            if (!validateCountry()) {
+                showToast('We do not ship to India. Please enter a different country.');
+                return;
+            }
+
             const required = ['firstName', 'lastName', 'address', 'city', 'phone'];
             let valid = true;
             required.forEach(id => {
@@ -2991,11 +3053,12 @@
                 showToast('Please fill in all required fields');
                 return;
             }
+
             // Show confirmation
             document.querySelector('.checkout-form-section').style.display = 'none';
             document.querySelector('.checkout-summary').style.display = 'none';
             document.getElementById('checkoutOrderConfirmation').classList.add('show');
-            // Clear cart
+
             cart = [];
             saveCart();
             updateCartUI();
@@ -3066,7 +3129,7 @@
         }
 
         // ============================================================
-        // PRODUCT DETAIL PAGE - REDESIGNED SPECS
+        // PRODUCT DETAIL PAGE
         // ============================================================
         let detailProductId = null;
 
@@ -3337,6 +3400,8 @@
             }
             if (page === 'checkout') {
                 updateCheckoutSummary();
+                // Reset country validation
+                validateCountry();
             }
         }
 
@@ -3466,6 +3531,9 @@
             }
         });
 
+        // Country validation on input
+        document.getElementById('country').addEventListener('input', validateCountry);
+
         // Payment option selection styling
         document.querySelectorAll('.payment-option').forEach(opt => {
             opt.addEventListener('click', function() {
@@ -3484,6 +3552,7 @@
             createParticles();
             renderReviews();
             toggleBilling();
+            validateCountry();
         }
         document.addEventListener('DOMContentLoaded', init);
     </script>
