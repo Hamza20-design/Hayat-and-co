@@ -3154,10 +3154,13 @@
             const fullStars = Math.floor(rating);
             const stars = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
 
+            // Use picsum for product image
+            const imgUrl = `https://picsum.photos/seed/${product.id}-${product.brand.replace(/\s/g,'')}/600/600`;
+
             container.innerHTML = `
                 <div class="product-detail-hero">
                     <div class="product-detail-image">
-                        <img src="rolexbluesy.jpg" alt="${product.brand} ${product.name}" class="watch-img" />
+                        <img src="${imgUrl}" alt="${product.brand} ${product.name}" class="watch-img" />
                     </div>
                     <div class="product-detail-info">
                         <p class="product-detail-brand">${product.brand}</p>
@@ -3203,7 +3206,7 @@
                             ${otherProducts.length > 0 ? otherProducts.map(p => `
                                 <div class="slider-item" onclick="openProductDetail(${p.id})">
                                     <div class="slider-item-img">
-                                        <img src="rolexbluesy.jpg" alt="${p.brand} ${p.name}" />
+                                        <img src="https://picsum.photos/seed/${p.id}-${p.brand.replace(/\s/g,'')}/300/300" alt="${p.brand} ${p.name}" />
                                     </div>
                                     <div class="slider-item-body">
                                         <div class="slider-item-brand">${p.brand}</div>
@@ -3402,18 +3405,9 @@
         // RENDER PRODUCT CARDS
         // ============================================================
         function createProductCard(product, isBrandDetail = false) {
-            let imgSrc = 'rolexbluesy.jpg';
-            const brandLower = product.brand.toLowerCase().replace(/\s/g, '');
-            if (brandLower === 'cartier') imgSrc = 'cartier.jpg';
-            else if (brandLower === 'audemarspiguet' || brandLower === 'ap') imgSrc = 'ap.jpg';
-            else if (brandLower === 'patekphilippe' || brandLower === 'patek') imgSrc = 'patek.jpg';
-            else if (brandLower === 'omega') imgSrc = 'omega.jpg';
-            else if (brandLower === 'tudor') imgSrc = 'tudor.jpg';
-            else if (brandLower === 'paganidesign') imgSrc = 'pagani.jpg';
-            else if (brandLower === 'otherbrands') imgSrc = 'other.jpg';
-
-            const watchImage =
-                `<img src="${imgSrc}" alt="${product.brand} ${product.name}" class="watch-img" onerror="this.src='rolexbluesy.jpg'" />`;
+            // Use picsum for product images
+            const imgUrl = `https://picsum.photos/seed/${product.id}-${product.brand.replace(/\s/g,'')}/400/300`;
+            const watchImage = `<img src="${imgUrl}" alt="${product.brand} ${product.name}" class="watch-img" />`;
             const discountBadge = product.discount ? `<span class="product-card-badge">${product.discount}</span>` : '';
             return `<div class="product-card" onclick="openProductDetail(${product.id})">
                         <div class="product-card-image">
@@ -3453,10 +3447,11 @@
 
         function renderBrandPage() {
             document.getElementById('brandGrid').innerHTML = brandList.map(b => {
-                const imgName = b.toLowerCase().replace(/\s/g, '');
+                // Use a colored placeholder with initial as fallback
+                const imgUrl = `https://via.placeholder.com/60x60/1A2A4A/FFFFFF?text=${b.charAt(0)}`;
                 return `<div class="brand-card" onclick="filterByBrand('${b}')">
                             <div class="brand-logo-placeholder">
-                                <img src="${imgName}.png" alt="${b} logo" onerror="this.style.display='none'">
+                                <img src="${imgUrl}" alt="${b} logo" onerror="this.style.display='none'">
                                 <span class="brand-name-fallback">${b}</span>
                             </div>
                         </div>`;
