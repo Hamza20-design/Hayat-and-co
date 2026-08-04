@@ -1705,7 +1705,7 @@
         }
 
         /* ============================================================
-           CART SIDEBAR - TOTAL ABOVE BUTTON, EMPTY SPACE BELOW
+           CART SIDEBAR - TOTAL ABOVE BUTTON, EXTRA SPACE BELOW
            ============================================================ */
         .cart-overlay {
             position: fixed;
@@ -1857,7 +1857,7 @@
             color: #c0392b;
         }
 
-        /* Total row - now above the button */
+        /* Total row - above the button */
         .cart-total-row {
             padding: 0.8rem 1.5rem 0.3rem 1.5rem;
             background: var(--bg-secondary);
@@ -1873,9 +1873,9 @@
             letter-spacing: 0.5px;
         }
 
-        /* Button wrapper - total removed from here */
+        /* Button wrapper with extra padding for visibility */
         .cart-checkout-btn-wrapper {
-            padding: 0.5rem 1.5rem 0.8rem 1.5rem;
+            padding: 0.5rem 1.5rem 1.5rem 1.5rem;
             background: var(--bg-secondary);
         }
         .cart-checkout-btn-wrapper .btn-checkout-cart {
@@ -1898,13 +1898,13 @@
             box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
         }
 
-        /* Footer - now just an empty spacer with border */
+        /* Footer - now provides a large empty space below the button */
         .cart-footer {
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 1.5rem 3rem 1.5rem;
             border-top: 1px solid var(--border);
             flex-shrink: 0;
             background: var(--bg-secondary);
-            min-height: 1px;
+            min-height: 30px;
         }
         .cart-footer .cart-totals {
             display: none;
@@ -2443,7 +2443,7 @@
         <div class="cart-checkout-btn-wrapper" id="cartCheckoutWrapper" style="display:none;">
             <button class="btn-checkout-cart" onclick="proceedToCheckout()">Proceed to Checkout</button>
         </div>
-        <!-- Footer with empty space (border only) -->
+        <!-- Footer with large empty space below the button -->
         <div class="cart-footer" id="cartFooter" style="display:none;"></div>
     </div>
 
