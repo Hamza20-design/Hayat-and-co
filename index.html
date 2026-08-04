@@ -3445,10 +3445,15 @@
             document.getElementById('shopAllGrid').innerHTML = products.map(p => createProductCard(p)).join('');
         }
 
+        // ============================================================
+        // RENDER BRAND PAGE - Updated with .png placeholders
+        // ============================================================
         function renderBrandPage() {
             document.getElementById('brandGrid').innerHTML = brandList.map(b => {
-                // Use a colored placeholder with initial as fallback
-                const imgUrl = `https://via.placeholder.com/60x60/1A2A4A/FFFFFF?text=${b.charAt(0)}`;
+                // Create a slug for the brand name to use as the .png filename
+                const brandSlug = b.toLowerCase().replace(/\s/g, '');
+                // Look for the .png file in the "logos" directory
+                const imgUrl = `logos/${brandSlug}.png`;
                 return `<div class="brand-card" onclick="filterByBrand('${b}')">
                             <div class="brand-logo-placeholder">
                                 <img src="${imgUrl}" alt="${b} logo" onerror="this.style.display='none'">
