@@ -176,6 +176,9 @@
             .pd-specs-wrapper {
                 padding: 1.5rem 1rem !important;
             }
+            .pd-spec-item {
+                padding: 0.6rem 0.8rem !important;
+            }
         }
 
         /* ----- HEADER (navy tint) ----- */
@@ -856,6 +859,9 @@
             .pd-specs-wrapper {
                 padding: 1.5rem 1rem !important;
             }
+            .pd-spec-item {
+                padding: 0.6rem 0.8rem !important;
+            }
         }
 
         /* ----- PRODUCT CARD ----- */
@@ -1467,7 +1473,7 @@
             display: flex;
             gap: 1rem;
             align-items: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 0.5rem;
         }
         .btn-add-to-cart {
             padding: 16px 50px;
@@ -1518,22 +1524,9 @@
             background: #219a52;
         }
 
-        .product-detail-meta {
-            display: flex;
-            gap: 2rem;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
-            padding-top: 1.5rem;
-        }
-        .product-detail-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-weight: 500;
-        }
+        /* REMOVED: product-detail-meta section - badges removed */
 
-        /* MODERN SPECIFICATIONS - FIXED CONTAINMENT */
+        /* MODERN SPECIFICATIONS - FIXED TEXT WRAPPING */
         .pd-specs-wrapper {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -1600,7 +1593,7 @@
             border: 1px solid var(--border);
             transition: all 0.3s;
             min-width: 0;
-            overflow: hidden;
+            overflow: visible;
         }
         .pd-spec-item:hover {
             border-color: var(--accent);
@@ -1619,6 +1612,7 @@
             flex-direction: column;
             min-width: 0;
             flex: 1;
+            overflow: visible;
         }
         .pd-spec-item .spec-label {
             font-size: 0.55rem;
@@ -1626,6 +1620,7 @@
             letter-spacing: 1.5px;
             color: var(--text-muted);
             font-weight: 600;
+            white-space: nowrap;
         }
         .pd-spec-item .spec-value {
             font-size: 0.9rem;
@@ -1633,7 +1628,10 @@
             color: var(--text-primary);
             margin-top: 0.1rem;
             letter-spacing: 0.3px;
-            word-break: break-word;
+            word-break: normal;
+            overflow-wrap: break-word;
+            white-space: normal;
+            line-height: 1.4;
         }
 
         /* PEOPLE ALSO LIKE - MODERN SLIDER */
@@ -2375,6 +2373,9 @@
             }
             .pd-specs-wrapper {
                 padding: 1.5rem 1rem !important;
+            }
+            .pd-spec-item {
+                padding: 0.6rem 0.8rem !important;
             }
             .product-detail-hero {
                 flex-direction: column !important;
@@ -3251,7 +3252,7 @@
         }
 
         // ============================================================
-        // PRODUCT DETAIL - MODERN REDESIGN
+        // PRODUCT DETAIL - MODERN REDESIGN (BADGES REMOVED)
         // ============================================================
         let detailProductId = null;
 
@@ -3329,11 +3330,6 @@
                         <p class="product-detail-desc">${product.description || 'A timeless masterpiece crafted with precision and elegance. This watch embodies the perfect blend of tradition and innovation.'}</p>
                         <div class="product-detail-actions">
                             <button class="btn-add-to-cart" id="detailAddToCart" onclick="addToCartFromDetail(${product.id})">Add to Cart</button>
-                        </div>
-                        <div class="product-detail-meta">
-                            <span>🛡️ Authenticity Guaranteed</span>
-                            <span>🚚 Free Shipping</span>
-                            <span>🔄 7-Day Exchange</span>
                         </div>
                     </div>
                 </div>
