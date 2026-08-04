@@ -1860,7 +1860,7 @@
             border-top: 1px solid var(--border);
             flex-shrink: 0;
             background: var(--bg-secondary);
-            margin-top: auto; /* push to bottom */
+            margin-top: auto;
         }
         .cart-totals {
             display: flex;
@@ -1904,7 +1904,7 @@
         }
 
         /* ============================================================
-           CHECKOUT PAGE - REDESIGNED based on images
+           CHECKOUT PAGE - REDESIGNED
            ============================================================ */
         #page-checkout .checkout-container {
             max-width: 1000px;
@@ -1991,7 +1991,6 @@
             gap: 1rem;
         }
 
-        /* Save info checkbox */
         .save-info {
             display: flex;
             align-items: center;
@@ -2010,7 +2009,6 @@
             cursor: pointer;
         }
 
-        /* Payment methods */
         .payment-options {
             display: flex;
             flex-direction: column;
@@ -2055,7 +2053,6 @@
             margin-top: 0.1rem;
         }
 
-        /* Billing address toggle */
         .billing-toggle {
             display: flex;
             gap: 1.5rem;
@@ -2087,7 +2084,6 @@
             display: block;
         }
 
-        /* Discount */
         .discount-section {
             display: flex;
             justify-content: space-between;
@@ -2107,55 +2103,20 @@
             text-decoration: underline;
         }
 
-        /* Total with chevron */
-        .checkout-total-line {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            padding: 0.8rem 0 0.4rem;
+        /* LEFT COLUMN SIMPLE TOTAL & PAY BUTTON */
+        .pay-section {
+            margin-top: 1.5rem;
             border-top: 1px solid var(--border);
-            margin-top: 0.5rem;
+            padding-top: 1.2rem;
         }
-        .checkout-total-line .total-left {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        .checkout-total-line .total-left .item-count {
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: var(--text-muted);
-        }
-        .checkout-total-line .chevron {
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: transform 0.3s;
-            color: var(--text-muted);
-            user-select: none;
-        }
-        .checkout-total-line .chevron.open {
-            transform: rotate(180deg);
-        }
-        .order-details-expand {
-            display: none;
-            margin-top: 0.5rem;
-            padding: 0.5rem 0;
-            border-top: 1px dashed var(--border);
-        }
-        .order-details-expand.show {
-            display: block;
-        }
-        .order-details-expand .detail-row {
+        .pay-section .total-line {
             display: flex;
             justify-content: space-between;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            padding: 0.2rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
         }
-
         .btn-pay-now {
             width: 100%;
             padding: 14px;
@@ -2170,7 +2131,6 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 1.2rem;
         }
         .btn-pay-now:hover {
             background: var(--accent-dark);
@@ -2178,46 +2138,36 @@
             transform: translateY(-2px);
         }
 
-        /* Order summary (right column) - kept from original but styled */
+        /* RIGHT COLUMN - MODERN ORDER SUMMARY */
         .checkout-summary {
             background: var(--bg-card);
-            border-radius: 14px;
-            padding: 2rem 2rem;
+            border-radius: 16px;
+            padding: 1.8rem 1.8rem;
             border: 1px solid var(--border);
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-md);
             position: sticky;
             top: 110px;
             transition: box-shadow 0.3s;
         }
         .checkout-summary:hover {
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-lg);
         }
         .checkout-summary h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--text-primary);
             margin-bottom: 1.2rem;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-        .checkout-summary h3::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, var(--border), transparent);
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
         }
         .checkout-summary-item {
             display: flex;
             justify-content: space-between;
-            padding: 0.6rem 0;
+            padding: 0.7rem 0;
             border-bottom: 1px solid var(--border);
             font-size: 0.85rem;
             color: var(--text-secondary);
-        }
-        .checkout-summary-item:last-child {
-            border-bottom: none;
         }
         .checkout-summary-item .item-name {
             font-weight: 500;
@@ -2606,12 +2556,7 @@
                             <h3>Delivery</h3>
                             <div class="form-group">
                                 <label for="country">Country/Region</label>
-                                <select id="country">
-                                    <option value="Pakistan" selected>Pakistan</option>
-                                    <option value="UAE">UAE</option>
-                                    <option value="UK">United Kingdom</option>
-                                    <option value="USA">United States</option>
-                                </select>
+                                <input type="text" id="country" value="Pakistan" />
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
@@ -2696,24 +2641,17 @@
                                 <span style="font-size:0.8rem;color:var(--text-muted);">Have a promo code?</span>
                             </div>
 
-                            <!-- Total & Pay -->
-                            <div>
-                                <div class="checkout-total-line">
-                                    <div class="total-left">
-                                        <span>Total</span>
-                                        <span class="item-count" id="itemCountDisplay">0 items</span>
-                                        <span class="chevron" id="chevronToggle" onclick="toggleOrderDetails()">▼</span>
-                                    </div>
+                            <!-- Simple Total & Pay Now (removed duplicate product summary) -->
+                            <div class="pay-section">
+                                <div class="total-line">
+                                    <span>Total</span>
                                     <span id="checkoutTotalBig">PKR Rs 0.00</span>
-                                </div>
-                                <div class="order-details-expand" id="orderDetailsExpand">
-                                    <div id="orderDetailsList"></div>
                                 </div>
                                 <button class="btn-pay-now" onclick="submitOrder(event)">Pay now</button>
                             </div>
                         </div>
 
-                        <!-- RIGHT COLUMN: Order Summary (unchanged) -->
+                        <!-- RIGHT COLUMN: Order Summary (Modern & Professional) -->
                         <div class="checkout-summary" id="checkoutSummary">
                             <h3>Order Summary</h3>
                             <div id="checkoutItemsList"></div>
@@ -2897,7 +2835,6 @@
             const totalItems = cart.reduce((sum, i) => sum + (i.qty || 0), 0);
             document.getElementById('cartCount').textContent = totalItems;
             renderCartItems();
-            // Also update checkout if visible
             if (document.getElementById('page-checkout').classList.contains('active')) {
                 updateCheckoutSummary();
             }
@@ -2939,10 +2876,6 @@
                 const p = products.find(p => p.id === i.id);
                 return sum + (p ? p.price * i.qty : 0);
             }, 0);
-        }
-
-        function getTotalItems() {
-            return cart.reduce((sum, i) => sum + i.qty, 0);
         }
 
         function renderCartItems() {
@@ -3004,14 +2937,11 @@
         function updateCheckoutSummary() {
             const itemsList = document.getElementById('checkoutItemsList');
             const total = getCartTotal();
-            const totalItems = getTotalItems();
 
             if (!cart.length) {
                 itemsList.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:1rem 0;">Your cart is empty</p>';
                 document.getElementById('checkoutTotal').textContent = 'Rs 0';
                 document.getElementById('checkoutTotalBig').textContent = 'PKR Rs 0.00';
-                document.getElementById('itemCountDisplay').textContent = '0 items';
-                document.getElementById('orderDetailsList').innerHTML = '';
                 return;
             }
 
@@ -3028,18 +2958,6 @@
 
             // Big total (left column)
             document.getElementById('checkoutTotalBig').textContent = 'PKR Rs ' + total.toFixed(2);
-            document.getElementById('itemCountDisplay').textContent = totalItems + ' items';
-
-            // Expandable order details
-            const detailsList = document.getElementById('orderDetailsList');
-            detailsList.innerHTML = cart.map(item => {
-                const p = products.find(p => p.id === item.id);
-                if (!p) return '';
-                return `<div class="detail-row">
-                            <span>${p.brand} ${p.name} × ${item.qty}</span>
-                            <span>Rs ${(p.price * item.qty).toLocaleString()}</span>
-                        </div>`;
-            }).join('');
         }
 
         // Toggle billing address
@@ -3053,20 +2971,11 @@
             }
         }
 
-        // Toggle order details expandable
-        function toggleOrderDetails() {
-            const expand = document.getElementById('orderDetailsExpand');
-            const chevron = document.getElementById('chevronToggle');
-            expand.classList.toggle('show');
-            chevron.classList.toggle('open');
-        }
-
         // ============================================================
         // CHECKOUT SUBMIT (with validation)
         // ============================================================
         function submitOrder(e) {
             e.preventDefault();
-            // Basic validation on required fields
             const required = ['firstName', 'lastName', 'address', 'city', 'phone'];
             let valid = true;
             required.forEach(id => {
@@ -3169,7 +3078,6 @@
 
             const otherProducts = products.filter(p => p.id !== productId);
 
-            // Build spec items with icons
             let specsHtml = '';
             const specIcons = {
                 'Water Resistance': '💧',
@@ -3241,7 +3149,6 @@
                     </div>
                 </div>
 
-                <!-- REDESIGNED SPECIFICATIONS SECTION -->
                 <div class="pd-specs-wrapper">
                     <div class="pd-specs-header">
                         <span class="icon">📋</span>
@@ -3576,7 +3483,6 @@
             renderFAQs();
             createParticles();
             renderReviews();
-            // Ensure billing toggle works
             toggleBilling();
         }
         document.addEventListener('DOMContentLoaded', init);
