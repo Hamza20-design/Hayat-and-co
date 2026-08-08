@@ -174,10 +174,16 @@
                 grid-template-columns: 1fr 1fr !important;
             }
             .pd-specs-wrapper {
-                padding: 1.5rem 1rem !important;
+                padding: 1.2rem 1rem !important;
             }
             .pd-spec-item {
-                padding: 0.6rem 0.8rem !important;
+                padding: 0.7rem 0.8rem !important;
+            }
+            .pd-spec-item .spec-value {
+                font-size: 0.8rem !important;
+            }
+            .pd-spec-item .spec-label {
+                font-size: 0.5rem !important;
             }
         }
 
@@ -857,10 +863,16 @@
                 grid-template-columns: 1fr 1fr !important;
             }
             .pd-specs-wrapper {
-                padding: 1.5rem 1rem !important;
+                padding: 1.2rem 1rem !important;
             }
             .pd-spec-item {
-                padding: 0.6rem 0.8rem !important;
+                padding: 0.7rem 0.8rem !important;
+            }
+            .pd-spec-item .spec-value {
+                font-size: 0.8rem !important;
+            }
+            .pd-spec-item .spec-label {
+                font-size: 0.5rem !important;
             }
         }
 
@@ -1524,23 +1536,25 @@
             background: #219a52;
         }
 
-        /* REMOVED: product-detail-meta section - badges removed */
-
-        /* MODERN SPECIFICATIONS - FIXED TEXT WRAPPING */
+        /* ============================================================
+           TECHNICAL SPECIFICATIONS - PROFESSIONAL REDESIGN
+           WITH ANIMATIONS AND CLEAN LINE-BY-LINE FORMAT
+           ============================================================ */
         .pd-specs-wrapper {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 20px;
+            border-radius: 16px;
             padding: 2.5rem 2.5rem;
             margin-bottom: 4rem;
             box-shadow: var(--shadow-sm);
             position: relative;
             overflow: hidden;
-            transition: box-shadow 0.3s;
+            transition: box-shadow 0.4s ease, transform 0.3s ease;
             max-width: 100%;
         }
         .pd-specs-wrapper:hover {
             box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
         }
         .pd-specs-wrapper::before {
             content: '';
@@ -1550,12 +1564,26 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+            border-radius: 16px 16px 0 0;
+            animation: shimmerBar 3s ease-in-out infinite;
+            background-size: 200% 100%;
         }
+        @keyframes shimmerBar {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
         .pd-specs-header {
             display: flex;
             align-items: center;
             gap: 1rem;
             margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
         }
         .pd-specs-header .icon {
             font-size: 1.8rem;
@@ -1579,34 +1607,60 @@
 
         .pd-specs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.2rem;
             width: 100%;
         }
+
         .pd-spec-item {
             display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.9rem 1.2rem;
+            flex-direction: column;
+            gap: 0.3rem;
+            padding: 1rem 1.2rem;
             background: var(--bg-primary);
             border-radius: 12px;
             border: 1px solid var(--border);
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             min-width: 0;
             overflow: visible;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+            animation-delay: calc(0.1s * var(--i, 1));
+            position: relative;
+        }
+        .pd-spec-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
+            border-radius: 0 0 4px 4px;
         }
         .pd-spec-item:hover {
             border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.08);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.12);
+            background: var(--bg-card);
         }
+        .pd-spec-item:hover::after {
+            width: 60%;
+        }
+
         .pd-spec-item .spec-icon {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             flex-shrink: 0;
-            width: 32px;
-            text-align: center;
             color: var(--accent);
+            margin-bottom: 0.2rem;
+            transition: transform 0.4s ease;
         }
+        .pd-spec-item:hover .spec-icon {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
         .pd-spec-item .spec-content {
             display: flex;
             flex-direction: column;
@@ -1614,24 +1668,47 @@
             flex: 1;
             overflow: visible;
         }
+
         .pd-spec-item .spec-label {
-            font-size: 0.55rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.8px;
             color: var(--text-muted);
             font-weight: 600;
             white-space: nowrap;
+            margin-bottom: 0.15rem;
+            transition: color 0.3s ease;
         }
+        .pd-spec-item:hover .spec-label {
+            color: var(--accent);
+        }
+
         .pd-spec-item .spec-value {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 500;
             color: var(--text-primary);
-            margin-top: 0.1rem;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.2px;
+            line-height: 1.5;
             word-break: normal;
-            overflow-wrap: break-word;
             white-space: normal;
-            line-height: 1.4;
+            overflow-wrap: break-word;
+            max-width: 100%;
+            transition: color 0.3s ease;
+        }
+        .pd-spec-item:hover .spec-value {
+            color: var(--navy);
+        }
+
+        /* Keyframe animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* PEOPLE ALSO LIKE - MODERN SLIDER */
@@ -2103,7 +2180,7 @@
             cursor: pointer;
         }
 
-        /* Payment options - Only COD and Bank Transfer (no Credit/Debit) */
+        /* Payment options - Only COD and Bank Transfer */
         .payment-options {
             display: flex;
             flex-direction: column;
@@ -2372,10 +2449,16 @@
                 grid-template-columns: 1fr 1fr !important;
             }
             .pd-specs-wrapper {
-                padding: 1.5rem 1rem !important;
+                padding: 1.2rem 1rem !important;
             }
             .pd-spec-item {
-                padding: 0.6rem 0.8rem !important;
+                padding: 0.7rem 0.8rem !important;
+            }
+            .pd-spec-item .spec-value {
+                font-size: 0.8rem !important;
+            }
+            .pd-spec-item .spec-label {
+                font-size: 0.5rem !important;
             }
             .product-detail-hero {
                 flex-direction: column !important;
@@ -3252,7 +3335,7 @@
         }
 
         // ============================================================
-        // PRODUCT DETAIL - MODERN REDESIGN (BADGES REMOVED)
+        // PRODUCT DETAIL - MODERN REDESIGN
         // ============================================================
         let detailProductId = null;
 
@@ -3276,10 +3359,10 @@
             };
 
             if (product.details) {
-                specsHtml = Object.entries(product.details).map(([key, value]) => {
+                specsHtml = Object.entries(product.details).map(([key, value], index) => {
                     const icon = specIcons[key] || '◆';
-                    return `<div class="pd-spec-item">
-                                <span class="spec-icon">${icon}</span>
+                    return `<div class="pd-spec-item" style="--i:${index + 1}">
+                                <div class="spec-icon">${icon}</div>
                                 <div class="spec-content">
                                     <span class="spec-label">${key}</span>
                                     <span class="spec-value">${value}</span>
@@ -3288,10 +3371,10 @@
                 }).join('');
             } else {
                 specsHtml = `
-                    <div class="pd-spec-item"><span class="spec-icon">🏷️</span><div class="spec-content"><span class="spec-label">Brand</span><span class="spec-value">${product.brand}</span></div></div>
-                    <div class="pd-spec-item"><span class="spec-icon">📐</span><div class="spec-content"><span class="spec-label">Model</span><span class="spec-value">${product.name}</span></div></div>
-                    <div class="pd-spec-item"><span class="spec-icon">⚙️</span><div class="spec-content"><span class="spec-label">Case Material</span><span class="spec-value">Stainless Steel</span></div></div>
-                    <div class="pd-spec-item"><span class="spec-icon">⚡</span><div class="spec-content"><span class="spec-label">Movement</span><span class="spec-value">Automatic</span></div></div>
+                    <div class="pd-spec-item" style="--i:1"><div class="spec-icon">🏷️</div><div class="spec-content"><span class="spec-label">Brand</span><span class="spec-value">${product.brand}</span></div></div>
+                    <div class="pd-spec-item" style="--i:2"><div class="spec-icon">📐</div><div class="spec-content"><span class="spec-label">Model</span><span class="spec-value">${product.name}</span></div></div>
+                    <div class="pd-spec-item" style="--i:3"><div class="spec-icon">⚙️</div><div class="spec-content"><span class="spec-label">Case Material</span><span class="spec-value">Stainless Steel</span></div></div>
+                    <div class="pd-spec-item" style="--i:4"><div class="spec-icon">⚡</div><div class="spec-content"><span class="spec-label">Movement</span><span class="spec-value">Automatic</span></div></div>
                 `;
             }
 
