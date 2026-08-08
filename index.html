@@ -2256,24 +2256,7 @@
             display: block;
         }
 
-        .discount-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 1.2rem 0 0.8rem;
-            padding-top: 0.8rem;
-            border-top: 1px solid var(--border);
-        }
-        .discount-section a {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        .discount-section a:hover {
-            text-decoration: underline;
-        }
+        /* Removed .discount-section */
 
         .pay-section {
             margin-top: 1.5rem;
@@ -2723,6 +2706,7 @@
     <!-- ===== PAGE : SHOP ALL ===== -->
     <section class="page-section" id="page-shop-all">
         <div class="section-container">
+            <button class="btn-back" onclick="navigateTo('home')">← Back</button>
             <div class="section-header">
                 <p class="section-eyebrow">Complete Selection</p>
                 <h2 class="section-title">All Watches</h2>
@@ -2860,10 +2844,7 @@
                                 </div>
                             </div>
 
-                            <div class="discount-section">
-                                <a href="#" onclick="alert('Discount code feature')">Add discount</a>
-                                <span style="font-size:0.8rem;color:var(--text-muted);">Have a promo code?</span>
-                            </div>
+                            <!-- DISCOUNT SECTION REMOVED -->
 
                             <div class="pay-section">
                                 <div class="total-line">
